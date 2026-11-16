@@ -6,7 +6,8 @@ Queste scelte sono importanti o difficili da cambiare dopo, quindi **non le pren
 opzioni, i pro e i contro e una **raccomandazione**. Quando una decisione è presa, scriviamo qui la scelta e la data, e
 aggiorniamo i documenti collegati.
 
-**Ordine consigliato:** D1 → D9 (il test delle foto) → D2 → le altre.
+**Stato:** D1-D9 **decise il 2026-11-16** (tutte secondo la raccomandazione, con le aggiunte indicate in D3, D5 e D8).
+**Prossimo passo:** il test delle foto (D9), poi la verifica dei termini di Vercel (D2).
 
 ---
 
@@ -21,7 +22,8 @@ riservato all'uso non commerciale. Pl@ntNet invece permette l'uso commerciale fi
 
 **Raccomandazione: A.** È già nella visione del prodotto. Va solo scritta nero su bianco, per esempio nel README.
 
-**Scelta:** _da decidere_
+**Scelta: ✅ DECISA il 2026-11-16 — A.** Non commerciale, open source, donazioni volontarie ammesse.
+Da fare: scriverlo nel README.
 
 ---
 
@@ -35,7 +37,8 @@ riservato all'uso non commerciale. Pl@ntNet invece permette l'uso commerciale fi
 **Raccomandazione: A**, dopo aver letto insieme i termini di servizio di Vercel. Il codice resta portabile: se Vercel non
 andasse bene, si passa a B.
 
-**Scelta:** _da decidere_
+**Scelta: ✅ DECISA il 2026-11-16 — A, Vercel Hobby**, a condizione che la lettura dei termini di servizio confermi che il
+nostro uso è ammesso. Se non lo fosse: B (Cloudflare).
 
 ---
 
@@ -47,7 +50,10 @@ andasse bene, si passa a B.
 
 **Raccomandazione: A per la v1.** Rivalutiamo B in v2, se gli utenti la chiedono.
 
-**Scelta:** _da decidere_
+**Scelta: ✅ DECISA il 2026-11-16 — A per la v1**, con questa aggiunta:
+- l'onboarding **guida passo per passo** ad aggiungere l'app alla schermata Home dell'iPhone, spiegando che altrimenti
+  Safari può cancellare i dati dopo un periodo senza visite;
+- l'onboarding **propone il backup su file** (F14).
 
 ---
 
@@ -60,7 +66,7 @@ andasse bene, si passa a B.
 
 **Raccomandazione: A** (oppure B se in D2 scegliamo Cloudflare).
 
-**Scelta:** _da decidere_
+**Scelta: ✅ DECISA il 2026-11-16 — A, Upstash Redis** (B solo se in D2 si passa a Cloudflare).
 
 ---
 
@@ -73,7 +79,9 @@ andasse bene, si passa a B.
 
 **Raccomandazione: 10**, con il conteggio sempre visibile. Riguardiamo il numero dopo un mese di uso reale.
 
-**Scelta:** _da decidere_
+**Scelta: ✅ DECISA il 2026-11-16 — 10 al giorno**, con questa aggiunta: il numero è un **valore configurabile**, non
+scritto nel codice (variabile d'ambiente `QUOTA_PER_DEVICE_PER_DAY`, valore predefinito 10). Così si può cambiare senza
+modificare il programma. Vedi [architettura §4](architettura.md#4-il-limite-di-500-identificazioni-al-giorno).
 
 ---
 
@@ -86,7 +94,7 @@ andasse bene, si passa a B.
 
 **Raccomandazione: A.** La chat AI è un "di più", non una funzione essenziale. Ne riparliamo in v2 con nuove verifiche.
 
-**Scelta:** _da decidere_
+**Scelta: ✅ DECISA il 2026-11-16 — A.** v1 assistente a regole; v2 Ollama personale.
 
 ---
 
@@ -98,7 +106,7 @@ andasse bene, si passa a B.
 
 **Raccomandazione: A per la v1**, notifiche push (V-03) in v2.
 
-**Scelta:** _da decidere_
+**Scelta: ✅ DECISA il 2026-11-16 — A.** In-app + Calendario nella v1; push in v2.
 
 ---
 
@@ -114,7 +122,12 @@ Pl@ntNet dice **che pianta è**, non **come curarla**. Serve un'altra fonte.
 **Raccomandazione: A per la cura, B (Wikidata / GBIF) per i dati botanici** (famiglia, nomi). Per le specie senza scheda
 mostriamo consigli generici dichiarati come tali.
 
-**Scelta:** _da decidere_
+**Scelta: ✅ DECISA il 2026-11-16 — A per la cura, B per i dati botanici**, con queste regole:
+- ogni scheda di cura si basa su **fonti verificabili, citate nella scheda stessa** (titolo, indirizzo, data di consultazione);
+- i testi sono **scritti con parole nostre**: vietato copiare testi dei concorrenti (CLAUDE.md §5);
+- **ripiego per le piante senza scheda**: consigli generici per famiglia o tipo di pianta (es. "piante grasse",
+  "aracee"), anch'essi con fonti, più un messaggio chiaro: *"La scheda completa per questa pianta non è ancora disponibile.
+  Questi sono consigli generici per il suo gruppo."*
 
 ---
 
@@ -128,19 +141,20 @@ mostriamo consigli generici dichiarati come tali.
 
 **Raccomandazione: A.** Sarebbe il primo passo di sviluppo: un piccolo script sul PC, con la chiave in `.env.local`.
 
-**Scelta:** _da decidere_
+**Scelta: ✅ DECISA il 2026-11-16 — A, prima il test.** Fino al risultato del test, flora e soglie restano provvisorie
+(`all`, 70% / 30%). Il risultato andrà scritto qui e nella [scheda Pl@ntNet](../api-documentation/plantnet-api.md).
 
 ---
 
-## Riepilogo delle raccomandazioni
-| Decisione | Raccomandazione |
+## Riepilogo
+| Decisione | Scelta (2026-11-16) |
 |---|---|
-| D1 Commerciale? | No: open source, niente pubblicità, donazioni ammesse |
-| D2 Hosting | Vercel Hobby, dopo aver verificato i termini |
-| D3 Dati utente | Solo telefono + backup su file |
-| D4 Contatori | Upstash Redis |
-| D5 Quota per dispositivo | 10 al giorno |
-| D6 Botanico AI | Assistente a regole in v1; Ollama personale in v2 |
-| D7 Promemoria | In-app + Calendario; push in v2 |
-| D8 Consigli di cura | Schede scritte da noi per ~50 piante + dati botanici aperti |
-| D9 Flora e soglie | Test con 30 foto prima di sviluppare |
+| D1 Commerciale? | ✅ No: open source, niente pubblicità, donazioni ammesse |
+| D2 Hosting | ✅ Vercel Hobby, dopo aver verificato i termini (altrimenti Cloudflare) |
+| D3 Dati utente | ✅ Solo telefono + backup su file; onboarding guida all'installazione sulla Home e propone il backup |
+| D4 Contatori | ✅ Upstash Redis |
+| D5 Quota per dispositivo | ✅ 10 al giorno, valore configurabile |
+| D6 Botanico AI | ✅ Assistente a regole in v1; Ollama personale in v2 |
+| D7 Promemoria | ✅ In-app + Calendario; push in v2 |
+| D8 Consigli di cura | ✅ Schede nostre con fonti citate + dati botanici aperti; ripiego generico per famiglia/tipo |
+| D9 Flora e soglie | ✅ Test con 30 foto prima di sviluppare (in attesa del test) |

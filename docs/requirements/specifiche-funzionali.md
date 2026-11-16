@@ -26,10 +26,15 @@ Obiettivo: chi apre l'app per la prima volta riesce a **riconoscere una pianta d
 - Spiegazione di **come leggere i risultati**: specie più probabile, alternative, livello di sicurezza.
 - Permessi **fotocamera** e **posizione**: prima una schermata che spiega **perché** servono, poi la richiesta di iOS.
   La posizione è **facoltativa**: in alternativa si può scrivere il nome del comune.
-- Invito a **installare l'app sulla schermata Home** (spiegando che così i dati restano salvati e, in futuro, arriveranno le notifiche).
+- **Guida all'installazione sulla schermata Home** (decisione D3): spiega con parole semplici che, se l'app resta solo in
+  Safari, **Safari può cancellare i dati** (piante, foto, promemoria) dopo un periodo senza visite; poi mostra i passaggi
+  con immagini: pulsante **Condividi** → **"Aggiungi a Home"** → **"Aggiungi"**. Ricorda anche che così, in futuro,
+  arriveranno le notifiche.
+- **Proposta del backup su file** (F14): spiega a cosa serve e dove salvarlo (es. iCloud Drive). Si può rimandare.
 
 **Criteri di accettazione:** ogni schermata si può saltare; l'onboarding si può ripetere dalla Guida; se l'utente nega un
-permesso, l'app continua a funzionare e spiega come riattivarlo.
+permesso, l'app continua a funzionare e spiega come riattivarlo; se l'app è aperta da Safari e non dalla Home, compare un
+invito discreto (chiudibile) a installarla.
 
 ### F02 — Guida sempre disponibile
 - Voce **"Guida"** nel menu principale, raggiungibile da ogni schermata.
@@ -81,10 +86,17 @@ permesso, l'app continua a funzionare e spiega come riattivarlo.
 
 ### F08 — Consigli di cura (idea I3)
 - Acqua, luce, terreno, temperatura, concime, rinvaso.
-- Per le **piante d'appartamento più comuni** (circa 50 nella v1): consigli scritti da noi con fonti citate (decisione D8).
-- Per le altre specie: indicazioni generali per gruppo, dichiarate come tali ("consigli generici per le piante grasse").
+- Per le **piante d'appartamento più comuni** (circa 50 nella v1): schede scritte da noi (decisione D8).
+  - Ogni scheda si basa su **fonti verificabili** (orti botanici, università, servizi pubblici) **citate nella scheda**
+    con titolo, link e data di consultazione.
+  - Testi **con parole nostre**: vietato copiare testi dei concorrenti (CLAUDE.md §5).
+- **Ripiego per le piante senza scheda:** consigli generici per **famiglia o tipo di pianta** (es. "piante grasse",
+  "aracee"), anch'essi con fonti, e un messaggio chiaro: *"La scheda completa per questa pianta non è ancora disponibile.
+  Questi sono consigli generici per il suo gruppo."*
+- Se non c'è nemmeno un gruppo adatto: lo stesso messaggio e solo consigli di base, dichiarati come tali.
 
-**Criteri:** mai consigli specifici inventati; quando sono generici, l'app lo dice.
+**Criteri:** mai consigli specifici inventati; ogni scheda e ogni gruppo mostra almeno una fonte (controllato da un test
+automatico); quando i consigli sono generici, l'app lo dice in modo ben visibile.
 
 ### F09 — Collezione personale
 - Aggiungere una pianta (da riconoscimento o ricerca), con soprannome, foto, stanza e finestra (F10).
@@ -121,13 +133,17 @@ permesso, l'app continua a funzionare e spiega come riattivarlo.
 - Messaggi chiari quando il riconoscimento giornaliero è esaurito, il servizio non risponde o manca la rete (vedi
   [scheda Pl@ntNet](../api-documentation/plantnet-api.md#cosa-succede-se-il-servizio-non-risponde-o-il-limite-è-superato)).
 - **Quota personale** di riconoscimenti al giorno, visibile ("Oggi ti restano 7 riconoscimenti"), per dividere equamente
-  le 500 identificazioni gratuite (decisione D5).
+  le 500 identificazioni gratuite (decisione D5: **10 al giorno**).
+- Il numero è un **valore configurabile** sul server (`QUOTA_PER_DEVICE_PER_DAY`), non scritto nel codice; i messaggi
+  mostrano sempre il valore vero ricevuto dal server.
 
-**Criteri:** nessuna schermata bianca o errore tecnico mostrato all'utente.
+**Criteri:** nessuna schermata bianca o errore tecnico mostrato all'utente; cambiando la variabile di configurazione la
+quota cambia senza modificare il codice.
 
 ### F14 — Backup dei dati
 - **Esporta** tutta la collezione (piante, foto ridotte, promemoria, finestre) in un file da salvare su iCloud Drive o altrove.
 - **Importa** il file su un altro telefono o dopo una reinstallazione.
+- Proposto già nell'**onboarding** (F01) e raggiungibile dalle impostazioni (decisione D3).
 
 **Criteri:** esportazione e importazione riportano la collezione identica.
 
@@ -171,6 +187,7 @@ permesso, l'app continua a funzionare e spiega come riattivarlo.
 | iPhone cancella i dati di un sito non installato | Invito a installare l'app (F01, F16) e backup (F14) |
 | La stima del sole viene presa per una misura | Etichetta "stima", calibrazione, voce nella Guida |
 
-## 6. Decisioni aperte
-Vedi [decisioni da prendere insieme](../architecture/decisioni-da-prendere.md), in particolare D5 (quota per utente),
-D7 (promemoria), D8 (fonte dei consigli di cura), D9 (flora Pl@ntNet e soglie di confidenza).
+## 6. Decisioni
+Le decisioni D1-D9 sono state **approvate il 2026-11-16**: vedi [decisioni](../architecture/decisioni-da-prendere.md).
+Resta in sospeso solo il **risultato del test delle foto (D9)**, che fisserà flora di Pl@ntNet e soglie di confidenza
+definitive (oggi provvisorie: 70% / 30%).

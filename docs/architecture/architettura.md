@@ -5,7 +5,8 @@
 > [Open-Meteo](../api-documentation/open-meteo.md), [SunCalc](../api-documentation/suncalc.md)
 
 Questo documento spiega **come è fatta l'app**: quali pezzi la compongono, dove girano, come si parlano e dove finiscono i dati.
-Le scelte segnate **"proposta"** aspettano la conferma dell'utente (vedi [decisioni](decisioni-da-prendere.md)).
+Le decisioni D1-D9 sono state **approvate il 2026-11-16** (vedi [decisioni](decisioni-da-prendere.md)). Restano da
+verificare i termini di Vercel (D2) e da fare il test delle foto (D9).
 
 ## 0. Il quadro generale
 
@@ -67,10 +68,10 @@ indirizzo come `/api/identify`).
 **Dimensione delle foto.** Il telefono riduce ogni foto (lato corto 1280 pixel, JPEG 90%), che pesa così circa 0,3-0,6 MB.
 Anche 5 foto restano sotto il limite di dimensione delle funzioni dell'hosting (su Vercel circa 4,5 MB **(da verificare)**).
 
-### Hosting gratuito (proposta)
+### Hosting gratuito (deciso: Vercel Hobby, D2)
 | Opzione | Gratis | Limiti principali (piano gratuito) | Pro | Contro |
 |---|---|---|---|---|
-| **Vercel Hobby** (proposta) | Sì | 1.000.000 di esecuzioni di funzioni al mese, 4 ore di CPU, 100 GB di traffico, funzioni fino a 5 minuti; superati i limiti, la funzione si ferma fino a 30 giorni [2][3] | Creato da chi sviluppa Next.js: configurazione quasi nulla | Il piano Hobby è storicamente riservato a **uso personale non commerciale**: la pagina consultata non lo dice, **da verificare nei termini** [3] |
+| **Vercel Hobby** (scelto, se i termini lo confermano) | Sì | 1.000.000 di esecuzioni di funzioni al mese, 4 ore di CPU, 100 GB di traffico, funzioni fino a 5 minuti; superati i limiti, la funzione si ferma fino a 30 giorni [2][3] | Creato da chi sviluppa Next.js: configurazione quasi nulla | Il piano Hobby è storicamente riservato a **uso personale non commerciale**: la pagina consultata non lo dice, **da verificare nei termini** [3] |
 | **Cloudflare Workers** | Sì | 100.000 richieste al giorno, 10 ms di CPU per richiesta [4] | Limiti generosi; database D1 incluso | Next.js richiede un adattatore (OpenNext) **(da verificare)**; più passaggi di configurazione |
 | **Netlify** | Sì | **(da verificare)** | Supporta Next.js | Limiti da verificare |
 
@@ -95,7 +96,7 @@ L'app pubblicata online è invece usata dal telefono, da qualsiasi luogo. Ci son
 - Modello AI **dentro il browser** dell'iPhone (es. WebLLM): scaricherebbe centinaia di MB o più e richiede un telefono
   recente **(da verificare)**.
 
-**Proposta: tre livelli, tutti dietro lo stesso adattatore `AiProvider`.**
+**Deciso (D6): tre livelli, tutti dietro lo stesso adattatore `AiProvider`.**
 
 ```text
                       ┌─────────────── AiProvider ───────────────┐
@@ -121,7 +122,7 @@ Decisione [D6](decisioni-da-prendere.md).
 
 ## 3. Dove salviamo i dati dell'utente
 
-**Proposta per la v1: tutto sul telefono, nessun account, nessun dato personale sul server.**
+**Deciso per la v1 (D3): tutto sul telefono, nessun account, nessun dato personale sul server.**
 
 | Dove | Cosa | Perché |
 |---|---|---|
@@ -131,7 +132,10 @@ Decisione [D6](decisioni-da-prendere.md).
 
 **Come iPhone conserva i dati.** Safari cancella i dati salvati dai siti dopo **7 giorni senza visite**, ma le web app
 **installate sulla schermata Home** sono esentate da questa regola [6]. Per questo:
-- l'onboarding invita a installare l'app (F01, F16);
+- l'onboarding **guida passo per passo** all'installazione sulla Home (Condividi → "Aggiungi a Home"), spiegando con
+  parole semplici che senza installazione Safari può cancellare i dati dopo un periodo senza visite (F01, F16);
+- l'onboarding **propone subito il backup su file** e spiega dove salvarlo, es. iCloud Drive (F14);
+- se l'app si accorge di essere aperta in Safari e non dalla Home, mostra un promemoria discreto per installarla;
 - l'app chiede al browser di rendere i dati "persistenti" (`navigator.storage.persist()`) [6];
 - il backup su file resta comunque consigliato. Le fonti di WebKit sono del 2019-2023 e Safari 26 ha reso più severe
   alcune regole sui dati salvati dai siti: **da riverificare** quando l'app sarà installabile [6].
@@ -141,8 +145,8 @@ Le foto originali non vengono conservate, così risparmiamo spazio.
 
 **In futuro (v2): sincronizzazione online facoltativa.** Opzione gratuita: **Supabase** (database 500 MB, file 1 GB, 50.000
 utenti al mese). Attenzione: il progetto **si mette in pausa dopo 7 giorni senza attività** e i backup automatici non sono
-inclusi [7]. 1 GB di file vale circa 2.000-3.000 foto in tutto: per molti utenti non basterebbe. Decisione
-[D3](decisioni-da-prendere.md).
+inclusi [7]. 1 GB di file vale circa 2.000-3.000 foto in tutto: per molti utenti non basterebbe. Da rivalutare in v2
+([D3](decisioni-da-prendere.md)).
 
 ## 4. Il limite di 500 identificazioni al giorno
 
@@ -151,17 +155,25 @@ Oltre il limite il servizio risponde con l'errore 429. **Ogni risposta riporta q
 (`remainingIdentificationRequests`) [1].
 
 **Dove contiamo.** Le funzioni del server non hanno memoria tra una richiesta e l'altra, quindi serve un piccolo
-archivio esterno. Proposta: **Upstash Redis** (piano gratuito: 500.000 comandi al mese, 256 MB, senza carta di credito) [9].
+archivio esterno. Deciso (D4): **Upstash Redis** (piano gratuito: 500.000 comandi al mese, 256 MB, senza carta di credito) [9].
 Ogni identificazione usa circa 4 comandi: 500 al giorno × 30 giorni × 4 = **60.000 comandi al mese**, ben dentro il limite.
 
 > **Redis**: un archivio molto veloce di coppie "nome → valore", ideale per i contatori.
 
-**Tre contatori:**
-| Contatore | Chiave (esempio) | Limite (proposta) | Scade |
-|---|---|---|---|
-| Totale del giorno | `id:2026-11-16` | **480** (20 di riserva per i test e gli imprevisti) | 48 ore |
-| Per dispositivo | `dev:<impronta>:2026-11-16` | **10 al giorno** (decisione [D5](decisioni-da-prendere.md)) | 48 ore |
-| Per rete (IP) | `ip:<impronta>:2026-11-16` | **30 al giorno** (contro chi reinstalla l'app per avere nuovi riconoscimenti) | 48 ore |
+**Tre contatori.** I limiti **non sono scritti nel codice**: si leggono da variabili d'ambiente del server (in locale in
+`.env.local`, online nelle impostazioni dell'hosting), con un valore predefinito se mancano. Così si possono cambiare
+senza modificare il programma (decisione [D5](decisioni-da-prendere.md)).
+
+| Contatore | Chiave (esempio) | Variabile d'ambiente | Valore predefinito | Scade |
+|---|---|---|---|---|
+| Totale del giorno | `id:2026-11-16` | `QUOTA_TOTAL_PER_DAY` | **480** (20 di riserva per i test e gli imprevisti) | 48 ore |
+| Per dispositivo | `dev:<impronta>:2026-11-16` | `QUOTA_PER_DEVICE_PER_DAY` | **10** | 48 ore |
+| Per rete (IP) | `ip:<impronta>:2026-11-16` | `QUOTA_PER_IP_PER_DAY` | **30** (contro chi reinstalla l'app per avere nuovi riconoscimenti) | 48 ore |
+
+Il server legge e controlla questi valori in **un solo punto** del codice (un piccolo modulo di configurazione): se un
+valore è assente o non valido usa quello predefinito. Il telefono **non conosce** il limite in anticipo: è il server a
+dirgli, in ogni risposta, quanti riconoscimenti restano ("Oggi ti restano N"). I messaggi usano sempre il numero vero,
+mai un "10" fisso.
 
 L'**ID del dispositivo** è un codice casuale creato dall'app al primo avvio. Non contiene dati personali. Il server conserva
 solo un'**impronta** (hash) di ID e IP: un codice da cui non si può risalire all'originale.
@@ -171,7 +183,7 @@ solo un'**impronta** (hash) di ID e IP: un codice da cui non si può risalire al
 richiesta ──> il totale di oggi è sotto 480? ── no ──> "Riconoscimenti di oggi esauriti, riprova dopo le 01:00"
                  │ sì
                  v
-              il dispositivo e la rete sono sotto la loro quota? ── no ──> "Hai usato i tuoi 10 riconoscimenti di oggi"
+              il dispositivo e la rete sono sotto la loro quota? ── no ──> "Hai usato i tuoi N riconoscimenti di oggi"
                  │ sì
                  v
               prenota +1 su tutti i contatori (operazione "atomica": due richieste contemporanee non si sovrappongono)
@@ -200,7 +212,19 @@ Plant (pianta) 1 ──── * Photo (foto)
   │  1 ──── * Reminder (promemoria)
   │  * ──── 1 Spot (posizione in casa) * ──── 1 Window (finestra)
   └─ speciesId ──> Species (catalogo specie e schede di cura, sola lettura, fornito con l'app)
+                      * ──── 1 CareGroup (consigli generici per famiglia/tipo: il ripiego, D8)
 ```
+
+**Regole sulle schede di cura (D8):**
+- ogni `care` (scheda completa) e ogni `CareGroup` (consigli generici) ha **almeno una fonte verificabile** in `sources`,
+  mostrata nella scheda. Un test automatico controllerà che nessuna scheda sia senza fonti;
+- i testi sono scritti con parole nostre, mai copiati dai concorrenti;
+- **come si sceglie cosa mostrare:**
+  1. la specie è nel catalogo e ha `care` → scheda completa;
+  2. altrimenti, la famiglia (o il tipo) corrisponde a un `CareGroup` → consigli generici + messaggio *"La scheda completa
+     per questa pianta non è ancora disponibile. Questi sono consigli generici per il suo gruppo."*;
+  3. altrimenti → solo il messaggio che la scheda non è disponibile, con consigli di base dichiarati come tali.
+  La famiglia arriva anche da Pl@ntNet (`family`), quindi il ripiego funziona pure per specie fuori dal catalogo.
 
 ```ts
 type ID = string;              // codice univoco casuale (UUID)
@@ -300,6 +324,7 @@ interface Species {             // catalogo fornito con l'app (sola lettura)
   scientificName: string;
   commonNames: string[];
   family: string;
+  careGroupId?: ID;            // gruppo per i consigli generici, se manca la scheda completa
   care?: {                     // presente solo per le specie con scheda di cura scritta da noi
     light: { minSunHours: number; maxSunHours: number; note: string };
     waterIntervalDays: { summer: number; winter: number };
@@ -309,12 +334,27 @@ interface Species {             // catalogo fornito con l'app (sola lettura)
     repotEveryYears?: number;
   };
   toxicity?: { pets: 'toxic' | 'non-toxic' | 'unknown'; children: 'toxic' | 'non-toxic' | 'unknown'; source: string };
-  sources: { title: string; url: string; accessedAt: string }[];
+  sources: Source[];           // obbligatorie (almeno una) se c'è `care`
+}
+
+interface Source {              // fonte verificabile, mostrata nella scheda
+  title: string;               // es. "Royal Horticultural Society — Pothos"
+  url: string;
+  accessedAt: string;          // data di consultazione, es. "2026-11-16"
+}
+
+interface CareGroup {           // consigli generici per famiglia o tipo di pianta (ripiego, D8)
+  id: ID;
+  name: string;                // "Piante grasse", "Aracee"
+  families: string[];          // famiglie botaniche che rientrano nel gruppo, es. ["Araceae"]
+  advice: { light: string; water: string; temperature: string; soil: string };
+  sources: Source[];           // almeno una
 }
 
 interface AppSettings {
   deviceId: ID;                // codice anonimo per le quote (§4)
   onboardingCompletedAt?: ISODate;
+  lastBackupAt?: ISODate;      // per ricordare il backup se è passato molto tempo (D3)
   seenSectionIntros: string[]; // sezioni di cui è già stata mostrata la spiegazione (F02)
   defaultLocation?: { lat: number; lon: number; source: 'gps' | 'city' };
   units: 'metric';
@@ -334,8 +374,9 @@ interface AppSettings {
 | `QuotaStore` | `UpstashQuotaStore` | server | Cloudflare D1 o Supabase **(da verificare)**; ripiego: solo il dato di Pl@ntNet |
 
 ## 7. Sicurezza e privacy (riassunto)
-- Chiavi solo sul server, mai nel repository (CLAUDE.md §7). Variabili: `PLANTNET_API_KEY`, `UPSTASH_REDIS_REST_URL`,
-  `UPSTASH_REDIS_REST_TOKEN` (solo nomi; i valori in `.env.local`).
+- Chiavi solo sul server, mai nel repository (CLAUDE.md §7). Variabili segrete: `PLANTNET_API_KEY`, `UPSTASH_REDIS_REST_URL`,
+  `UPSTASH_REDIS_REST_TOKEN` (solo nomi; i valori in `.env.local`). Variabili non segrete di configurazione:
+  `QUOTA_TOTAL_PER_DAY`, `QUOTA_PER_DEVICE_PER_DAY`, `QUOTA_PER_IP_PER_DAY` (§4).
 - `/api/identify` accetta solo richieste dal nostro dominio, foto JPEG/PNG fino a 5 e una dimensione massima.
 - Le foto vengono ridotte sul telefono, eliminando i dati EXIF (posizione GPS).
 - La posizione viene arrotondata a circa 1 km prima di ogni uso esterno.
@@ -351,8 +392,9 @@ interface AppSettings {
 | Nessuna AI gratuita online per utenti UE | Alta (già verificato per Gemini) | Basso | AI non essenziale; assistente a regole; Ollama personale |
 | Notifiche non disponibili nella v1 | Certa | Medio | Promemoria in-app + calendario `.ics`; push in v2 |
 
-## 9. Decisioni aperte
-Tutte in [decisioni-da-prendere.md](decisioni-da-prendere.md).
+## 9. Decisioni
+D1-D9 decise il 2026-11-16: vedi [decisioni-da-prendere.md](decisioni-da-prendere.md). Ancora aperti: esito della
+verifica dei termini di Vercel (D2) e risultato del test delle foto (D9: flora e soglie definitive).
 
 ## Fonti
 1. Pl@ntNet API, "Introduction" e "Single-species identification" — https://my.plantnet.org/doc/getting-started/introduction , https://my.plantnet.org/doc/api/identify — consultati il 2026-11-16
