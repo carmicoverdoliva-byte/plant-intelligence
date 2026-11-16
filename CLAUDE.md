@@ -1,0 +1,70 @@
+# CLAUDE.md — Regole del progetto "Plant Intelligence"
+
+Queste regole valgono per chiunque (persona o assistente AI) lavori su questo progetto.
+La visione completa del prodotto è in `docs/requirements/visione-prodotto.md`.
+
+## 1. Lingua e comunicazione
+- Si scrive e si comunica **in italiano**: documentazione, messaggi di commit, testi dell'interfaccia, commenti nel codice.
+  (Nomi di variabili, funzioni e file restano in inglese, come da convenzione.)
+- L'utente è alle prime armi: **spiega sempre cosa stai facendo in italiano semplice**, prima e dopo ogni passaggio.
+  Evita il gergo; se un termine tecnico è necessario, spiegalo in una frase.
+
+## 2. Lavorare a piccoli passi
+- Un passo alla volta: ogni modifica deve essere piccola, comprensibile e verificabile.
+- Prima di iniziare un passo, dichiara cosa farai. Dopo, riassumi cosa è cambiato.
+- Non fare modifiche non richieste o fuori dallo scopo del passo corrente.
+- Commit frequenti, con messaggi in italiano chiari e descrittivi.
+
+## 3. Verificare prima di dichiarare "fatto"
+- Nessun passaggio è "fatto" finché non è stato **verificato** (build, test, lint, avvio dell'app o controllo manuale, a seconda del caso).
+- Se una verifica fallisce, dillo chiaramente e mostra l'errore: non nascondere i problemi.
+- Se un passaggio è stato saltato o non è stato possibile verificarlo, dillo esplicitamente.
+
+## 4. Vincolo di gratuità
+- **Tutto deve essere gratuito.** Nessuna funzione essenziale può dipendere da un servizio a pagamento.
+- Si usano solo piani gratuiti, servizi open source o elaborazione locale.
+- **Ogni servizio esterno deve essere sostituibile**: va usato tramite un'interfaccia/adattatore nel codice
+  (es. `PlantRecognitionProvider`, `WeatherProvider`, `AiProvider`), così da poterlo cambiare senza riscrivere l'app.
+- Se un servizio gratuito ha limiti (es. numero di richieste al giorno), l'app deve gestirli con messaggi chiari, senza rompersi.
+- Prima di aggiungere una nuova dipendenza o un servizio, verifica licenza e costi e documentalo in `docs/api-documentation/`.
+
+## 5. Regole sul reverse engineering (analisi dei concorrenti)
+Benchmark: PictureThis (riconoscimento), Planta (cura), Pl@ntNet e Flora Incognita (rigore scientifico).
+- Si studia **solo il comportamento e le funzionalità osservabili** da un normale utente (flussi, schermate, scelte di UX, contenuti pubblici).
+- **Vietato**: copiare o decompilare codice proprietario, riutilizzare asset (immagini, icone, testi, marchi),
+  usare API private o non documentate, aggirare protezioni, paywall o limiti tecnici.
+- Le analisi vanno scritte in `docs/competitor-analysis/` con parole nostre, citando le fonti pubbliche.
+
+## 6. Requisito obbligatorio: onboarding e Guida
+Ogni nuova funzione deve rispettare questo requisito:
+- **Onboarding al primo avvio**: benvenuto, tutorial su come fotografare una pianta, spiegazione dei risultati
+  (confidenza, alternative), richiesta dei permessi (fotocamera, posizione) **spiegando prima il motivo**.
+- **Sezione "Guida" sempre raggiungibile dal menu**, con: tutorial singoli, FAQ, possibilità di ripetere il tutorial.
+- **Breve spiegazione la prima volta che si entra in ogni sezione** (ignorabile e richiamabile).
+- Una funzione nuova non è completa finché non ha la sua voce nella Guida (`docs/user-guide/` e in-app).
+
+## 7. Sicurezza delle chiavi API
+- Le chiavi API **non vanno mai scritte nel codice** né nei documenti né nei commit.
+- Si salvano **solo in `.env.local`**, che è escluso da git tramite `.gitignore`.
+- Si può versionare un file `.env.example` con i **nomi** delle variabili e valori finti.
+- Le chiamate che usano chiavi segrete passano dal server (API route di Next.js), mai direttamente dal browser.
+- Prima di ogni commit, controlla che nessun segreto sia stato aggiunto per errore.
+
+## 8. Onestà dei risultati
+- Il riconoscimento mostra specie, specie simili e livello di confidenza. **Se non è sicuro, mostra alternative invece di inventare.**
+- L'esposizione al sole è una **stima**, non una misura: va sempre presentata come tale, con possibilità di calibrazione manuale.
+- Il "botanico AI" deve dichiarare incertezza e non presentare ipotesi come fatti.
+
+## 9. Stack tecnico previsto
+- Next.js + React + TypeScript + Tailwind CSS, installabile come PWA, mobile-first.
+- Riconoscimento: Pl@ntNet API (piano gratuito). Meteo: Open-Meteo. Sole: SunCalc.
+- AI botanica: modello locale via Ollama quando possibile, provider configurabile.
+
+## 10. Struttura delle cartelle
+- `docs/competitor-analysis/` — analisi dei benchmark
+- `docs/requirements/` — requisiti e visione prodotto
+- `docs/architecture/` — scelte architetturali
+- `docs/api-documentation/` — servizi esterni usati, limiti, costi, alternative
+- `docs/user-guide/` — contenuti della Guida per l'utente
+- `src/` — codice dell'app · `public/` — file statici · `tests/` — test
+- `.claude/skills/`, `.claude/agents/` — configurazioni per Claude Code
