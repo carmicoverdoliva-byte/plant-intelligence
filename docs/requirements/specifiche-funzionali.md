@@ -256,13 +256,14 @@ offline) propone un nome probabile in un piccolo popup. Scattando, parte il rico
 [architettura §1b](../architecture/architettura.md#1b-riconoscimento-a-due-livelli)):
 1. **Quante analisi al secondo:** circa **2** (mai più di 4). Una nuova analisi parte solo quando la precedente è finita.
    Le analisi si fermano quando l'app va in background o il mirino si chiude.
-2. **Soglia minima di sicurezza:** il nome compare solo se la sicurezza media degli ultimi ~2 secondi è almeno **50%** e
-   supera di almeno **15 punti** il secondo nome. Sotto soglia: nessun nome, solo "Sto guardando…" o un consiglio
+2. **Soglia minima di sicurezza:** il nome compare solo se, in media negli ultimi ~2 secondi, la **somiglianza** con la pianta è
+   almeno **0,42** e la sicurezza è almeno **30%** (calcolata con scala 30), e supera di almeno **15 punti** il secondo nome.
+   Valori tarati sul PC il 2026-11-17; la prova D11 li ricontrolla. Sotto soglia: nessun nome, solo "Sto guardando…" o un consiglio
    ("Avvicinati a una foglia", "C'è poca luce").
 3. **Niente cambio di nome a ogni movimento:**
    - un nome compare solo dopo essere rimasto primo per circa **1,5 secondi**;
    - per **cambiare** nome, il nuovo deve restare primo per circa **2 secondi** e superare il vecchio di **10 punti**;
-   - se la sicurezza scende sotto il **35%** per 2 secondi, il popup sfuma in "Sto guardando…" invece di cambiare nome.
+   - se la sicurezza scende sotto i **3/4 della soglia** di comparsa per 2 secondi, il popup sfuma in "Sto guardando…" invece di cambiare nome.
 4. **Testo onesto:**
    - mostra **solo il nome comune o il genere, mai la specie** (D10): **"Forse: Pothos"** oppure
      **"Forse un *Philodendron*"**, mai "È un Pothos";
@@ -329,4 +330,5 @@ scaricare o cancellare il modello) e spiegazione la prima volta che si apre il m
 Le decisioni D1-D9 sono state **approvate il 2026-11-16**: vedi [decisioni](../architecture/decisioni-da-prendere.md).
 **Aggiornamento 2026-11-17:** D9 chiusa dopo il test (`k-world-flora`, soglie, nessuna percentuale, tabella dei sinonimi);
 D11 approvata (prova sull'iPhone 16 con iOS 26.5.2); D10 rimandata all'esito di D11.
-**Da riconfermare (D9):** *Aloe officinalis* / *Aloe vera* e *Peperomia argyraea* / *argyreia* sono nomi distinti per GBIF.
+**Nomi (D9, 2026-11-17):** i nomi scientifici seguono GBIF; *Aloe officinalis* / *Aloe vera* e i due nomi della Peperomia
+restano distinti ma aprono la stessa scheda di cura.

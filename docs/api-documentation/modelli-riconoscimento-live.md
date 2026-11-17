@@ -107,6 +107,40 @@ Dettagli e istruzioni in [`tests/d11-anteprima-live/`](../../tests/d11-anteprima
   - `onnxruntime-node` è stato scartato: sul PC (Node 26) si chiudeva con un errore grave. Usiamo `onnxruntime-web`
     anche sul PC, che è lo stesso motore del telefono.
 
+## Modello compresso, taratura e correzione della pagina (2026-11-17, dopo la prova con la webcam)
+**Modello compresso (int8).** Senza Python, con uno script Node (`tools/quantizza-modello.mjs`):
+- 50 tabelle di pesi passano da numeri a 16 bit a interi a 8 bit, con una scala per canale;
+- i pesi si ricostruiscono al momento dell'uso con operazioni standard ONNX (`DequantizeLinear` + `Cast`);
+- per leggere e scrivere il formato si usano `protobufjs` 7.6.6 (BSD-3) e la descrizione ufficiale `onnx.proto` v1.17.0
+  (Apache 2.0).
+
+| | Originale (fp16) | Compresso (int8) |
+|---|---|---|
+| Peso del file | 172,8 MB | **87,3 MB** |
+| Somiglianza tra le impronte delle due versioni (178 foto) | — | media **0,9996**, minima 0,998 |
+| Pianta giusta al 1° posto (43 foto D9) | 88% | 86% (stesso 1° nome in 45 foto su 46) |
+| Popup con le soglie tarate | 40/43 con nome, 90% giusti, 0 trappole su 3 | **identico** |
+| Analisi con WebGPU (Edge sul PC) | ~167 ms | ~170-175 ms |
+| Analisi con WebAssembly (PC, 1 filo) | ~510 ms | ~630 ms |
+
+Il compresso rispetta il limite di 150 MB di D11. La velocità sull'iPhone resta da misurare.
+
+**Taratura della probabilità.**
+- **Problema:** con la scala 100 la probabilità era troppo sicura. Nella prova con la webcam, con somiglianze di
+  0,32 / 0,31 / 0,31, il 1° nome arrivava al 57%.
+- **Prova:** sul PC abbiamo confrontato le scale da 10 a 100. La **scala 30** rende la probabilità la più realistica:
+  errore di taratura (ECE) **3,7%** contro 10,3% con la scala 100. Nell'esempio della webcam il 1° nome scende al 21%.
+- **Nuove soglie del popup:** somiglianza ≥ 0,42 e probabilità ≥ 30% (con scala 30). La regola per far sparire il nome
+  è proporzionale (3/4 della soglia).
+- **Limite:** la taratura è fatta sulle stesse 43 foto usate per misurare, quindi va ricontrollata sull'iPhone.
+
+**Blocco della pagina segnalato nella prova con la webcam: causa e correzione.**
+- **Causa:** ogni cambio di visibilità della pagina, e ogni cambio di motore, avviava un ciclo di analisi in più. Il
+  motore riceveva analisi contemporanee e andava in errore ("Session already started", "Session mismatch").
+- **Correzione:** analisi in un Web Worker e un solo ciclo garantito.
+- **Verifica automatica:** 0 errori e blocco massimo della pagina di circa 25 ms, contro 1-2 s prima. Dettagli in
+  [`tests/d11-anteprima-live/README.md`](../../tests/d11-anteprima-live/README.md).
+
 ## Rischi
 | Rischio | Probabilità | Mitigazione |
 |---|---|---|

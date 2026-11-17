@@ -156,14 +156,17 @@ riconoscimenti. Risultati completi nella [scheda Pl@ntNet](../api-documentation/
    - *Aloe officinalis* = *Aloe vera*;
    - genere *Calathea* = *Goeppertia*.
 
-   **Non** accettato: *Philodendron cordatum* = *P. hederaceum*. Con queste regole, su `k-world-flora`:
-   - specie giusta al 1° posto: **65%**;
-   - specie giusta fra le prime 5: **95%**;
-   - genere giusto al 1° posto: **93%** (43 foto).
+   **Non** accettato: *Philodendron cordatum* = *P. hederaceum*.
 
-   ⚠️ **Da riconfermare:** per GBIF, *Aloe officinalis* / *Aloe vera* e *Peperomia argyraea* / *argyreia* sono nomi
-   **distinti**. Nella tabella dei sinonimi sono segnati come "equivalenze decise da noi", non come sinonimi botanici
-   ([scheda sinonimi](../api-documentation/sinonimi-botanici.md)).
+   **Precisazione del 2026-11-17:** i **nomi scientifici seguono GBIF**. Per GBIF *Aloe officinalis* / *Aloe vera* e
+   *Peperomia argyraea* / *argyreia* sono nomi distinti: l'app mostra il nome GBIF, ma ciascuna coppia apre **la stessa
+   scheda di cura** ([scheda sinonimi](../api-documentation/sinonimi-botanici.md)). Risultati su `k-world-flora` (43 foto):
+
+   | Misura | Nome secondo GBIF | Stessa scheda di cura |
+   |---|---|---|
+   | Specie giusta al 1° posto | **60%** | 65% |
+   | Specie giusta fra le prime 5 | 95% | 95% |
+   | Genere giusto al 1° posto | 93% | 93% |
 3. **Come si presenta il risultato** (F04):
    - titolo = **nome comune + genere** ("Basilico, genere *Ocimum*");
    - poi la specie più probabile, introdotta da "**probabilmente**";
@@ -176,7 +179,7 @@ riconoscimenti. Risultati completi nella [scheda Pl@ntNet](../api-documentation/
    | **Non riconosciuta** | risposta "nessuna pianta" (404), oppure s1 < **10%** e s1 < **5 ×** s2 | *"Non riesco a riconoscerla, prova con un'altra foto"* + consigli di scatto | Scarta la foglia secca (5,6%, 2,7×) e 2 risposte sbagliate; **nessuna** risposta giusta scartata |
    | **Incerto** | s1 < **30%** (e non scartata) | *"Non ne sono sicuro"* + "forse" genere + alternative in evidenza | 5 foto: 3 giuste, 1 con genere sbagliato |
    | **Normale** | s1 ≥ 30% | titolo nome comune + genere; specie "probabilmente" | genere giusto **36 su 36**, specie giusta 25 su 36 |
-   | **Molto probabile** | s1 ≥ **80%** **e** distacco s1 − s2 ≥ **75 punti** | specie "molto probabilmente" | specie giusta **6 su 8**, genere 8 su 8 |
+   | **Molto probabile** | s1 ≥ **80%** **e** distacco s1 − s2 ≥ **75 punti** | specie "molto probabilmente" | specie giusta **5 su 8** secondo GBIF (6 su 8 come scheda di cura), genere 8 su 8 |
 
    **Limiti della taratura:** sono solo 43 foto, e **nessuna combinazione** di soglie ha superato il 90% di specie
    giuste. Anche con punteggio dell'89% e distacco di 87 punti, Pl@ntNet ha confuso due basilici. Per questo il titolo
@@ -212,6 +215,15 @@ pesante sull'iPhone, si passa a **C**. **E** resta sempre come ripiego automatic
   la precisione cambia di poco **(da misurare)**;
 - **download solo alla prima apertura della fotocamera**, con un avviso che dice quanto pesa (non nell'onboarding);
 - il popup live mostra **nome comune o genere, mai la specie** ("Forse: Pothos", "Forse un *Philodendron*").
+
+**Dati raccolti finora (2026-11-17, sul PC):**
+- BioCLIP limitato al catalogo riconosce la pianta giusta all'**88%** (originale, 173 MB) e all'**86%** (compresso int8,
+  **87 MB**). Con il compresso il popup si comporta allo stesso modo e la velocità con WebGPU è uguale (~170 ms).
+- La probabilità è stata ritarata (scala 30 invece di 100), perché prima era troppo sicura.
+- Prova con la webcam dell'utente: ~190 ms per analisi, rallentamento 3% in 4 minuti. Davanti a una foto mostrata sullo
+  schermo di un telefono, nessun popup: corretto.
+
+Dettagli nella [scheda dei modelli](../api-documentation/modelli-riconoscimento-live.md). Manca la prova sull'iPhone 16.
 
 ---
 

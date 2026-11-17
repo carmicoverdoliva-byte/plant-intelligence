@@ -139,10 +139,10 @@ e verranno tarati con D11:
 | Analisi al secondo | **2** (una ogni 500 ms), mai più di 4; una nuova analisi parte solo quando la precedente è finita | Fluido ma senza scaldare il telefono; niente code |
 | Area analizzata | quadrato centrale del mirino, ridotto alla dimensione richiesta dal modello | L'utente sa cosa sta "guardando" l'app |
 | Media mobile | punteggi mediati sulle ultime ~4 analisi (circa 2 secondi) | Un fotogramma mosso non cambia il risultato |
-| Soglia per mostrare un nome | media ≥ **0,50** e distacco dal 2° nome ≥ **0,15** | Sotto: nessun nome, solo "Sto guardando…" o un consiglio |
+| Soglia per mostrare un nome | somiglianza ≥ **0,42** e probabilità media ≥ **30%** con scala **30**, distacco dal 2° nome ≥ **0,15** (tarate sul PC il 2026-11-17, da ricontrollare con D11) | Sotto: nessun nome, solo "Sto guardando…" o un consiglio |
 | Comparsa | stesso nome in testa per **3** analisi di fila (~1,5 s) | Niente nomi lampo |
 | Cambio di nome | il nuovo nome deve stare in testa per **4** analisi di fila **e** superare il vecchio di **0,10** | Il popup non "balla" a ogni movimento |
-| Scomparsa | media sotto **0,35** per 2 secondi → il popup sfuma in "Sto guardando…" | Meglio nessun nome che un nome sbagliato |
+| Scomparsa | probabilità media sotto i **3/4 della soglia** di comparsa (oggi 0,22) per 2 secondi → il popup sfuma in "Sto guardando…" | Meglio nessun nome che un nome sbagliato |
 | Pausa | app in background, schermo spento o mirino chiuso → analisi ferme | Batteria |
 
 **Privacy e permessi.** La fotocamera si chiede con la spiegazione già prevista (F01). Nessun nuovo dato esce dal telefono.

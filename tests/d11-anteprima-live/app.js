@@ -20,6 +20,9 @@ const CONFIG = {
 };
 
 const $ = (id) => document.getElementById(id);
+// Variante del modello: ?variante=int8 usa il modello compresso (87 MB), altrimenti l'originale (173 MB).
+const VARIANT = new URLSearchParams(location.search).get('variante') === 'int8' ? 'int8' : 'fp16';
+const PROTOTYPES_FILE = VARIANT === 'int8' ? 'prototypes-int8.json' : 'prototypes.json';
 const worker = new Worker('worker.js');
 const state = {
   data: null, backend: null, modelNetBytes: 0, loadMs: 0, startedAt: 0, readyAt: 0,
@@ -129,7 +132,8 @@ function updateMetrics(ms, probs, sims) {
   $('mLag').textContent = lagMax(60000) + ' ms';
   const sec = Math.round((now - state.startedAt) / 1000);
   $('mElapsed').textContent = Math.floor(sec / 60) + ' min ' + (sec % 60) + ' s';
-  const other = performance.getEntriesByType('resource').filter((r) => !/huggingface|hf\.co/.test(r.name)).reduce((s, r) => s + (r.transferSize || 0), 0);
+  // MB della pagina + MB scaricati dal worker (motore), escluso il modello che ha il suo contatore
+  const other = (state.engineBytes || 0) + performance.getEntriesByType('resource').filter((r) => !/huggingface\.co|hf\.co\/|\.onnx(\?|$)/.test(r.name)).reduce((s, r) => s + (r.transferSize || 0), 0);
   $('mOtherMB').textContent = other ? mb(other) : 'non misurabile';
   $('mModelMB').textContent = state.modelNetBytes ? mb(state.modelNetBytes) : '0 MB (dalla memoria)';
   const top = probs.map((p, i) => [p, i]).sort((a, b) => b[0] - a[0]).slice(0, 3);
@@ -163,9 +167,13 @@ async function start() {
   $('btnStart').disabled = true;
   try {
     setStatus('Carico l\'elenco delle piante…');
-    state.data = await (await fetch('prototypes.json')).json();
+    state.data = await (await fetch(PROTOTYPES_FILE)).json();
     const cal = state.data.calibration;
-    if (cal) { CONFIG.logitScale = cal.logitScale; CONFIG.minProb = cal.minProb; CONFIG.minSim = cal.minSim; syncSliders(); }
+    if (cal) {
+      CONFIG.logitScale = cal.logitScale; CONFIG.minProb = cal.minProb; CONFIG.minSim = cal.minSim;
+      CONFIG.hideBelow = +(cal.minProb * 0.75).toFixed(2); // il popup sparisce sotto i 3/4 della soglia di comparsa
+      syncSliders();
+    }
     else CONFIG.logitScale = state.data.model.logitScale;
     state.t0 = performance.now();
     const m = state.data.model;
@@ -174,7 +182,8 @@ async function start() {
   } catch (e) { showError(e.message, true); }
 }
 
-async function onReady({ backend, loadMs }) {
+async function onReady({ backend, loadMs, engineBytes }) {
+  state.engineBytes = engineBytes || 0;
   setBackend(backend);
   $('mLoad').textContent = ((performance.now() - state.t0) / 1000).toFixed(1) + ' s in tutto (motore: ' + (loadMs / 1000).toFixed(1) + ' s)';
   try {
@@ -212,7 +221,7 @@ function summary() {
   const ok = state.records.filter((r) => r.truth !== 'nessuna' && r.shown === r.truth).length;
   return [
     'Prova D11 — risultati', `Data: ${new Date().toISOString()}`, `Browser: ${navigator.userAgent}`,
-    `Motore: ${state.backend} · Modello scaricato dalla rete: ${state.modelNetBytes ? mb(state.modelNetBytes) : '0 (memoria)'} · Altro: ${$('mOtherMB').textContent}`,
+    `Variante del modello: ${VARIANT} · Motore: ${state.backend} · Modello scaricato dalla rete: ${state.modelNetBytes ? mb(state.modelNetBytes) : '0 (memoria)'} · Altro: ${$('mOtherMB').textContent}`,
     `Caricamento: ${$('mLoad').textContent}`,
     `Analisi: ${state.times.length} · media ${Math.round(avgMs(state.times))} ms · ultimo minuto ${$('mAvg').textContent} · al secondo ${$('mRate').textContent} · rallentamento ${$('mTrend').textContent} · durata ${$('mElapsed').textContent}`,
     `Blocco più lungo della pagina: ${lagMax(Infinity)} ms · errori: ${state.errors}${state.lastError ? ' (ultimo: ' + state.lastError + ')' : ''}`,
@@ -265,7 +274,7 @@ const FORMATS = { sProb: ['minProb', (x) => Math.round(x * 100) + '%'], sSim: ['
 function syncSliders() { for (const [id, [key, fmt]] of Object.entries(FORMATS)) { $(id).value = CONFIG[key]; $('v' + id.slice(1)).textContent = fmt(CONFIG[key]); } }
 for (const [id, [key, fmt]] of Object.entries(FORMATS)) bindSlider(id, key, fmt);
 syncSliders();
-fetch('prototypes.json').then((r) => r.json()).then((d) => {
+fetch(PROTOTYPES_FILE).then((r) => r.json()).then((d) => {
   $('truth').innerHTML = d.prototypes.map((p) => `<option>${p.label}</option>`).join('') + '<option value="nessuna">Nessuna pianta (oggetto, muro…)</option><option value="altra">Un\'altra pianta (non in elenco)</option>';
 }).catch(() => {});
 document.addEventListener('visibilitychange', () => {

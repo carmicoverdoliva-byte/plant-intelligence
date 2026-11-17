@@ -8,7 +8,7 @@ const ORT_VERSION = '1.31.1';
 const ORT_URL = `https://cdn.jsdelivr.net/npm/onnxruntime-web@${ORT_VERSION}/dist/ort.min.js`;
 // Stessa impronta SRI usata nella versione precedente della pagina (verificata il 2026-11-17)
 const ORT_SHA384 = 'Gcu8U60SCeoyIiwfPwFy+eRexUuRRE9UYEXcm6vLDFVkGxcB1kk/gTv9FKTgoA6h';
-const CACHE_NAME = 'd11-modello-v1';
+const CACHE_NAME = 'd11-modello-v1'; // la chiave è l'indirizzo del modello: le due varianti non si confondono
 
 let ortReady = null, model = null, modelBytes = null, session = null, backend = null;
 let protos = null, busy = false, pendingBackend = null;
@@ -93,7 +93,9 @@ self.onmessage = async (ev) => {
       modelBytes = await getModel();
       post({ type: 'progress', text: 'Preparo il motore…' });
       const r = await createSession(m.backend);
-      post({ type: 'ready', ...r });
+      // MB scaricati dal worker (motore e file collegati), escluso il modello che ha il suo contatore
+      const engineBytes = performance.getEntriesByType('resource').filter((e) => !/huggingface\.co|hf\.co\/|\.onnx(\?|$)/.test(e.name)).reduce((s, e) => s + (e.transferSize || 0), 0);
+      post({ type: 'ready', ...r, engineBytes });
     } else if (m.type === 'frame') {
       if (busy || !session) { post({ type: 'result', id: m.id, skipped: true }); return; }
       busy = true;

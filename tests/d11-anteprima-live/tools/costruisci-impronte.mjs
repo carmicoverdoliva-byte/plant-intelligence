@@ -1,68 +1,82 @@
 // Costruisce le "impronte" (embedding) delle piante del catalogo con BioCLIP v1 e le prova sul PC.
-// 1. scarica il modello (versione fissata) e ne verifica l'impronta SHA-256;
-// 2. calcola l'impronta di ogni foto di riferimento e ne fa la media per pianta -> ../prototypes.json;
-// 3. prova il riconoscimento sulle foto del test D9 (mai usate come riferimento) -> ../valutazione-pc.md.
+// 1. verifica il modello (SHA-256) della variante scelta: fp16 (originale, 173 MB) o int8 (compresso, 87 MB);
+// 2. calcola l'impronta di ogni foto di riferimento e ne fa la media per pianta;
+// 3. prova il riconoscimento sulle foto del test D9 (mai usate come riferimento);
+// 4. taratura della probabilità: sceglie la "scala" (temperatura) che rende la probabilità più realistica,
+//    e le soglie del popup per quella scala;
+// 5. scrive ../prototypes[-int8].json e ../valutazione-pc[-int8].md.
+// Le impronte calcolate restano in <test-piante>/cache-impronte-<variante>.json (fuori dal repository).
 //
-// Uso: node costruisci-impronte.mjs <cartella-test-piante>
+// Uso: node costruisci-impronte.mjs [--variante fp16|int8] [cartella-test-piante]
 import fs from 'node:fs';
-import path from 'node:path';
 import os from 'node:os';
+import path from 'node:path';
 import crypto from 'node:crypto';
 import * as ort from 'onnxruntime-web'; // stesso motore (WebAssembly) usato dal telefono
 import sharp from 'sharp';
 import { CATALOG } from './catalogo.mjs';
 
-const BASE = path.resolve(process.argv[2] || path.join(os.homedir(), 'test-piante'));
+const args = process.argv.slice(2);
+const vi = args.indexOf('--variante');
+const VARIANT = vi >= 0 ? args.splice(vi, 2)[1] : 'fp16';
+const BASE = path.resolve(args[0] || path.join(os.homedir(), 'test-piante'));
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const PAGE_DIR = path.resolve(HERE, '..');
-export const MODEL = {
+const SUFFIX = VARIANT === 'fp16' ? '' : '-' + VARIANT;
+
+const FP16 = {
+  file: 'bioclip-v1-image-encoder-fp16.onnx',
   url: 'https://huggingface.co/m3r1al/naturalist-bioclip-v1/resolve/22a18d2fd141d2301968d93881b9e4431470c149/image_encoder.onnx',
   sha256: 'd982b6800a5b751272485ad4dd266f3d3eb39457b882daa5a0557cbbb62b3e9d',
   bytes: 172771717,
+  name: 'BioCLIP v1 (ViT-B/16, fp16), conversione ONNX m3r1al/naturalist-bioclip-v1',
 };
+let MODEL;
+if (VARIANT === 'fp16') MODEL = FP16;
+else if (VARIANT === 'int8') {
+  const meta = JSON.parse(fs.readFileSync(path.join(BASE, 'modello', 'bioclip-v1-image-encoder-int8.onnx.json'), 'utf8'));
+  // L'indirizzo definitivo dipende da dove verrà pubblicato il modello compresso: per ora è relativo alla pagina.
+  MODEL = { file: meta.file, url: 'modello/' + meta.file, sha256: meta.sha256, bytes: meta.bytes,
+    name: 'BioCLIP v1 (ViT-B/16) compresso int8 (solo pesi, per canale) da m3r1al/naturalist-bioclip-v1 con quantizza-modello.mjs' };
+} else throw new Error('Variante sconosciuta: ' + VARIANT);
+
 const MEAN = [0.48145466, 0.4578275, 0.40821073];
 const STD = [0.26862954, 0.26130258, 0.27577711];
-const LOGIT_SCALE = 100;
 
 // --- 1. modello -------------------------------------------------------------
-const modelPath = path.join(BASE, 'modello', 'bioclip-v1-image-encoder-fp16.onnx');
+const modelPath = path.join(BASE, 'modello', MODEL.file);
 if (!fs.existsSync(modelPath)) {
+  if (VARIANT !== 'fp16') throw new Error('Modello compresso mancante: esegui prima quantizza-modello.mjs');
+  if (!fs.existsSync(path.join(BASE, 'riferimenti-d11'))) throw new Error('Cartella di prova non valida: ' + BASE);
   fs.mkdirSync(path.dirname(modelPath), { recursive: true });
   console.log('Scarico il modello (173 MB)...');
   const res = await fetch(MODEL.url);
   if (!res.ok) throw new Error('download modello: ' + res.status);
   fs.writeFileSync(modelPath, Buffer.from(await res.arrayBuffer()));
 }
-const hash = crypto.createHash('sha256').update(fs.readFileSync(modelPath)).digest('hex');
-if (hash !== MODEL.sha256) throw new Error('Impronta SHA-256 del modello diversa da quella dichiarata: ' + hash);
-console.log('Modello verificato (SHA-256 corretto).');
-const session = await ort.InferenceSession.create(fs.readFileSync(modelPath), { executionProviders: ['wasm'] });
-const inputName = session.inputNames[0];
-const outputName = session.outputNames[0];
-console.log('Ingresso:', inputName, '· Uscita:', outputName);
+const modelBuf = fs.readFileSync(modelPath);
+if (crypto.createHash('sha256').update(modelBuf).digest('hex') !== MODEL.sha256) throw new Error('Impronta SHA-256 del modello diversa da quella attesa');
+console.log(`Modello ${VARIANT} verificato (SHA-256 corretto, ${(modelBuf.length / 1e6).toFixed(1)} MB).`);
+const session = await ort.InferenceSession.create(modelBuf, { executionProviders: ['wasm'] });
+const inputName = session.inputNames[0], outputName = session.outputNames[0];
 
-// --- conversione float16 -> float32 (se il modello restituisse numeri a mezza precisione) ---
-function fromHalf(h) {
-  const s = h & 0x8000 ? -1 : 1, e = (h >>> 10) & 0x1f, m = h & 0x3ff;
-  if (e === 0) return s * m * 2 ** -24; if (e === 31) return m ? NaN : s * Infinity;
-  return s * (1 + m / 1024) * 2 ** (e - 15);
-}
-
-// --- 2. impronta di un'immagine ------------------------------------------------
+// --- 2. impronte (con memoria su disco) ------------------------------------------
+const cachePath = path.join(BASE, `cache-impronte-${VARIANT}.json`);
+const cache = fs.existsSync(cachePath) ? JSON.parse(fs.readFileSync(cachePath, 'utf8')) : {};
+const msList = [];
 async function embed(file) {
-  // ridimensiona il lato corto a 224 (bicubico) e ritaglia il quadrato centrale, come indica il manifest del modello
-  const raw = await sharp(file).rotate().resize(224, 224, { fit: 'cover', position: 'centre', kernel: 'cubic' })
-    .removeAlpha().raw().toBuffer();
-  // NB: il manifest dichiara float16, ma il file ONNX vuole float32 in ingresso (verificato il 2026-11-17)
+  const key = path.relative(BASE, file).replace(/\\/g, '/');
+  if (cache[key]) return cache[key];
+  // NB: il manifest del modello dichiara float16, ma il file vuole float32 in ingresso (verificato il 2026-11-17)
+  const raw = await sharp(file).rotate().resize(224, 224, { fit: 'cover', position: 'centre', kernel: 'cubic' }).removeAlpha().raw().toBuffer();
   const data = new Float32Array(3 * 224 * 224);
-  for (let i = 0; i < 224 * 224; i++) for (let c = 0; c < 3; c++) {
-    data[c * 224 * 224 + i] = (raw[i * 3 + c] / 255 - MEAN[c]) / STD[c];
-  }
+  for (let i = 0; i < 224 * 224; i++) for (let c = 0; c < 3; c++) data[c * 224 * 224 + i] = (raw[i * 3 + c] / 255 - MEAN[c]) / STD[c];
+  const t0 = performance.now();
   const out = await session.run({ [inputName]: new ort.Tensor('float32', data, [1, 3, 224, 224]) });
-  const t = out[outputName];
-  const v = Array.from(t.type === 'float16' ? Array.from(t.data, fromHalf) : t.data);
+  msList.push(performance.now() - t0);
+  const v = Array.from(out[outputName].data);
   const n = Math.hypot(...v);
-  return v.map((x) => x / n);
+  return (cache[key] = v.map((x) => +(x / n).toFixed(6)));
 }
 const dot = (a, b) => a.reduce((s, x, i) => s + x * b[i], 0);
 
@@ -74,18 +88,9 @@ for (const item of CATALOG) {
   for (const r of files) (await embed(path.join(BASE, 'riferimenti-d11', r.file))).forEach((x, i) => { sum[i] += x; });
   const n = Math.hypot(...sum);
   prototypes.push({ slug: item.slug, label: item.label, genus: item.genus, refs: files.length, embedding: sum.map((x) => +(x / n).toFixed(5)) });
-  process.stdout.write('.');
 }
-console.log('\nImpronte calcolate:', prototypes.length);
-fs.writeFileSync(path.join(PAGE_DIR, 'prototypes.json'), JSON.stringify({
-  model: { ...MODEL, name: 'BioCLIP v1 (ViT-B/16, fp16), conversione ONNX m3r1al/naturalist-bioclip-v1', inputName, outputName, mean: MEAN, std: STD, logitScale: LOGIT_SCALE },
-  createdAt: new Date().toISOString().slice(0, 10),
-  method: 'Media delle impronte di 6 foto di riferimento iNaturalist per pianta (crediti in crediti-riferimenti.md)',
-  prototypes,
-}));
-fs.copyFileSync(path.join(BASE, 'riferimenti-d11', 'crediti.md'), path.join(PAGE_DIR, 'crediti-riferimenti.md'));
 
-// --- 3. prova sul PC con le foto del test D9 ------------------------------------
+// --- 3. prova con le foto del test D9 ------------------------------------------
 const tests = [
   ...JSON.parse(fs.readFileSync(path.join(BASE, 'manifest-ricevute.json'), 'utf8')),
   ...JSON.parse(fs.readFileSync(path.join(BASE, 'inaturalist', 'manifest.json'), 'utf8')),
@@ -93,43 +98,97 @@ const tests = [
 const genusOf = (s) => (s || '').toLowerCase().split(/\s+/)[0];
 function expectedSlug(t) {
   if (!t.trueName) return null;
-  const g = genusOf(t.trueName);
   if (t.trueName.startsWith('Sansevieria')) return 'sansevieria';
   if (t.trueName.startsWith('Dracaena fragrans')) return 'dracena';
-  const byGenus = CATALOG.filter((c) => c.genus.toLowerCase() === g || genusOf(c.inatName) === g);
+  const byGenus = CATALOG.filter((c) => c.genus.toLowerCase() === genusOf(t.trueName) || genusOf(c.inatName) === genusOf(t.trueName));
   return byGenus.length === 1 ? byGenus[0].slug : (byGenus.find((c) => t.trueName.startsWith(c.inatName))?.slug ?? null);
 }
 const rows = [];
 for (const t of tests) {
   const e = await embed(t.path);
-  const sims = prototypes.map((p) => dot(e, p.embedding));
-  const ex = sims.map((s) => Math.exp(LOGIT_SCALE * (s - Math.max(...sims))));
-  const z = ex.reduce((a, b) => a + b, 0);
-  const ranked = prototypes.map((p, i) => ({ slug: p.slug, label: p.label, sim: sims[i], prob: ex[i] / z })).sort((a, b) => b.prob - a.prob);
-  const exp = expectedSlug(t);
-  rows.push({ file: t.file, group: t.group, exp, top: ranked[0], second: ranked[1], ok: exp && ranked[0].slug === exp, top3: exp && ranked.slice(0, 3).some((r) => r.slug === exp) });
+  rows.push({ file: t.file, group: t.group, exp: expectedSlug(t), sims: prototypes.map((p) => dot(e, p.embedding)) });
 }
-const real = rows.filter((r) => r.group !== 'trappole');
+fs.writeFileSync(cachePath, JSON.stringify(cache));
+const real = rows.filter((r) => r.group !== 'trappole'), traps = rows.filter((r) => r.group === 'trappole');
+
+function probs(sims, scale) {
+  const m = Math.max(...sims); const ex = sims.map((s) => Math.exp(scale * (s - m))); const z = ex.reduce((a, b) => a + b, 0);
+  return ex.map((x) => x / z);
+}
+function rank(r, scale) {
+  const p = probs(r.sims, scale);
+  const order = p.map((x, i) => [x, i]).sort((a, b) => b[0] - a[0]);
+  return { p, top: order[0][1], p1: order[0][0], p2: order[1][0], second: order[1][1], sim1: r.sims[order[0][1]] };
+}
+const slugIdx = Object.fromEntries(prototypes.map((p, i) => [p.slug, i]));
+
+// --- 4. taratura della probabilità ------------------------------------------------
+// NLL = quanto la probabilità data alla risposta giusta è bassa (più basso = meglio);
+// ECE = differenza media tra "probabilità dichiarata" e "quante volte era davvero giusto" (più basso = meglio).
+const SCALES = [10, 15, 20, 25, 30, 40, 50, 60, 80, 100];
+const calib = SCALES.map((scale) => {
+  let nll = 0; const bins = Array.from({ length: 5 }, () => ({ n: 0, conf: 0, ok: 0 }));
+  for (const r of real) {
+    const k = rank(r, scale);
+    nll -= Math.log(Math.max(1e-9, k.p[slugIdx[r.exp]]));
+    const b = bins[Math.min(4, Math.floor(k.p1 * 5))]; b.n++; b.conf += k.p1; b.ok += k.top === slugIdx[r.exp] ? 1 : 0;
+  }
+  const ece = bins.reduce((s, b) => s + (b.n ? Math.abs(b.conf - b.ok) : 0), 0) / real.length;
+  return { scale, nll: nll / real.length, ece };
+});
+const best = calib.reduce((a, b) => (b.nll < a.nll ? b : a));
+// Soglie del popup per la scala scelta: somiglianza 0,42 (separa trappole e foto vere) e la probabilità
+// minima più bassa che mantiene almeno il 90% di nomi giusti e nessuna trappola.
+const MIN_SIM = 0.42;
+let chosenProb = null;
+for (const p of [0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7]) {
+  const shown = real.filter((r) => { const k = rank(r, best.scale); return k.p1 >= p && k.sim1 >= MIN_SIM && k.p1 - k.p2 >= 0.15; });
+  const ok = shown.filter((r) => rank(r, best.scale).top === slugIdx[r.exp]).length;
+  const trapShown = traps.filter((r) => { const k = rank(r, best.scale); return k.p1 >= p && k.sim1 >= MIN_SIM; }).length;
+  if (shown.length && ok / shown.length >= 0.9 && trapShown === 0) { chosenProb = { p, shown: shown.length, ok, trapShown }; break; }
+}
+
+fs.writeFileSync(path.join(PAGE_DIR, `prototypes${SUFFIX}.json`), JSON.stringify({
+  model: { ...MODEL, inputName, outputName, mean: MEAN, std: STD, logitScale: 100 },
+  calibration: { logitScale: best.scale, minProb: chosenProb ? chosenProb.p : 0.6, minSim: MIN_SIM,
+    note: 'Tarata sul PC con le 43 foto vere del test D9 (le stesse usate per misurare: valori indicativi, da ricontrollare sul telefono).' },
+  createdAt: new Date().toISOString().slice(0, 10),
+  method: 'Media delle impronte di 6 foto di riferimento iNaturalist per pianta (crediti in crediti-riferimenti.md)',
+  prototypes,
+}));
+fs.copyFileSync(path.join(BASE, 'riferimenti-d11', 'crediti.md'), path.join(PAGE_DIR, 'crediti-riferimenti.md'));
+
+// --- 5. rapporto ---------------------------------------------------------------
 const pct = (a, b) => (b ? Math.round((a / b) * 100) + '%' : '—');
+const okAt1 = (r) => rank(r, 100).top === slugIdx[r.exp];
+const inTop3 = (r) => { const k = rank(r, 100); return k.p.map((x, i) => [x, i]).sort((a, b) => b[0] - a[0]).slice(0, 3).some(([, i]) => i === slugIdx[r.exp]); };
+const avgMs = msList.length ? Math.round(msList.reduce((a, b) => a + b, 0) / msList.length) : null;
+const screenEx = [0.32, 0.31, 0.31, ...new Array(19).fill(0.25)];
 const lines = [
-  '# Prova sul PC dell\'anteprima live (D11)', '',
-  `Data: ${new Date().toISOString().slice(0, 10)} · Modello: BioCLIP v1 fp16 (ONNX, ${(MODEL.bytes / 1e6).toFixed(1)} MB) · Metodo: confronto con le impronte medie di 6 foto di riferimento per pianta (22 piante).`,
-  'Foto di prova: quelle del test D9, **mai usate come riferimento**. Il PC non misura velocità e calore del telefono: questo lo dirà la prova sull\'iPhone 16.', '',
+  `# Prova sul PC dell'anteprima live (D11) — modello ${VARIANT}`, '',
+  `Data: ${new Date().toISOString().slice(0, 10)} · Modello: ${MODEL.name} · ${(MODEL.bytes / 1e6).toFixed(1)} MB · SHA-256 \`${MODEL.sha256.slice(0, 16)}…\``,
+  'Metodo: confronto con le impronte medie di 6 foto di riferimento per pianta (22 piante). Foto di prova: quelle del test D9, **mai usate come riferimento**.',
+  `Velocità sul PC (WebAssembly, senza scheda grafica): ${avgMs ? avgMs + ' ms per analisi in media' : 'impronte già in memoria, non rimisurata'}. Velocità e calore sul telefono li misura la prova D11.`, '',
   '| Gruppo | Foto | Pianta giusta al 1° posto | Fra le prime 3 |', '|---|---|---|---|',
   ...['ricevute', 'inaturalist-coltivate', 'inaturalist-selvatiche'].map((g) => {
-    const r = rows.filter((x) => x.group === g); return `| ${g} | ${r.length} | ${r.filter((x) => x.ok).length} (${pct(r.filter((x) => x.ok).length, r.length)}) | ${r.filter((x) => x.top3).length} (${pct(r.filter((x) => x.top3).length, r.length)}) |`;
+    const r = rows.filter((x) => x.group === g); return `| ${g} | ${r.length} | ${r.filter(okAt1).length} (${pct(r.filter(okAt1).length, r.length)}) | ${r.filter(inTop3).length} (${pct(r.filter(inTop3).length, r.length)}) |`;
   }),
-  `| **Totale** | ${real.length} | ${real.filter((x) => x.ok).length} (${pct(real.filter((x) => x.ok).length, real.length)}) | ${real.filter((x) => x.top3).length} (${pct(real.filter((x) => x.top3).length, real.length)}) |`, '',
-  '## Trappole', '| Foto | 1° nome | Probabilità | Somiglianza |', '|---|---|---|---|',
-  ...rows.filter((r) => r.group === 'trappole').map((r) => `| ${r.file} | ${r.top.label} | ${(r.top.prob * 100).toFixed(0)}% | ${r.top.sim.toFixed(3)} |`), '',
-  '## Soglie candidate per il popup (mostra il nome solo se probabilità ≥ p e somiglianza ≥ s)', '| p | s | Foto vere con nome | di cui giuste | Trappole con nome |', '|---|---|---|---|---|',
+  `| **Totale** | ${real.length} | ${real.filter(okAt1).length} (${pct(real.filter(okAt1).length, real.length)}) | ${real.filter(inTop3).length} (${pct(real.filter(inTop3).length, real.length)}) |`, '',
+  '## Trappole (somiglianza con la pianta più vicina)', '| Foto | 1° nome | Somiglianza |', '|---|---|---|',
+  ...traps.map((r) => { const k = rank(r, 100); return `| ${r.file} | ${prototypes[k.top].label} | ${k.sim1.toFixed(3)} |`; }),
+  `Foto vere: somiglianza minima ${Math.min(...real.map((r) => rank(r, 100).sim1)).toFixed(3)}.`, '',
+  '## Taratura della probabilità', '',
+  'La probabilità si calcola dalle somiglianze con una "scala": più la scala è alta, più piccole differenze di somiglianza',
+  'diventano grandi differenze di probabilità. Con scala 100 (quella usata da CLIP/BioCLIP per i nomi) la probabilità',
+  'risultava **troppo sicura** con le immagini ambigue. NLL ed ECE misurano quanto la probabilità è realistica (più basso = meglio).', '',
+  '| Scala | NLL | ECE |', '|---|---|---|', ...calib.map((c) => `| ${c.scale}${c.scale === best.scale ? ' ✅' : ''} | ${c.nll.toFixed(3)} | ${(c.ece * 100).toFixed(1)}% |`), '',
+  `**Scelta: scala ${best.scale}.** Esempio della prova con la webcam (somiglianze 0,32 / 0,31 / 0,31 e altre ~0,25): il 1° nome passa dal ` +
+    `${(probs(screenEx, 100)[0] * 100).toFixed(0)}% (scala 100) al ${(probs(screenEx, best.scale)[0] * 100).toFixed(0)}% (scala ${best.scale}).`,
+  chosenProb ? `Soglie del popup per questa scala: probabilità ≥ ${Math.round(chosenProb.p * 100)}%, somiglianza ≥ ${MIN_SIM}, distacco ≥ 15 punti → nome mostrato per ${chosenProb.shown}/${real.length} foto vere, giusto in ${chosenProb.ok} (${pct(chosenProb.ok, chosenProb.shown)}), trappole con nome: ${chosenProb.trapShown}/3.`
+    : 'Nessuna soglia di probabilità raggiunge il 90% di nomi giusti senza trappole: si tengono i valori precedenti.',
+  '⚠️ Taratura fatta sulle stesse 43 foto usate per misurare: i valori sono indicativi e vanno ricontrollati sul telefono.', '',
+  '## Dettaglio (scala 100)', '| Foto | Atteso | 1° nome | Somigl. | 2° nome | Esito |', '|---|---|---|---|---|---|',
+  ...rows.map((r) => { const k = rank(r, 100); return `| ${r.file} | ${r.exp ?? '—'} | ${prototypes[k.top].label} | ${k.sim1.toFixed(3)} | ${prototypes[k.second].label} | ${r.exp ? (k.top === slugIdx[r.exp] ? '✅' : inTop3(r) ? '🔸' : '❌') : 'trappola'} |`; }),
 ];
-for (const p of [0.5, 0.6, 0.7]) for (const s of [0.35, 0.4, 0.42, 0.45]) {
-  const shown = real.filter((r) => r.top.prob >= p && r.top.sim >= s);
-  const traps = rows.filter((r) => r.group === 'trappole' && r.top.prob >= p && r.top.sim >= s);
-  lines.push(`| ${p} | ${s} | ${shown.length}/${real.length} | ${shown.filter((r) => r.ok).length} (${pct(shown.filter((r) => r.ok).length, shown.length)}) | ${traps.length}/3 |`);
-}
-lines.push('', '## Dettaglio', '| Foto | Atteso | 1° nome | Prob. | Somigl. | 2° nome | Esito |', '|---|---|---|---|---|---|---|');
-for (const r of rows) lines.push(`| ${r.file} | ${r.exp ?? '—'} | ${r.top.label} | ${(r.top.prob * 100).toFixed(0)}% | ${r.top.sim.toFixed(3)} | ${r.second.label} | ${r.exp ? (r.ok ? '✅' : r.top3 ? '🔸' : '❌') : 'trappola'} |`);
-fs.writeFileSync(path.join(PAGE_DIR, 'valutazione-pc.md'), lines.join('\n') + '\n');
-console.log(lines.slice(0, 30).join('\n'));
+fs.writeFileSync(path.join(PAGE_DIR, `valutazione-pc${SUFFIX}.md`), lines.join('\n') + '\n');
+console.log(lines.slice(0, 32).join('\n'));
