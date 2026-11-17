@@ -38,13 +38,18 @@ verificato confrontando gli elenchi ufficiali delle specie con le 22 piante del 
 
 **WebGPU su iPhone.** Safari 26 (iOS 26, settembre 2025) ha WebGPU attivo di default [13]. Le fonti non concordano su
 **quali iPhone** lo supportano: un forum parla solo di iPhone 15 Pro e successivi, mentre segnalazioni di WebKit lo mostrano
-in uso su iPhone 12 Pro Max e 13 mini con iOS 26 [13]. **Per l'iPhone 13 Pro Max dell'utente: da verificare con D11.**
+in uso su iPhone 12 Pro Max e 13 mini con iOS 26 [13]. **Il telefono di prova dell'utente è un iPhone 16 con iOS 26.5.2**
+(dato fornito dall'utente il 2026-11-17): WebGPU dovrebbe essere disponibile; la pagina di prova D11 lo controlla.
 Se WebGPU manca, si usa WebAssembly (più lento).
 
 ## Cosa usiamo e perché
-Proposta (decisione [D10](../architecture/decisioni-da-prendere.md)): provare **BioCLIP** con la lista delle specie del nostro
-catalogo come candidato principale e **Plants V1** solo come riferimento di velocità; se BioCLIP è troppo pesante o lento
-sull'iPhone (D11), passare a un **modello nostro** piccolo.
+Decisione [D10](../architecture/decisioni-da-prendere.md) **rimandata all'esito di D11** (2026-11-17), con queste indicazioni:
+- candidato principale **BioCLIP**, limitato alla lista delle specie del catalogo, in **versione quantizzata** (compressa)
+  per ridurre il peso; **Plants V1** solo come riferimento di velocità;
+- download **solo alla prima apertura della fotocamera**, con un avviso sul peso;
+- il popup mostra **nome comune o genere, mai la specie**.
+
+Se BioCLIP risulta troppo pesante o lento sull'iPhone 16 (D11), si passa a un **modello nostro** piccolo.
 
 ## Limiti del piano gratuito
 Non ci sono servizi né quote: il modello si scarica **una volta** e gira sul telefono. I "limiti" sono fisici:
@@ -91,7 +96,7 @@ inquadratura (luce, messa a fuoco, distanza).
 
 ## Decisioni aperte
 [D10](../architecture/decisioni-da-prendere.md) (quale modello) e [D11](../architecture/decisioni-da-prendere.md)
-(prova pratica sull'iPhone 13 Pro Max).
+(prova pratica sull'iPhone 16).
 
 ## Fonti
 1. Imageomics, "BioCLIP" (scheda del modello) — https://huggingface.co/imageomics/bioclip — consultato il 2026-11-17

@@ -33,7 +33,8 @@ Obiettivo: chi apre l'app per la prima volta riesce a **riconoscere una pianta d
   arriveranno le notifiche.
 - **Proposta del backup su file** (F14): spiega a cosa serve e dove salvarlo (es. iCloud Drive). Si può rimandare.
 - **Anteprima live** (F17): spiega che il nome che compare inquadrando è un **"forse"** calcolato sul telefono, e che il
-  risultato affidabile arriva **scattando la foto**. Propone di scaricare il modello (indicando quanto pesa), meglio in Wi-Fi.
+  risultato affidabile arriva **scattando la foto**. Il download del modello **non** si propone qui, ma alla prima
+  apertura della fotocamera (D10).
 
 **Criteri di accettazione:** ogni schermata si può saltare; l'onboarding si può ripetere dalla Guida; se l'utente nega un
 permesso, l'app continua a funzionare e spiega come riattivarlo; se l'app è aperta da Safari e non dalla Home, compare un
@@ -57,18 +58,37 @@ invito discreto (chiudibile) a installarla.
 **Criteri:** risultato in meno di 10 secondi con una buona connessione; nessun dato di posizione inviato insieme alla foto.
 
 ### F04 — Risultati onesti (idea I1)
-- Mostra la **specie più probabile** e **fino a 4 alternative**, ognuna con foto di esempio, nome comune italiano e nome scientifico.
-- Sicurezza espressa **a parole e in percentuale**: "molto probabile" (≥ 70%), "possibile" (30-69%), "incerto" (< 30%).
-  Le soglie sono **provvisorie**: le confermeremo con il test sulle foto (decisione D9).
-- Se la specie più probabile è "incerta": il titolo diventa **"Non sono sicuro"**, con le alternative in evidenza.
-- Se la foto non contiene una pianta: "Non vedo una pianta in questa foto" (nessun nome inventato).
-- Scritta "Riconoscimento: Pl@ntNet".
+> Aggiornata il 2026-11-17 con la decisione D9 (soglie tarate sul test; dettagli in
+> [decisioni](../architecture/decisioni-da-prendere.md) e [scheda Pl@ntNet](../api-documentation/plantnet-api.md#test-d9-2026-11-17)).
 
-**Criteri:** l'app non mostra mai un solo nome senza la sua percentuale; con la foto F6 (tazza) del
-[protocollo di test](../competitor-analysis/plantnet.md#7-protocollo-di-test-manuale-iphone) non propone nessuna pianta.
+**Come si presenta il risultato** (nessuna percentuale mostrata all'utente):
+1. **Titolo: nome comune + genere**, es. **"Basilico, genere *Ocimum*"**. Il genere è il dato più affidabile: giusto nel
+   93% dei casi nel test, contro il 65% della specie.
+2. Sotto: la specie più probabile, introdotta da **"probabilmente"** ("probabilmente *Ocimum basilicum*").
+3. **Fino a 4 alternative**, ognuna con **foto di confronto**, nome comune italiano e nome scientifico, per permettere
+   all'utente di confrontare.
+4. I nomi sono uniformati con la **tabella dei sinonimi** ([scheda](../api-documentation/sinonimi-botanici.md)): la
+   stessa pianta ha sempre lo stesso nome.
+5. Scritta "Riconoscimento: Pl@ntNet".
+
+**Livelli** (soglie configurabili; s1 = punteggio della 1ª specie, s2 = della 2ª):
+
+| Livello | Quando | Cosa vede l'utente |
+|---|---|---|
+| Non riconosciuta | risposta "nessuna pianta", oppure s1 < 10% e s1 < 5 × s2 | **"Non riesco a riconoscerla, prova con un'altra foto"** + consigli di scatto: avvicinati a una foglia o a un fiore, una sola pianta nell'inquadratura, buona luce, niente mosso. Pulsanti "Riprova" e "Cerca per nome" |
+| Incerto | s1 < 30% | Titolo **"Non ne sono sicuro"**, poi "forse" + nome comune e genere; alternative in evidenza; invito ad aggiungere una foto (F05) |
+| Probabile | s1 ≥ 30% | Titolo nome comune + genere; "probabilmente" + specie |
+| Molto probabile | s1 ≥ 80% **e** distacco s1 − s2 ≥ 75 punti | Come sopra, ma "**molto probabilmente**" + specie |
+
+**Criteri:**
+- nessuna percentuale visibile all'utente;
+- il titolo contiene sempre il genere;
+- con la foto trappola della tazza non propone nessuna pianta;
+- con la foto trappola della foglia secca mostra "Non riesco a riconoscerla";
+- due nomi della stessa pianta presenti nella tabella dei sinonimi compaiono con lo stesso nome.
 
 ### F05 — Riconoscimento guidato (idea I2)
-- Se il risultato è "possibile" o "incerto", l'app propone: "Aggiungi una foto di un'altra parte (es. il fiore) per un risultato migliore".
+- Se il risultato è "probabile" o "incerto" (F04), l'app propone: "Aggiungi una foto di un'altra parte (es. il fiore) per un risultato migliore".
 - La nuova foto viene inviata **insieme** alle precedenti (stessa pianta).
 - L'utente può sempre scegliere a mano una delle alternative oppure "Nessuna di queste".
 
@@ -244,10 +264,10 @@ offline) propone un nome probabile in un piccolo popup. Scattando, parte il rico
    - per **cambiare** nome, il nuovo deve restare primo per circa **2 secondi** e superare il vecchio di **10 punti**;
    - se la sicurezza scende sotto il **35%** per 2 secondi, il popup sfuma in "Sto guardando…" invece di cambiare nome.
 4. **Testo onesto:**
-   - sempre **"Forse: Pothos"** (nome comune + nome scientifico piccolo), mai "È un Pothos";
-   - se è sicuro solo del genere: **"Forse un Philodendron"**;
+   - mostra **solo il nome comune o il genere, mai la specie** (D10): **"Forse: Pothos"** oppure
+     **"Forse un *Philodendron*"**, mai "È un Pothos";
    - sotto il nome, piccolo: **"Anteprima sul telefono · Scatta per il riconoscimento completo"**;
-   - nessuna percentuale nel popup (l'anteprima non è una misura): le percentuali compaiono solo nel risultato completo (F04).
+   - nessuna percentuale, né nel popup né nel risultato completo (D9).
 5. **Tocco sul popup** = scatto della foto. Un piccolo link secondario "Come coltivarla" apre la scheda (F18) con
    l'avviso che la specie non è confermata.
 6. Il nome dell'anteprima **non viene mai salvato** e non sostituisce il risultato di Pl@ntNet. Se i due sono diversi, l'app
@@ -257,7 +277,8 @@ offline) propone un nome probabile in un piccolo popup. Scattando, parte il rico
 8. **Accessibilità:** il popup non copre il centro del mirino; per VoiceOver il nome viene annunciato solo quando cambia
    (al massimo ogni 2 secondi).
 
-**Download del modello:** facoltativo, proposto nell'onboarding e nelle impostazioni, con il peso indicato e consiglio di
+**Download del modello:** facoltativo, proposto **alla prima apertura della fotocamera** (D10) e poi nelle impostazioni,
+con il peso indicato e consiglio di
 usare il Wi-Fi. Senza modello: mirino con soli consigli di inquadratura.
 
 **Guida:** voce "Come funziona l'anteprima live" (perché è un "forse", perché a volte non compare il nome, come
@@ -268,7 +289,7 @@ scaricare o cancellare il modello) e spiegazione la prima volta che si apre il m
 - con la pianta ferma, il nome non cambia per almeno 10 secondi;
 - inquadrando la tazza della foto trappola, nessun nome compare;
 - la parola "Forse" è sempre presente quando c'è un nome;
-- il mirino resta fluido (nessun blocco visibile) sull'iPhone 13 Pro Max;
+- il mirino resta fluido (nessun blocco visibile) sull'iPhone 16;
 - senza modello scaricato, il riconoscimento completo funziona normalmente.
 
 ## 3. Versioni successive
@@ -306,6 +327,6 @@ scaricare o cancellare il modello) e spiegazione la prima volta che si apre il m
 
 ## 6. Decisioni
 Le decisioni D1-D9 sono state **approvate il 2026-11-16**: vedi [decisioni](../architecture/decisioni-da-prendere.md).
-Resta in sospeso solo il **risultato del test delle foto (D9)**, che fisserà flora di Pl@ntNet e soglie di confidenza
-definitive (oggi provvisorie: 70% / 30%).
-**Nuove decisioni aperte (2026-11-17):** D10 (modello per l'anteprima live) e D11 (prova pratica sull'iPhone 13 Pro Max).
+**Aggiornamento 2026-11-17:** D9 chiusa dopo il test (`k-world-flora`, soglie, nessuna percentuale, tabella dei sinonimi);
+D11 approvata (prova sull'iPhone 16 con iOS 26.5.2); D10 rimandata all'esito di D11.
+**Da riconfermare (D9):** *Aloe officinalis* / *Aloe vera* e *Peperomia argyraea* / *argyreia* sono nomi distinti per GBIF.

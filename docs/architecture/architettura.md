@@ -54,9 +54,10 @@ indirizzo come `/api/identify`).
 ```text
 1. Telefono  ──POST /api/identify (foto ridotte + parti fotografate + ID anonimo del dispositivo)──>  Server
 2. Server    controlla le quote (§4)
-3. Server    ──POST https://my-api.plantnet.org/v2/identify/all?api-key=SEGRETA&lang=it──>  Pl@ntNet
+3. Server    ──POST https://my-api.plantnet.org/v2/identify/k-world-flora?api-key=SEGRETA&lang=it──>  Pl@ntNet  (flora scelta in D9)
 4. Pl@ntNet  ──lista di specie con punteggi + richieste rimaste──>  Server
-5. Server    aggiorna i contatori e traduce la risposta nel nostro formato
+5. Server    aggiorna i contatori e traduce la risposta nel nostro formato: nomi uniformati con la tabella dei
+             sinonimi, livello di sicurezza calcolato con le soglie di D9 (le percentuali non arrivano all'utente)
 6. Server    ──risultato (senza chiave, senza dati interni)──>  Telefono
 ```
 
@@ -114,8 +115,13 @@ parte il riconoscimento completo con Pl@ntNet, con alternative e confidenza (F04
 - Se il riconoscimento completo dice una cosa diversa dall'anteprima, vale il riconoscimento completo (CLAUDE.md §8).
 
 **Il modello locale.** Si scarica **una volta** e resta nella cache dell'app, gestita dal service worker (il pezzo
-della PWA che lavora in sottofondo e conserva i file per l'uso offline). Il download è **facoltativo**: l'app lo
-propone in Wi-Fi, dicendo quanto pesa; senza modello l'app funziona lo stesso. Il modello gira con **ONNX Runtime Web**
+della PWA che lavora in sottofondo e conserva i file per l'uso offline). Il download è **facoltativo** e viene proposto
+**alla prima apertura della fotocamera**, con un avviso sul peso e il consiglio di usare il Wi-Fi (D10). Senza modello
+l'app funziona lo stesso. Candidato: BioCLIP in versione **quantizzata**, cioè compressa salvando i numeri con meno
+cifre, per ridurre il peso.
+
+**Cosa mostra il popup:** **nome comune o genere, mai la specie** (D10), coerente con D9: il genere è affidabile, la
+specie no. Il modello gira con **ONNX Runtime Web**
 (licenza MIT), su WebGPU se disponibile, altrimenti su WebAssembly. Quale modello usare è la decisione
 [D10](decisioni-da-prendere.md); prima di sviluppare l'interfaccia lo proviamo sull'iPhone dell'utente
 ([D11](decisioni-da-prendere.md)). Confronto dei candidati: [modelli per l'anteprima live](../api-documentation/modelli-riconoscimento-live.md).
@@ -330,7 +336,7 @@ interface Identification {
   id: ID;
   photoIds: ID[];              // 1-5 foto della stessa pianta
   provider: 'plantnet';        // quale servizio ha risposto
-  project: string;             // flora usata, es. "all"
+  project: string;             // flora usata: "k-world-flora" (D9)
   modelVersion?: string;       // versione del modello di Pl@ntNet
   status: 'ok' | 'not-a-plant' | 'quota-exceeded' | 'error';
   candidates: Candidate[];     // ordinati dal più probabile
@@ -343,8 +349,12 @@ interface Candidate {
   commonNames: string[];       // in italiano se disponibili
   family?: string;
   genus?: string;
-  score: number;               // 0-1, come restituito da Pl@ntNet
-  confidenceLabel: 'molto probabile' | 'possibile' | 'incerto';  // calcolata con le soglie (D9)
+  acceptedName: string;        // nome uniformato con la tabella dei sinonimi (D9)
+  score: number;               // 0-1, come restituito da Pl@ntNet: usato per i calcoli, MAI mostrato all'utente
+  // Livello del risultato, calcolato sul 1° candidato con le soglie di D9 (src/config/recognition.ts):
+  // 'not-recognized' (404, oppure s1 < 0,10 e s1 < 5 × s2) · 'uncertain' (s1 < 0,30)
+  // · 'probable' (s1 ≥ 0,30) · 'very-probable' (s1 ≥ 0,80 e s1 − s2 ≥ 0,75)
+  confidenceLevel: 'not-recognized' | 'uncertain' | 'probable' | 'very-probable';
   gbifId?: number;             // collegamento alla banca dati GBIF
   speciesId?: ID;              // collegamento al nostro catalogo, se la specie c'è
 }
@@ -475,7 +485,8 @@ interface AppSettings {
 | Adattatore | Implementazione v1 | Dove gira | Alternativa gratuita / ripiego |
 |---|---|---|---|
 | `PlantRecognitionProvider` | `PlantNetProvider` tramite `/api/identify` | server | Ricerca per nome (F06) |
-| `LivePreviewClassifier` | da scegliere con D10 (proposta: BioCLIP con la lista del catalogo) | telefono | Modello nostro piccolo; `NoopClassifier` (solo consigli di inquadratura) |
+| `LivePreviewClassifier` | da scegliere con D10, dopo D11 (candidato: BioCLIP quantizzato con la lista del catalogo) | telefono | Modello nostro piccolo; `NoopClassifier` (solo consigli di inquadratura) |
+| `TaxonomyProvider` | `StaticSynonymTable` (file JSON generato sul PC da GBIF, [scheda](../api-documentation/sinonimi-botanici.md)) | telefono e server | World Flora Online **(da verificare)**; tabella a mano per il catalogo |
 | `WeatherProvider` | `OpenMeteoProvider` | telefono | MET Norway **(da verificare)**; intervalli standard |
 | `SunProvider` | `SunCalcProvider` | telefono | astronomy-engine **(da verificare)**; formule NOAA |
 | `AiProvider` | `RuleBasedAssistant` | telefono | v2: `OllamaProvider` personale |
@@ -507,7 +518,8 @@ interface AppSettings {
 ## 9. Decisioni
 D1-D9 decise il 2026-11-16: vedi [decisioni-da-prendere.md](decisioni-da-prendere.md). Ancora aperti: esito della
 verifica dei termini di Vercel (D2) e risultato del test delle foto (D9: flora e soglie definitive).
-**Nuove decisioni aperte:** D10 (modello per l'anteprima live) e D11 (prova pratica sull'iPhone 13 Pro Max).
+**Aggiornamento 2026-11-17:** D9 chiusa (`k-world-flora`, soglie, tabella dei sinonimi); D11 approvata (prova su
+iPhone 16, iOS 26.5.2); D10 rimandata all'esito di D11.
 
 ## Fonti
 1. Pl@ntNet API, "Introduction" e "Single-species identification" — https://my.plantnet.org/doc/getting-started/introduction , https://my.plantnet.org/doc/api/identify — consultati il 2026-11-16

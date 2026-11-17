@@ -65,9 +65,55 @@ Abbiamo verificato, ecco cosa sappiamo:
 - **Attenzione ai progetti "legacy"**: la documentazione dice di usare sempre i progetti "KT" (prefisso `k-`), perché quelli
   legacy usano un modello vecchio che verrà rimosso [2][5]. Va verificato se `useful` è un progetto legacy **(da verificare)**.
 
-**Conclusione:** probabilmente funziona bene con le piante d'appartamento più comuni, ma **non è dimostrato**. Prima di scrivere
-il codice dell'interfaccia faremo un **test con circa 30 foto di piante di casa** (le 7 foto del protocollo più altre 20-25),
-confrontando `all`, `k-world-flora` e `useful`. È la [decisione D9](../architecture/decisioni-da-prendere.md).
+**Conclusione (prima del test):** probabilmente funziona bene con le piante d'appartamento più comuni, ma non era
+dimostrato. Per questo abbiamo fatto il test D9, qui sotto.
+
+## Test D9 (2026-11-17)
+**Come:** 46 foto inviate una per volta, con organo "auto", `lang=it`, `nb-results=5`, alle flore `all`, `k-world-flora` e
+`useful`, per un totale di 138 riconoscimenti. Modello Pl@ntNet: versione `2026-03-20 (7.5)`. Le foto erano:
+- 3 foto ricevute dall'utente;
+- 32 foto iNaturalist di piante coltivate;
+- 8 foto iNaturalist di piante selvatiche (grado Research);
+- 3 trappole.
+
+Le foto iNaturalist hanno licenze CC BY / CC BY-NC e sono state scelte con identificazione confermata dalla comunità.
+Foto e risposte grezze restano sul PC, fuori dal repository.
+
+> ⚠️ Le foto iNaturalist possono rendere il test **più facile del reale**: sono foto scelte e già identificate da esperti,
+> in parte di piante in natura, e Pl@ntNet potrebbe averle viste durante l'addestramento. Le foto più vicine all'uso
+> reale sono le 3 dell'utente: troppo poche per conclusioni forti.
+
+**Risultati con i sinonimi accettati in D9** (specie giusta al 1° posto · specie giusta fra le prime 5 · genere giusto al 1° posto):
+
+| Gruppo | `all` | `k-world-flora` | `useful` |
+|---|---|---|---|
+| Foto ricevute (3) | 3/3 · 3/3 · 3/3 | 3/3 · 3/3 · 3/3 | 3/3 · 3/3 · 3/3 |
+| iNaturalist coltivate (32) | 63% · 94% · 97% | 63% · 94% · 97% | 56% · 84% · 84% |
+| iNaturalist selvatiche (8) | 63% · 100% · 75% | 63% · 100% · 75% | 63% · 75% · 88% |
+| **Totale (43)** | 65% · 95% · 93% | **65% · 95% · 93%** | 60% · 84% · 86% |
+
+**Trappole:** tazza e foto sfocata → "nessuna pianta" (404) con tutte e tre le flore. Foglia secca → un nome con
+punteggio bassissimo (5,6% su `k-world-flora`).
+
+**Cosa abbiamo imparato**
+- **Il genere è affidabile, la specie no.** Gli errori sono quasi sempre "parenti stretti" (un altro basilico, un altro
+  anthurium). Con punteggio ≥ 30% il genere era giusto **36 volte su 36**.
+- **Un punteggio alto non garantisce la specie:** *Ocimum americanum* all'89% su un basilico comune.
+- **`useful` è la peggiore** e in 2 casi ha restituito una lista vuota, pur indicando un `bestMatch` giusto.
+- **Stranezza da capire:** con `k-world-flora` la foto della maranta ha la stessa classifica di `all`, ma punteggio
+  4,8% invece di 88,4%. La documentazione non lo spiega **(da verificare)**. Per questo la soglia minima tiene conto anche
+  del rapporto con la 2ª specie.
+
+**Decisioni prese (D9, 2026-11-17)**
+- Flora: **`k-world-flora`**.
+- Risultato senza percentuali: **nome comune + genere** come titolo, specie "probabilmente", alternative con foto di confronto.
+- Soglie (configurabili, in un unico file di configurazione):
+  - "non riconosciuta" se 404, oppure s1 < 10% e s1 < 5 × s2;
+  - "incerto" se s1 < 30%;
+  - "molto probabile" se s1 ≥ 80% e distacco ≥ 75 punti.
+
+  Dettagli e limiti nella [decisione D9](../architecture/decisioni-da-prendere.md).
+- Nomi uniformati con la [tabella dei sinonimi](sinonimi-botanici.md). Pl@ntNet fornisce i codici GBIF e POWO di ogni specie.
 
 ## Come lo usiamo nel codice (adattatore)
 La chiave è segreta: **la usa solo il nostro server**, mai il telefono (CLAUDE.md §7).
@@ -112,7 +158,8 @@ Oggi **non esiste un'alternativa gratuita equivalente**: è il rischio principal
 ## Rischi
 | Rischio | Probabilità | Come lo mitighiamo |
 |---|---|---|
-| Accuratezza bassa sulle piante di casa | Media | Test con 30 foto prima di sviluppare (D9); alternative sempre visibili; ricerca per nome |
+| Specie sbagliata tra "parenti stretti" | **Alta** (test D9: 35% delle foto) | Titolo con il genere (giusto nel 93%); specie solo "probabilmente"; alternative con foto; ricerca per nome |
+| Soglie tarate su poche foto (43, una sola trappola "difficile") | Certa | Valori configurabili; nuovo controllo con più foto vere dell'utente |
 | 500 identificazioni al giorno non bastano se l'app ha successo | Bassa all'inizio | Contatore + quota per dispositivo; messaggi chiari; eventuale richiesta piano non profit se nascerà un'associazione |
 | Cambio delle condizioni gratuite | Bassa | Adattatore `PlantRecognitionProvider`; questa scheda va riverificata ogni 6 mesi |
 | Chiave rubata | Bassa | Chiave solo sul server; quota per dispositivo; possibilità di rigenerarla |

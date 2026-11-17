@@ -8,7 +8,7 @@ aggiorniamo i documenti collegati.
 
 **Stato:** D1-D9 **decise il 2026-11-16** (tutte secondo la raccomandazione, con le aggiunte indicate in D3, D5 e D8).
 **Prossimo passo:** il test delle foto (D9), poi la verifica dei termini di Vercel (D2).
-**Aperte dal 2026-11-17:** D10 e D11 (anteprima live).
+**Aggiornamento 2026-11-17:** D9 chiusa; D11 approvata; D10 rimandata all'esito di D11.
 
 ---
 
@@ -145,8 +145,48 @@ mostriamo consigli generici dichiarati come tali.
 
 **Raccomandazione: A.** Sarebbe il primo passo di sviluppo: un piccolo script sul PC, con la chiave in `.env.local`.
 
-**Scelta: ✅ DECISA il 2026-11-16 — A, prima il test.** Fino al risultato del test, flora e soglie restano provvisorie
-(`all`, 70% / 30%). Il risultato andrà scritto qui e nella [scheda Pl@ntNet](../api-documentation/plantnet-api.md).
+**Scelta: ✅ DECISA il 2026-11-16 — A, prima il test.** Test eseguito il 2026-11-17: 46 foto × 3 flore = 138
+riconoscimenti. Risultati completi nella [scheda Pl@ntNet](../api-documentation/plantnet-api.md#test-d9-2026-11-17).
+
+**Decisione finale: ✅ CHIUSA il 2026-11-17.**
+1. **Flora: `k-world-flora`.**
+2. **Sinonimi accettati come la stessa pianta:**
+   - *Sansevieria trifasciata* = *Dracaena trifasciata*;
+   - *Peperomia argyreia* = *Peperomia argyraea*;
+   - *Aloe officinalis* = *Aloe vera*;
+   - genere *Calathea* = *Goeppertia*.
+
+   **Non** accettato: *Philodendron cordatum* = *P. hederaceum*. Con queste regole, su `k-world-flora`:
+   - specie giusta al 1° posto: **65%**;
+   - specie giusta fra le prime 5: **95%**;
+   - genere giusto al 1° posto: **93%** (43 foto).
+
+   ⚠️ **Da riconfermare:** per GBIF, *Aloe officinalis* / *Aloe vera* e *Peperomia argyraea* / *argyreia* sono nomi
+   **distinti**. Nella tabella dei sinonimi sono segnati come "equivalenze decise da noi", non come sinonimi botanici
+   ([scheda sinonimi](../api-documentation/sinonimi-botanici.md)).
+3. **Come si presenta il risultato** (F04):
+   - titolo = **nome comune + genere** ("Basilico, genere *Ocimum*");
+   - poi la specie più probabile, introdotta da "**probabilmente**";
+   - poi le alternative, con foto di confronto;
+   - **nessuna percentuale mostrata all'utente**.
+4. **Soglie tarate sui dati del test** (valori configurabili). s1 = punteggio della 1ª specie, s2 = della 2ª.
+
+   | Livello | Regola | Cosa mostra | Nel test (`k-world-flora`) |
+   |---|---|---|---|
+   | **Non riconosciuta** | risposta "nessuna pianta" (404), oppure s1 < **10%** e s1 < **5 ×** s2 | *"Non riesco a riconoscerla, prova con un'altra foto"* + consigli di scatto | Scarta la foglia secca (5,6%, 2,7×) e 2 risposte sbagliate; **nessuna** risposta giusta scartata |
+   | **Incerto** | s1 < **30%** (e non scartata) | *"Non ne sono sicuro"* + "forse" genere + alternative in evidenza | 5 foto: 3 giuste, 1 con genere sbagliato |
+   | **Normale** | s1 ≥ 30% | titolo nome comune + genere; specie "probabilmente" | genere giusto **36 su 36**, specie giusta 25 su 36 |
+   | **Molto probabile** | s1 ≥ **80%** **e** distacco s1 − s2 ≥ **75 punti** | specie "molto probabilmente" | specie giusta **6 su 8**, genere 8 su 8 |
+
+   **Limiti della taratura:** sono solo 43 foto, e **nessuna combinazione** di soglie ha superato il 90% di specie
+   giuste. Anche con punteggio dell'89% e distacco di 87 punti, Pl@ntNet ha confuso due basilici. Per questo il titolo
+   mostra il **genere**, che è affidabile, mentre la specie è sempre un "probabilmente". La soglia minima si basa su
+   **una sola** foto trappola: va ricontrollata con più foto.
+   Perché la regola usa anche il rapporto con la 2ª specie: con `k-world-flora` la tua foto della maranta ha avuto solo il
+   4,8% (88,4% con `all`, stessa classifica), ma la 1ª specie era **13,5 volte** la 2ª. Una soglia basata solo sul
+   punteggio l'avrebbe scartata.
+5. **Tabella dei sinonimi** con fonte verificabile (GBIF Backbone Taxonomy, CC BY 4.0), così l'app mostra sempre lo
+   stesso nome. Seconda fonte (World Flora Online / POWO) da verificare.
 
 ---
 
@@ -166,13 +206,18 @@ che **nessun modello aperto pronto all'uso copre bene le piante d'appartamento**
 **Raccomandazione: A per la prova D11**, misurando insieme anche B come riferimento di velocità. Se A risulta troppo lento o
 pesante sull'iPhone, si passa a **C**. **E** resta sempre come ripiego automatico sui telefoni che non reggono il modello.
 
-**Scelta:** _da decidere (dopo D11)_
+**Scelta: ⏸️ RIMANDATA il 2026-11-17 all'esito di D11**, con queste indicazioni:
+- **candidato principale: BioCLIP**, limitato al nostro catalogo, in **versione compressa (quantizzata)** per ridurne il
+  peso. "Quantizzata" vuol dire che i numeri del modello vengono salvati con meno cifre: il file pesa molto meno e
+  la precisione cambia di poco **(da misurare)**;
+- **download solo alla prima apertura della fotocamera**, con un avviso che dice quanto pesa (non nell'onboarding);
+- il popup live mostra **nome comune o genere, mai la specie** ("Forse: Pothos", "Forse un *Philodendron*").
 
 ---
 
-## D11 — Prova pratica sull'iPhone 13 Pro Max prima di sviluppare l'interfaccia? *(aggiunta il 2026-11-17)*
-**Perché conta:** velocità, calore e batteria di un modello nel browser non si possono sapere dai documenti. Le fonti non
-concordano nemmeno su quali iPhone abbiano WebGPU con iOS 26.
+## D11 — Prova pratica sull'iPhone 16 prima di sviluppare l'interfaccia? *(aggiunta il 2026-11-17)*
+**Perché conta:** velocità, calore e batteria di un modello nel browser non si possono sapere dai documenti.
+Telefono di prova: **iPhone 16 con iOS 26.5.2** (dato fornito dall'utente il 2026-11-17), quindi con WebGPU disponibile.
 
 | Opzione | Pro | Contro |
 |---|---|---|
@@ -189,12 +234,12 @@ concordano nemmeno su quali iPhone abbiano WebGPU con iOS 26.
 - se la fotocamera funziona anche con l'app aggiunta alla schermata Home **(da verificare)**.
 
 **Criteri di successo proposti:** analisi in meno di 500 ms; download sotto i 150 MB; mirino fluido; nome giusto in almeno
-6 casi su 10 e **nessun nome sbagliato mostrato con sicurezza** sulle piante del catalogo. Prima della prova controlla la
-versione di iOS (Impostazioni → Generali → Info): per WebGPU serve iOS 26.
+6 casi su 10 e **nessun nome sbagliato mostrato con sicurezza** sulle piante del catalogo.
 
 **Raccomandazione: A.** È lo stesso metodo del test D9: prima i dati, poi l'interfaccia.
 
-**Scelta:** _da decidere_
+**Scelta: ✅ APPROVATA il 2026-11-17 — A.** La pagina di prova è in `tests/d11-anteprima-live/`. Prima di metterla online
+va spiegato all'utente cosa serve (account, servizio gratuito, passi) e si aspetta la sua conferma.
 
 ---
 
@@ -209,6 +254,6 @@ versione di iOS (Impostazioni → Generali → Info): per WebGPU serve iOS 26.
 | D6 Botanico AI | ✅ Assistente a regole in v1; Ollama personale in v2 |
 | D7 Promemoria | ✅ In-app + Calendario; push in v2 |
 | D8 Consigli di cura | ✅ Schede nostre con fonti citate + dati botanici aperti; ripiego generico per famiglia/tipo |
-| D9 Flora e soglie | ✅ Test con 30 foto prima di sviluppare (in attesa del test) |
-| D10 Modello anteprima live | ⏳ Da decidere — raccomandazione: BioCLIP con lista del catalogo (prova), poi eventualmente modello nostro |
-| D11 Prova su iPhone 13 Pro Max | ⏳ Da decidere — raccomandazione: pagina di prova minima prima dell'interfaccia |
+| D9 Flora e soglie | ✅ (2026-11-17) `k-world-flora`; titolo nome comune + genere, specie "probabilmente", nessuna percentuale; soglie tarate; tabella sinonimi GBIF |
+| D10 Modello anteprima live | ⏸️ Rimandata a D11 — candidato BioCLIP quantizzato, download alla prima apertura della fotocamera, popup con nome comune o genere |
+| D11 Prova su iPhone 16 | ✅ (2026-11-17) Pagina di prova minima prima dell'interfaccia |
