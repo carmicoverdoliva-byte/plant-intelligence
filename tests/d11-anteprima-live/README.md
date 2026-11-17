@@ -19,6 +19,18 @@ iOS 26.5.2) se un modello di riconoscimento può girare nel browser abbastanza b
    rallentano, e in più ci sono i pulsanti per annotare come lo senti.
 7. Pulsante **"Copia i risultati"**: un riassunto da incollare in chat.
 
+**Come è fatta (dal 2026-11-17, dopo il blocco segnalato nella prova con la webcam):**
+- Il lavoro pesante (download e verifica del modello, motore, analisi) gira in un **Web Worker** (`worker.js`): un
+  programma separato che lavora in parallelo alla pagina, così pulsanti, video e popup restano sempre reattivi.
+- **Un solo ciclo di analisi**, garantito: la foto successiva parte solo dopo la risposta alla precedente.
+  - **Causa del blocco:** ogni passaggio "finestra nascosta → visibile", e ogni cambio di motore, faceva partire un ciclo
+    in più. Il motore riceveva due analisi insieme e andava in errore ("Session already started", "Session mismatch").
+  - **Prova automatica:** con la versione vecchia, dopo 30 cambi di visibilità si passava da 1,3 a 3,0 analisi al secondo,
+    con 38 errori. Con quella nuova le analisi restano 1,5 al secondo, senza errori, e il blocco più lungo della pagina
+    scende da 1-2 s a circa 25 ms.
+- I pulsanti confermano il clic ("✓ Registrato"). "Copia i risultati" mostra **sempre** il testo in un riquadro, anche
+  quando la copia automatica non è permessa. Gli errori stanno in un'area separata e non coprono i messaggi.
+
 **Privacy:** le immagini della fotocamera **non lasciano il telefono**. Le uniche richieste di rete sono il motore
 (da cdn.jsdelivr.net, con controllo di integrità SRI) e il modello (da huggingface.co, con controllo SHA-256).
 
@@ -63,7 +75,8 @@ compressa (quantizzata) va preparata e misurata (D10).
 ## File
 | File | Cosa contiene |
 |---|---|
-| `index.html`, `app.js` | La pagina di prova |
+| `index.html`, `app.js` | La pagina di prova (video, popup, misure, pulsanti) |
+| `worker.js` | Web Worker: download e verifica del modello, motore ONNX Runtime Web (controllo d'integrità SHA-384), analisi |
 | `prototypes.json` | Impronte delle 22 piante + dati del modello (indirizzo fissato, SHA-256) |
 | `crediti-riferimenti.md` | Autori, licenze e link delle 132 foto di riferimento |
 | `valutazione-pc.md` | Risultati della prova sul PC |

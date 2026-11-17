@@ -7,7 +7,7 @@ import path from 'node:path';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')), '..');
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.md': 'text/markdown; charset=utf-8' };
-const ALLOWED = new Set(['index.html', 'app.js', 'prototypes.json']);
+const ALLOWED = new Set(['index.html', 'app.js', 'worker.js', 'prototypes.json']);
 
 http.createServer((req, res) => {
   const name = decodeURIComponent(new URL(req.url, 'http://x').pathname).replace(/^\/+/, '') || 'index.html';
