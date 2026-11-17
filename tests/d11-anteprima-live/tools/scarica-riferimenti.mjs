@@ -7,9 +7,10 @@
 // Uso: node scarica-riferimenti.mjs <cartella-test-piante>
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 import { CATALOG } from './catalogo.mjs';
 
-const BASE = path.resolve(process.argv[2] || '<cartella-utente>/test-piante');
+const BASE = path.resolve(process.argv[2] || path.join(os.homedir(), 'test-piante'));
 const OUT = path.join(BASE, 'riferimenti-d11');
 const PER_LABEL = 6;
 const UA = { 'User-Agent': 'test-script/1.0' };

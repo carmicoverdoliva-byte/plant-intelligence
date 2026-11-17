@@ -73,11 +73,12 @@ compressa (quantizzata) va preparata e misurata (D10).
 ```bash
 cd tests/d11-anteprima-live/tools
 npm install
-node scarica-riferimenti.mjs "<cartella-utente>/test-piante"   # foto di riferimento (fuori dal repository)
-node costruisci-impronte.mjs "<cartella-utente>/test-piante"   # impronte + valutazione-pc.md (~2 minuti)
+node scarica-riferimenti.mjs   # foto di riferimento in ~/test-piante (fuori dal repository)
+node costruisci-impronte.mjs   # impronte + valutazione-pc.md (~2 minuti)
 node server-locale.mjs                                                   # pagina su http://localhost:8011/
 ```
-Le foto e il modello restano in `<cartella-utente>\test-piante\` (fuori da git).
+Le foto e il modello restano nella cartella `test-piante` dentro la cartella utente (fuori da git). Si può indicare
+un'altra cartella come primo argomento degli script.
 
 ## Licenze e servizi usati
 | Cosa | Licenza | Note |

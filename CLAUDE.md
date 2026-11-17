@@ -29,7 +29,8 @@ La visione completa del prodotto è in `docs/requirements/visione-prodotto.md`.
 - Prima di aggiungere una nuova dipendenza o un servizio, verifica licenza e costi e documentalo in `docs/api-documentation/`.
 
 ## 5. Regole sul reverse engineering (analisi dei concorrenti)
-Benchmark: PictureThis (riconoscimento), Planta (cura), Pl@ntNet e Flora Incognita (rigore scientifico).
+Benchmark: PictureThis (riconoscimento), Planta (cura), Pl@ntNet e Flora Incognita (rigore scientifico),
+Seek di iNaturalist (riconoscimento live sul telefono).
 - Si studia **solo il comportamento e le funzionalità osservabili** da un normale utente (flussi, schermate, scelte di UX, contenuti pubblici).
 - **Vietato**: copiare o decompilare codice proprietario, riutilizzare asset (immagini, icone, testi, marchi),
   usare API private o non documentate, aggirare protezioni, paywall o limiti tecnici.
@@ -52,13 +53,27 @@ Ogni nuova funzione deve rispettare questo requisito:
 
 ## 8. Onestà dei risultati
 - Il riconoscimento mostra specie, specie simili e livello di confidenza. **Se non è sicuro, mostra alternative invece di inventare.**
+  - Il titolo del risultato è **nome comune + genere**; la specie è sempre introdotta da "probabilmente" (o "molto
+    probabilmente" solo sopra le soglie tarate in D9). **Nessuna percentuale mostrata all'utente.**
+  - Sotto la soglia minima l'app dice "Non riesco a riconoscerla" e dà consigli di scatto: non inventa un nome.
+  - Lo stesso nome per la stessa pianta: i nomi passano dalla tabella dei sinonimi (fonte verificabile, es. GBIF).
+- L'**anteprima live** è un "Forse…": mostra solo nome comune o genere, mai la specie; non viene mai salvata; vale sempre
+  il riconoscimento completo.
+- Le **schede di cura** (comprese "Coltivarla da zero" e "Travaso") citano fonti verificabili per ogni sezione, con testi
+  nostri; senza scheda completa si usa il ripiego per famiglia o tipo di pianta, **dichiarato come tale**.
 - L'esposizione al sole è una **stima**, non una misura: va sempre presentata come tale, con possibilità di calibrazione manuale.
 - Il "botanico AI" deve dichiarare incertezza e non presentare ipotesi come fatti.
 
 ## 9. Stack tecnico previsto
 - Next.js + React + TypeScript + Tailwind CSS, installabile come PWA, mobile-first.
-- Riconoscimento: Pl@ntNet API (piano gratuito). Meteo: Open-Meteo. Sole: SunCalc.
+- Riconoscimento a due livelli:
+  - **completo**: Pl@ntNet API (piano gratuito), flora `k-world-flora` (D9);
+  - **anteprima live**: modello aperto nel browser con ONNX Runtime Web (WebGPU, ripiego WebAssembly). Candidato BioCLIP
+    limitato al catalogo; la scelta definitiva è D10, dopo la prova D11.
+- Sinonimi botanici: tabella statica generata da GBIF Backbone Taxonomy (CC BY 4.0).
+- Meteo: Open-Meteo. Sole: SunCalc.
 - AI botanica: modello locale via Ollama quando possibile, provider configurabile.
+- Telefono di prova dell'utente: **iPhone 16 con iOS 26.5.2** (WebGPU disponibile).
 
 ## 10. Struttura delle cartelle
 - `docs/competitor-analysis/` — analisi dei benchmark
@@ -66,5 +81,7 @@ Ogni nuova funzione deve rispettare questo requisito:
 - `docs/architecture/` — scelte architetturali
 - `docs/api-documentation/` — servizi esterni usati, limiti, costi, alternative
 - `docs/user-guide/` — contenuti della Guida per l'utente
-- `src/` — codice dell'app · `public/` — file statici · `tests/` — test
+- `src/` — codice dell'app · `public/` — file statici · `tests/` — test e pagine di prova (es. `tests/d11-anteprima-live/`)
+- Foto di prova, modelli scaricati e risposte grezze dei servizi restano **fuori dal repository**
+  (es. la cartella `test-piante` nella cartella utente), non su cartelle sincronizzate nel cloud.
 - `.claude/skills/`, `.claude/agents/` — configurazioni per Claude Code

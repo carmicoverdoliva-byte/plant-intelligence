@@ -6,12 +6,13 @@
 // Uso: node costruisci-impronte.mjs <cartella-test-piante>
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 import crypto from 'node:crypto';
 import * as ort from 'onnxruntime-web'; // stesso motore (WebAssembly) usato dal telefono
 import sharp from 'sharp';
 import { CATALOG } from './catalogo.mjs';
 
-const BASE = path.resolve(process.argv[2] || '<cartella-utente>/test-piante');
+const BASE = path.resolve(process.argv[2] || path.join(os.homedir(), 'test-piante'));
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const PAGE_DIR = path.resolve(HERE, '..');
 export const MODEL = {
