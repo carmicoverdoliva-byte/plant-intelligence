@@ -85,6 +85,28 @@ interface LivePreviewClassifier {
 Vedi la tabella dei candidati. Ripiego sempre disponibile: **nessun modello** (`NoopClassifier`), con soli consigli di
 inquadratura (luce, messa a fuoco, distanza).
 
+## Preparazione della prova D11 (2026-11-17)
+Dettagli e istruzioni in [`tests/d11-anteprima-live/`](../../tests/d11-anteprima-live/README.md).
+- **Versioni ONNX di BioCLIP già pubblicate** (tutte di terzi, tutte con licenza MIT dichiarata): nessuna contiene le
+  nostre piante di casa. Una è per i funghi, una per i ragni, e un modello "studente" piccolo (24 MB) ne copre 9 su 24.
+  Abbiamo usato solo la parte che analizza le immagini di **`m3r1al/naturalist-bioclip-v1`**: BioCLIP v1 ViT-B/16,
+  **172,8 MB**, commit fissato `22a18d2`, file verificato con SHA-256. Il manifest dichiara un ingresso "float16", ma il
+  file vuole **float32** (verificato).
+- **Metodo:** invece di confrontare l'immagine con i *nomi* delle piante, che richiederebbe la parte "testo" del modello,
+  non disponibile pronta e non convertibile qui senza Python, la confrontiamo con le **impronte medie di 6 foto di
+  riferimento** per pianta (iNaturalist, licenze aperte, osservazioni diverse da quelle del test D9).
+- **Risultati sul PC** (46 foto del test D9, mai usate come riferimento):
+  - pianta giusta al 1° posto **88%**;
+  - con soglie probabilità ≥ 60% e somiglianza ≥ 0,42: nome mostrato nel 93% dei casi, **giusto nel 90%**;
+  - **0 trappole su 3** con un nome.
+- **Prova nel browser del PC** (Edge, fotocamera finta): WebGPU attivo, caricamento 18 s, **~195 ms per analisi**. Il
+  motore scaricato pesa 5,1 MB compresso (29,5 MB non compresso).
+- **Peso:** 173 MB, sopra i 150 MB dei criteri di D11. Serve una versione quantizzata, da preparare e misurare (D10).
+- **Strumenti aggiunti (solo per la prova, in `tests/d11-anteprima-live/tools`):**
+  - `onnxruntime-web` 1.31.1 (MIT) e `sharp` 0.35.5 (Apache 2.0), gratuiti;
+  - `onnxruntime-node` è stato scartato: sul PC (Node 26) si chiudeva con un errore grave. Usiamo `onnxruntime-web`
+    anche sul PC, che è lo stesso motore del telefono.
+
 ## Rischi
 | Rischio | Probabilità | Mitigazione |
 |---|---|---|
@@ -93,6 +115,8 @@ inquadratura (luce, messa a fuoco, distanza).
 | Analisi troppo lenta o telefono che scalda | Media | D11 prima di sviluppare; frequenza adattiva; pausa automatica |
 | Safari cancella il modello scaricato | Media | App installata sulla Home (D3); si riscarica in automatico |
 | Anteprima sbagliata presa per vera | Media | Testo "Forse…", soglie, nessun salvataggio; il risultato vero è sempre Pl@ntNet |
+| Il modello convertito da terzi sparisce o cambia | Media | Commit fissato e SHA-256; in futuro conversione nostra o copia ospitata da noi **(da verificare: limiti di dimensione dell'hosting)** |
+| Il modello sceglie sempre una pianta del catalogo, anche davanti a un oggetto | Alta | Soglia di somiglianza (0,42 sul PC), da ritarare sul telefono con la prova D11 |
 
 ## Decisioni aperte
 [D10](../architecture/decisioni-da-prendere.md) (quale modello) e [D11](../architecture/decisioni-da-prendere.md)

@@ -1,0 +1,14 @@
+{
+  "name": "d11-anteprima-live-tools",
+  "private": true,
+  "description": "Script da usare sul PC per preparare la pagina di prova D11 (foto di riferimento e impronte BioCLIP).",
+  "type": "module",
+  "scripts": {
+    "riferimenti": "node scarica-riferimenti.mjs",
+    "impronte": "node costruisci-impronte.mjs"
+  },
+  "dependencies": {
+    "onnxruntime-web": "1.31.1",
+    "sharp": "0.35.5"
+  }
+}
