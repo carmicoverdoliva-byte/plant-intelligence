@@ -21,6 +21,7 @@ L'app ha **due parti**:
 │                                                                                             │
 │  Schermate (Next.js + React + Tailwind)                                                     │
 │     │                                                                                       │
+│     ├── LivePreviewClassifier ── modello locale, niente rete (anteprima live, §1b)         │
 │     ├── PlantRecognitionProvider ──── foto ridotte ────────────────┐                        │
 │     ├── WeatherProvider (Open-Meteo) ── lat/lon arrotondate ──┐     │                        │
 │     ├── SunProvider (SunCalc) ── calcolo locale, niente rete  │     │                        │
@@ -78,6 +79,68 @@ Anche 5 foto restano sotto il limite di dimensione delle funzioni dell'hosting (
 Con circa 500 identificazioni al giorno siamo **molto lontani** dai limiti di tutti e tre. Il codice del server resta
 piccolo e standard, quindi si può spostare da un hosting all'altro. Decisione [D2](decisioni-da-prendere.md).
 
+## 1b. Riconoscimento a due livelli
+
+> Aggiunto il 2026-11-17 (nuovo requisito). **Cambia** una scelta precedente: il riconoscimento non passa più solo da
+> Pl@ntNet. Pl@ntNet resta il riconoscimento **completo**; si aggiunge un'**anteprima live** sul telefono.
+
+**L'idea.** Mentre l'utente inquadra una pianta, un **modello che gira nel browser** (sul telefono, senza internet e senza
+limiti) propone un nome probabile in un piccolo popup: *"Forse: Pothos"*. Se l'utente vuole saperne di più, **scatta**:
+parte il riconoscimento completo con Pl@ntNet, con alternative e confidenza (F04).
+
+```text
+┌──────────────────────────── iPhone ────────────────────────────┐
+│  Fotocamera (getUserMedia) ──fotogrammi──┐                      │
+│                                          v                      │
+│                         LivePreviewClassifier (modello locale)  │   Livello 1: ANTEPRIMA
+│                         ~2 analisi al secondo, niente rete      │   gratis, senza limiti,
+│                                          │                      │   anche offline
+│                                          v                      │
+│                         Regole del popup (soglia, stabilità)    │
+│                                          │                      │
+│                                          v                      │
+│                      popup "Forse: Pothos" ── tocco o scatto ──┐│
+└────────────────────────────────────────────────────────────────┼┘
+                                                                 v
+                                   /api/identify ──> Pl@ntNet           Livello 2: COMPLETO
+                                   (quota giornaliera, §4)              specie + alternative
+```
+
+**Regole di base.**
+- I fotogrammi del livello 1 **non lasciano mai il telefono**: nessun invio, nessun salvataggio.
+- Il livello 1 **non consuma** riconoscimenti Pl@ntNet.
+- Il nome dell'anteprima **non viene mai salvato** come identificazione: in collezione finisce solo il risultato del
+  livello 2 (o la scelta manuale dell'utente).
+- Se il riconoscimento completo dice una cosa diversa dall'anteprima, vale il riconoscimento completo (CLAUDE.md §8).
+
+**Il modello locale.** Si scarica **una volta** e resta nella cache dell'app, gestita dal service worker (il pezzo
+della PWA che lavora in sottofondo e conserva i file per l'uso offline). Il download è **facoltativo**: l'app lo
+propone in Wi-Fi, dicendo quanto pesa; senza modello l'app funziona lo stesso. Il modello gira con **ONNX Runtime Web**
+(licenza MIT), su WebGPU se disponibile, altrimenti su WebAssembly. Quale modello usare è la decisione
+[D10](decisioni-da-prendere.md); prima di sviluppare l'interfaccia lo proviamo sull'iPhone dell'utente
+([D11](decisioni-da-prendere.md)). Confronto dei candidati: [modelli per l'anteprima live](../api-documentation/modelli-riconoscimento-live.md).
+
+**Ripiego.** Se il telefono non regge il modello, o se il modello non è scaricato, il mirino mostra solo **consigli di
+inquadratura** calcolati in modo semplice (troppo buio, mossa, troppo lontano), senza nomi. Implementazione
+`NoopClassifier` dello stesso adattatore.
+
+**Regole del popup** (dettaglio in [specifiche F17](../requirements/specifiche-funzionali.md#f17--anteprima-live-nel-mirino)).
+Tutti i numeri sono **valori di configurazione** (in un unico file, `src/config/livePreview.ts`), non sparsi nel codice,
+e verranno tarati con D11:
+
+| Regola | Valore iniziale | Perché |
+|---|---|---|
+| Analisi al secondo | **2** (una ogni 500 ms), mai più di 4; una nuova analisi parte solo quando la precedente è finita | Fluido ma senza scaldare il telefono; niente code |
+| Area analizzata | quadrato centrale del mirino, ridotto alla dimensione richiesta dal modello | L'utente sa cosa sta "guardando" l'app |
+| Media mobile | punteggi mediati sulle ultime ~4 analisi (circa 2 secondi) | Un fotogramma mosso non cambia il risultato |
+| Soglia per mostrare un nome | media ≥ **0,50** e distacco dal 2° nome ≥ **0,15** | Sotto: nessun nome, solo "Sto guardando…" o un consiglio |
+| Comparsa | stesso nome in testa per **3** analisi di fila (~1,5 s) | Niente nomi lampo |
+| Cambio di nome | il nuovo nome deve stare in testa per **4** analisi di fila **e** superare il vecchio di **0,10** | Il popup non "balla" a ogni movimento |
+| Scomparsa | media sotto **0,35** per 2 secondi → il popup sfuma in "Sto guardando…" | Meglio nessun nome che un nome sbagliato |
+| Pausa | app in background, schermo spento o mirino chiuso → analisi ferme | Batteria |
+
+**Privacy e permessi.** La fotocamera si chiede con la spiegazione già prevista (F01). Nessun nuovo dato esce dal telefono.
+
 ## 2. Il botanico AI: Ollama gira sul PC, non sull'iPhone
 
 **Il problema, detto semplice.** Ollama è un programma che fa girare un modello di intelligenza artificiale **sul tuo PC**.
@@ -128,6 +191,7 @@ Decisione [D6](decisioni-da-prendere.md).
 |---|---|---|
 | **IndexedDB sul telefono** | Piante, foto ridotte, identificazioni, finestre, promemoria, impostazioni | Gratis, veloce, funziona offline, privacy massima |
 | **File di backup** (esporta/importa) | Copia completa della collezione | Protegge da cancellazioni e cambio telefono (F14) |
+| **Cache del service worker** | Modello dell'anteprima live (§1b), se l'utente lo scarica | Funziona offline; se Safari lo cancella si riscarica. Non va nel backup |
 | **Server (Upstash Redis)** | **Solo contatori** anonimi delle identificazioni, cancellati dopo 48 ore | Necessari per il limite di 500 al giorno (§4) |
 
 **Come iPhone conserva i dati.** Safari cancella i dati salvati dai siti dopo **7 giorni senza visite**, ma le web app
@@ -367,6 +431,7 @@ interface AppSettings {
 | Adattatore | Implementazione v1 | Dove gira | Alternativa gratuita / ripiego |
 |---|---|---|---|
 | `PlantRecognitionProvider` | `PlantNetProvider` tramite `/api/identify` | server | Ricerca per nome (F06) |
+| `LivePreviewClassifier` | da scegliere con D10 (proposta: BioCLIP con la lista del catalogo) | telefono | Modello nostro piccolo; `NoopClassifier` (solo consigli di inquadratura) |
 | `WeatherProvider` | `OpenMeteoProvider` | telefono | MET Norway **(da verificare)**; intervalli standard |
 | `SunProvider` | `SunCalcProvider` | telefono | astronomy-engine **(da verificare)**; formule NOAA |
 | `AiProvider` | `RuleBasedAssistant` | telefono | v2: `OllamaProvider` personale |
@@ -391,10 +456,14 @@ interface AppSettings {
 | iPhone cancella i dati | Bassa con l'app installata | Alto | Installazione sulla Home, `persist()`, backup su file |
 | Nessuna AI gratuita online per utenti UE | Alta (già verificato per Gemini) | Basso | AI non essenziale; assistente a regole; Ollama personale |
 | Notifiche non disponibili nella v1 | Certa | Medio | Promemoria in-app + calendario `.ics`; push in v2 |
+| Nessun modello aperto riconosce bene le piante di casa nel browser | Alta (verificato su 3 candidati) | Medio | BioCLIP con lista nostra o modello nostro (D10); prova su iPhone (D11); ripiego senza nomi |
+| Anteprima live lenta, pesante o che scalda il telefono | Media | Medio | D11 prima di sviluppare; frequenza adattiva; download facoltativo; pausa automatica |
+| L'utente prende l'anteprima per un risultato certo | Media | Medio | Testo "Forse…", soglie e stabilità; mai salvata; vale sempre Pl@ntNet |
 
 ## 9. Decisioni
 D1-D9 decise il 2026-11-16: vedi [decisioni-da-prendere.md](decisioni-da-prendere.md). Ancora aperti: esito della
 verifica dei termini di Vercel (D2) e risultato del test delle foto (D9: flora e soglie definitive).
+**Nuove decisioni aperte:** D10 (modello per l'anteprima live) e D11 (prova pratica sull'iPhone 13 Pro Max).
 
 ## Fonti
 1. Pl@ntNet API, "Introduction" e "Single-species identification" — https://my.plantnet.org/doc/getting-started/introduction , https://my.plantnet.org/doc/api/identify — consultati il 2026-11-16

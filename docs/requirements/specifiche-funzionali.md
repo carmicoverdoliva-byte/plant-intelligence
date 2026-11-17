@@ -14,6 +14,7 @@ I "criteri di accettazione" sono le condizioni da controllare per dire che la fu
 | I3 | **Cura personalizzata con meteo e sole, gratis** | Planta (ma a pagamento) | F08, F10, F11, F12 |
 | I4 | **Gratuità vera e limiti gestiti bene**: niente abbonamenti né schermate di vendita | contro PictureThis e Planta | F13, tutte |
 | I5 | **Onboarding rispettoso e Guida sempre disponibile**, privacy senza tracciamento | contro PictureThis | F01, F02, F15 |
+| I6 | **Riconoscimento a due livelli**: anteprima live sul telefono ("Forse…"), riconoscimento completo allo scatto | Seek (live sul dispositivo) | F03, F17 |
 
 ## 2. Versione 1 — minima ma utilizzabile
 Obiettivo: chi apre l'app per la prima volta riesce a **riconoscere una pianta di casa**, **salvarla** nella collezione e
@@ -31,6 +32,8 @@ Obiettivo: chi apre l'app per la prima volta riesce a **riconoscere una pianta d
   con immagini: pulsante **Condividi** → **"Aggiungi a Home"** → **"Aggiungi"**. Ricorda anche che così, in futuro,
   arriveranno le notifiche.
 - **Proposta del backup su file** (F14): spiega a cosa serve e dove salvarlo (es. iCloud Drive). Si può rimandare.
+- **Anteprima live** (F17): spiega che il nome che compare inquadrando è un **"forse"** calcolato sul telefono, e che il
+  risultato affidabile arriva **scattando la foto**. Propone di scaricare il modello (indicando quanto pesa), meglio in Wi-Fi.
 
 **Criteri di accettazione:** ogni schermata si può saltare; l'onboarding si può ripetere dalla Guida; se l'utente nega un
 permesso, l'app continua a funzionare e spiega come riattivarlo; se l'app è aperta da Safari e non dalla Home, compare un
@@ -44,7 +47,8 @@ invito discreto (chiudibile) a installarla.
 
 **Criteri:** nessuna funzione della v1 senza la sua voce nella Guida (CLAUDE.md §6).
 
-### F03 — Riconoscimento da foto
+### F03 — Riconoscimento da foto (livello 2: completo)
+- È il **secondo livello** del riconoscimento: parte quando l'utente **scatta** (o tocca il popup dell'anteprima live, F17).
 - Scatto dalla fotocamera o scelta dalla galleria; **da 1 a 5 foto della stessa pianta**.
 - Per ogni foto l'utente indica la parte (foglia, fiore, frutto, corteccia, "non so").
 - Il telefono **riduce le foto** prima dell'invio (lato corto 1280 pixel, JPEG di qualità 90%): l'invio è più veloce e
@@ -158,6 +162,51 @@ quota cambia senza modificare il codice.
 
 > **PWA** (Progressive Web App): un sito che si comporta come un'app. Si aggiunge alla schermata Home e funziona anche senza rete.
 
+### F17 — Anteprima live nel mirino
+> Livello 1 del riconoscimento (idea I6). Aggiunta il 2026-11-17. Entra nella v1 **solo se la prova sull'iPhone (D11) va bene**; altrimenti il mirino mostra solo
+> consigli di inquadratura e l'anteprima passa a una versione successiva. Modello: decisione D10.
+
+**Cosa fa.** Mentre l'utente inquadra una pianta, un modello che gira **sul telefono** (gratis, senza limiti, anche
+offline) propone un nome probabile in un piccolo popup. Scattando, parte il riconoscimento completo con Pl@ntNet (F03-F04).
+
+**Regole del popup** (valori iniziali, configurabili e da tarare con D11; dettagli tecnici in
+[architettura §1b](../architecture/architettura.md#1b-riconoscimento-a-due-livelli)):
+1. **Quante analisi al secondo:** circa **2** (mai più di 4). Una nuova analisi parte solo quando la precedente è finita.
+   Le analisi si fermano quando l'app va in background o il mirino si chiude.
+2. **Soglia minima di sicurezza:** il nome compare solo se la sicurezza media degli ultimi ~2 secondi è almeno **50%** e
+   supera di almeno **15 punti** il secondo nome. Sotto soglia: nessun nome, solo "Sto guardando…" o un consiglio
+   ("Avvicinati a una foglia", "C'è poca luce").
+3. **Niente cambio di nome a ogni movimento:**
+   - un nome compare solo dopo essere rimasto primo per circa **1,5 secondi**;
+   - per **cambiare** nome, il nuovo deve restare primo per circa **2 secondi** e superare il vecchio di **10 punti**;
+   - se la sicurezza scende sotto il **35%** per 2 secondi, il popup sfuma in "Sto guardando…" invece di cambiare nome.
+4. **Testo onesto:**
+   - sempre **"Forse: Pothos"** (nome comune + nome scientifico piccolo), mai "È un Pothos";
+   - se è sicuro solo del genere: **"Forse un Philodendron"**;
+   - sotto il nome, piccolo: **"Anteprima sul telefono · Scatta per il riconoscimento completo"**;
+   - nessuna percentuale nel popup (l'anteprima non è una misura): le percentuali compaiono solo nel risultato completo (F04).
+5. **Tocco sul popup** = scatto della foto.
+6. Il nome dell'anteprima **non viene mai salvato** e non sostituisce il risultato di Pl@ntNet. Se i due sono diversi, l'app
+   mostra solo il risultato completo.
+7. **Senza rete:** l'anteprima funziona; allo scatto l'app spiega che il riconoscimento completo richiede la connessione
+   e propone di salvare la foto per riprovare dopo.
+8. **Accessibilità:** il popup non copre il centro del mirino; per VoiceOver il nome viene annunciato solo quando cambia
+   (al massimo ogni 2 secondi).
+
+**Download del modello:** facoltativo, proposto nell'onboarding e nelle impostazioni, con il peso indicato e consiglio di
+usare il Wi-Fi. Senza modello: mirino con soli consigli di inquadratura.
+
+**Guida:** voce "Come funziona l'anteprima live" (perché è un "forse", perché a volte non compare il nome, come
+scaricare o cancellare il modello) e spiegazione la prima volta che si apre il mirino (CLAUDE.md §6).
+
+**Criteri di accettazione:**
+- nessun fotogramma lascia il telefono (verificabile: nessuna richiesta di rete durante l'inquadratura);
+- con la pianta ferma, il nome non cambia per almeno 10 secondi;
+- inquadrando la tazza della foto trappola, nessun nome compare;
+- la parola "Forse" è sempre presente quando c'è un nome;
+- il mirino resta fluido (nessun blocco visibile) sull'iPhone 13 Pro Max;
+- senza modello scaricato, il riconoscimento completo funziona normalmente.
+
 ## 3. Versioni successive
 | Codice | Funzione | Versione proposta | Note |
 |---|---|---|---|
@@ -186,8 +235,11 @@ quota cambia senza modificare il codice.
 | Scrivere i consigli di cura richiede tempo | Partire da 50 piante comuni; consigli generici dichiarati per le altre |
 | iPhone cancella i dati di un sito non installato | Invito a installare l'app (F01, F16) e backup (F14) |
 | La stima del sole viene presa per una misura | Etichetta "stima", calibrazione, voce nella Guida |
+| Nessun modello aperto riconosce bene le piante di casa sul telefono | D10 e D11 prima di sviluppare; ripiego con soli consigli di inquadratura |
+| L'anteprima live viene presa per un risultato certo | Testo "Forse…", soglie, stabilità; mai salvata; vale sempre il riconoscimento completo |
 
 ## 6. Decisioni
 Le decisioni D1-D9 sono state **approvate il 2026-11-16**: vedi [decisioni](../architecture/decisioni-da-prendere.md).
 Resta in sospeso solo il **risultato del test delle foto (D9)**, che fisserà flora di Pl@ntNet e soglie di confidenza
 definitive (oggi provvisorie: 70% / 30%).
+**Nuove decisioni aperte (2026-11-17):** D10 (modello per l'anteprima live) e D11 (prova pratica sull'iPhone 13 Pro Max).

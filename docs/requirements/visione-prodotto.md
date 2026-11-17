@@ -6,10 +6,15 @@ e aiuta a curarle, in modo **completamente gratuito**.
 
 ## Funzioni principali
 
-### 1. Riconoscimento da foto
-- Identifica la specie a partire da una o più foto.
-- Mostra **specie simili** e il **livello di confidenza**.
+### 1. Riconoscimento a due livelli
+- **Livello 1 — anteprima live** (aggiunto il 2026-11-17): mentre si inquadra una pianta con la fotocamera, un modello
+  che gira **sul telefono** (gratis, senza limiti, anche offline) mostra un popup con il nome probabile, sempre
+  presentato come **"Forse…"**. Le immagini non lasciano il telefono.
+- **Livello 2 — riconoscimento completo**: scattando la foto (una o più), l'app chiede a Pl@ntNet il riconoscimento
+  completo.
+- Il risultato completo mostra **specie simili** e il **livello di confidenza**.
 - Se il riconoscimento non è sicuro, **mostra alternative invece di inventare** una risposta.
+- L'anteprima è un aiuto, non un risultato: in caso di differenza vale il riconoscimento completo.
 
 ### 2. Scheda botanica
 - Informazioni sulla specie riconosciuta (nome scientifico, nomi comuni, famiglia, caratteristiche).
@@ -56,7 +61,8 @@ e aiuta a curarle, in modo **completamente gratuito**.
 | Framework | Next.js + React + TypeScript | |
 | Stile | Tailwind CSS | |
 | Distribuzione | PWA installabile | mobile-first |
-| Riconoscimento | Pl@ntNet API | piano gratuito |
+| Riconoscimento completo | Pl@ntNet API | piano gratuito |
+| Anteprima live | Modello aperto nel browser (ONNX Runtime Web, WebGPU/WebAssembly) | modello da scegliere (D10), prova su iPhone (D11) |
 | Meteo | Open-Meteo | gratuito, senza chiave |
 | Posizione del sole | SunCalc | libreria open source, calcolo locale |
 | AI botanica | Ollama (modello locale) | quando possibile; provider configurabile |
@@ -68,6 +74,7 @@ e aiuta a curarle, in modo **completamente gratuito**.
 | Planta | Cura e promemoria |
 | Pl@ntNet | Rigore scientifico |
 | Flora Incognita | Rigore scientifico |
+| Seek (iNaturalist) | Riconoscimento live sul dispositivo |
 
 **Regola:** il reverse engineering riguarda **solo comportamento e funzionalità osservabili**.
 Niente codice proprietario, asset, API private o aggiramento di protezioni.

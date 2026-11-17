@@ -8,6 +8,7 @@ aggiorniamo i documenti collegati.
 
 **Stato:** D1-D9 **decise il 2026-11-16** (tutte secondo la raccomandazione, con le aggiunte indicate in D3, D5 e D8).
 **Prossimo passo:** il test delle foto (D9), poi la verifica dei termini di Vercel (D2).
+**Aperte dal 2026-11-17:** D10 e D11 (anteprima live).
 
 ---
 
@@ -146,6 +147,54 @@ mostriamo consigli generici dichiarati come tali.
 
 ---
 
+## D10 — Quale modello per l'anteprima live? *(aggiunta il 2026-11-17)*
+**Perché conta:** è il pezzo che rende possibile il nuovo requisito (nome probabile mentre si inquadra). Abbiamo verificato
+che **nessun modello aperto pronto all'uso copre bene le piante d'appartamento**: Plants V1 ne conosce 6 su 22, PlantNet-300K
+3 su 22 (dettagli e fonti nella [scheda dei modelli](../api-documentation/modelli-riconoscimento-live.md)).
+
+| Opzione | Pro | Contro |
+|---|---|---|
+| **A. BioCLIP, limitato alla lista delle specie del nostro catalogo** | Licenza MIT; nessun addestramento: basta dargli la lista dei nomi; la lista si allarga senza rifare il modello | Pesante: download stimato 90-170 MB **(da verificare)**; velocità e precisione sulle piante di casa **da verificare** |
+| B. Google AIY Plants V1 | Licenza Apache 2.0; circa 5 MB; molto veloce | Conosce solo 6 delle nostre 22 piante: sbaglierebbe quasi sempre |
+| C. Un modello nostro piccolo, addestrato sulle piante del catalogo (foto iNaturalist con licenza aperta) | Leggero (stimato 5-15 MB) e veloce; copre esattamente le piante che ci interessano | Lavoro in più: raccogliere foto, addestrare, citare le licenze, mantenerlo; servono competenze da imparare |
+| D. Modelli Pl@ntNet (PlantNet-300K, PlantCLEF 2024) | Aperti (PlantCLEF: CC BY 4.0), molto rigorosi | Pensati per la flora selvatica europea; PlantCLEF pesa gigabyte |
+| E. Nessun modello: il mirino dà solo consigli di inquadratura | Zero rischi, zero peso | Non soddisfa il nuovo requisito |
+
+**Raccomandazione: A per la prova D11**, misurando insieme anche B come riferimento di velocità. Se A risulta troppo lento o
+pesante sull'iPhone, si passa a **C**. **E** resta sempre come ripiego automatico sui telefoni che non reggono il modello.
+
+**Scelta:** _da decidere (dopo D11)_
+
+---
+
+## D11 — Prova pratica sull'iPhone 13 Pro Max prima di sviluppare l'interfaccia? *(aggiunta il 2026-11-17)*
+**Perché conta:** velocità, calore e batteria di un modello nel browser non si possono sapere dai documenti. Le fonti non
+concordano nemmeno su quali iPhone abbiano WebGPU con iOS 26.
+
+| Opzione | Pro | Contro |
+|---|---|---|
+| **A. Pagina di prova minima (non l'app): mirino + modello + misure, aperta sul tuo iPhone** | Dati reali sul telefono vero prima di investire nell'interfaccia; poche ore di lavoro | Serve un indirizzo `https` per usare la fotocamera (es. un'anteprima su Vercel o un tunnel gratuito) **(da verificare)** |
+| B. Sviluppare subito l'interfaccia completa | Si vede prima il prodotto | Rischio di rifare tutto se il modello è troppo lento |
+| C. Provare solo sul PC | Facile | Il PC è molto più potente: risultati non realistici |
+
+**Cosa misuriamo con A** (modello A e B di D10, con WebGPU e con WebAssembly):
+- peso del download e tempo del primo caricamento;
+- millisecondi per analisi e analisi al secondo possibili;
+- calore e consumo di batteria dopo 5 minuti di mirino acceso;
+- su piante vere di casa: quante volte il popup dice il nome giusto, quante volte sbaglia, quante volte giustamente tace;
+- con la tazza della foto trappola: nessun nome deve comparire;
+- se la fotocamera funziona anche con l'app aggiunta alla schermata Home **(da verificare)**.
+
+**Criteri di successo proposti:** analisi in meno di 500 ms; download sotto i 150 MB; mirino fluido; nome giusto in almeno
+6 casi su 10 e **nessun nome sbagliato mostrato con sicurezza** sulle piante del catalogo. Prima della prova controlla la
+versione di iOS (Impostazioni → Generali → Info): per WebGPU serve iOS 26.
+
+**Raccomandazione: A.** È lo stesso metodo del test D9: prima i dati, poi l'interfaccia.
+
+**Scelta:** _da decidere_
+
+---
+
 ## Riepilogo
 | Decisione | Scelta (2026-11-16) |
 |---|---|
@@ -158,3 +207,5 @@ mostriamo consigli generici dichiarati come tali.
 | D7 Promemoria | ✅ In-app + Calendario; push in v2 |
 | D8 Consigli di cura | ✅ Schede nostre con fonti citate + dati botanici aperti; ripiego generico per famiglia/tipo |
 | D9 Flora e soglie | ✅ Test con 30 foto prima di sviluppare (in attesa del test) |
+| D10 Modello anteprima live | ⏳ Da decidere — raccomandazione: BioCLIP con lista del catalogo (prova), poi eventualmente modello nostro |
+| D11 Prova su iPhone 13 Pro Max | ⏳ Da decidere — raccomandazione: pagina di prova minima prima dell'interfaccia |
