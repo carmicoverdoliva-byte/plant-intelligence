@@ -129,6 +129,9 @@ mostriamo consigli generici dichiarati come tali.
 - **ripiego per le piante senza scheda**: consigli generici per famiglia o tipo di pianta (es. "piante grasse",
   "aracee"), anch'essi con fonti, più un messaggio chiaro: *"La scheda completa per questa pianta non è ancora disponibile.
   Questi sono consigli generici per il suo gruppo."*
+- **Ampliamento del 2026-11-17 (nuovo requisito):** ogni scheda, e ogni gruppo del ripiego, ha anche le sezioni
+  **"Coltivarla da zero"** e **"Travaso"**, con fonti per ogni sezione, periodo consigliato collegato a stagione e meteo
+  e promemoria facoltativo (F18). Esempio: [scheda del pothos](../requirements/esempio-scheda-pothos.md).
 
 ---
 

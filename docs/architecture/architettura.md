@@ -289,6 +289,13 @@ Plant (pianta) 1 ──── * Photo (foto)
      per questa pianta non è ancora disponibile. Questi sono consigli generici per il suo gruppo."*;
   3. altrimenti → solo il messaggio che la scheda non è disponibile, con consigli di base dichiarati come tali.
   La famiglia arriva anche da Pl@ntNet (`family`), quindi il ripiego funziona pure per specie fuori dal catalogo.
+- **Sezioni "Coltivarla da zero" e "Travaso"** (aggiunte il 2026-11-17, F18): stanno dentro `care` (scheda completa) e
+  dentro `CareGroup` (ripiego). **Ogni sezione ha le sue fonti** (`sources`), così si vede da dove viene ogni consiglio.
+  Esempio completo: [scheda del pothos](../requirements/esempio-scheda-pothos.md).
+- **Stagione e meteo:** i periodi consigliati sono salvati come **stagioni** (`'spring'`, `'summer'`…), non come mesi.
+  Una piccola funzione (`seasonToMonths`) li traduce in mesi in base all'emisfero, ricavato dalla latitudine
+  (in Italia: primavera = marzo-maggio). Per le piante all'aperto, `WeatherProvider` controlla gelo o caldo previsti
+  nei 7 giorni successivi e, se serve, l'app consiglia di rimandare. Nessun nuovo servizio esterno.
 
 ```ts
 type ID = string;              // codice univoco casuale (UUID)
@@ -302,6 +309,7 @@ interface Plant {
   spotId?: ID;                 // dove si trova
   indoor: boolean;             // in casa o all'aperto (cambia meteo e avvisi)
   potDiameterCm?: number;
+  lastRepottedAt?: ISODate;    // data dell'ultimo travaso, inserita dall'utente (F18)
   acquiredAt?: ISODate;
   notes?: string;
   createdAt: ISODate;
@@ -344,7 +352,9 @@ interface Candidate {
 interface Reminder {
   id: ID;
   plantId: ID;
-  kind: 'water' | 'fertilize' | 'repot' | 'check';
+  kind: 'water' | 'fertilize' | 'repot' | 'propagate' | 'check';
+  // 'repot' e 'propagate' sono facoltativi (pulsante "Ricordamelo", F18) e cadono nel periodo consigliato
+  season?: Season;             // periodo consigliato a cui è legato il promemoria
   baseIntervalDays: number;    // dalla scheda di cura
   adjustedIntervalDays: number;// corretto per stagione, luce stimata e meteo
   adjustmentReason?: string;   // "più caldo del solito: anticipato di 1 giorno"
@@ -396,6 +406,8 @@ interface Species {             // catalogo fornito con l'app (sola lettura)
     soil: string;
     fertilizeEveryDays?: number;
     repotEveryYears?: number;
+    propagation: PropagationGuide;   // "Coltivarla da zero" (F18)
+    repotting: RepottingGuide;       // "Travaso" (F18)
   };
   toxicity?: { pets: 'toxic' | 'non-toxic' | 'unknown'; children: 'toxic' | 'non-toxic' | 'unknown'; source: string };
   sources: Source[];           // obbligatorie (almeno una) se c'è `care`
@@ -412,7 +424,39 @@ interface CareGroup {           // consigli generici per famiglia o tipo di pian
   name: string;                // "Piante grasse", "Aracee"
   families: string[];          // famiglie botaniche che rientrano nel gruppo, es. ["Araceae"]
   advice: { light: string; water: string; temperature: string; soil: string };
+  propagation?: PropagationGuide;  // consigli generici del gruppo (es. "aracee rampicanti: talea con nodo")
+  repotting?: RepottingGuide;
   sources: Source[];           // almeno una
+}
+
+type Season = 'spring' | 'summer' | 'autumn' | 'winter' | 'any';  // tradotta in mesi secondo l'emisfero
+
+interface PropagationGuide {     // "Coltivarla da zero"
+  methods: {
+    method: 'seed' | 'stem-cutting' | 'tip-cutting' | 'division' | 'leaf' | 'layering';
+    suitable: boolean;           // false = sconsigliato; il motivo va in `whyNot`
+    whyNot?: string;
+    recommendedForBeginners?: boolean;
+    bestSeasons: Season[];
+    steps: string[];             // passaggi semplici, in ordine
+    materials?: string[];
+    timeToRootsWeeks?: { min: number; max: number };
+    timeToNewPlantWeeks?: { min: number; max: number };
+    commonMistakes: string[];
+    sources: Source[];           // almeno una per ogni metodo "adatto"
+  }[];
+}
+
+interface RepottingGuide {       // "Travaso"
+  signs: string[];               // segnali che serve
+  everyYears?: { min: number; max: number };  // intervallo indicativo (le fonti possono differire)
+  bestSeasons: Season[];
+  pot: string;                   // es. "una misura più grande, con fori di drenaggio"
+  soil: string;
+  steps: string[];
+  aftercare: string[];           // cure dei giorni successivi
+  outdoorWeatherRules?: { avoidFrostDays: number; avoidHeatAboveC?: number };  // solo piante all'aperto
+  sources: Source[];
 }
 
 interface AppSettings {

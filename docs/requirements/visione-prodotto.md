@@ -21,6 +21,16 @@ e aiuta a curarle, in modo **completamente gratuito**.
 
 ### 3. Consigli di cura
 - Acqua, luce, terreno, temperatura, concimazione, rinvaso.
+- **Coltivarla da zero** (aggiunto il 2026-11-17): metodi di propagazione adatti a quella pianta (seme, talea, divisione,
+  foglia), periodo migliore, passaggi semplici, tempi ed errori comuni.
+- **Travaso** (aggiunto il 2026-11-17): segnali che servono, periodo migliore, vaso e terriccio, passaggi e cure dei
+  giorni successivi.
+- Disponibili per ogni pianta riconosciuta, sia dalla foto sia dall'anteprima live (in quel caso con l'avviso che la
+  specie va confermata scattando).
+- Consigli **collegati alla stagione e al meteo locale** ("il periodo giusto per il travaso è la primavera"), con un
+  promemoria facoltativo.
+- Sempre con **fonti verificabili citate** e testi nostri; per le piante senza scheda completa, consigli generici per
+  famiglia o tipo di pianta, dichiarati come tali.
 
 ### 4. Diagnosi dei problemi
 - Aiuto a riconoscere malattie, parassiti o carenze e indicazioni su cosa fare.

@@ -89,7 +89,7 @@ invito discreto (chiudibile) a installarla.
 **Criteri:** ogni scheda mostra almeno una fonte.
 
 ### F08 — Consigli di cura (idea I3)
-- Acqua, luce, terreno, temperatura, concime, rinvaso.
+- Acqua, luce, terreno, temperatura, concime, rinvaso. In più le sezioni **"Coltivarla da zero"** e **"Travaso"** (F18).
 - Per le **piante d'appartamento più comuni** (circa 50 nella v1): schede scritte da noi (decisione D8).
   - Ogni scheda si basa su **fonti verificabili** (orti botanici, università, servizi pubblici) **citate nella scheda**
     con titolo, link e data di consultazione.
@@ -101,6 +101,69 @@ invito discreto (chiudibile) a installarla.
 
 **Criteri:** mai consigli specifici inventati; ogni scheda e ogni gruppo mostra almeno una fonte (controllato da un test
 automatico); quando i consigli sono generici, l'app lo dice in modo ben visibile.
+
+### F18 — Coltivarla da zero e travaso
+> Aggiunta il 2026-11-17. Estende le schede di cura (F08, decisione D8). Esempio completo:
+> [scheda di esempio del pothos](esempio-scheda-pothos.md).
+
+Ogni scheda di cura ha due sezioni in più.
+
+**1. "Coltivarla da zero"**
+- **Metodi adatti a quella pianta**, scelti tra: seme, talea (di fusto o di punta), divisione dei cespi, foglia,
+  propaggine (un ramo piegato e fissato nel terriccio finché mette radici). Per ogni metodo:
+  - adatto sì/no, con il motivo se non è adatto (es. "da foglia senza nodo: non funziona");
+  - **periodo migliore** dell'anno;
+  - **passaggi semplici**, numerati, con il materiale necessario;
+  - **tempi** indicativi (es. "radici in 3-6 settimane");
+  - **errori comuni** e come evitarli.
+- Il metodo più facile è indicato come **"consigliato per iniziare"**.
+
+**2. "Travaso"**
+- **Segnali** che il travaso serve (radici dai fori, terriccio che si asciuga subito, crescita ferma…);
+- **ogni quanto**, indicativamente;
+- **periodo migliore**;
+- **vaso** (quanto più grande, fori di drenaggio) e **terriccio** adatto;
+- **passaggi** numerati;
+- **cure dei giorni successivi** (luce, acqua, concime: quando riprendere).
+
+**Regole comuni**
+- Ogni sezione cita le **sue fonti verificabili** (titolo, link, data di consultazione), visibili nella scheda.
+- Testi **scritti con parole nostre**; vietato copiare i concorrenti (CLAUDE.md §5).
+- Se le fonti **non sono d'accordo** (es. ogni quanto travasare), la scheda lo dice e indica un intervallo
+  ("ogni 1-3 anni, a seconda di quanto cresce").
+- **Ripiego per le piante senza scheda completa** (D8): consigli generici di propagazione e travaso per **famiglia o tipo
+  di pianta** (es. "aracee rampicanti", "piante grasse"), con l'avviso ben visibile: *"La scheda completa per questa
+  pianta non è ancora disponibile. Questi sono consigli generici per il suo gruppo: controlla prima di procedere."*
+  Se non c'è nemmeno un gruppo adatto, solo consigli di base dichiarati come tali.
+- **Dall'anteprima live** (F17) la scheda si può aprire, con in cima l'avviso *"Scheda basata sull'anteprima: la
+  specie non è confermata. Scatta una foto per il riconoscimento completo."*
+
+**Collegamento a stagione e meteo**
+- Ogni metodo e il travaso hanno un **periodo consigliato** (es. "primavera"). L'app lo traduce in mesi in base
+  all'emisfero, ricavato dalla posizione (in Italia: primavera ≈ marzo-maggio), e lo mostra in modo semplice:
+  - dentro il periodo: *"È il periodo giusto per il travaso"*;
+  - fuori: *"Il periodo migliore è la primavera: tra circa 4 mesi"*.
+- Per le **piante all'aperto** l'app usa anche il meteo locale (Open-Meteo): sconsiglia il travaso con gelo o caldo
+  forte previsti nei giorni successivi ("Previsto gelo giovedì: meglio rimandare").
+- Per le piante in casa il meteo esterno conta poco: l'app usa solo la stagione e lo dice.
+- Il periodo è un **consiglio**, non un divieto: se la pianta soffre (es. radici marce), il travaso si fa subito, e la
+  scheda lo spiega.
+
+**Promemoria facoltativo**
+- Pulsante **"Ricordamelo"** nelle sezioni Travaso e Coltivarla da zero: crea un promemoria all'inizio del periodo
+  consigliato (es. "1° aprile: controlla se il pothos va travasato").
+- Per il travaso, l'app ricorda la **data dell'ultimo travaso** (inserita dall'utente) e propone il controllo quando è
+  passato l'intervallo indicato dalla scheda, **sempre nel periodo giusto**.
+- Il promemoria si vede nella schermata "Oggi" e si può esportare nel Calendario come gli altri (F12, D7).
+
+**Guida:** voci "Come moltiplicare una pianta" e "Come travasare una pianta" (CLAUDE.md §6).
+
+**Criteri di accettazione:**
+- ogni scheda completa ha le due sezioni, ciascuna con almeno una fonte (controllato da un test automatico);
+- nessun metodo di propagazione è indicato "adatto" senza una fonte che lo confermi;
+- per una pianta senza scheda, l'avviso del ripiego è visibile prima dei consigli;
+- con posizione in Italia, a novembre la scheda del pothos dice che il periodo migliore per il travaso è la primavera;
+- il promemoria si crea, compare in "Oggi" e si può cancellare.
 
 ### F09 — Collezione personale
 - Aggiungere una pianta (da riconoscimento o ricerca), con soprannome, foto, stanza e finestra (F10).
@@ -185,7 +248,8 @@ offline) propone un nome probabile in un piccolo popup. Scattando, parte il rico
    - se è sicuro solo del genere: **"Forse un Philodendron"**;
    - sotto il nome, piccolo: **"Anteprima sul telefono · Scatta per il riconoscimento completo"**;
    - nessuna percentuale nel popup (l'anteprima non è una misura): le percentuali compaiono solo nel risultato completo (F04).
-5. **Tocco sul popup** = scatto della foto.
+5. **Tocco sul popup** = scatto della foto. Un piccolo link secondario "Come coltivarla" apre la scheda (F18) con
+   l'avviso che la specie non è confermata.
 6. Il nome dell'anteprima **non viene mai salvato** e non sostituisce il risultato di Pl@ntNet. Se i due sono diversi, l'app
    mostra solo il risultato completo.
 7. **Senza rete:** l'anteprima funziona; allo scatto l'app spiega che il riconoscimento completo richiede la connessione
@@ -237,6 +301,8 @@ scaricare o cancellare il modello) e spiegazione la prima volta che si apre il m
 | La stima del sole viene presa per una misura | Etichetta "stima", calibrazione, voce nella Guida |
 | Nessun modello aperto riconosce bene le piante di casa sul telefono | D10 e D11 prima di sviluppare; ripiego con soli consigli di inquadratura |
 | L'anteprima live viene presa per un risultato certo | Testo "Forse…", soglie, stabilità; mai salvata; vale sempre il riconoscimento completo |
+| Consigli di propagazione o travaso sbagliati per una specie | Fonti per ogni sezione; ripiego per gruppo dichiarato; avviso se la scheda viene dall'anteprima live |
+| Scrivere due sezioni in più per ~50 piante richiede tempo | Partire dalle piante più comuni; ripiego per famiglia/tipo per le altre |
 
 ## 6. Decisioni
 Le decisioni D1-D9 sono state **approvate il 2026-11-16**: vedi [decisioni](../architecture/decisioni-da-prendere.md).
