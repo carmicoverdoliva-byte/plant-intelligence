@@ -2,7 +2,8 @@
 // Crea <test-piante>/pubblica-d11/modello (per Hugging Face) e <test-piante>/pubblica-d11/sito (per GitHub Pages).
 // I nomi utente arrivano come argomenti: nel progetto non resta scritto nulla di personale.
 //
-// Uso: node prepara-pubblicazione.mjs --github <utente> --hf <utente> [cartella-test-piante]
+// Uso: node prepara-pubblicazione.mjs --github <utente> --hf <utente> [--hf-commit <commit>] [cartella-test-piante]
+// Con --hf-commit la pagina scarica il modello compresso da quella versione esatta (consigliato dopo il caricamento).
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -10,7 +11,8 @@ import crypto from 'node:crypto';
 
 const args = process.argv.slice(2);
 const take = (flag) => { const i = args.indexOf(flag); return i >= 0 ? args.splice(i, 2)[1] : null; };
-const GH = take('--github'), HF = take('--hf');
+const GH = take('--github'), HF = take('--hf'), HF_COMMIT = take('--hf-commit');
+if (HF_COMMIT && !/^[0-9a-f]{40}$/.test(HF_COMMIT)) throw new Error('--hf-commit deve essere un codice di commit di 40 caratteri');
 if (!GH || !HF || !/^[A-Za-z0-9-]+$/.test(GH) || !/^[A-Za-z0-9-]+$/.test(HF)) throw new Error('Servono --github <utente> e --hf <utente> (solo lettere, numeri e trattini)');
 const BASE = path.resolve(args[0] || path.join(os.homedir(), 'test-piante'));
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
@@ -78,7 +80,7 @@ Please cite BioCLIP: Stevens et al., "BioCLIP: A Vision Foundation Model for the
 // ---------- sito (GitHub Pages) ----------
 for (const f of ['index.html', 'app.js', 'worker.js', 'prototypes.json', 'crediti-riferimenti.md']) fs.copyFileSync(path.join(PAGE, f), path.join(S, f));
 const p8 = JSON.parse(fs.readFileSync(path.join(PAGE, 'prototypes-int8.json'), 'utf8'));
-p8.model.url = `https://huggingface.co/${HF}/${HF_REPO}/resolve/main/${MODEL_FILE}`; // da fissare su un commit dopo il caricamento
+p8.model.url = `https://huggingface.co/${HF}/${HF_REPO}/resolve/${HF_COMMIT || 'main'}/${MODEL_FILE}`; // con il commit: versione bloccata
 if (p8.model.sha256 !== meta.sha256) throw new Error('prototypes-int8.json non corrisponde al modello');
 fs.writeFileSync(path.join(S, 'prototypes-int8.json'), JSON.stringify(p8));
 fs.copyFileSync(path.join(REPO_ROOT, 'LICENSE'), path.join(S, 'LICENSE'));
@@ -93,7 +95,7 @@ riconoscimento delle piante può girare nel browser dell'iPhone.
   Web (da cdn.jsdelivr.net, con controllo d'integrità) e il modello (da huggingface.co, con controllo SHA-256).
 - **Modello:** BioCLIP v1 (Imageomics, MIT); conversione ONNX
   [m3r1al/naturalist-bioclip-v1](https://huggingface.co/m3r1al/naturalist-bioclip-v1) (MIT); versione compressa
-  [${HF}/${HF_REPO}](https://huggingface.co/${HF}/${HF_REPO}).
+  [${HF}/${HF_REPO}](https://huggingface.co/${HF}/${HF_REPO})${HF_COMMIT ? ', versione ' + HF_COMMIT.slice(0, 7) : ''}.
 - **Impronte delle piante:** calcolate da foto iNaturalist con licenza aperta, autori in \`crediti-riferimenti.md\`.
   Le foto non sono pubblicate qui.
 - Codice della pagina: licenza MIT (\`LICENSE\`).
