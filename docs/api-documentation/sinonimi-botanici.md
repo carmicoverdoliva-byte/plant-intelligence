@@ -23,21 +23,22 @@ mostra **sempre lo stesso nome** per la stessa pianta (decisione D9).
   accettato o sinonimo e qual è il nome accettato.
 
 ## Cosa abbiamo verificato (2026-11-17)
-| Nome | Risposta di GBIF | Decisione dell'utente (D9) | Conflitto? |
+**Regola decisa il 2026-11-17 (D9):** i **nomi scientifici seguono GBIF**. Quando GBIF tiene separati due nomi che per
+la cura sono la stessa pianta, l'app mostra il nome GBIF ma apre **la stessa scheda di cura**.
+
+| Nome | Risposta di GBIF | Nome mostrato | Scheda di cura |
 |---|---|---|---|
-| *Sansevieria trifasciata* | **sinonimo** di *Dracaena trifasciata* | stessa pianta | No ✅ |
-| *Aloe officinalis* / *Aloe vera* | **due specie accettate distinte** | stessa pianta | **Sì ⚠️** |
-| *Peperomia argyraea* / *Peperomia argyreia* | **due nomi accettati distinti** (autori diversi) | stessa pianta | **Sì ⚠️** |
-| *Calathea insignis* / *Goeppertia insignis* | *Goeppertia insignis* accettato; *Calathea insignis* non trovato come specie | stesso genere | Da verificare |
-| *Philodendron cordatum* / *P. hederaceum* | due specie accettate distinte | **non** la stessa pianta | No ✅ |
-| *Epipremnum pinnatum* (nome usato dall'RHS per il pothos dorato) | specie accettata, distinta da *E. aureum* | — | Da chiarire nella scheda del pothos |
+| *Sansevieria trifasciata* | **sinonimo** di *Dracaena trifasciata* | *Dracaena trifasciata* | sansevieria |
+| *Aloe officinalis* / *Aloe vera* | due specie accettate distinte | ciascuna il suo nome GBIF | **la stessa** (aloe vera) |
+| *Peperomia argyraea* / *Peperomia argyreia* | due nomi accettati distinti (autori diversi) | ciascuna il suo nome GBIF | **la stessa** (peperomia anguria) |
+| *Calathea insignis* / *Goeppertia insignis* | *Goeppertia insignis* accettato; *Calathea insignis* non trovato come specie | *Goeppertia insignis* | calathea |
+| *Philodendron cordatum* / *P. hederaceum* | due specie accettate distinte | ciascuna il suo nome | **diverse** (non è la stessa pianta) |
+| *Epipremnum pinnatum* (nome usato dall'RHS per il pothos dorato) | specie accettata, distinta da *E. aureum* | — | da chiarire nella scheda del pothos |
 
-**Come gestiamo i conflitti.** La tabella distingue due casi:
-- **sinonimi botanici**, confermati dalla fonte;
-- **equivalenze di interfaccia**, decise da noi per mostrare un solo nome anche quando la fonte li tiene separati. Ogni
-  equivalenza di questo tipo ha una nota e la data della decisione.
-
-I due conflitti ⚠️ sono stati segnalati all'utente.
+La tabella contiene quindi due cose separate:
+- i **sinonimi botanici**, presi da GBIF, che decidono il **nome**;
+- i **collegamenti alle schede di cura** (`careSheetId`), decisi da noi, che decidono **quale scheda si apre**. Ogni
+  collegamento tra nomi che GBIF considera distinti ha una nota e la data della decisione.
 
 **World Flora Online** (il catalogo mondiale delle piante) e **POWO**: non è stato possibile confrontarli. Il sito di
 World Flora Online ha dato un errore di certificato di sicurezza, e non lo abbiamo aggirato. Restano **da verificare**
@@ -63,10 +64,11 @@ interface TaxonomyProvider {
   acceptedName(scientificName: string, ids?: { gbif?: string; powo?: string }): AcceptedName;
 }
 interface AcceptedName {
-  name: string;                       // nome mostrato all'utente, sempre lo stesso
-  status: 'accepted' | 'synonym' | 'ui-equivalence' | 'unknown';
-  source: 'gbif' | 'decision';        // 'decision' = equivalenza decisa da noi (con nota)
-  note?: string;
+  name: string;                       // nome mostrato all'utente: il nome accettato da GBIF
+  status: 'accepted' | 'synonym' | 'unknown';
+  gbifKey?: number;
+  careSheetId?: string;               // scheda di cura da aprire; più nomi GBIF possono avere la stessa scheda
+  careSheetNote?: string;             // es. "Aloe officinalis: stessa scheda di Aloe vera (decisione D9, 2026-11-17)"
 }
 // Implementazione v1: StaticSynonymTable (file JSON nell'app, generato da uno script sul PC)
 ```
@@ -86,11 +88,11 @@ L'app non chiama mai GBIF: la tabella è un file incluso. Se un nome non c'è, l
 |---|---|---|
 | La classificazione GBIF è datata (ultima modifica del dataset: 2023-11-17) | Media | Seconda fonte (WFO) da verificare; nota della data nella tabella |
 | Le fonti non concordano su un nome | Media | Equivalenze di interfaccia dichiarate, con nota |
-| Un'equivalenza sbagliata unisce due piante diverse | Bassa-media | Ogni equivalenza è decisa dall'utente e documentata |
+| Un collegamento sbagliato apre la scheda di una pianta diversa | Bassa-media | Ogni collegamento tra nomi distinti è deciso dall'utente e documentato con una nota |
 
 ## Decisioni aperte
-- **Conflitti con GBIF** su *Aloe officinalis* / *Aloe vera* e *Peperomia argyraea* / *argyreia*: tenerle come
-  equivalenze di interfaccia, decise da noi, oppure seguire GBIF? (D9)
+Nessuna: i conflitti con GBIF sono stati risolti il 2026-11-17. I nomi seguono GBIF, e i nomi da collegare tra loro
+puntano alla stessa scheda di cura.
 
 ## Fonti
 1. GBIF, "GBIF Backbone Taxonomy" (licenza CC BY 4.0; DOI 10.15468/39omei; dataset modificato il 2023-11-17) — https://api.gbif.org/v1/dataset/d7dddbf4-2cf0-4f39-9b2a-bb099caae36c — consultato il 2026-11-17

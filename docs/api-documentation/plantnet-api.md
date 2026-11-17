@@ -83,7 +83,8 @@ Foto e risposte grezze restano sul PC, fuori dal repository.
 > in parte di piante in natura, e Pl@ntNet potrebbe averle viste durante l'addestramento. Le foto più vicine all'uso
 > reale sono le 3 dell'utente: troppo poche per conclusioni forti.
 
-**Risultati con i sinonimi accettati in D9** (specie giusta al 1° posto · specie giusta fra le prime 5 · genere giusto al 1° posto):
+**Risultati considerando la stessa scheda di cura** (sinonimi di D9; specie giusta al 1° posto · specie giusta fra le prime 5 · genere giusto al 1° posto).
+Con i **nomi secondo GBIF** (regola del 2026-11-17), su `k-world-flora` la specie giusta al 1° posto scende al **60%**; prime 5 e genere non cambiano.
 
 | Gruppo | `all` | `k-world-flora` | `useful` |
 |---|---|---|---|
