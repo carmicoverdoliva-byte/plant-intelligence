@@ -87,7 +87,8 @@ bordo), bordo bianco al 45%, piccolo riflesso bianco in alto a sinistra.
 - Formati da produrre: 180 (apple-touch-icon), 192 e 512 (manifest), 512 "maskable" con margine di sicurezza, favicon.
 - File prodotti il 2026-11-18 con `node scripts/genera-icone.mjs`: `docs/design/icona-mandragola-quadrata.png`
   (1024, quadrata piena), `src/app/apple-icon.png` (180), `public/icons/icona-192.png`, `icona-512.png`,
-  `icona-512-maskable.png` (disegno al 78% con bordi sfumati sullo sfondo menta), `src/app/icon.png` (favicon 48).
+  `icona-512-maskable.png` (disegno al 78% con bordi sfumati sullo sfondo menta), `src/app/icon.png` (favicon 48), `public/icons/logo-44.webp` e `logo-96.webp` (logo dentro l'app, angoli arrotondati
+  come su iOS: stessa icona della schermata Home).
 - Licenza: immagine generata dall'utente con ChatGPT; verificare le condizioni d'uso di OpenAI sulle immagini generate
   prima della pubblicazione definitiva (annotare l'esito qui).
 

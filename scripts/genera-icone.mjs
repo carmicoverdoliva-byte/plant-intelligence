@@ -74,5 +74,16 @@ async function quadrataPiena() {
     .composite([{ input: await sharp(piccolaRgba, { raw: { width: interno, height: interno, channels: 4 } }).png().toBuffer(), left: pos, top: pos }])
     .png({ compressionLevel: 9 }).toFile(path.join(root, "public/icons/icona-512-maskable.png"));
 
+  // Logo dentro l'app (intestazione 44 px, tutorial 96 px): la stessa icona della schermata Home, con gli angoli
+  // arrotondati come li disegna iOS (raggio 22,5% del lato) e trasparenti fuori. File a 3x per gli schermi Retina,
+  // in formato WebP (più leggero del PNG, letto da Safari).
+  for (const [lato, nome] of [[132, "logo-44"], [288, "logo-96"]]) {
+    const angoli = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${lato}" height="${lato}"><rect width="${lato}" height="${lato}" rx="${lato * 0.225}"/></svg>`);
+    await sharp(await sharp(quadrata).resize(lato, lato, { kernel: "lanczos3" }).png().toBuffer())
+      .composite([{ input: angoli, blend: "dest-in" }])
+      .webp({ quality: 90, alphaQuality: 100 })
+      .toFile(path.join(root, `public/icons/${nome}.webp`));
+  }
+
   console.log("Icone generate.");
 })();
