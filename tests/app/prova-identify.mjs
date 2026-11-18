@@ -154,6 +154,19 @@ try {
   ok(d.dati.ok === false, "Cos'è: le pagine di disambiguazione non si mostrano");
   d = await desc("specie=%3Cscript%3E");
   ok(d.stato === 400, "Cos'è: nomi non validi rifiutati, niente arriva a Wikipedia");
+
+  // --- Scheda di cura per tipo di pianta (R1) ---
+  const scheda = async (q) => (await fetch(BASE + "/api/scheda?" + q)).json();
+  let s = await scheda("specie=Phalaenopsis%20amabilis&genere=Phalaenopsis&famiglia=Orchidaceae");
+  ok(s.ok && s.tipo === "orchidee" && s.scheda?.id === "tipo/orchidee" && s.notaFamiglia?.famiglia === "Orchidaceae", "Scheda: orchidea → scheda delle orchidee + nota di famiglia");
+  s = await scheda("specie=Quercus%20ilex&genere=Quercus&famiglia=Fagaceae");
+  ok(s.ok && s.tipo === "alberi" && s.scheda === null, "Scheda: leccio → tipo \"alberi\", scheda dichiarata in preparazione (mai inventata)");
+  s = await scheda("specie=Solanum%20lycopersicum&genere=Solanum&famiglia=Solanaceae");
+  ok(s.tipo === "ortaggi-aromatiche" && s.base === "manuale", "Scheda: pomodoro → ortaggi (eccezione per specie)");
+  s = await scheda("specie=Planta%20ignota&genere=Planta");
+  ok(s.ok && s.tipo === "universale" && s.base === "genere-sconosciuto", "Scheda: genere sconosciuto → scheda universale, dichiarata");
+  const no = await fetch(BASE + "/api/scheda?specie=%3Cx%3E&genere=y");
+  ok(no.status === 400, "Scheda: nomi non validi rifiutati");
 } catch (e) {
   ok(false, `errore durante la prova: ${e.message}`);
 } finally {

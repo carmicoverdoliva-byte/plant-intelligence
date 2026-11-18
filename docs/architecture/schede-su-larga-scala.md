@@ -173,6 +173,12 @@ test automatici e l'agente indipendente. Le letture complete sono facoltative: l
 - *Approfondimenti:* solo articoli davvero adatti; altrimenti un messaggio onesto (F22).
 
 ## 4. Schema dei dati (sostituisce `Species.care` e `CareGroup`)
+
+> **Attuato in R1 (2026-11-18)** in forma semplificata, con nomi in italiano: `src/lib/schede/tipi.ts` (`SchedaCura`, `Sezione`
+> con `lineeGuida` e `pollice`, `Valore`, `Disaccordo`, `NotaFamiglia`). Le fonti si citano per numero. I tipi di pianta
+> sono **19 più la scheda universale** (`src/content/tipi-di-pianta.ts`). Lo schema qui sotto resta il riferimento per
+> specie e genere.
+
 ```ts
 interface CareSheet {
   id: string;                          // "species/ficus-elastica", "genus/ficus", "type/arbusto-tropicale"

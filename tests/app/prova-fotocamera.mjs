@@ -1,7 +1,7 @@
 // Prova della schermata Fotocamera (rilascio R0), chiamata da prova-app.mjs con i suoi strumenti.
 // La richiesta a /api/identify viene INTERCETTATA in Edge con risposte preparate: nessuna richiesta a Pl@ntNet.
 // Controlla: scelta di una foto dalla galleria, parte della pianta, risultato onesto (nessuna percentuale,
-// "Scheda di cura in arrivo", specie simili, link per approfondire), messaggi chiari quando il servizio non risponde,
+// scheda di cura del tipo di pianta, specie simili, link per approfondire), messaggi chiari quando il servizio non risponde,
 // "Non riesco a riconoscerla" con i consigli di scatto, quota sul telefono.
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -90,7 +90,9 @@ export async function provaFotocamera({ apri, valuta, clicca, perTesto, ok, paus
   await clicca(`[...document.querySelectorAll('[role="radio"]')].find(b => b.textContent === "Foglia")`);
   await controllaSchermata("/fotocamera (foto scelta)", "fotocamera-scelta");
   await clicca(`[...document.querySelectorAll("button")].find(b => b.textContent.startsWith("Riconosci"))`);
-  ok(await aspettaTesto("Scheda di cura in arrivo"), "Risultato: \"Scheda di cura in arrivo\" sotto il nome");
+  ok(await aspettaTesto("Scheda per il tipo: rampicanti e ricadenti tropicali"), "Risultato: scheda di cura del tipo di pianta, con il livello scritto in cima");
+  ok((await testoPagina()).includes("Linee guida") || (await valuta(`document.querySelectorAll('section[aria-label="Scheda di cura"] details').length >= 8`)), "Scheda: le 8 sezioni (luce, acqua, temperatura…) si aprono al tocco");
+  ok((await testoPagina()).includes("Tossicità") && (await testoPagina()).includes("Nota sulla famiglia: aracee"), "Scheda: tossicità e nota sulla famiglia (aracee)");
   const t = await testoPagina();
   ok(t.includes("Pothos") && t.includes("probabilmente Epipremnum aureum"), "Risultato: nome comune e \"probabilmente\" + specie");
   ok(t.includes("Affidabilità buona"), "Risultato: affidabilità detta a parole");

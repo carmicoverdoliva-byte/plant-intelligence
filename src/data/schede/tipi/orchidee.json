@@ -1,0 +1,553 @@
+{
+  "id": "tipo/orchidee",
+  "livello": "tipo",
+  "nome": "orchidee da appartamento",
+  "siApplicaA": "Le orchidee epifite che si coltivano in casa, soprattutto la Phalaenopsis (orchidea farfalla), la più venduta. Crescono in natura sui tronchi degli alberi: per questo vogliono un terriccio di corteccia e non la terra.",
+  "eccezioni": [
+    "Cattleya e Dendrobium vogliono circa il doppio della luce della Phalaenopsis: una finestra a sud schermata da una tenda o una finestra a ovest.",
+    "Le orchidee che crescono nel terreno (per esempio quelle selvatiche dei prati italiani) non seguono questa scheda."
+  ],
+  "riassunto": "Luce viva ma senza sole diretto d'estate, annaffiature abbondanti ma solo quando il substrato è quasi asciutto, corteccia al posto della terra e una notte un po' più fresca in autunno per farla rifiorire.",
+  "coseDaFare": [
+    "Mettila vicino a una finestra a est, senza sole diretto nelle ore calde.",
+    "Annaffia circa una volta a settimana nella bella stagione, quando la corteccia è quasi asciutta, e svuota sempre il sottovaso.",
+    "Usa solo terriccio per orchidee a base di corteccia, mai il terriccio universale.",
+    "Per farla rifiorire tienila per qualche settimana in un posto più fresco di circa 5 °C, soprattutto di notte."
+  ],
+  "sezioni": {
+    "luce": {
+      "lineeGuida": {
+        "riassunto": "Le fonti sono d'accordo: molta luce ma filtrata. La finestra migliore è quella a est; vanno bene anche ovest o sud se c'è una tenda. Il sole diretto d'estate brucia le foglie, mentre d'inverno la luce di un davanzale luminoso aiuta la fioritura.",
+        "coseDaFare": [
+          "Scegli una finestra a est; a ovest o a sud metti una tenda leggera.",
+          "D'estate tienila lontana dal sole diretto.",
+          "D'inverno avvicinala alla finestra: la luce è più debole.",
+          "Se non fiorisce, prova prima a darle più luce."
+        ],
+        "valori": [
+          {
+            "etichetta": "Finestra migliore",
+            "valore": "est (ovest o sud con tenda)",
+            "fonti": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "etichetta": "Sole diretto",
+            "valore": "da evitare d'estate",
+            "fonti": [
+              1,
+              2
+            ]
+          },
+          {
+            "etichetta": "Con tubi fluorescenti",
+            "valore": "15-30 cm sopra le foglie, accesi 12-16 ore al giorno",
+            "fonti": [
+              2
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "pollice": [
+        {
+          "consiglio": "Sotto lampade LED da coltivazione, tienile a 30-60 cm dalle foglie.",
+          "fonti": [
+            5
+          ]
+        }
+      ]
+    },
+    "acqua": {
+      "lineeGuida": {
+        "riassunto": "Nella stagione di crescita serve circa un'annaffiatura a settimana, un po' meno d'inverno. Si bagna a fondo e si lascia scolare: le radici non devono restare nell'acqua, ma nemmeno seccarsi del tutto, perché la Phalaenopsis non ha riserve d'acqua. L'acqua non deve fermarsi tra le foglie.",
+        "coseDaFare": [
+          "Annaffia quando la corteccia è quasi asciutta in tutto il vaso.",
+          "Bagna a fondo finché l'acqua esce dai fori, poi svuota il sottovaso.",
+          "Annaffia al mattino, senza bagnare le foglie e il centro della pianta.",
+          "Usa acqua a temperatura ambiente, meglio piovana.",
+          "Dopo la fioritura e d'inverno annaffia un po' meno."
+        ],
+        "valori": [
+          {
+            "etichetta": "Ogni quanto (stagione di crescita)",
+            "valore": "circa una volta a settimana; più spesso con il caldo, nei vasi di terracotta o piccoli",
+            "fonti": [
+              1,
+              2,
+              4
+            ]
+          },
+          {
+            "etichetta": "Inverno",
+            "valore": "un po' meno",
+            "fonti": [
+              1,
+              2
+            ]
+          },
+          {
+            "etichetta": "Umidità dell'aria",
+            "valore": "40-60%",
+            "fonti": [
+              2
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "pollice": [
+        {
+          "consiglio": "Per aumentare l'umidità metti il vaso su un sottovaso largo con ghiaia bagnata, con il fondo del vaso sopra l'acqua e non dentro.",
+          "fonti": [
+            5
+          ]
+        }
+      ]
+    },
+    "temperatura": {
+      "lineeGuida": {
+        "riassunto": "Le orchidee da appartamento stanno bene con le temperature di casa. Di notte non dovrebbero scendere sotto i 16 °C circa; di giorno l'intervallo ideale è tra 19 e 29-30 °C. Un periodo di notti un po' più fresche in autunno aiuta a far nascere un nuovo stelo di fiori.",
+        "coseDaFare": [
+          "Tienila lontana da termosifoni e spifferi.",
+          "D'inverno non lasciarla contro il vetro della finestra nelle notti fredde.",
+          "Per farla rifiorire, tienila per circa un mese in un posto più fresco di circa 5 °C."
+        ],
+        "valori": [
+          {
+            "etichetta": "Minima di notte",
+            "valore": "16-18 °C",
+            "fonti": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "etichetta": "Ideale di giorno",
+            "valore": "19-30 °C",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Massima",
+            "valore": "circa 29-30 °C",
+            "fonti": [
+              1,
+              3
+            ]
+          },
+          {
+            "etichetta": "Per la rifioritura",
+            "valore": "circa 5 °C in meno per un mese, oppure notti intorno ai 13 °C per una settimana in autunno",
+            "fonti": [
+              1,
+              4
+            ]
+          }
+        ],
+        "disaccordi": [
+          {
+            "tema": "Temperatura minima di notte",
+            "posizioni": [
+              {
+                "dice": "sopra i 16 °C",
+                "fonti": [
+                  1,
+                  3
+                ]
+              },
+              {
+                "dice": "almeno 18 °C (65 °F) per la Phalaenopsis",
+                "fonti": [
+                  2
+                ]
+              }
+            ],
+            "sceltaPrudente": "Meglio non scendere sotto i 18 °C di notte, tranne nel breve periodo fresco che serve per la rifioritura."
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "pollice": [
+        {
+          "consiglio": "Gli sbalzi di temperatura possono far cadere i boccioli quasi aperti: in quel periodo non spostarla.",
+          "fonti": [
+            5
+          ]
+        }
+      ]
+    },
+    "terriccio": {
+      "lineeGuida": {
+        "riassunto": "Le orchidee epifite hanno radici grosse che vogliono aria. Si usa un substrato per orchidee a base di corteccia, molto drenante; mai terriccio universale o terra, che sono una causa frequente di morte. Il vaso trasparente permette di vedere radici e umidità.",
+        "coseDaFare": [
+          "Compra un substrato specifico per orchidee, a base di corteccia.",
+          "Preferisci un vaso trasparente con molti fori.",
+          "Non usare un vaso troppo grande: trattiene troppa acqua."
+        ],
+        "valori": [
+          {
+            "etichetta": "Substrato",
+            "valore": "corteccia per orchidee, molto drenante",
+            "fonti": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "etichetta": "Vaso",
+            "valore": "trasparente (consigliato) oppure plastica o terracotta con fori",
+            "fonti": [
+              1,
+              2
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3
+        ]
+      },
+      "pollice": []
+    },
+    "concime": {
+      "lineeGuida": {
+        "riassunto": "Si usa un concime liquido specifico per orchidee, poco ma con regolarità durante la crescita, e quasi niente d'inverno. Il troppo concime danneggia in fretta le radici: ogni tanto si annaffia con sola acqua per lavare via i sali.",
+        "coseDaFare": [
+          "Usa un concime liquido per orchidee alla dose dell'etichetta, oppure più diluito e più spesso.",
+          "Ogni quarta annaffiatura usa solo acqua.",
+          "D'inverno concima poco o niente.",
+          "Dopo la fioritura riduci acqua e concime finché non spuntano foglie nuove."
+        ],
+        "valori": [
+          {
+            "etichetta": "Tipo",
+            "valore": "concime per orchidee, idrosolubile",
+            "fonti": [
+              1,
+              2
+            ]
+          },
+          {
+            "etichetta": "NPK indicativo (in corteccia)",
+            "valore": "ricco di azoto, per esempio 30-10-10",
+            "fonti": [
+              2
+            ]
+          },
+          {
+            "etichetta": "Frequenza",
+            "valore": "una volta al mese alla dose dell'etichetta, oppure molto diluito ogni settimana nella stagione di crescita",
+            "fonti": [
+              2,
+              3
+            ]
+          },
+          {
+            "etichetta": "Periodo",
+            "valore": "primavera-autunno; inverno poco o niente",
+            "fonti": [
+              1,
+              2
+            ]
+          },
+          {
+            "etichetta": "In autunno (facoltativo)",
+            "valore": "un concime ricco di fosforo per la fioritura, per esempio 10-30-20",
+            "fonti": [
+              2
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3
+        ]
+      },
+      "pollice": []
+    },
+    "travaso": {
+      "lineeGuida": {
+        "riassunto": "Si travasa solo quando la pianta è diventata troppo grande per il vaso o quando la corteccia è vecchia, di solito ogni due anni, perché con il tempo si decompone e trattiene troppa acqua. Si può fare quando le radici sono attive, con le punte verdi.",
+        "coseDaFare": [
+          "Travasa ogni due anni circa, o quando la pianta esce dal vaso.",
+          "Togli la corteccia vecchia e le radici molli o marroni.",
+          "Usa un vaso solo un po' più grande, con corteccia nuova."
+        ],
+        "valori": [
+          {
+            "etichetta": "Ogni quanto",
+            "valore": "circa ogni 2 anni",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Quando",
+            "valore": "quando le radici hanno le punte verdi (radici attive)",
+            "fonti": [
+              1
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          3
+        ]
+      },
+      "pollice": [
+        {
+          "consiglio": "Il momento più comodo è la primavera, subito dopo la fioritura.",
+          "fonti": [
+            5
+          ]
+        },
+        {
+          "consiglio": "Sistemala inclinata in avanti di circa 45°, così le radici non crescono verso l'alto.",
+          "fonti": [
+            5
+          ]
+        }
+      ]
+    },
+    "coltivarla": {
+      "lineeGuida": {
+        "riassunto": "In casa il modo più semplice è il keiki: una piantina che a volte nasce sullo stelo dei fiori. Si stacca quando ha alcune radici e si mette in un vasetto con corteccia. Esistono paste che stimolano i keiki; le normali polveri radicanti non funzionano.",
+        "coseDaFare": [
+          "Aspetta che il keiki abbia alcune radici prima di staccarlo.",
+          "Mettilo in un vasetto con corteccia per orchidee, annaffia poco e vaporizza ogni giorno.",
+          "Dopo la fioritura taglia lo stelo appena sopra il secondo nodo: a volte nasce un nuovo ramo fiorito."
+        ],
+        "valori": [
+          {
+            "etichetta": "Metodo adatto in casa",
+            "valore": "keiki (piantina sullo stelo)",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Con la pasta per keiki",
+            "valore": "piantine dopo circa 6-8 settimane",
+            "fonti": [
+              1
+            ]
+          }
+        ],
+        "fonti": [
+          1
+        ]
+      },
+      "pollice": []
+    },
+    "problemi": {
+      "lineeGuida": {
+        "riassunto": "Il problema più comune nasce dall'acqua: troppa, o un vaso troppo grande, fa marcire le radici. Tra i parassiti tornano cocciniglie farinose, cocciniglie, ragnetti e tripidi. Se non fiorisce, quasi sempre manca luce o concime.",
+        "coseDaFare": [
+          "Controlla spesso il sotto delle foglie.",
+          "Non lasciare mai acqua nel sottovaso.",
+          "Togli le foglie che appassiscono."
+        ],
+        "fonti": [
+          1,
+          2,
+          4
+        ]
+      },
+      "pollice": [],
+      "elenco": [
+        {
+          "nome": "Marciume delle radici",
+          "tipo": "malattia",
+          "frequenza": "non indicata",
+          "segni": [
+            "radici scure, molli o raggrinzite",
+            "foglie raggrinzite"
+          ],
+          "prevenzione": [
+            "annaffia solo con la corteccia quasi asciutta",
+            "vaso non troppo grande",
+            "sottovaso sempre vuoto"
+          ],
+          "fonti": [
+            1,
+            4
+          ]
+        },
+        {
+          "nome": "Cocciniglia farinosa",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "ciuffetti bianchi e cotonosi tra foglie e radici"
+          ],
+          "prevenzione": [
+            "controlla spesso la pianta",
+            "isola le piante nuove"
+          ],
+          "fonti": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "nome": "Cocciniglie",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "piccoli scudetti soprattutto sotto le foglie"
+          ],
+          "prevenzione": [
+            "controlla il sotto delle foglie",
+            "le piante molto infestate vanno eliminate"
+          ],
+          "fonti": [
+            2,
+            4
+          ]
+        },
+        {
+          "nome": "Ragnetti e tripidi",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "insetti molto piccoli: controlla il sotto delle foglie e i fiori"
+          ],
+          "prevenzione": [
+            "controlla spesso la pianta"
+          ],
+          "fonti": [
+            2,
+            4
+          ]
+        },
+        {
+          "nome": "Non fiorisce",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie sane ma nessuno stelo nuovo"
+          ],
+          "prevenzione": [
+            "più luce",
+            "concime regolare nella stagione di crescita",
+            "un periodo più fresco: circa 5 °C in meno per un mese, oppure in autunno notti intorno ai 13 °C per una settimana"
+          ],
+          "fonti": [
+            1,
+            2,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  "falsiMiti": [
+    {
+      "mito": "I cubetti di ghiaccio rovinano le orchidee.",
+      "verdetto": "falso",
+      "cosaDiconoLeFonti": "Uno studio scientifico pubblicato nel 2017 ha annaffiato quattro varietà di Phalaenopsis in corteccia con cubetti di ghiaccio una volta a settimana, confrontandole con la stessa quantità di acqua a temperatura ambiente: nello studio qualità e durata della fioritura non sono diminuite. Lo studio riguarda solo la Phalaenopsis e non dice che il ghiaccio sia meglio.",
+      "inPratica": "Puoi usarli, ma non servono: va benissimo acqua a temperatura ambiente, senza lasciarla tra le foglie.",
+      "fonti": [
+        6,
+        1
+      ]
+    }
+  ],
+  "approfondimenti": [],
+  "tossicita": {
+    "persone": "non verificata",
+    "animali": "non verificata",
+    "nota": "Per la Phalaenopsis una fonte universitaria la indica non tossica per cani, gatti e cavalli, ma non abbiamo ancora una seconda conferma, e la famiglia delle orchidee è enorme. Finché non è verificato, tienila fuori dalla portata di bambini e animali.",
+    "fonti": [
+      4
+    ]
+  },
+  "fonti": [
+    {
+      "id": 1,
+      "titolo": "How to grow moth orchids (Phalaenopsis)",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/phalaenopsis/growing-guide",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Positioning, Watering, Feeding, Repotting, Propagating, Problems"
+    },
+    {
+      "id": 2,
+      "titolo": "Orchids (HGIC 1560)",
+      "sito": "Clemson Cooperative Extension",
+      "url": "https://hgic.clemson.edu/factsheet/orchids/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Light, Temperature, Watering, Humidity, Fertilizer, Pests"
+    },
+    {
+      "id": 3,
+      "titolo": "Orchids as Houseplants",
+      "sito": "Penn State Extension",
+      "url": "https://extension.psu.edu/orchids-as-houseplants",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Phalaenopsis"
+    },
+    {
+      "id": 4,
+      "titolo": "Phalaenopsis",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/phalaenopsis/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Care, Insects, Toxicity"
+    },
+    {
+      "id": 5,
+      "titolo": "Phalaenopsis Culture Sheet",
+      "sito": "American Orchid Society",
+      "url": "https://www.aos.org/orchid-care/care-sheets/phalaenopsis-culture-sheet",
+      "consultato": "2026-11-18",
+      "livello": "B",
+      "punto": "Light, Water, Humidity, Fertilizer, Potting"
+    },
+    {
+      "id": 6,
+      "titolo": "Ice Cube Irrigation of Potted Phalaenopsis Orchids in Bark Media Does Not Decrease Display Life (HortScience 52: 1271-1277, 2017)",
+      "sito": "HortScience (American Society for Horticultural Science)",
+      "url": "https://doi.org/10.21273/HORTSCI12212-17",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "titolo e abstract (Crossref)"
+    }
+  ],
+  "verifica": {
+    "controlliAutomatici": "2026-11-18",
+    "verificaIndipendente": "2026-11-18"
+  },
+  "versione": 2,
+  "aggiornata": "2026-11-18"
+}

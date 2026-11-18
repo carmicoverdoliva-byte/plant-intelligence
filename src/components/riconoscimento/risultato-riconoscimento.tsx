@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { BookOpen, Camera, ExternalLink, Leaf, Plus, Sun, Sprout } from "lucide-react";
+import { Camera, ExternalLink, Leaf, Plus, Sun, Sprout } from "lucide-react";
 import type { Candidato, Risultato } from "@/lib/riconoscimento/classifica";
 import { Bolla } from "../bolla";
 import { TRATTO } from "../icona";
+import { SchedaCura } from "../schede/scheda-cura";
 import { CosE } from "./cos-e";
 
 // Schermata del risultato (passo 2.3, F04), dal riferimento docs/design/riferimenti/scheda.html: foto della pianta in
@@ -104,10 +105,6 @@ export function RisultatoRiconoscimento({
           <span className={`flex h-[30px] items-center rounded-pillola px-3 text-[13px] font-extrabold ${aff.classi}`}>
             {aff.testo}
           </span>
-          <span className="flex h-[30px] items-center gap-1.5 rounded-pillola bg-bolla-acqua px-3 text-[13px] font-extrabold text-testo-2">
-            <BookOpen size={14} strokeWidth={TRATTO} aria-hidden="true" />
-            Scheda di cura in arrivo
-          </span>
         </div>
         <a
           href={p.approfondisci}
@@ -154,6 +151,15 @@ export function RisultatoRiconoscimento({
             ))}
           </ul>
         </section>
+      )}
+
+      {incerto ? (
+        <p className="vetro rounded-riquadro p-4 text-[15px] leading-snug text-testo-2">
+          La scheda di cura compare quando il riconoscimento è più sicuro: prova ad aggiungere una foto di un&apos;altra parte
+          della pianta.
+        </p>
+      ) : (
+        <SchedaCura specie={p.nomeScientifico} genere={p.genere} famiglia={p.famiglia} />
       )}
 
       {incerto && <ConsigliScatto />}

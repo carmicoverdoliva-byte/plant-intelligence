@@ -1,0 +1,541 @@
+{
+  "id": "tipo/foglia-tropicale",
+  "livello": "tipo",
+  "nome": "piante verdi da foglia tropicali",
+  "siApplicaA": "Le piante d'appartamento coltivate per le foglie e nate in climi tropicali: per esempio spatifillo, anturio, aglaonema, dieffenbachia, calathea, maranta, peperomia, falangio, zamioculcas, begonie da foglia. In Italia stanno in casa tutto l'anno, o fuori solo d'estate.",
+  "eccezioni": [
+    "La luce che serve cambia molto da pianta a pianta: il filodendro a foglia a cuore sopporta poca luce, altre ne vogliono molta. Se conosci la specie, guarda la sua scheda quando sarà pronta.",
+    "Le piante grasse e i cactus hanno schede a parte."
+  ],
+  "riassunto": "Luce viva ma non sole diretto d'estate, acqua solo quando la superficie del terriccio è asciutta, niente freddo sotto i 10-13 °C, concime leggero da marzo a ottobre e un travaso ogni due o tre anni.",
+  "coseDaFare": [
+    "Controlla il terriccio con un dito prima di annaffiare: non seguire un calendario fisso.",
+    "Annaffia a fondo e svuota il sottovaso dopo che l'acqua è scolata.",
+    "Tienila lontana da termosifoni, spifferi e vetri freddi d'inverno.",
+    "Se d'estate la porti fuori, riportala in casa prima che la notte scenda sotto i 13 °C."
+  ],
+  "sezioni": {
+    "luce": {
+      "lineeGuida": {
+        "riassunto": "Queste piante vogliono quasi tutte luce viva ma filtrata. D'estate il sole attraverso il vetro può bruciare le foglie, mentre d'inverno la luce è debole e anche il sole diretto va bene. Alcune, come il filodendro a foglia a cuore, sopportano anche poca luce.",
+        "coseDaFare": [
+          "Mettila a qualche passo da una finestra luminosa, o vicino a una finestra a est.",
+          "D'estate evita il sole diretto dietro il vetro.",
+          "D'inverno avvicinala alla finestra."
+        ],
+        "valori": [
+          {
+            "etichetta": "Poca luce (es. filodendro a foglia a cuore)",
+            "valore": "lontano da finestre a est, o vicino a finestre a nord",
+            "fonti": [
+              2
+            ]
+          },
+          {
+            "etichetta": "Luce media (es. dieffenbachia)",
+            "valore": "a qualche passo da finestre a sud o ovest, o vicino a finestre a est",
+            "fonti": [
+              2
+            ]
+          },
+          {
+            "etichetta": "Sole diretto",
+            "valore": "da evitare d'estate dietro il vetro; va bene d'inverno",
+            "fonti": [
+              1
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2
+        ]
+      },
+      "pollice": []
+    },
+    "acqua": {
+      "lineeGuida": {
+        "riassunto": "Si annaffia quando la superficie del terriccio è asciutta, controllando con un dito o sollevando il vaso, che asciutto è più leggero. Si bagna a fondo finché l'acqua esce dai fori e si svuota il sottovaso. D'inverno nelle stanze fresche serve meno acqua, mentre vicino ai termosifoni il terriccio può asciugare anche più in fretta: per questo si controlla sempre, invece di seguire un calendario.",
+        "coseDaFare": [
+          "Prova con un dito: se i primi 2-3 cm sono asciutti, annaffia.",
+          "Versa acqua finché esce dai fori, poi svuota il sottovaso.",
+          "D'inverno annaffia meno nelle stanze fresche; vicino ai termosifoni controlla il terriccio più spesso.",
+          "Usa acqua a temperatura ambiente; l'acqua del rubinetto lasciala riposare un giorno in un contenitore aperto."
+        ],
+        "valori": [
+          {
+            "etichetta": "Quando",
+            "valore": "superficie del terriccio asciutta (2-3 cm)",
+            "fonti": [
+              1,
+              3
+            ]
+          },
+          {
+            "etichetta": "Quanto",
+            "valore": "finché l'acqua esce dai fori; sottovaso vuoto",
+            "fonti": [
+              1,
+              3
+            ]
+          },
+          {
+            "etichetta": "Umidità dell'aria",
+            "valore": "aiuta: sottovaso con ghiaia umida, piante vicine tra loro",
+            "fonti": [
+              1
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          3
+        ]
+      },
+      "pollice": []
+    },
+    "temperatura": {
+      "lineeGuida": {
+        "riassunto": "Sono piante di climi caldi: il freddo le danneggia ben prima del gelo. Sotto i 10 °C, cioè già tra 4 e 10 °C, possono subire danni; per questo chi le tiene fuori d'estate le riporta in casa quando la notte scende verso i 13 °C.",
+        "coseDaFare": [
+          "In casa tienile lontane da spifferi freddi e dal vetro nelle notti d'inverno.",
+          "Tienile lontane dai termosifoni.",
+          "Se sono state fuori, riportale dentro prima delle prime notti fresche, dopo averle controllate per i parassiti."
+        ],
+        "valori": [
+          {
+            "etichetta": "Minima",
+            "valore": "10-13 °C (sotto si rovinano)",
+            "fonti": [
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "etichetta": "Ideale",
+            "valore": "temperature normali di casa (per la monstera circa 16-29 °C)",
+            "fonti": [
+              7
+            ]
+          },
+          {
+            "etichetta": "Massima",
+            "valore": "non indicata dalle fonti",
+            "fonti": []
+          }
+        ],
+        "disaccordi": [
+          {
+            "tema": "Da quale temperatura iniziano i danni",
+            "posizioni": [
+              {
+                "dice": "sotto i 10 °C; anche tra 4 e 10 °C possono subire danni",
+                "fonti": [
+                  4
+                ]
+              },
+              {
+                "dice": "riportarle in casa quando la notte scende sotto i 13 °C",
+                "fonti": [
+                  5
+                ]
+              }
+            ],
+            "sceltaPrudente": "Non lasciarle mai sotto i 13 °C."
+          }
+        ],
+        "fonti": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "pollice": []
+    },
+    "terriccio": {
+      "lineeGuida": {
+        "riassunto": "Serve un terriccio per piante d'appartamento che dreni bene, in un vaso con i fori. Per le piante alte e pesanti è utile un terriccio più pesante, a base di terra (senza torba), che dà stabilità; per quelle che vogliono più drenaggio si aggiunge sabbia grossa o ghiaino, mescolato al terriccio.",
+        "coseDaFare": [
+          "Usa sempre un vaso con fori di drenaggio.",
+          "Scegli un terriccio per piante d'appartamento, meglio senza torba.",
+          "Se serve più drenaggio, mescola ghiaino o sabbia grossa al terriccio."
+        ],
+        "valori": [
+          {
+            "etichetta": "Vaso",
+            "valore": "con fori; un vaso decorativo senza fori va usato come coprivaso",
+            "fonti": [
+              1,
+              2
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          7
+        ]
+      },
+      "pollice": []
+    },
+    "concime": {
+      "lineeGuida": {
+        "riassunto": "Si concima nella stagione di crescita, da marzo a ottobre, con un concime per piante verdi ricco di azoto o bilanciato. Meglio poco che troppo: una crosta bianca sul terriccio o sul bordo del vaso può indicare troppo concime. Mai concimare su terriccio secco.",
+        "coseDaFare": [
+          "Da marzo a ottobre usa un concime liquido per piante verdi una o due volte al mese, oppure molto diluito a ogni annaffiatura.",
+          "Concima solo con il terriccio già umido.",
+          "D'inverno non concimare, o al massimo una volta al mese a dose ridotta.",
+          "Se vedi una crosta bianca, fai scorrere molta acqua nel vaso."
+        ],
+        "valori": [
+          {
+            "etichetta": "Tipo",
+            "valore": "per piante verdi, ricco di azoto o bilanciato (es. 20-20-20)",
+            "fonti": [
+              1,
+              2
+            ]
+          },
+          {
+            "etichetta": "Frequenza",
+            "valore": "1-2 volte al mese (RHS) oppure ogni 2-3 mesi alla dose dell'etichetta (Clemson); in alternativa molto diluito a ogni annaffiatura",
+            "fonti": [
+              1,
+              2
+            ]
+          },
+          {
+            "etichetta": "Periodo",
+            "valore": "marzo-ottobre",
+            "fonti": [
+              1
+            ]
+          }
+        ],
+        "disaccordi": [
+          {
+            "tema": "Concime d'inverno",
+            "posizioni": [
+              {
+                "dice": "al massimo una volta al mese",
+                "fonti": [
+                  1
+                ]
+              },
+              {
+                "dice": "niente concime nel riposo invernale",
+                "fonti": [
+                  2
+                ]
+              }
+            ],
+            "sceltaPrudente": "D'inverno non concimare; se la pianta cresce comunque (stanza calda e luminosa), al massimo una volta al mese a metà dose."
+          }
+        ],
+        "fonti": [
+          1,
+          2
+        ]
+      },
+      "pollice": []
+    },
+    "travaso": {
+      "lineeGuida": {
+        "riassunto": "La maggior parte di queste piante si travasa ogni due o tre anni, in primavera, quando le radici riempiono il vaso o il terriccio si è compattato. Il vaso nuovo deve essere solo un po' più largo, di 5-10 cm.",
+        "coseDaFare": [
+          "Travasa in primavera ogni 2-3 anni.",
+          "Scegli un vaso più largo di 5-10 cm.",
+          "Usa terriccio nuovo."
+        ],
+        "valori": [
+          {
+            "etichetta": "Ogni quanto",
+            "valore": "2-3 anni",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Quando",
+            "valore": "primavera",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Vaso nuovo",
+            "valore": "5-10 cm più largo",
+            "fonti": [
+              1
+            ]
+          }
+        ],
+        "fonti": [
+          1
+        ]
+      },
+      "pollice": []
+    },
+    "coltivarla": {
+      "lineeGuida": {
+        "riassunto": "Molte piante da foglia si moltiplicano per talea di fusto; la monstera anche per propaggine. Il metodo giusto però cambia da pianta a pianta: se conosci la specie, guarda la sua scheda quando sarà pronta.",
+        "coseDaFare": [
+          "Taglia una talea con almeno un nodo e mettila in terriccio umido.",
+          "Tienila al caldo e alla luce, ma senza sole diretto.",
+          "Per il metodo adatto alla tua pianta, guarda la scheda della specie quando sarà pronta."
+        ],
+        "valori": [
+          {
+            "etichetta": "Metodo più comune",
+            "valore": "talea di fusto",
+            "fonti": [
+              1,
+              7
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          7
+        ]
+      },
+      "pollice": []
+    },
+    "problemi": {
+      "lineeGuida": {
+        "riassunto": "I problemi più frequenti nascono dall'acqua: troppa fa ingiallire e cadere le foglie e marcire le radici, troppo poca secca i bordi. Tra i parassiti tornano ragnetto rosso, cocciniglie e moscerini del terriccio; tra le malattie muffa grigia e macchie sulle foglie, favorite dall'aria ferma.",
+        "coseDaFare": [
+          "Controlla spesso il sotto delle foglie.",
+          "Arieggia la stanza e non lasciare le foglie bagnate la sera.",
+          "Prima di riportare in casa una pianta che è stata fuori, controllala bene."
+        ],
+        "fonti": [
+          1,
+          4
+        ]
+      },
+      "pollice": [],
+      "elenco": [
+        {
+          "nome": "Troppa acqua",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie gialle che cadono",
+            "pianta che si affloscia con il terriccio bagnato"
+          ],
+          "prevenzione": [
+            "annaffia solo con la superficie asciutta",
+            "sottovaso vuoto"
+          ],
+          "fonti": [
+            1
+          ]
+        },
+        {
+          "nome": "Troppo poca acqua",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "bordi delle foglie marroni"
+          ],
+          "prevenzione": [
+            "controlla il terriccio più spesso con il caldo e i termosifoni"
+          ],
+          "fonti": [
+            1
+          ]
+        },
+        {
+          "nome": "Ragnetto rosso",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie puntinate color paglia",
+            "ragnatele sottili"
+          ],
+          "prevenzione": [
+            "controlla il sotto delle foglie"
+          ],
+          "fonti": [
+            1
+          ]
+        },
+        {
+          "nome": "Cocciniglia farinosa e cocciniglie",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "ciuffetti bianchi cotonosi",
+            "piccoli scudetti marroni"
+          ],
+          "prevenzione": [
+            "isola le piante nuove",
+            "controlla spesso"
+          ],
+          "fonti": [
+            1
+          ]
+        },
+        {
+          "nome": "Moscerini del terriccio",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "moscerini neri minuscoli sul terriccio"
+          ],
+          "prevenzione": [
+            "non tenere il terriccio sempre bagnato"
+          ],
+          "fonti": [
+            1
+          ]
+        },
+        {
+          "nome": "Muffa grigia e macchie sulle foglie",
+          "tipo": "malattia",
+          "frequenza": "non indicata",
+          "segni": [
+            "muffa grigia",
+            "macchie sulle foglie"
+          ],
+          "prevenzione": [
+            "aria che circola",
+            "togli le parti secche",
+            "foglie asciutte la sera"
+          ],
+          "fonti": [
+            1
+          ]
+        },
+        {
+          "nome": "Danni da freddo",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie scure o rovinate dopo notti fredde"
+          ],
+          "prevenzione": [
+            "mai sotto i 13 °C"
+          ],
+          "fonti": [
+            4,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  "falsiMiti": [
+    {
+      "mito": "Uno strato di ghiaia o argilla espansa sul fondo del vaso migliora il drenaggio.",
+      "verdetto": "falso",
+      "cosaDiconoLeFonti": "Uno strato di materiale grosso sul fondo non fa scendere l'acqua: la fa fermare più in alto, nel terriccio, dove stanno le radici. Una scheda universitaria (Clemson) lo suggerisce ancora per i vasi senza fori, ma la stessa scheda consiglia anche di usare un vaso con i fori dentro quello decorativo, che è la soluzione migliore.",
+      "inPratica": "Usa un vaso con i fori e niente strato sul fondo; se serve più drenaggio, mescola il ghiaino nel terriccio.",
+      "fonti": [
+        8,
+        2
+      ]
+    }
+  ],
+  "approfondimenti": [],
+  "tossicita": {
+    "persone": "varia",
+    "animali": "varia",
+    "nota": "Dipende dalla pianta. Molte aracee, come monstera e filodendro, contengono cristalli che irritano bocca e gola se masticate, e la linfa può irritare la pelle (vedi la nota sulla famiglia). In questo tipo ci sono molte aracee (per esempio spatifillo, anturio, aglaonema, dieffenbachia, zamioculcas), ma per ciascuna non abbiamo ancora due fonti. Finché non conosci la specie, tienila lontana da bambini e animali.",
+    "fonti": [
+      7,
+      9
+    ]
+  },
+  "fonti": [
+    {
+      "id": 1,
+      "titolo": "How to grow houseplants",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/types/houseplants/growing-guide",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Light, Watering, Humidity, Feeding, Repotting, Problems"
+    },
+    {
+      "id": 2,
+      "titolo": "Indoor Plants – Cleaning, Fertilizing, Containers & Light Requirements (HGIC 1450)",
+      "sito": "Clemson Cooperative Extension",
+      "url": "https://hgic.clemson.edu/factsheet/indoor-plants-cleaning-fertilizing-containers-light-requirements/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Fertilizing, Containers, Light Requirements"
+    },
+    {
+      "id": 3,
+      "titolo": "Houseplant Watering Recommendations",
+      "sito": "UConn Home and Garden Education Center",
+      "url": "https://homegarden.cahnr.uconn.edu/factsheets/houseplant-watering-recommendations",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "prova con il dito, annaffiatura a fondo"
+    },
+    {
+      "id": 4,
+      "titolo": "Before the First Frost: Bringing Your Plants Indoors for Winter",
+      "sito": "Penn State Extension",
+      "url": "https://extension.psu.edu/before-the-first-frost-bringing-your-plants-indoors-for-winter",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "danni sotto 50 °F e tra 40 e 50 °F; controllo dei parassiti"
+    },
+    {
+      "id": 5,
+      "titolo": "Bring houseplants indoors before the first frost",
+      "sito": "University of Illinois Extension",
+      "url": "https://extension.illinois.edu/news-releases/bring-houseplants-indoors-first-frost",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "sotto 55 °F riportarle in casa"
+    },
+    {
+      "id": 6,
+      "titolo": "Swiss-Cheese Plant, Monstera deliciosa",
+      "sito": "University of Wisconsin–Madison Extension",
+      "url": "https://hort.extension.wisc.edu/articles/monstera-deliciosa/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "minima 50 °F"
+    },
+    {
+      "id": 7,
+      "titolo": "Monstera deliciosa",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/monstera-deliciosa/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Light, Soil, Temperature 60-85 °F, Propagation, Toxicity"
+    },
+    {
+      "id": 8,
+      "titolo": "The Myth of Drainage Material in Container Plantings",
+      "sito": "Washington State University, Puyallup Research and Extension Center (L. Chalker-Scott)",
+      "url": "https://s3.wp.wsu.edu/uploads/sites/403/2015/03/container-drainage.pdf",
+      "consultato": "2026-11-18",
+      "livello": "A"
+    },
+    {
+      "id": 9,
+      "titolo": "Philodendron hederaceum",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/philodendron-hederaceum/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Toxicity"
+    }
+  ],
+  "verifica": {
+    "controlliAutomatici": "2026-11-18",
+    "verificaIndipendente": "2026-11-18"
+  },
+  "versione": 2,
+  "aggiornata": "2026-11-18"
+}

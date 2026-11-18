@@ -10,7 +10,9 @@
     "start": "next start -H 127.0.0.1",
     "lint": "eslint",
     "guida": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/genera-guida.mjs",
-    "guida:controlla": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/genera-guida.mjs --controlla"
+    "guida:controlla": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/genera-guida.mjs --controlla",
+    "schede:controlla": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/controlla-schede.mjs",
+    "tipi:genera": "node scripts/genera-tipi.mjs"
   },
   "dependencies": {
     "@fontsource-variable/nunito": "5.3.0",

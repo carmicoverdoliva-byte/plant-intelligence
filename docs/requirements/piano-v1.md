@@ -315,6 +315,17 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
     test `npm run schede:controlla`, verifica indipendente e **tua tabella della tossicità** (5 minuti per blocco),
     pubblicati man mano: tipi di pianta e note di famiglia per R1, poi 3-4 blocchi a settimana da metà dicembre fino a T1
     (circa fine gennaio 2027);
+  - **R1, gruppo 1 pubblicato il 2026-11-18:**
+    - 4 schede per tipo: orchidee da appartamento, piante verdi da foglia tropicali, rampicanti e ricadenti tropicali,
+      succulente;
+    - 4 note di famiglia: aracee, crassulacee, euforbiacee, orchidee.
+    - Indice dei tipi per tutti i 14.138 generi WCVP (Kew, CC BY 4.0): `scripts/genera-tipi.mjs` →
+      `src/data/tipo-per-genere.json`. I tipi sono 19 più la scheda universale: `src/content/tipi-di-pianta.ts`.
+    - Ogni riconoscimento mostra "Scheda per il tipo: …" con il motivo. Se la scheda del tipo non c'è ancora, la
+      sezione è dichiarata "in preparazione".
+    - Verifiche: `npm run schede:controlla -- --rete` (0 errori, 24 fonti raggiungibili, nessuna copia); verifica
+      indipendente in due giri (circa 30 correzioni applicate); prove identify 27/27 e app 143/143.
+    - In attesa: la tua tabella della tossicità del gruppo 1.
   - **3.3c — Schede generate al momento** (per R2): `/api/scheda`, `CardWriter` con Cloudflare Workers AI (piano
     gratuito), `GeneratedCardStore` con Upstash; dati reali in ingresso, controlli automatici, "Scheda generata
     automaticamente", ripiego sul genere o sul tipo ([scheda del servizio](../api-documentation/ai-schede-generate.md)).

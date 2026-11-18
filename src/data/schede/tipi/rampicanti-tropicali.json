@@ -1,0 +1,441 @@
+{
+  "id": "tipo/rampicanti-tropicali",
+  "livello": "tipo",
+  "nome": "rampicanti e ricadenti tropicali",
+  "siApplicaA": "Le piante d'appartamento che si arrampicano o ricadono, nate in climi tropicali: pothos, filodendri rampicanti, monstera, singonio, scindapsus. In Italia stanno in casa.",
+  "eccezioni": [
+    "La monstera vuole più luce delle altre: con poca luce non fa le foglie bucate."
+  ],
+  "riassunto": "Luce viva e indiretta, terriccio che asciuga un po' tra un'annaffiatura e l'altra, caldo di casa, un sostegno per chi si arrampica e talee che radicano facilmente anche in acqua.",
+  "coseDaFare": [
+    "Mettila in luce viva ma indiretta; sopporta anche angoli più bui, ma le foglie variegate tornano verdi.",
+    "Annaffia quando la parte alta del terriccio è asciutta; d'inverno di meno.",
+    "Dai un sostegno (un palo con muschio) alle piante che si arrampicano.",
+    "Moltiplicala con talee di fusto: radicano anche in un bicchiere d'acqua."
+  ],
+  "sezioni": {
+    "luce": {
+      "lineeGuida": {
+        "riassunto": "Preferiscono luce viva ma indiretta e sopportano anche poca luce per lunghi periodi, ma le varietà variegate perdono il disegno chiaro. La monstera ha bisogno di più luce: d'estate luce viva, d'inverno anche sole diretto; con poca luce non fa le foglie bucate.",
+        "coseDaFare": [
+          "Scegli un posto luminoso senza sole diretto d'estate.",
+          "Se le foglie variegate diventano tutte verdi, spostala verso più luce.",
+          "Per la monstera: d'inverno avvicinala alla finestra."
+        ],
+        "valori": [
+          {
+            "etichetta": "Luce ideale",
+            "valore": "viva e indiretta",
+            "fonti": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "etichetta": "Poca luce",
+            "valore": "tollerata a lungo, ma le foglie variegate perdono il disegno",
+            "fonti": [
+              1,
+              2
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "pollice": []
+    },
+    "acqua": {
+      "lineeGuida": {
+        "riassunto": "Si bagna a fondo e poi si aspetta che la parte alta del terriccio asciughi prima di annaffiare di nuovo. Troppa acqua fa marcire le radici e annerisce i bordi delle foglie. D'inverno si annaffia meno.",
+        "coseDaFare": [
+          "Annaffia quando il primo terzo del terriccio è asciutto.",
+          "Svuota il sottovaso dopo l'annaffiatura.",
+          "Annaffia meno d'inverno.",
+          "Se hai un palo con muschio, bagna anche quello."
+        ],
+        "valori": [
+          {
+            "etichetta": "Quando",
+            "valore": "quando il primo quarto o terzo del terriccio è asciutto",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Inverno",
+            "valore": "meno acqua",
+            "fonti": [
+              2,
+              4
+            ]
+          },
+          {
+            "etichetta": "Umidità dell'aria",
+            "valore": "media o alta: aiuta un sottovaso con ghiaia bagnata",
+            "fonti": [
+              1,
+              3,
+              4
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "pollice": []
+    },
+    "temperatura": {
+      "lineeGuida": {
+        "riassunto": "Stanno bene alle temperature di casa. Sotto i 10 °C non crescono e si rovinano, e il gelo le uccide.",
+        "coseDaFare": [
+          "Tienile lontane da spifferi e termosifoni.",
+          "Se d'estate stanno fuori, riportale dentro prima delle notti fresche."
+        ],
+        "valori": [
+          {
+            "etichetta": "Minima",
+            "valore": "10-13 °C",
+            "fonti": [
+              4,
+              6,
+              9
+            ]
+          },
+          {
+            "etichetta": "Ideale",
+            "valore": "circa 16-30 °C",
+            "fonti": [
+              3,
+              5
+            ]
+          },
+          {
+            "etichetta": "Massima",
+            "valore": "non indicata dalle fonti",
+            "fonti": []
+          }
+        ],
+        "fonti": [
+          3,
+          4,
+          5,
+          6,
+          9
+        ]
+      },
+      "pollice": []
+    },
+    "terriccio": {
+      "lineeGuida": {
+        "riassunto": "Serve un terriccio per piante d'appartamento ricco di sostanza organica e ben drenato, in un vaso con fori. Per la monstera le fonti consigliano un terriccio fertile e un vaso con abbastanza spazio per le radici.",
+        "coseDaFare": [
+          "Usa un terriccio ben drenato per piante d'appartamento.",
+          "Usa sempre un vaso con fori."
+        ],
+        "fonti": [
+          1,
+          3,
+          4
+        ]
+      },
+      "pollice": []
+    },
+    "concime": {
+      "lineeGuida": {
+        "riassunto": "Si concima durante la stagione di crescita, dalla primavera all'autunno. Per il pothos le fonti indicano una volta al mese o ogni due mesi; per le piante verdi in generale va bene un concime liquido per piante da foglia. Sul concime d'inverno le fonti non sono d'accordo.",
+        "coseDaFare": [
+          "Dalla primavera all'autunno usa un concime liquido per piante verdi.",
+          "D'inverno non concimare; se la pianta cresce comunque, al massimo una volta al mese a metà dose.",
+          "Concima solo con il terriccio già umido."
+        ],
+        "valori": [
+          {
+            "etichetta": "Frequenza",
+            "valore": "ogni 1-2 mesi nella stagione di crescita",
+            "fonti": [
+              1,
+              5
+            ]
+          },
+          {
+            "etichetta": "Periodo",
+            "valore": "primavera-autunno (d'inverno: vedi il disaccordo tra le fonti)",
+            "fonti": [
+              1,
+              4
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          4,
+          5,
+          7
+        ],
+        "disaccordi": [
+          {
+            "tema": "Concime d'inverno",
+            "posizioni": [
+              {
+                "dice": "niente concime nel riposo invernale",
+                "fonti": [
+                  1
+                ]
+              },
+              {
+                "dice": "al massimo una volta al mese",
+                "fonti": [
+                  7
+                ]
+              }
+            ],
+            "sceltaPrudente": "D'inverno non concimare; al massimo una volta al mese a metà dose se la pianta sta crescendo."
+          }
+        ]
+      },
+      "pollice": []
+    },
+    "travaso": {
+      "lineeGuida": {
+        "riassunto": "Come le altre piante d'appartamento, si travasa in primavera quando le radici riempiono il vaso, in un vaso solo un po' più largo. Le monstere coltivate in vaso crescono in fretta e vanno travasate spesso; le piante che si arrampicano hanno bisogno di un sostegno robusto.",
+        "coseDaFare": [
+          "Travasa in primavera, in un vaso 5-10 cm più largo.",
+          "Al travaso, infila nel vaso un palo con muschio per le piante che si arrampicano."
+        ],
+        "valori": [
+          {
+            "etichetta": "Ogni quanto",
+            "valore": "2-3 anni (più spesso per la monstera)",
+            "fonti": [
+              7,
+              4
+            ]
+          }
+        ],
+        "fonti": [
+          3,
+          4,
+          7
+        ]
+      },
+      "pollice": []
+    },
+    "coltivarla": {
+      "lineeGuida": {
+        "riassunto": "Sono tra le piante più facili da moltiplicare: le talee di fusto radicano facilmente, e quelle del pothos anche in acqua. Per la monstera si taglia la punta appena sotto una radice aerea; vanno bene anche la margotta e la propaggine.",
+        "coseDaFare": [
+          "Taglia un pezzo di fusto con almeno un nodo (o una radice aerea).",
+          "Mettilo in un bicchiere d'acqua o in terriccio umido, alla luce ma senza sole diretto.",
+          "Quando ha radici di qualche centimetro, mettilo in vaso."
+        ],
+        "valori": [
+          {
+            "etichetta": "Metodi",
+            "valore": "talea di fusto (anche in acqua), margotta, propaggine",
+            "fonti": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "pollice": []
+    },
+    "problemi": {
+      "lineeGuida": {
+        "riassunto": "Il problema più comune è la troppa acqua, che fa marcire le radici. Tra i parassiti tornano cocciniglie, cocciniglia farinosa, ragnetto rosso, afidi e tripidi.",
+        "coseDaFare": [
+          "Non annaffiare se il terriccio è ancora umido.",
+          "Controlla il sotto delle foglie e i punti dove nascono le foglie."
+        ],
+        "fonti": [
+          1,
+          2,
+          4
+        ]
+      },
+      "pollice": [],
+      "elenco": [
+        {
+          "nome": "Marciume delle radici",
+          "tipo": "malattia",
+          "frequenza": "non indicata",
+          "segni": [
+            "bordi delle foglie neri",
+            "foglie gialle",
+            "terriccio sempre bagnato"
+          ],
+          "prevenzione": [
+            "lascia asciugare la parte alta del terriccio"
+          ],
+          "fonti": [
+            1,
+            2
+          ]
+        },
+        {
+          "nome": "Cocciniglia farinosa e cocciniglie",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "ciuffetti bianchi",
+            "scudetti marroni"
+          ],
+          "prevenzione": [
+            "controlla spesso la pianta"
+          ],
+          "fonti": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "nome": "Ragnetto rosso, afidi e tripidi",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie puntinate",
+            "insetti piccoli sui germogli"
+          ],
+          "prevenzione": [
+            "controlla il sotto delle foglie"
+          ],
+          "fonti": [
+            2,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  "falsiMiti": [
+    {
+      "mito": "Uno strato di ghiaia o argilla espansa sul fondo del vaso migliora il drenaggio.",
+      "verdetto": "falso",
+      "cosaDiconoLeFonti": "Lo strato sul fondo non fa uscire l'acqua più in fretta: la fa fermare più in alto, nel terriccio dove stanno le radici.",
+      "inPratica": "Usa un vaso con i fori e niente strato sul fondo.",
+      "fonti": [
+        8
+      ]
+    }
+  ],
+  "approfondimenti": [],
+  "tossicita": {
+    "persone": "varia",
+    "animali": "varia",
+    "nota": "Pothos, filodendro e monstera sono aracee: masticate irritano bocca, lingua e gola, possono dare vomito e la linfa irrita la pelle. Tienile lontane da bambini e animali e, per prudenza, usa i guanti quando le tagli. Per altre piante di questo tipo (per esempio singonio e scindapsus) non abbiamo ancora dati verificati.",
+    "fonti": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "fonti": [
+    {
+      "id": 1,
+      "titolo": "Epipremnum aureum (Devil's Vine)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/epipremnum-aureum/common-name/devils-vine/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Light, Watering, Fertilizer, Propagation, Problems, Toxicity"
+    },
+    {
+      "id": 2,
+      "titolo": "Philodendron hederaceum",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/philodendron-hederaceum/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Light, Watering, Propagation, Problems, Toxicity"
+    },
+    {
+      "id": 3,
+      "titolo": "Monstera deliciosa",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/monstera-deliciosa/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Light, Watering, Temperature 60-85 °F, Propagation, Toxicity"
+    },
+    {
+      "id": 4,
+      "titolo": "Swiss-Cheese Plant, Monstera deliciosa",
+      "sito": "University of Wisconsin–Madison Extension",
+      "url": "https://hort.extension.wisc.edu/articles/monstera-deliciosa/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Light, Watering, Temperature, Support, Propagation, Pests, Toxicity"
+    },
+    {
+      "id": 5,
+      "titolo": "How to grow epipremnum",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/epipremnum/growing-guide",
+      "consultato": "2026-11-17",
+      "livello": "A",
+      "punto": "temperature 18-30 °C"
+    },
+    {
+      "id": 6,
+      "titolo": "Before the First Frost: Bringing Your Plants Indoors for Winter",
+      "sito": "Penn State Extension",
+      "url": "https://extension.psu.edu/before-the-first-frost-bringing-your-plants-indoors-for-winter",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "danni sotto 50 °F"
+    },
+    {
+      "id": 7,
+      "titolo": "How to grow houseplants",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/types/houseplants/growing-guide",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Feeding, Repotting"
+    },
+    {
+      "id": 8,
+      "titolo": "The Myth of Drainage Material in Container Plantings",
+      "sito": "Washington State University, Puyallup Research and Extension Center (L. Chalker-Scott)",
+      "url": "https://s3.wp.wsu.edu/uploads/sites/403/2015/03/container-drainage.pdf",
+      "consultato": "2026-11-18",
+      "livello": "A"
+    },
+    {
+      "id": 9,
+      "titolo": "Bring houseplants indoors before the first frost",
+      "sito": "University of Illinois Extension",
+      "url": "https://extension.illinois.edu/news-releases/bring-houseplants-indoors-first-frost",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "sotto 55 °F riportarle in casa"
+    }
+  ],
+  "verifica": {
+    "controlliAutomatici": "2026-11-18",
+    "verificaIndipendente": "2026-11-18"
+  },
+  "versione": 2,
+  "aggiornata": "2026-11-18"
+}

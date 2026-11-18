@@ -1,0 +1,500 @@
+{
+  "id": "tipo/succulente",
+  "livello": "tipo",
+  "nome": "succulente (piante grasse non cactus)",
+  "siApplicaA": "Le piante con foglie o fusti carnosi che conservano acqua, escluse i cactus: albero di giada (Crassula), echeveria, kalanchoe, sedum, aloe, haworthia. Si coltivano in casa o, nella bella stagione, anche fuori.",
+  "eccezioni": [
+    "I cactus hanno una scheda a parte.",
+    "La kalanchoe da fiore vuole luce viva ma non il sole diretto per molte ore, che può bruciarle le foglie."
+  ],
+  "riassunto": "Tanta luce, terriccio molto drenante, annaffiature abbondanti ma solo con il terriccio asciutto, e un riposo invernale fresco e quasi senza acqua. Uno dei problemi più comuni è la troppa acqua, ma anche troppo poca le fa soffrire.",
+  "coseDaFare": [
+    "Mettila nel punto più luminoso della casa, vicino a una finestra soleggiata.",
+    "Annaffia a fondo solo quando il terriccio è asciutto; d'inverno quasi mai.",
+    "Usa terriccio per piante grasse o terriccio con molto ghiaino mescolato.",
+    "D'inverno, se puoi, tienila in un posto fresco, intorno agli 8-10 °C di notte."
+  ],
+  "sezioni": {
+    "luce": {
+      "lineeGuida": {
+        "riassunto": "La maggior parte delle succulente vuole molta luce tutto l'anno: un davanzale soleggiato, con almeno quattro ore di sole diretto per l'albero di giada. Con poca luce crescono deboli e storte. D'estate possono stare fuori.",
+        "coseDaFare": [
+          "Scegli una finestra a sud o comunque molto luminosa.",
+          "Se cresce allungata e storta, ha bisogno di più luce.",
+          "D'estate può stare fuori."
+        ],
+        "valori": [
+          {
+            "etichetta": "Sole diretto",
+            "valore": "almeno 4 ore al giorno (albero di giada)",
+            "fonti": [
+              2,
+              3
+            ]
+          },
+          {
+            "etichetta": "Posizione",
+            "valore": "davanzale soleggiato tutto l'anno",
+            "fonti": [
+              1
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "pollice": []
+    },
+    "acqua": {
+      "lineeGuida": {
+        "riassunto": "In primavera e d'estate si annaffia a fondo quando la superficie del terriccio è asciutta, lasciando scolare bene. Da novembre a inizio marzo le succulente riposano: si annaffiano solo quel tanto che basta a non farle raggrinzire. Troppa acqua fa marcire radici e fusto e cadere le foglie.",
+        "coseDaFare": [
+          "Da marzo a ottobre annaffia a fondo quando il terriccio è asciutto.",
+          "Da novembre a inizio marzo annaffia solo se la pianta raggrinzisce.",
+          "Non bagnare le foglie.",
+          "Meglio acqua piovana a temperatura ambiente."
+        ],
+        "valori": [
+          {
+            "etichetta": "Stagione di crescita",
+            "valore": "a fondo, con la superficie del terriccio asciutta",
+            "fonti": [
+              1,
+              2
+            ]
+          },
+          {
+            "etichetta": "Riposo invernale",
+            "valore": "novembre-inizio marzo: quasi niente acqua",
+            "fonti": [
+              1,
+              3,
+              4
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "pollice": []
+    },
+    "temperatura": {
+      "lineeGuida": {
+        "riassunto": "Durante il riposo invernale stanno meglio al fresco: di notte intorno agli 8-10 °C (per l'albero di giada una fonte indica 10-13 °C). Di giorno vanno bene le temperature di casa. Il gelo le uccide: l'albero di giada sopporta al massimo una brina leggera.",
+        "coseDaFare": [
+          "D'inverno, se puoi, tienila in una stanza fresca e luminosa.",
+          "Tienila lontana dai termosifoni.",
+          "Se sta fuori, riportala dentro prima delle gelate."
+        ],
+        "valori": [
+          {
+            "etichetta": "Notti d'inverno",
+            "valore": "circa 8-10 °C (per l'albero di giada una fonte indica notti di 10-13 °C, senza parlare solo dell'inverno)",
+            "fonti": [
+              1,
+              2
+            ]
+          },
+          {
+            "etichetta": "Giorno",
+            "valore": "18-24 °C (albero di giada)",
+            "fonti": [
+              2
+            ]
+          },
+          {
+            "etichetta": "Minima",
+            "valore": "sopra lo zero: il gelo le uccide",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Massima",
+            "valore": "non indicata dalle fonti",
+            "fonti": []
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3
+        ]
+      },
+      "pollice": []
+    },
+    "terriccio": {
+      "lineeGuida": {
+        "riassunto": "Serve un terriccio molto drenante: quello pronto per piante grasse, oppure terriccio con fino a un terzo di ghiaino o sabbia grossa mescolati dentro. In superficie si può mettere uno strato di ghiaino.",
+        "coseDaFare": [
+          "Usa terriccio per piante grasse e cactus.",
+          "Oppure mescola 2 parti di terriccio e 1 di ghiaino o sabbia grossa.",
+          "Usa un vaso con fori, non troppo grande."
+        ],
+        "valori": [
+          {
+            "etichetta": "Miscela",
+            "valore": "2 parti di terriccio e 1 di ghiaino o sabbia grossa",
+            "fonti": [
+              1
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3
+        ]
+      },
+      "pollice": []
+    },
+    "concime": {
+      "lineeGuida": {
+        "riassunto": "Le succulente vogliono poco concime e solo durante la crescita. Le fonti non sono d'accordo sulla frequenza: una volta al mese da aprile a settembre con un concime ricco di potassio, oppure ogni due o tre mesi.",
+        "coseDaFare": [
+          "Concima solo da aprile a settembre.",
+          "Usa un concime per piante grasse o un concime ricco di potassio (come quello per pomodori), diluito.",
+          "Non concimare d'inverno né subito dopo il travaso."
+        ],
+        "valori": [
+          {
+            "etichetta": "Tipo",
+            "valore": "per piante grasse, oppure ricco di potassio",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Periodo",
+            "valore": "aprile-settembre",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Dopo il travaso",
+            "valore": "aspetta circa 4 mesi (albero di giada)",
+            "fonti": [
+              2
+            ]
+          }
+        ],
+        "disaccordi": [
+          {
+            "tema": "Ogni quanto concimare",
+            "posizioni": [
+              {
+                "dice": "una volta al mese da aprile a settembre",
+                "fonti": [
+                  1
+                ]
+              },
+              {
+                "dice": "ogni 2 mesi durante la crescita",
+                "fonti": [
+                  3
+                ]
+              },
+              {
+                "dice": "ogni 3-4 mesi",
+                "fonti": [
+                  2
+                ]
+              }
+            ],
+            "sceltaPrudente": "Ogni due mesi a dose ridotta: meglio poco che troppo."
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3
+        ]
+      },
+      "pollice": []
+    },
+    "travaso": {
+      "lineeGuida": {
+        "riassunto": "Si travasa in primavera, quando ricomincia a crescere e le radici riempiono il vaso, di solito ogni due o tre anni. Possono restare a lungo nello stesso vaso. Un vaso troppo grande trattiene acqua e fa marcire le radici; le piante alte e pesanti vogliono un vaso pesante e stabile.",
+        "coseDaFare": [
+          "Travasa in primavera, ogni 2-3 anni o quando la pianta è troppo pesante per il vaso.",
+          "Scegli un vaso solo un po' più grande.",
+          "Dopo il travaso aspetta qualche giorno prima di annaffiare."
+        ],
+        "valori": [
+          {
+            "etichetta": "Ogni quanto",
+            "valore": "2-3 anni",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Quando",
+            "valore": "primavera, all'inizio della crescita",
+            "fonti": [
+              1,
+              2,
+              3
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3
+        ]
+      },
+      "pollice": []
+    },
+    "coltivarla": {
+      "lineeGuida": {
+        "riassunto": "Si moltiplicano facilmente: talee di fusto, talee di foglia (echeveria, albero di giada) e polloni delle piante a rosetta. Prima di piantarle si lasciano asciugare finché il taglio fa la crosta, da un giorno a una settimana. Radicano in poche settimane, in terriccio con ghiaino appena umido.",
+        "coseDaFare": [
+          "Stacca una foglia intera o taglia un pezzo di fusto.",
+          "Lasciala all'aria finché il taglio è asciutto (1-7 giorni).",
+          "Appoggiala su terriccio per piante grasse appena umido."
+        ],
+        "valori": [
+          {
+            "etichetta": "Metodi",
+            "valore": "talea di fusto, talea di foglia, polloni, seme",
+            "fonti": [
+              1,
+              4,
+              5
+            ]
+          },
+          {
+            "etichetta": "Asciugatura del taglio",
+            "valore": "da 1 giorno a 1 settimana",
+            "fonti": [
+              1,
+              3
+            ]
+          },
+          {
+            "etichetta": "Radici",
+            "valore": "in poche settimane",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Dal seme",
+            "valore": "primavera, circa 21 °C, fino a 12 mesi prima del rinvaso",
+            "fonti": [
+              1
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          3,
+          4,
+          5
+        ]
+      },
+      "pollice": []
+    },
+    "problemi": {
+      "lineeGuida": {
+        "riassunto": "Uno dei problemi più comuni è la troppa acqua, che fa marcire radici e fusto e cadere le foglie; anche troppo poca acqua però le fa raggrinzire. Poca luce le fa crescere deboli e storte; il freddo lascia macchie. Il parassita più comune è la cocciniglia farinosa.",
+        "coseDaFare": [
+          "Annaffia meno di quanto pensi, ma a fondo.",
+          "Togli la cocciniglia farinosa con un bastoncino di cotone imbevuto di alcol.",
+          "Sull'albero di giada non usare il sapone insetticida: può danneggiarlo."
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "pollice": [],
+      "elenco": [
+        {
+          "nome": "Marciume per troppa acqua",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie che cadono",
+            "fusto molle alla base",
+            "vesciche sulle foglie"
+          ],
+          "prevenzione": [
+            "annaffia solo con il terriccio asciutto",
+            "terriccio drenante",
+            "vaso non troppo grande"
+          ],
+          "fonti": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "nome": "Poca luce",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "crescita debole, allungata e storta"
+          ],
+          "prevenzione": [
+            "il posto più luminoso della casa"
+          ],
+          "fonti": [
+            1
+          ]
+        },
+        {
+          "nome": "Cocciniglia farinosa",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "ciuffetti bianchi cotonosi tra le foglie"
+          ],
+          "prevenzione": [
+            "controlla spesso",
+            "alcol su un bastoncino di cotone"
+          ],
+          "fonti": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "nome": "Ragnetto rosso e cocciniglie",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie opache e puntinate",
+            "scudetti sui fusti"
+          ],
+          "prevenzione": [
+            "controlla spesso la pianta"
+          ],
+          "fonti": [
+            1,
+            2,
+            4
+          ]
+        }
+      ]
+    }
+  },
+  "falsiMiti": [
+    {
+      "mito": "Uno strato di ghiaia o argilla espansa sul fondo del vaso migliora il drenaggio.",
+      "verdetto": "falso",
+      "cosaDiconoLeFonti": "Lo strato separato sul fondo fa fermare l'acqua più in alto, dove stanno le radici. Per le succulente il drenaggio si ottiene in un altro modo: con il ghiaino mescolato dentro il terriccio, come indicano le fonti.",
+      "inPratica": "Mescola il ghiaino nel terriccio invece di metterlo sul fondo.",
+      "fonti": [
+        6,
+        1
+      ]
+    }
+  ],
+  "approfondimenti": [],
+  "tossicita": {
+    "persone": "non verificata",
+    "animali": "varia",
+    "nota": "Dipende dalla pianta. Albero di giada (Crassula) e kalanchoe sono tossici per cani e gatti; la kalanchoe può dare anche problemi al cuore. Per le persone abbiamo una sola fonte (che indica la kalanchoe come pericolosa anche per i bambini): non è ancora verificato. Per le altre succulente non abbiamo dati verificati: tienile lontane da bambini e animali.",
+    "fonti": [
+      7,
+      4,
+      5,
+      8
+    ]
+  },
+  "fonti": [
+    {
+      "id": 1,
+      "titolo": "How to grow cacti and succulents (houseplants)",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/types/cacti-succulents/houseplants/growing-guide",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Light, Watering, Temperature, Compost, Feeding, Repotting, Propagation, Problems"
+    },
+    {
+      "id": 2,
+      "titolo": "Jade Plant (HGIC 1507)",
+      "sito": "Clemson Cooperative Extension",
+      "url": "https://hgic.clemson.edu/factsheet/jade-plant/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Light, Watering, Temperature, Soil, Fertilizer, Problems"
+    },
+    {
+      "id": 3,
+      "titolo": "Jade Plant, Crassula ovata",
+      "sito": "University of Wisconsin–Madison Extension",
+      "url": "https://hort.extension.wisc.edu/articles/jade-plant-crassula-ovata/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Light, Watering, Temperature, Fertilizer, Repotting, Propagation, Pests"
+    },
+    {
+      "id": 4,
+      "titolo": "Crassula ovata",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/crassula-ovata/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Light, Watering, Propagation, Problems, Toxicity"
+    },
+    {
+      "id": 5,
+      "titolo": "Kalanchoe blossfeldiana",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/kalanchoe-blossfeldiana/",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "Light, Watering, Propagation, Toxicity"
+    },
+    {
+      "id": 6,
+      "titolo": "The Myth of Drainage Material in Container Plantings",
+      "sito": "Washington State University, Puyallup Research and Extension Center (L. Chalker-Scott)",
+      "url": "https://s3.wp.wsu.edu/uploads/sites/403/2015/03/container-drainage.pdf",
+      "consultato": "2026-11-18",
+      "livello": "A"
+    },
+    {
+      "id": 7,
+      "titolo": "Jade Plant (Crassula argentea)",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/jade-plant",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "tossica per cani, gatti, cavalli"
+    },
+    {
+      "id": 8,
+      "titolo": "Kalanchoe",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kalanchoe",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "tossica per cani e gatti"
+    }
+  ],
+  "verifica": {
+    "controlliAutomatici": "2026-11-18",
+    "verificaIndipendente": "2026-11-18"
+  },
+  "versione": 2,
+  "aggiornata": "2026-11-18"
+}

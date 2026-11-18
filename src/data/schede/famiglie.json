@@ -1,0 +1,257 @@
+[
+  {
+    "famiglia": "Araceae",
+    "nomeComune": "aracee",
+    "note": [
+      {
+        "tema": "tossicità",
+        "testo": "Molte aracee d'appartamento (pothos, filodendro, monstera e altre) contengono cristalli di ossalato di calcio: se masticate irritano bocca, lingua e gola, con gonfiore, saliva, a volte vomito e difficoltà a deglutire. Sono indicate come problema per cani e gatti.",
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "tema": "maneggiare",
+        "testo": "La linfa può irritare la pelle: per prudenza usa i guanti quando tagli o travasi queste piante.",
+        "fonti": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Epipremnum aureum (Devil's Vine)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/epipremnum-aureum/common-name/devils-vine/",
+        "consultato": "2026-11-18",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 2,
+        "titolo": "Philodendron hederaceum",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/philodendron-hederaceum/",
+        "consultato": "2026-11-18",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 3,
+        "titolo": "Monstera deliciosa",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/monstera-deliciosa/",
+        "consultato": "2026-11-18",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 4,
+        "titolo": "Swiss-Cheese Plant, Monstera deliciosa",
+        "sito": "University of Wisconsin–Madison Extension",
+        "url": "https://hort.extension.wisc.edu/articles/monstera-deliciosa/",
+        "consultato": "2026-11-18",
+        "livello": "A",
+        "punto": "ossalati: tutte le parti velenose tranne il frutto maturo"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-18",
+      "verificaIndipendente": "2026-11-18"
+    },
+    "aggiornata": "2026-11-18"
+  },
+  {
+    "famiglia": "Crassulaceae",
+    "nomeComune": "crassulacee",
+    "note": [
+      {
+        "tema": "tossicità",
+        "testo": "L'albero di giada (Crassula) e la kalanchoe sono tossici per cani e gatti: possono dare vomito, abbattimento e scarsa coordinazione; la kalanchoe contiene sostanze che, raramente, alterano il ritmo del cuore. Per le persone non abbiamo ancora due fonti: tienile comunque lontane dai bambini.",
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "tema": "parassiti",
+        "testo": "Il parassita più comune è la cocciniglia farinosa: si toglie con un bastoncino di cotone imbevuto di alcol.",
+        "fonti": [
+          5,
+          6
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Jade Plant (Crassula argentea)",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/jade-plant",
+        "consultato": "2026-11-18",
+        "livello": "A"
+      },
+      {
+        "id": 2,
+        "titolo": "Kalanchoe",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kalanchoe",
+        "consultato": "2026-11-18",
+        "livello": "A"
+      },
+      {
+        "id": 3,
+        "titolo": "Crassula ovata",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/crassula-ovata/",
+        "consultato": "2026-11-18",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 4,
+        "titolo": "Kalanchoe blossfeldiana",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/kalanchoe-blossfeldiana/",
+        "consultato": "2026-11-18",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 5,
+        "titolo": "Jade Plant, Crassula ovata",
+        "sito": "University of Wisconsin–Madison Extension",
+        "url": "https://hort.extension.wisc.edu/articles/jade-plant-crassula-ovata/",
+        "consultato": "2026-11-18",
+        "livello": "A",
+        "punto": "Pests"
+      },
+      {
+        "id": 6,
+        "titolo": "Jade Plant (HGIC 1507)",
+        "sito": "Clemson Cooperative Extension",
+        "url": "https://hgic.clemson.edu/factsheet/jade-plant/",
+        "consultato": "2026-11-18",
+        "livello": "A",
+        "punto": "Problems"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-18",
+      "verificaIndipendente": "2026-11-18"
+    },
+    "aggiornata": "2026-11-18"
+  },
+  {
+    "famiglia": "Euphorbiaceae",
+    "nomeComune": "euforbiacee",
+    "note": [
+      {
+        "tema": "maneggiare",
+        "testo": "Le euforbie hanno un lattice bianco che irrita pelle e occhi e può provocare vesciche; negli occhi può danneggiare la cornea, anche in modo permanente. Quando le tagli usa guanti, maniche lunghe e occhiali.",
+        "fonti": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "tema": "tossicità",
+        "testo": "Il lattice è irritante anche se ingerito: per esempio la corona di spine (Euphorbia milii) è indicata come tossica se mangiata, per bambini e animali. Per la stella di Natale abbiamo per ora una sola fonte, secondo cui irrita bocca e stomaco di cani e gatti ma la sua pericolosità è spesso esagerata. Tieni queste piante lontane da bambini e animali.",
+        "fonti": [
+          2,
+          4
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Sun-loving euphorbias",
+        "sito": "Royal Horticultural Society",
+        "url": "https://www.rhs.org.uk/plants/euphorbia/sun-loving",
+        "consultato": "2026-11-18",
+        "livello": "A",
+        "punto": "lattice irritante, guanti e occhiali"
+      },
+      {
+        "id": 2,
+        "titolo": "Euphorbia milii (Crown of Thorns)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/euphorbia-milii/",
+        "consultato": "2026-11-18",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 3,
+        "titolo": "Potentially harmful garden plants",
+        "sito": "Royal Horticultural Society",
+        "url": "https://www.rhs.org.uk/prevention-protection/potentially-harmful-garden-plants",
+        "consultato": "2026-11-18",
+        "livello": "A",
+        "punto": "linfa irritante, vesciche"
+      },
+      {
+        "id": 4,
+        "titolo": "Poinsettia (Euphorbia pulcherrima)",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/poinsettia",
+        "consultato": "2026-11-18",
+        "livello": "A"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-18",
+      "verificaIndipendente": "2026-11-18"
+    },
+    "aggiornata": "2026-11-18"
+  },
+  {
+    "famiglia": "Orchidaceae",
+    "nomeComune": "orchidee",
+    "note": [
+      {
+        "tema": "parassiti",
+        "testo": "Nelle orchidee coltivate in casa tornano spesso cocciniglia farinosa, cocciniglie, ragnetti e tripidi: controlla il sotto delle foglie e i punti dove nascono.",
+        "fonti": [
+          1,
+          2
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Orchids (HGIC 1560)",
+        "sito": "Clemson Cooperative Extension",
+        "url": "https://hgic.clemson.edu/factsheet/orchids/",
+        "consultato": "2026-11-18",
+        "livello": "A",
+        "punto": "Pests"
+      },
+      {
+        "id": 2,
+        "titolo": "Phalaenopsis",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/phalaenopsis/",
+        "consultato": "2026-11-18",
+        "livello": "A",
+        "punto": "Insects"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-18",
+      "verificaIndipendente": "2026-11-18"
+    },
+    "aggiornata": "2026-11-18"
+  }
+]
