@@ -482,10 +482,12 @@
   "approfondimenti": [],
   "tossicita": {
     "persone": "non verificata",
-    "animali": "non verificata",
-    "nota": "Per la Phalaenopsis una fonte universitaria la indica non tossica per cani, gatti e cavalli, ma non abbiamo ancora una seconda conferma, e la famiglia delle orchidee è enorme. Finché non è verificato, tienila fuori dalla portata di bambini e animali.",
+    "animali": "varia",
+    "nota": "Per la Phalaenopsis (orchidea farfalla) due fonti concordano: non è tossica per cani e gatti. Questo vale solo per la Phalaenopsis, non per tutte le orchidee: per le altre orchidee di questo tipo non abbiamo dati verificati. Per le persone non abbiamo fonti: tienila comunque fuori dalla portata dei bambini piccoli.",
     "fonti": [
-      4
+      4,
+      7,
+      8
     ]
   },
   "fonti": [
@@ -542,12 +544,30 @@
       "consultato": "2026-11-18",
       "livello": "A",
       "punto": "titolo e abstract (Crossref)"
+    },
+    {
+      "id": 7,
+      "titolo": "Toxic and Non-Toxic Plant List — Cats",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/cats-plant-list",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "sezione Non-Toxic to Cats: Phalaenopsis Orchid (Moth Orchid, Moon Orchid)"
+    },
+    {
+      "id": 8,
+      "titolo": "Toxic and Non-Toxic Plant List — Dogs",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/dogs-plant-list",
+      "consultato": "2026-11-18",
+      "livello": "A",
+      "punto": "sezione Non-Toxic to Dogs: Phalaenopsis Orchid (Moth Orchid, Moon Orchid)"
     }
   ],
   "verifica": {
     "controlliAutomatici": "2026-11-18",
     "verificaIndipendente": "2026-11-18"
   },
-  "versione": 2,
+  "versione": 3,
   "aggiornata": "2026-11-18"
 }

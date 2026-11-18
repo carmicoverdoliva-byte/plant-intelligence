@@ -325,7 +325,14 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
       sezione è dichiarata "in preparazione".
     - Verifiche: `npm run schede:controlla -- --rete` (0 errori, 24 fonti raggiungibili, nessuna copia); verifica
       indipendente in due giri (circa 30 correzioni applicate); prove identify 27/27 e app 143/143.
-    - In attesa: la tua tabella della tossicità del gruppo 1.
+    - Tabella della tossicità del gruppo 1 approvata dall'utente (2026-11-18). Orchidee: per la sola Phalaenopsis due
+      fonti A concordi (NC State e gli elenchi ASPCA "Non-Toxic to Cats/Dogs") la indicano non tossica per cani e gatti;
+      la scheda del tipo resta "dipende dalla specie" per gli animali e "non verificata" per le persone.
+  - **Elenco casa e orto approvato** (2026-11-18), con Phalaenopsis (gruppo di ibridi commerciali) nel rilascio 1 e
+    oleandro, olivo, buganvillea, cetriolo, cipolla nel rilascio 2: 67 specie e 42 generi, nomi controllati con GBIF.
+  - **Aggiornamento dell'app sull'iPhone:** l'app confronta la sua versione con quella pubblicata (`/api/versione`)
+    quando torna in primo piano e ogni 30 minuti; se è cambiata mostra "Nuova versione disponibile · Aggiorna".
+    "Aggiorna" ricarica la pagina e i dati salvati restano (prova automatica 148/148).
   - **3.3c — Schede generate al momento** (per R2): `/api/scheda`, `CardWriter` con Cloudflare Workers AI (piano
     gratuito), `GeneratedCardStore` con Upstash; dati reali in ingresso, controlli automatici, "Scheda generata
     automaticamente", ripiego sul genere o sul tipo ([scheda del servizio](../api-documentation/ai-schede-generate.md)).

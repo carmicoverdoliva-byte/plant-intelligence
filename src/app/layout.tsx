@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 // Carattere Nunito (licenza OFL) ospitato da noi: i file arrivano dal nostro sito, non da Google
 import "@fontsource-variable/nunito";
 import "./globals.css";
+import { AvvisoAggiornamento } from "@/components/avviso-aggiornamento";
 import { BarraNavigazione } from "@/components/barra-navigazione";
 import { RegistraServiceWorker } from "./registra-service-worker";
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         {children}
         <BarraNavigazione />
+        <AvvisoAggiornamento />
         <RegistraServiceWorker />
       </body>
     </html>

@@ -32,8 +32,9 @@ export async function provaFotocamera({ apri, valuta, clicca, perTesto, ok, paus
   let prossima = "probabile";
   let intercettate = 0;
   await cmd("Fetch.enable", { patterns: [{ urlPattern: "*/api/identify*" }, { urlPattern: "*/api/descrizione*" }] });
-  ascoltatori.push(async (m) => {
+  const intercetta = async (m) => {
     if (m.method !== "Fetch.requestPaused" || m.sessionId !== sessionId) return;
+    if (!/\/api\/(identify|descrizione)/.test(m.params.request.url)) return;
     if (m.params.request.url.includes("/api/descrizione")) {
       const descr = {
         ok: true,
@@ -58,7 +59,8 @@ export async function provaFotocamera({ apri, valuta, clicca, perTesto, ok, paus
       responseHeaders: [{ name: "content-type", value: "application/json" }],
       body: Buffer.from(JSON.stringify(corpo)).toString("base64"),
     });
-  });
+  };
+  ascoltatori.push(intercetta);
 
   const scegliFoto = async () => {
     const { root } = await cmd("DOM.getDocument", { depth: -1 });
@@ -142,6 +144,7 @@ export async function provaFotocamera({ apri, valuta, clicca, perTesto, ok, paus
   ok(await aspettaTesto("Per oggi hai finito i riconoscimenti") && intercettate === prima, "Quota finita sul telefono: messaggio chiaro, nessuna richiesta inviata");
   await valuta(`localStorage.removeItem("mandragola:riconoscimenti:" + new Date().toISOString().slice(0,10)), true`);
 
+  ascoltatori.splice(ascoltatori.indexOf(intercetta), 1);
   await cmd("Fetch.disable");
   rmSync(cartella, { recursive: true, force: true });
 }

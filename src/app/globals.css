@@ -161,3 +161,13 @@ body::before {
     box-shadow: 0 12px 30px rgb(10 80 45 / 0.18);
   }
 }
+
+@layer components {
+  /* Avviso "Nuova versione disponibile": flottante, appena sopra la barra di navigazione */
+  .avviso-sopra-barra {
+    bottom: calc(max(20px, env(safe-area-inset-bottom)) + 80px);
+    box-shadow:
+      inset 0 1px 1px rgb(255 255 255 / 0.95),
+      0 10px 30px rgb(15 61 46 / 0.18);
+  }
+}

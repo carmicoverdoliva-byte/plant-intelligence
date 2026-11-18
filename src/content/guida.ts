@@ -176,6 +176,11 @@ export const domande: Domanda[] = [
       "Perché una percentuale sembra più precisa di quanto sia. L'app dice a parole quanto è sicura (alta, buona, bassa) e, se non è sicura, ti mostra le piante simili invece di inventare un nome.",
   },
   {
+    domanda: "Come si aggiorna l'app?",
+    risposta:
+      "Da sola: quando pubblichiamo una versione nuova, alla riapertura compare l'avviso \"Nuova versione disponibile\". Tocca \"Aggiorna\": l'app si ricarica e i dati salvati sul telefono restano dove sono.",
+  },
+  {
     domanda: "Posso vedere come è fatta?",
     risposta: "Sì: Mandragola è open source, il codice è pubblico su GitHub con licenza MIT.",
   },

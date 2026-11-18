@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
+// Versione dell'app: su Vercel è il codice del commit pubblicato; sul PC un'ora di compilazione.
+// Finisce sia nel codice del telefono sia nel server: se non coincidono, il telefono ha una versione vecchia
+// e mostra "Nuova versione disponibile" (componente AvvisoAggiornamento).
+const VERSIONE_APP = process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 12) || `locale-${Date.now()}`;
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  env: { NEXT_PUBLIC_VERSIONE_APP: VERSIONE_APP },
   cacheComponents: true,
   partialPrefetching: true,
   // Intestazioni di sicurezza consigliate dalla guida PWA di Next.js (node_modules/next/dist/docs/01-app/02-guides/progressive-web-apps.md)

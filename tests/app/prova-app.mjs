@@ -205,7 +205,13 @@ try {
     await provaFotocamera({ apri, valuta, clicca, perTesto, ok, pausa, foto, cmd, ascoltatori, sessionId, controllaSchermata });
   }
 
-  // --- 7. Onboarding (passo 1.2) ---
+  // --- 7. Avviso di nuova versione ---
+  {
+    const { provaAggiornamento } = await import("./prova-aggiornamento.mjs");
+    await provaAggiornamento({ apri, valuta, clicca, perTesto, ok, pausa, cmd, ascoltatori, sessionId });
+  }
+
+  // --- 8. Onboarding (passo 1.2) ---
   if (haOnboarding) {
     const { provaOnboarding } = await import("./prova-onboarding.mjs");
     await provaOnboarding({ apri, valuta, clicca, perTesto, ok, pausa, foto, controllaSchermata });
