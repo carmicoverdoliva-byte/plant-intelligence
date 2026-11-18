@@ -20,6 +20,9 @@ escluso Il Floricultore); feed RSS in v1.1 solo con **permesso scritto e control
 scelti dall'utente; **D12 decisa: A** per v1 e v1.x, da rivalutare nella v2.
 **Aggiornamento 2026-11-18 (correzione fondamentale dell'utente):** scheda completa per **qualsiasi** pianta
 riconosciuta → nuova **D13** (aperta), che sostituisce le "22 schede" di D8.
+**Aggiornamento 2026-11-18 (decisioni dell'utente):** **D13 decisa** (A + B corretta, rilascio progressivo, linee guida e
+"pollice verde", revisione ridotta alla tossicità); **D6 rivista** (AI gratuita online solo per generare schede da dati
+reali).
 
 ---
 
@@ -124,6 +127,21 @@ modificare il programma. Vedi [architettura §4](architettura.md#4-il-limite-di-
 **Raccomandazione: A.** La chat AI è un "di più", non una funzione essenziale. Ne riparliamo in v2 con nuove verifiche.
 
 **Scelta: ✅ DECISA il 2026-11-16 — A.** v1 assistente a regole; v2 Ollama personale.
+
+**Revisione del 2026-11-18 (decisione dell'utente):** l'AI online gratuita si usa per una cosa precisa, cioè **generare
+le schede di cura delle specie che non hanno ancora una scheda verificata** (D13, opzione B corretta). La chat libera
+resta come prima: assistente a regole nella v1, Ollama nella v2.
+- La scheda si genera **da dati reali**: la nostra scheda del genere e del tipo, le note di famiglia, Wikidata,
+  Wikipedia, EIVE e WCVP. Mai dalla sola memoria del modello.
+- Controlli automatici; in cima la scritta **"Scheda generata automaticamente"**; tossicità mai "innocua" senza fonte
+  verificata.
+- La scheda si salva **una volta per specie**, per tutti, e poi viene sostituita da una scheda verificata.
+- Servizio proposto: **Cloudflare Workers AI** (10.000 neuron al giorno gratis, circa 55 schede al giorno; i contenuti
+  non servono ad addestrare modelli). Archivio: **Upstash Redis**. Riserve: Groq e OpenRouter **(da verificare)**.
+- **Gemini gratuito resta escluso:** i termini vietano il piano gratuito per utenti in UE, Svizzera e Regno Unito.
+- Si invia solo materiale pubblico (nomi delle piante, testi aperti): **mai** foto, posizione o dati degli utenti.
+
+Dettagli e fonti: [AI gratuita per le schede generate](../api-documentation/ai-schede-generate.md).
 
 ---
 
@@ -446,9 +464,31 @@ sempre in cima il livello ("Scheda della specie", "Scheda del genere…", "Consi
 
 Procedura operativa: skill `plant-schede`.
 
-**Scelta sulle parti 1 e 2:** ⏳ in attesa dell'utente.
+**Scelta: ✅ DECISA dall'utente il 2026-11-18 — A più una versione corretta di B.** Obiettivo: massima completezza,
+senza servizi a pagamento. Le decisioni prevalgono su quanto scritto sopra dove diverso.
+1. **Livelli:**
+   - specie verificata;
+   - **specie generata al momento** con AI gratuita da dati reali (B corretta, vedi D6 rivista);
+   - genere;
+   - tipo di pianta;
+   - più le note di famiglia.
+2. **Rilascio progressivo, senza aspettare T1.**
+   - Prima pubblicazione (R1): riconoscimento Pl@ntNet, **18 schede per tipo di pianta**, note di famiglia e le
+     **30 specie di casa più comuni**. Stima: **settimana del 7 dicembre 2026**.
+   - Poi R2: schede generate.
+   - Poi nuove schede verificate **ogni settimana**.
+3. **Ogni sezione ha due parti:**
+   - **"Linee guida"**: solo fonti ufficiali e autorevoli (A, o due B concordi);
+   - **"Consigli dal pollice verde"**: fonti B e C, etichettati come non ufficiali, mai in contraddizione con le linee
+     guida. Se le contraddicono, vanno nei "Falsi miti".
+4. **Revisione dell'utente ridotta:** per ogni blocco solo la tabella "pianta · tossica per persone/animali · fonte con
+   link" (5 minuti). Tutto il resto lo verificano i test e l'agente di verifica indipendente; letture complete
+   facoltative.
+5. **Elenco casa, balcone e orto:** proposta in `data/elenco-priorita.json` (61 specie, 42 generi), **da approvare**.
 
-**Cosa cambia se si sceglie A:**
+Progetto aggiornato: [schede su larga scala](schede-su-larga-scala.md).
+
+**Cosa cambia con questa scelta:**
 - D8 resta valida per le regole (fonti, parole nostre, falsi miti, approfondimenti);
 - le "22 schede" e il ripiego per gruppo (`CareGroup`) sono sostituiti dai tre livelli (`CareSheet`);
 - il catalogo dell'anteprima live (D10) non decide più quali schede esistono.
@@ -463,11 +503,11 @@ Procedura operativa: skill `plant-schede`.
 | D3 Dati utente | ✅ Solo telefono + backup su file; onboarding guida all'installazione sulla Home e propone il backup |
 | D4 Contatori | ✅ Upstash Redis; piano gratuito verificato il 2026-11-18 |
 | D5 Quota per dispositivo | ✅ 10 al giorno, valore configurabile |
-| D6 Botanico AI | ✅ Assistente a regole in v1; Ollama personale in v2 |
+| D6 Botanico AI | ✅ Assistente a regole in v1; Ollama personale in v2. **Rivista il 2026-11-18:** AI online gratuita (Cloudflare Workers AI, proposta) solo per generare schede da dati reali, con cache condivisa |
 | D7 Promemoria | ✅ In-app + Calendario; push in v2 |
 | D8 Consigli di cura | ✅ Schede nostre con fonti citate + dati botanici aperti. Ampliata con "Falsi miti" e "Approfondimenti". ~~22 schede complete nella v1 e ripiego per gruppo~~: **superata da D13** (2026-11-18) |
 | D9 Flora e soglie | ✅ (2026-11-17) `k-world-flora`; titolo nome comune + genere, specie "probabilmente", nessuna percentuale; soglie tarate; tabella sinonimi GBIF |
 | D10 Modello anteprima live | ✅ (2026-11-18) BioCLIP v1 compresso int8 (87 MB) da Hugging Face, versione bloccata; download alla prima apertura della fotocamera; nome comune o genere; gemelle "X o Y" |
 | D11 Prova su iPhone 16 | ✅ Chiusa (2026-11-18): fattibile (WebGPU, ~0,3 s, 0 errori); calore su 5 minuti e trappole da misurare nella v1 |
 | D12 Community | ✅ (2026-11-18) A: nessuna community nella v1/v1.x, solo link a community esistenti; da rivalutare nella v2 |
-| D13 Schede per qualsiasi pianta | ⏳ (2026-11-18) Proposta A: specie → genere → tipo di pianta, a blocchi con fonti e controlli; T1 nella v1 (6-7 settimane in parallelo). Sostituisce le "22 schede" |
+| D13 Schede per qualsiasi pianta | ✅ (2026-11-18) A + B corretta: specie verificata → specie generata → genere → tipo; linee guida e pollice verde; rilascio progressivo (R1 ~7 dicembre 2026); revisione utente = tabella tossicità. Sostituisce le "22 schede" |

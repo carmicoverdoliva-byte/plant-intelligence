@@ -126,13 +126,22 @@ invito discreto (chiudibile) a installarla.
   [D13](../architecture/decisioni-da-prendere.md#d13--schede-complete-per-qualsiasi-pianta-riconosciuta), proposta;
   progetto: [schede su larga scala](../architecture/schede-su-larga-scala.md)). Sostituisce "circa 50 schede" e il
   ripiego per gruppo.
-  - **Tre livelli, tutti con tutte le sezioni:**
-    - scheda della **specie**;
+  - **Approvata il 2026-11-18 (A + B corretta).** Livelli, tutti con tutte le sezioni:
+    - scheda della **specie verificata**;
+    - scheda della **specie generata automaticamente** (AI gratuita, da dati reali: scheda del genere, Wikidata,
+      Wikipedia, dati aperti), dichiarata in cima, con tossicità mai "innocua" senza fonte verificata, salvata una volta
+      per tutti; se il servizio non risponde, si passa al genere o al tipo, mai una risposta vuota;
     - scheda del **genere** (rete di sicurezza: valori come intervalli, eccezioni dette);
     - scheda del **tipo di pianta** (circa 18 tipi, es. "arbusto sempreverde di clima mediterraneo"), che esiste per
       ogni pianta.
 
     In più, le **note di famiglia** (es. tossicità tipica).
+  - **Ogni sezione ha due parti:**
+    - **"Linee guida"**, solo da fonti ufficiali e autorevoli (A, o due B concordi);
+    - **"Consigli dal pollice verde"**, trucchi di appassionati, vivai e blog (B e C), etichettati "non ufficiale", mai in
+      contraddizione con le linee guida. Se le contraddicono, diventano "Falsi miti".
+  - **Rilascio progressivo:** la prima pubblicazione ha i tipi di pianta, le note di famiglia e le specie di casa più
+    comuni; poi schede nuove ogni settimana.
   - L'app usa **sempre la scheda più precisa disponibile** e lo dichiara in cima:
     - "Scheda della specie";
     - "Scheda del genere Ficus: vale per la maggior parte dei Ficus";
@@ -140,8 +149,8 @@ invito discreto (chiudibile) a installarla.
   - Le schede si producono **a blocchi di 10**, partendo dalle piante più fotografate e coltivate. L'ordine viene dai
     dati di Pl@ntNet su GBIF per le piante all'aperto e da un elenco a parte per casa e orto.
   - Ogni blocco passa da un **controllo di qualità**: test automatici, verifica indipendente frase per frase con le
-    fonti, confronto con dati aperti (EIVE, WCVP) e revisione a campione dell'utente. La scheda mostra quando è stata
-    verificata.
+    fonti, confronto con dati aperti (EIVE, WCVP) e, da parte dell'utente, la sola tabella della tossicità (5 minuti per
+    blocco; letture complete facoltative). La scheda mostra quando è stata verificata.
   - **Metodo (deciso dall'utente):**
     - per ogni pianta, **più fonti autorevoli**: orti botanici, università ed enti di ricerca, vivai specializzati,
       riviste e blog di settore affidabili;
@@ -160,7 +169,9 @@ invito discreto (chiudibile) a installarla.
 - ogni sezione mostra almeno una fonte (controllato da un test automatico);
 - ogni scheda ha "quanto" annaffiare, il tipo di concime e le tre temperature (valore con fonte oppure "non indicata
   dalle fonti");
-- nella v1 almeno il traguardo T1 di D13.
+- le schede generate mostrano "Scheda generata automaticamente" e le fonti usate;
+- i consigli dal pollice verde sono sempre separati e marcati "non ufficiale";
+- nella v1 almeno il traguardo T1 di D13, raggiunto per rilasci successivi.
 
 ### F18 — Coltivarla da zero e travaso
 > Aggiunta il 2026-11-17. Estende le schede di cura (F08, decisione D8). Esempio completo:

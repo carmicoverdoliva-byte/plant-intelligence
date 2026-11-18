@@ -13,6 +13,10 @@ basta e non chiede la carta di credito. Non contiene dati personali: solo un cod
 - Lo legge e lo scrive solo il **server** (funzioni di Next.js su Vercel), con la chiave nelle impostazioni segrete: il
   telefono non la vede mai (CLAUDE.md §7).
 - Servono circa **60.000 comandi al mese** (stima di D4), molto sotto il limite gratuito.
+- **Dal 2026-11-18 (D13, R2): archivio delle schede generate al momento**, una per specie, valida per tutti
+  ([scheda](ai-schede-generate.md)). Circa 20 KB a scheda: i 256 MB bastano per circa 10.000 schede; ogni lettura costa
+  1 comando, quindi anche 100.000 aperture al mese restano sotto il limite insieme ai contatori **(da ricontrollare con
+  i numeri veri dopo R2)**.
 
 ## Limiti del piano gratuito
 | Risorsa | Limite gratuito | Fonte |

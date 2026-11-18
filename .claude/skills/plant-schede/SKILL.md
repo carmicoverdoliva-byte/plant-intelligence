@@ -1,6 +1,6 @@
 ---
 name: plant-schede
-description: Scrittura delle schede di cura di Mandragola (specie, genere, tipo di pianta, note di famiglia) con il metodo deciso dall'utente — più fonti autorevoli per ogni pianta, fatti e consigli pratici ricavati e riscritti con parole nostre in un riassunto e una lista di "cose da fare", ogni fonte citata con link, mai testi copiati, contraddizioni dichiarate (e valutate per "Falsi miti"), siti che vietano l'AI lasciati all'utente. Usala SEMPRE quando si scrive, corregge, amplia o controlla una scheda o un blocco di schede, quando l'utente chiede "scrivi la scheda di…", "prossimo blocco", "aggiungi la pianta…", o scrive "/plant-schede <pianta o blocco>".
+description: Scrittura delle schede di cura di Mandragola (specie, genere, tipo di pianta, note di famiglia) con il metodo deciso dall'utente — più fonti autorevoli per ogni pianta, fatti e consigli pratici riscritti con parole nostre, ogni sezione divisa in "Linee guida" (solo fonti A o due B concordi) e "Consigli dal pollice verde" (fonti B/C, non ufficiali, mai in contraddizione), ogni fonte citata con link, mai testi copiati, contraddizioni nei "Falsi miti", siti che vietano l'AI lasciati all'utente, revisione dell'utente solo sulla tabella della tossicità. Vale anche come riferimento per le regole delle schede generate al momento. Usala SEMPRE quando si scrive, corregge, amplia o controlla una scheda o un blocco di schede, quando l'utente chiede "scrivi la scheda di…", "prossimo blocco", "aggiungi la pianta…", o scrive "/plant-schede <pianta o blocco>".
 ---
 
 # Skill: plant-schede — scrivere le schede di cura
@@ -40,12 +40,22 @@ Per **ogni pianta e ogni sezione** cerca almeno **2 fonti** (3 se i dati sono nu
 - Confronta le fonti fatto per fatto: **d'accordo**, **in parte**, **in disaccordo**.
 - Per le schede di **genere** e di **tipo** usa **intervalli** ed eccezioni esplicite, mai il valore di una sola specie.
 
-## Fase 3 — Scrivere con parole nostre
-Per ogni sezione scrivi:
-1. **Riassunto** (2-4 frasi semplici) di cosa dicono le fonti nel complesso;
-2. **"Cose da fare"**: lista breve di azioni concrete ("Annaffia quando i primi 2-3 cm di terriccio sono asciutti");
-3. i campi strutturati dello schema `CareSheet` (numeri, stagioni, intervalli), ognuno con le sue fonti;
-4. le **fonti citate con link** (titolo, sito, URL, data di consultazione, livello A/B/C, punto della fonte).
+## Fase 3 — Scrivere con parole nostre, in due parti per ogni sezione
+**Parte 1 — "Linee guida"** (solo fonti **A**, oppure **due B concordi**):
+1. **riassunto** (2-4 frasi semplici) di cosa dicono le fonti nel complesso;
+2. **"cose da fare"**: lista breve di azioni concrete ("Annaffia quando i primi 2-3 cm di terriccio sono asciutti");
+3. i campi strutturati dello schema `CareSheet` (numeri, stagioni, intervalli), ognuno con le sue fonti. **Tutti i numeri
+   e la tossicità stanno qui.**
+
+**Parte 2 — "Consigli dal pollice verde"** (fonti **B e C**: vivai, appassionati, riviste e blog di settore):
+- trucchi pratici, uno per riga, con parole nostre e la fonte; nell'app compaiono con l'etichetta **"non ufficiale"**;
+- **mai in contraddizione** con le linee guida (es. una temperatura fuori dall'intervallo, un'annaffiatura più frequente
+  del consigliato): un consiglio che le contraddice **non entra qui** e si valuta come voce dei **"Falsi miti"**,
+  con verdetto basato su fonti A;
+- può essere vuota: meglio nessun trucco che un trucco dubbio.
+
+Per entrambe le parti: **fonti citate con link** (titolo, sito, URL, data di consultazione, livello A/B/C, punto della
+fonte).
 
 **Divieti:**
 - mai copiare testi, nemmeno parzialmente; mai seguire un singolo articolo frase per frase o nello stesso ordine;
@@ -63,10 +73,26 @@ Per ogni sezione scrivi:
 ## Fase 5 — Controlli (come da progetto)
 1. `npm run schede:controlla` (quando esiste): completezza, fonti, coerenza, EIVE/WCVP, anti-copia, link vivi.
 2. **Verifica indipendente:** un secondo agente, senza la bozza del ragionamento, rilegge le fonti e controlla ogni
-   affermazione; quelle non trovate si tolgono o si correggono.
+   affermazione; quelle non trovate si tolgono o si correggono. Controlla anche che i consigli dal pollice verde non
+   contraddicano le linee guida.
 3. Tossicità: **2 fonti concordi** (almeno una A), altrimenti `unknown` con consiglio prudente.
 
-## Fase 6 — Riepilogo per l'utente (per blocco)
-Una tabella con: schede del blocco · livello · fonti per livello (A/B/C) · disaccordi trovati e come sono stati
-risolti · nuove voci di "Falsi miti" · fonti da leggere all'utente (siti che vietano l'AI) · 2 schede scelte a caso da
-leggere per intero · tutte le voci sulla tossicità. Poi commit e push solo dopo i controlli (regola dei push).
+## Fase 6 — Revisione dell'utente (5 minuti per blocco)
+Decisione dell'utente del 2026-11-18: la revisione è **solo** questa tabella. Tutto il resto lo verificano i test
+automatici e l'agente indipendente.
+
+| Pianta | Tossica per le persone | Tossica per gli animali | Fonte (con link) |
+|---|---|---|---|
+| … | sì / no / varia / non verificata | sì / no / varia / non verificata | [titolo](url) |
+
+Sotto la tabella, in poche righe: fonti da leggere all'utente (siti che vietano l'AI), eventuali nuove voci di
+"Falsi miti". Le letture complete sono facoltative. Dopo l'approvazione: commit e push (regola dei push).
+
+## Schede generate al momento (riferimento)
+Le schede generate dall'AI gratuita (D6 rivista, D13) seguono le stesse regole, con alcune differenze:
+- linee guida solo dalla nostra scheda di genere o di tipo e da EIVE e WCVP;
+- Wikipedia vale come fonte C;
+- tossicità mai "innocua" senza fonte verificata;
+- etichetta "Scheda generata automaticamente".
+
+Quando una specie generata entra in un blocco, si scrive la scheda verificata che la sostituisce.

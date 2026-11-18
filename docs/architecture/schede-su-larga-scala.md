@@ -1,13 +1,15 @@
 # Schede di cura complete per qualsiasi pianta riconosciuta — progetto
 
-> Proposto il 2026-11-18 · Stato: **da approvare** (decisione [D13](decisioni-da-prendere.md#d13--schede-complete-per-qualsiasi-pianta-riconosciuta))
-> Collegati: [banche dati aperte](../api-documentation/banche-dati-cura.md), [architettura §5](architettura.md#5-schema-dei-dati),
-> [esempio di scheda (pothos)](../requirements/esempio-scheda-pothos.md), [piano v1](../requirements/piano-v1.md)
+> Proposto il 2026-11-18 · **Approvato dall'utente il 2026-11-18** (D13: opzione A più una versione corretta di B)
+> Collegati: [D13](decisioni-da-prendere.md#d13--schede-complete-per-qualsiasi-pianta-riconosciuta),
+> [banche dati aperte](../api-documentation/banche-dati-cura.md),
+> [AI gratuita per le schede generate](../api-documentation/ai-schede-generate.md),
+> [architettura §5](architettura.md#5-schema-dei-dati), [esempio (pothos)](../requirements/esempio-scheda-pothos.md),
+> [piano v1](../requirements/piano-v1.md), skill `plant-schede`
 
 ## In breve
-**Il problema.** Il piano diceva "22 schede complete nella v1", cioè solo le piante dell'anteprima live. Per tutte le
-altre c'era un ripiego per gruppo, poco preciso. È stato un errore di pianificazione. L'utente vuole la **scheda
-completa** per **qualsiasi** pianta riconosciuta:
+**Obiettivo (decisione dell'utente).** La **scheda completa** per **qualsiasi** pianta riconosciuta, con la massima
+completezza e senza servizi a pagamento. Le sezioni sono:
 - luce;
 - acqua (quando e quanto);
 - temperatura;
@@ -19,67 +21,73 @@ completa** per **qualsiasi** pianta riconosciuta:
 - falsi miti;
 - approfondimenti.
 
-**La proposta, in quattro idee:**
-1. **Tre livelli di scheda, tutti con le stesse sezioni complete:**
-   - **specie**, la più precisa;
-   - **genere**, la rete di sicurezza;
-   - **tipo di pianta**, il paracadute: esiste per *ogni* pianta, per costruzione.
+Le "22 schede" del vecchio piano erano un errore di pianificazione.
 
-   L'app usa sempre la più precisa disponibile e **lo dice** in cima alla scheda.
-2. **Si scrive prima ciò che la gente fotografa davvero.** L'ordine viene dai dati aperti di Pl@ntNet su GBIF per le
-   piante all'aperto, e da un elenco a parte per casa e orto.
-3. **Si produce a blocchi di 10 schede**, ognuno con fonti citate e un controllo di qualità in quattro parti:
+**Come, in sei idee:**
+1. **Quattro livelli**, tutti con tutte le sezioni. L'app usa il più preciso disponibile e **lo dice** in cima.
+   1. **specie verificata**, scritta da noi;
+   2. **specie generata** al momento da un'AI gratuita, a partire da dati reali;
+   3. **genere**;
+   4. **tipo di pianta**, che esiste per ogni pianta.
+2. **Ogni sezione ha due parti:**
+   - **"Linee guida"**, solo da fonti ufficiali e autorevoli;
+   - **"Consigli dal pollice verde"**, trucchi di appassionati, vivai e blog, etichettati come non ufficiali.
+3. **Si scrive prima ciò che la gente fotografa e coltiva davvero:**
+   - dati Pl@ntNet su GBIF per le piante all'aperto;
+   - [elenco casa, balcone e orto](../../data/elenco-priorita.json).
+4. **Produzione a blocchi di 10 schede**, con:
    - test automatici;
-   - verifica "chi scrive non è chi controlla";
+   - un agente di verifica indipendente;
    - confronto con i dati aperti;
-   - revisione a campione dell'utente.
-4. **Nessun dato inventato:** ogni numero ha la sua fonte. Dove le fonti non permettono di generalizzare (per esempio la
-   tossicità di un genere intero), la scheda lo dice e dà un consiglio prudente.
+   - una **revisione dell'utente di 5 minuti**: solo la tabella della tossicità.
+5. **Rilascio progressivo:** la prima pubblicazione non aspetta il traguardo T1; poi nuove schede **ogni settimana**.
+6. **Nessun dato inventato:** ogni numero ha la sua fonte. Quando un dato non si può generalizzare, la scheda lo dice e dà
+   un consiglio prudente.
 
-## 1. I tre livelli (più le note di famiglia)
+## 1. I livelli (più le note di famiglia)
 
 ```text
-Pl@ntNet riconosce:  specie (es. Ficus elastica) ─┐
-                                                  ▼
-  1. Scheda della SPECIE?        sì → "Scheda della specie"                      (la più precisa)
-                     │ no
-  2. Scheda del GENERE (Ficus)?  sì → "Scheda del genere Ficus: vale per la      (rete di sicurezza)
-                     │ no              maggior parte dei Ficus. La tua può avere qualche differenza."
-  3. Scheda del TIPO DI PIANTA   sempre → "Consigli per: albero/arbusto da        (paracadute: c'è sempre)
-     (es. "arbusto sempreverde          appartamento di clima tropicale.
-      di clima tropicale")              La scheda della specie non è ancora disponibile."
+Pl@ntNet riconosce:  specie (es. Ficus microcarpa) ─┐
+                                                    ▼
+  1. Scheda di SPECIE VERIFICATA?   sì → "Scheda della specie · verificata con le fonti"     (la più precisa)
+                    │ no
+  2. Scheda di SPECIE GENERATA?     sì → "Scheda generata automaticamente" (già in cache)
+                    │ no → si genera ora (AI gratuita, dati reali, controlli); se non riesce ↓
+  3. Scheda del GENERE (Ficus)?     sì → "Scheda del genere Ficus: vale per la maggior parte dei Ficus"
+                    │ no
+  4. Scheda del TIPO DI PIANTA      sempre → "Consigli per: arbusto da appartamento di clima tropicale"
   + NOTE DI FAMIGLIA (Moraceae), quando ci sono: tossicità tipica, parassiti tipici della famiglia
 ```
 
-| Livello | Quante ne servono | Da dove arriva l'abbinamento | Precisione |
+| Livello | Quante | Da dove arriva l'abbinamento | Precisione |
 |---|---|---|---|
-| **Specie** | centinaia, a crescere | nome della specie da Pl@ntNet, passato dalla tabella dei sinonimi | alta |
-| **Genere** | 120 nella v1, 300 nella v1.1 | genere da Pl@ntNet | media: valori come **intervalli**, eccezioni dette |
-| **Tipo di pianta** | circa **18**, tutte nella v1 | forma di vita + clima d'origine da **WCVP** (Kew, CC BY), calcolati sul PC per **ogni genere** della flora di Pl@ntNet | di base, ma onesta e completa |
+| **Specie verificata** | centinaia, a crescere ogni settimana | nome della specie da Pl@ntNet, passato dalla tabella dei sinonimi | alta |
+| **Specie generata** | tutte le altre specie riconosciute, una volta sola ciascuna | come sopra; generata solo per specie arrivate da un vero riconoscimento | media: dichiarata |
+| **Genere** | 120 al traguardo T1, 300 al T2 | genere da Pl@ntNet | media: valori come **intervalli**, eccezioni dette |
+| **Tipo di pianta** | circa **18**, tutte nella prima pubblicazione | forma di vita + clima d'origine da **WCVP** (Kew, CC BY), calcolati sul PC per **ogni genere** della flora di Pl@ntNet | di base, ma onesta e completa |
 | Note di famiglia | circa 60 | famiglia da Pl@ntNet | aggiunta, non una scheda |
 
 **Perché non la "scheda di famiglia" come livello.** Una famiglia mette insieme piante troppo diverse: le Rosacee
-comprendono la fragola, la rosa e il ciliegio, e un consiglio d'acqua per tutte e tre non servirebbe. La famiglia
-serve invece per avvisi comuni, come le euforbiacee con lattice irritante. Per questo diventa una **nota** aggiunta alla
-scheda.
+comprendono la fragola, la rosa e il ciliegio. La famiglia serve per avvisi comuni (lattice irritante, parassiti
+tipici), quindi diventa una **nota**.
 
-**I tipi di pianta proposti** (elenco da confermare durante il blocco 1):
-- casa (clima tropicale o subtropicale): pianta verde da foglia, rampicante/ricadente, epifita (orchidee, bromelie),
-  succulenta, cactus, felce, palma, bulbosa da fiore;
-- esterno (clima temperato e mediterraneo): albero a foglia caduca, albero sempreverde, conifera, arbusto a foglia
+**I tipi di pianta proposti** (elenco da confermare nel blocco 1):
+- **casa** (clima tropicale o subtropicale): pianta verde da foglia, rampicante o ricadente, epifita (orchidee,
+  bromelie), succulenta, cactus, felce, palma, bulbosa da fiore;
+- **esterno** (clima temperato e mediterraneo): albero a foglia caduca, albero sempreverde, conifera, arbusto a foglia
   caduca, arbusto sempreverde, rampicante, erbacea perenne, annuale o biennale, bulbosa, graminacea, pianta acquatica;
-- ortaggi e aromatiche, come tipo a parte.
+- **ortaggi e aromatiche**, come tipo a parte.
 
 Se WCVP non ha la forma di vita di un genere, si usa quella più frequente nella sua famiglia, dichiarandolo. Se manca
 anche quella, si usa una scheda universale "pianta in vaso o in giardino". **Nessuna pianta resta senza scheda.**
 
-**Toccare il popup dell'anteprima live** apre la scheda del livello migliore disponibile. Il catalogo dell'anteprima
-(D10) e l'elenco delle schede sono quindi **separati**: le 22 piante della prova D11 entrano semplicemente nel primo blocco.
+Il popup dell'anteprima live apre la scheda del livello migliore disponibile. Il catalogo dell'anteprima (D10) non
+decide più quali schede esistono.
 
 ## 2. Quali specie e generi scrivere prima
 
-**All'aperto: lo dicono i dati.** Pl@ntNet pubblica su GBIF, con licenza CC BY, le foto dei suoi utenti con luogo e
-data. Conteggi del 2026-11-18 (dettagli in [banche dati aperte](../api-documentation/banche-dati-cura.md)):
+**All'aperto: lo dicono i dati.** Pl@ntNet pubblica su GBIF, con licenza CC BY, le foto dei suoi utenti. Conteggi del
+2026-11-18 ([dettagli](../api-documentation/banche-dati-cura.md)):
 
 | Le prime… | coprono in Italia (stima prudente – ottimista) | in Europa |
 |---|---|---|
@@ -92,197 +100,235 @@ data. Conteggi del 2026-11-18 (dettagli in [banche dati aperte](../api-documenta
 | 300 generi | 84% – 92% | 89% |
 | 500 generi | 96% – 99% | 97% |
 
-La stima prudente viene dalle foto confermate da persone esperte; quella ottimista dalle foto riconosciute in automatico.
+**In casa, sul balcone e nell'orto: un elenco a parte**, perché su GBIF arrivano poche foto di queste piante. La
+proposta è in [`data/elenco-priorita.json`](../../data/elenco-priorita.json): **61 specie e 42 generi**, di cui 30 specie
+di casa per la prima pubblicazione. È **da approvare dall'utente** prima dell'uso.
 
-**In casa e nell'orto: un elenco a parte.** Su GBIF finiscono poche foto di piante d'appartamento e di ortaggi. L'elenco
-si costruisce da:
-- le piante d'appartamento trattate dai siti istituzionali (RHS, servizi universitari);
-- le piante delle schede già esistenti;
-- l'esperienza dell'utente.
+**Ordine dei blocchi:**
+1. tipi di pianta e note di famiglia;
+2. le 30 specie di casa più comuni;
+3. i generi di casa;
+4. i generi all'aperto più fotografati;
+5. balcone, orto e aromatiche;
+6. le specie all'aperto, secondo la classifica di GBIF.
 
-Stima di partenza: circa **60 specie e 40 generi** coprono la grande maggioranza delle piante vendute in Italia. Questo
-numero **non è misurato**: va confermato.
+## 3. Come si scrive una scheda verificata (blocchi di 10)
 
-**Regola d'ordine dei blocchi:**
-1. i generi e le specie di casa, perché sono le piante dell'app e del pubblico principale;
-2. i generi all'aperto più fotografati;
-3. ortaggi e aromatiche;
-4. le specie all'aperto, seguendo la classifica di GBIF.
-
-L'elenco si salva in `data/elenco-priorita.json`, con la data dei conteggi.
-
-## 3. Come si produce un blocco (10 schede)
-
-**Metodo di scrittura (deciso dall'utente il 2026-11-18).** Si segue la skill `plant-schede`
-(`.claude/skills/plant-schede/SKILL.md`).
-- **Più fonti autorevoli per ogni pianta**, di tre livelli:
+**Metodo (deciso dall'utente il 2026-11-18)**, applicato con la skill `plant-schede`:
+- **più fonti per ogni pianta**, di tre livelli:
   - **A**: orti botanici, università, enti di ricerca, servizi pubblici;
   - **B**: vivai specializzati e associazioni;
-  - **C**: riviste e blog di settore affidabili.
-- Si ricavano **fatti e consigli pratici**, e si scrive con **parole nostre** un **riassunto** e una lista di
-  **"cose da fare"** per ogni sezione, citando ogni fonte con link.
-- **Mai** copiare testi, né riprodurre un articolo frase per frase.
-- **Qualità = autorevolezza della fonte + accordo tra più fonti:**
-  - numeri, tossicità e verdetti dei falsi miti richiedono almeno una fonte A, oppure due B concordi;
-  - le fonti C sostengono solo consigli pratici coerenti con A e B.
-- **Se le fonti si contraddicono:** si dichiara nella scheda, si indica la via prudente e si valuta una voce in
-  **"Falsi miti"**.
+  - **C**: riviste e blog di settore affidabili;
+- si ricavano **fatti e consigli pratici**; si scrive con **parole nostre**; ogni fonte è citata con link. **Mai**
+  copiare testi, né riprodurre un articolo frase per frase;
+- **ogni sezione ha due parti distinte:**
+
+| Parte | Da quali fonti | Regole |
+|---|---|---|
+| **Linee guida** | **solo A**, oppure **due B concordi** | Riassunto + "cose da fare" + valori strutturati (numeri, stagioni). Qui stanno tutti i numeri e la tossicità |
+| **Consigli dal pollice verde** | **B e C** (vivai, appassionati, blog e riviste di settore) | Trucchi pratici, con l'etichetta **"non ufficiale"** e la fonte. **Mai in contraddizione** con le linee guida: se la contraddicono, non entrano qui ma diventano una voce di **"Falsi miti"** (verdetto con fonti A) |
+
+- **Qualità = autorevolezza + accordo.** Se le fonti A non sono d'accordo tra loro, la scheda lo dichiara e indica la
+  via prudente.
 - **Siti che vietano l'uso dell'AI** (es. Gardenia): non si aprono con strumenti automatici. Li legge e li seleziona
   l'utente.
 
-
 ```text
- 1. ELENCO      prossime 10 voci dall'elenco di priorità
- 2. FONTI       per ogni sezione, 2+ fonti di livello A/B/C (3 per numeri e sicurezza), almeno una A per i numeri;
+ 1. ELENCO      prossime 10 voci dall'elenco di priorità (approvato)
+ 2. FONTI       per ogni sezione: 2+ fonti A per le linee guida (3 per numeri e sicurezza); B e C per il pollice verde;
                 prima di aprire un sito: robots.txt e termini d'uso (se vieta l'AI → lo legge l'utente, o non si usa)
- 3. BOZZA       per ogni sezione: riassunto + "cose da fare" con parole nostre, campi strutturati; ogni numero con la sua fonte
-                e l'indicazione di DOVE si trova nella fonte (es. "sezione Watering")
+ 3. BOZZA       linee guida (riassunto, cose da fare, valori) + consigli dal pollice verde, con parole nostre;
+                ogni dato con la sua fonte e il punto della fonte (es. "sezione Watering")
  4. CONTROLLI   test automatici (sotto) ──── falliti? → si torna al punto 3
  5. VERIFICA    un secondo agente, che NON ha scritto la bozza, rilegge le fonti frase per frase:
-                ogni affermazione non trovata nella fonte viene segnalata e tolta o corretta
- 6. RIEPILOGO   tabella per l'utente: schede del blocco, segnalazioni, scelte fatte quando le fonti non concordano
- 7. REVISIONE   l'utente legge per intero 2 schede su 10 (scelte a caso) + tutte le segnalazioni
- 8. PUBBLICA    commit, push; la scheda mostra "Verificata con le fonti il AAAA-MM-GG"
+                ogni affermazione non trovata viene tolta o corretta; controlla che il pollice verde non contraddica
+ 6. TOSSICITÀ   tabella per l'utente (5 minuti): pianta · tossica per persone · tossica per animali · fonte con link
+ 7. PUBBLICA    commit e push; la scheda mostra "Verificata con le fonti il AAAA-MM-GG"
 ```
 
+**Revisione dell'utente (decisione del 2026-11-18): solo la tabella della tossicità.** Tutto il resto lo verificano i
+test automatici e l'agente indipendente. Le letture complete sono facoltative: la scheda le registra
+(`humanReview`), se ci sono.
+
 **Test automatici su ogni scheda** (`npm run schede:controlla`):
-1. **Completezza:**
-   - ci sono tutte le sezioni;
-   - ogni sezione ha almeno una fonte;
-   - ogni numero ha una fonte.
-2. **Coerenza interna:**
-   - la temperatura minima è più bassa dell'ideale, che è più bassa della massima;
-   - i periodi coincidono con le stagioni;
-   - i promemoria nascono solo da valori con fonte.
-3. **Confronto con i dati aperti:**
-   - per le piante europee, luce, umidità e temperatura si confrontano con **EIVE**: per esempio "pieno sole" contro
-     un valore di luce da pianta d'ombra fa scattare una segnalazione;
-   - il clima d'origine si confronta con **WCVP**: una pianta tropicale con minima sotto i 5 °C fa scattare una
-     segnalazione.
-4. **Coerenza fra livelli:** i valori di una specie stanno dentro gli intervalli del suo genere, oppure c'è scritto
-   perché no.
-5. **Anti-copia:** nessuna sequenza di **8 o più parole uguali** a un testo delle fonti che lo strumento può leggere.
-   Per le altre fonti, controllo dell'utente.
-6. **Fonti vive:** ogni indirizzo risponde, e la data di consultazione non è più vecchia di 3 anni.
-7. **Niente percentuali inventate:** la frequenza dei problemi è solo a parole, come la dice la fonte (regola F20).
+1. **completezza:** tutte le sezioni; ogni sezione ha le linee guida; ogni numero ha una fonte;
+2. **livello delle fonti:** nelle linee guida solo fonti A, oppure due B concordi; nel pollice verde solo B e C,
+   ognuno con la sua fonte e l'etichetta "non ufficiale";
+3. **niente contraddizioni:** i consigli dal pollice verde non escono dai valori delle linee guida (temperature,
+   intervalli d'acqua, periodi). Se escono, il test fallisce e il consiglio va spostato nei falsi miti;
+4. **coerenza interna:** minima < ideale < massima; periodi coerenti con le stagioni; promemoria solo da valori con
+   fonte;
+5. **confronto con i dati aperti:** luce, umidità e temperatura con **EIVE** (piante europee); clima d'origine con
+   **WCVP**;
+6. **coerenza fra livelli:** i valori della specie stanno negli intervalli del genere, oppure c'è scritto perché no;
+7. **anti-copia:** nessuna sequenza di 8 o più parole uguali a una fonte leggibile;
+8. **fonti vive:** ogni link risponde; data di consultazione non più vecchia di 3 anni;
+9. **niente percentuali inventate** nei problemi (regola F20).
 
-**Cosa la scheda mostra all'utente**, sempre in cima:
-- il **livello**: "Scheda della specie", "Scheda del genere", "Consigli per il tipo di pianta";
-- lo **stato del controllo**: "Verificata con le fonti il 18/11/2026" oppure "Verificata con le fonti e rivista da una
-  persona".
-
-Tutte le fonti sono raggiungibili da ogni sezione.
-
-**Sezioni che non si possono generalizzare.** Nelle schede di genere e di tipo la sezione c'è sempre, ma dice la verità.
+**Sezioni che non si possono generalizzare** (schede di genere e di tipo):
 - *Tossicità:* "Nel genere ci sono specie tossiche e specie innocue: finché non conosci la specie, tienila lontana da
   bambini e animali."
-- *Falsi miti:* quelli del gruppo e quelli che valgono per tutte le piante in vaso (es. la ghiaia sul fondo).
-- *Approfondimenti:* solo se si trova un articolo davvero adatto; altrimenti un messaggio onesto (regola F22, invariata).
+- *Falsi miti:* quelli del gruppo e quelli di tutte le piante in vaso.
+- *Approfondimenti:* solo articoli davvero adatti; altrimenti un messaggio onesto (F22).
 
 ## 4. Schema dei dati (sostituisce `Species.care` e `CareGroup`)
-Una sola struttura per i tre livelli, così l'app mostra tutte le schede allo stesso modo. Le sezioni riusano i tipi già
-progettati ([architettura §5](architettura.md#5-schema-dei-dati)).
-
 ```ts
 interface CareSheet {
-  id: string;                          // es. "species/ficus-elastica", "genus/ficus", "type/arbusto-tropicale"
+  id: string;                          // "species/ficus-elastica", "genus/ficus", "type/arbusto-tropicale"
   level: 'species' | 'genus' | 'plant-type';
+  origin: 'verified' | 'generated';    // 'generated' solo per level 'species' (schede generate al momento, §6)
   taxon?: { scientificName: string; rank: 'species' | 'genus'; family: string };  // assente per 'plant-type'
   appliesTo: string;                   // "la maggior parte dei Ficus coltivati in casa" (parole nostre)
-  summary: string;                     // riassunto della scheda, parole nostre (metodo dell'utente, 2026-11-18)
-  todo: string[];                      // "cose da fare" principali, azioni concrete
-  // Ogni sezione qui sotto ha inoltre: summary (riassunto), todo (cose da fare) e, se le fonti non concordano,
-  // disagreements: { topic: string; positions: { claim: string; sources: Source[] }[]; prudentChoice: string;
-  //                  mythCandidate: boolean }[]
   exceptions?: string[];               // "Ficus carica (fico) vive all'aperto: vedi la sua scheda"
-  // TUTTE obbligatorie, a ogni livello:
-  light: LightGuide;
-  water: WaterGuide;
-  temperatureC: TemperatureGuide;
-  soil: SoilGuide;
-  fertilizer: FertilizerGuide;
-  repotting: RepottingGuide;
-  propagation: PropagationGuide;       // "Coltivarla da zero"
-  commonProblems: CommonProblem[];     // problemi e malattie più comuni
-  myths: MythCheck[];
-  furtherReading: FurtherReading[];    // può essere vuoto: l'app lo dice
-  toxicity: {
-    pets: 'toxic' | 'non-toxic' | 'varies' | 'unknown';   // 'varies' solo per genere e tipo: consiglio prudente
-    children: 'toxic' | 'non-toxic' | 'varies' | 'unknown';
-    note: string;
+  summary: string;                     // riassunto della scheda, parole nostre
+  todo: string[];                      // "cose da fare" principali
+  // TUTTE obbligatorie, a ogni livello. Ogni sezione ha DUE PARTI:
+  light: Section<LightGuide>;
+  water: Section<WaterGuide>;
+  temperatureC: Section<TemperatureGuide>;
+  soil: Section<SoilGuide>;
+  fertilizer: Section<FertilizerGuide>;
+  repotting: Section<RepottingGuide>;
+  propagation: Section<PropagationGuide>;   // "Coltivarla da zero"
+  commonProblems: Section<CommonProblem[]>; // problemi e malattie più comuni
+  myths: MythCheck[];                       // le contraddizioni pollice verde ↔ linee guida finiscono qui
+  furtherReading: FurtherReading[];         // può essere vuoto: l'app lo dice
+  toxicity: {                               // solo da linee guida (fonti A o due B concordi)
+    people: 'toxic' | 'non-toxic' | 'varies' | 'unverified';
+    pets: 'toxic' | 'non-toxic' | 'varies' | 'unverified';
+    // 'non-toxic' SOLO con fonte verificata; schede generate: mai 'non-toxic' senza fonte verificata → 'unverified'
+    note: string;                           // consiglio prudente se 'varies' o 'unverified'
     sources: Source[];
   };
   verification: {
     autoChecks: { name: string; passed: boolean; checkedAt: string }[];
-    independentCheckAt: string;        // verifica del secondo agente, frase per frase
-    humanReview?: { reviewedAt: string; scope: 'full' | 'spot' };
+    independentCheckAt?: string;            // agente di verifica (schede verificate)
+    toxicityTableApprovedAt?: string;       // revisione dell'utente (5 minuti per blocco)
+    humanReview?: { reviewedAt: string; scope: 'full' | 'spot' };   // facoltativa
+    generatedBy?: { service: string; model: string; at: string };  // schede generate
   };
+  license: 'project' | 'CC-BY-SA-4.0';      // CC BY-SA se contiene informazioni rielaborate da Wikipedia
   version: number;
   updatedAt: string;
 }
 
-interface Source {                     // esteso
+interface Section<T> {
+  guidelines: {                        // "Linee guida": solo fonti A, o due B concordi
+    summary: string;                   // riassunto, parole nostre
+    todo: string[];                    // cose da fare
+    data: T;                           // valori strutturati (numeri, stagioni…), ognuno con le sue fonti
+    disagreements?: { topic: string; positions: { claim: string; sources: Source[] }[]; prudentChoice: string }[];
+    sources: Source[];
+  };
+  greenThumb: {                        // "Consigli dal pollice verde": fonti B e C, etichetta "non ufficiale"
+    tip: string;                       // un trucco pratico, parole nostre
+    sources: Source[];                 // almeno una, B o C
+  }[];                                 // può essere vuoto
+}
+
+interface Source {
   title: string;
   url: string;
   accessedAt: string;
-  kind: 'institutional' | 'scientific' | 'open-data' | 'nursery' | 'association' | 'editorial';
-  tier: 'A' | 'B' | 'C';               // A scientifico/istituzionale · B vivai e associazioni · C riviste e blog di settore
-  readBy: 'claude' | 'user';           // 'user' per i siti che vietano l'AI (es. Gardenia)
-  locator?: string;                    // dove si trova il dato nella fonte: "sezione Watering", "tabella 2"
+  kind: 'institutional' | 'scientific' | 'open-data' | 'nursery' | 'association' | 'editorial' | 'encyclopedia' | 'our-sheet';
+  tier: 'A' | 'B' | 'C';               // A scientifico/istituzionale · B vivai e associazioni · C riviste, blog, Wikipedia
+  readBy: 'claude' | 'user' | 'generator';   // 'user' per i siti che vietano l'AI (es. Gardenia)
+  locator?: string;                    // dove si trova il dato: "sezione Watering", "tabella 2"
 }
 
-interface FamilyNote {                 // note di famiglia, aggiunte alla scheda
-  family: string;                      // "Euphorbiaceae"
+interface FamilyNote {
+  family: string;
   notes: { topic: 'toxicity' | 'pests' | 'handling'; text: string; sources: Source[] }[];
 }
 
-// File generato sul PC da WCVP: ogni genere della flora di Pl@ntNet → tipo di pianta
 type PlantTypeIndex = Record<string /* genere */, { typeId: string; basis: 'wcvp' | 'family-majority' | 'manual' }>;
 ```
 
-**Come arrivano al telefono.** Le schede sono **file statici** sul nostro sito, in `public/schede/…/<id>.json`.
-- Non servono servizi esterni né database online, quindi resta tutto gratuito.
-- Il telefono scarica **solo la scheda che apre**, circa 10-25 KB; il service worker conserva quelle delle piante salvate
-  per l'uso senza rete.
-- Un indice leggero (nome → scheda) serve per la ricerca per nome (F06).
-- Stima con 1.000 specie, 300 generi e 18 tipi: **15-30 MB sul server**. È nei limiti dei file statici di Vercel Hobby
-  **(da verificare al traguardo 3)**.
-- Adattatore: `CareSheetProvider` (`getBest(speciesName, genus, family) → { sheet, level, familyNote? }`). Così un giorno
-  le schede potranno arrivare da un'altra fonte senza cambiare le schermate.
+**Come arrivano al telefono:**
+- **Schede verificate** (specie, generi, tipi, note di famiglia): **file statici** sul nostro sito, in
+  `public/schede/…/<id>.json`. Il telefono scarica solo la scheda che apre (10-25 KB); il service worker conserva quelle
+  delle piante salvate. Stima con 1.000 specie: 15-30 MB sul server **(limiti di Vercel Hobby da verificare al T3)**.
+- **Schede generate:** salvate su **Upstash Redis**, gratuito e già previsto ([scheda](../api-documentation/ai-schede-generate.md)).
+  Una volta generate valgono per tutti. Ogni settimana si esportano anche nel repository, come archivio pubblico e base
+  per le schede verificate.
+- Adattatori:
+  - `CareSheetProvider.getBest(species, genus, family)` restituisce `{ sheet, level, origin, familyNote? }`;
+  - `CardWriter` e `GeneratedCardStore` (§6).
 
-## 5. Tempi e copertura (stima realistica)
+## 5. Rilascio progressivo e tempi (ricalcolati il 2026-11-18)
 **Ipotesi dichiarate:**
-- un blocco di 10 schede = **una sessione di lavoro di Claude** (ricerca, bozza, controlli, verifica indipendente) più
-  **30-45 minuti dell'utente** per la revisione a campione;
-- **4-5 blocchi a settimana**, in parallelo con lo sviluppo dell'app;
-- le schede di genere e di tipo valgono circa 1,3 schede di specie (servono intervalli ed eccezioni); le note di famiglia
-  circa 0,3.
+- **circa 5 sessioni di lavoro di Claude a settimana**, divise tra codice e schede;
+- **blocco di 10 schede = 1 sessione**; revisione dell'utente: 5 minuti per blocco;
+- una scheda di genere o di tipo vale 1,3 schede di specie; una nota di famiglia vale 0,3.
 
-Le stime si **ricalcolano dopo il blocco 1**, con i tempi veri.
+Si ricalcola dopo il blocco 1.
 
-| Traguardo | Contenuto | Blocchi (stima) | Settimane (stima) | Copertura stimata |
-|---|---|---|---|---|
-| **T1 — versione 1** | 18 tipi, 60 note di famiglia, 120 generi (40 casa e orto, 80 esterno), 80 specie (60 casa e orto, comprese le 22 della prova D11; 20 esterno) | circa 26 | **6-7** | **scheda per il 100% delle piante riconosciute**; il genere o meglio per **~45-58%** delle foto all'aperto in Italia (80 generi) e per la gran parte delle piante di casa (da misurare); la specie per le piante di casa più comuni e per l'8-19% delle foto all'aperto (20 specie) |
-| T2 — versione 1.1 | +180 generi (300 in tutto), +220 specie (300 in tutto) | circa 45 | 9-11 | genere o meglio 84-92%; specie 53-78% all'aperto |
-| T3 — versioni 1.2-1.3 | fino a 1.000 specie | circa 70 | 14-18 | specie 88-98% all'aperto |
+| Rilascio | Contenuto | Lavoro (stima) | Quando (stima) |
+|---|---|---|---|
+| **R1 — prima pubblicazione** | Riconoscimento Pl@ntNet (passi 2.1-2.4) + motore e schermata della scheda (3.3a) + **18 schede per tipo di pianta** (ogni foto ha subito una scheda completa) + **60 note di famiglia** + **30 specie di casa** | ~6 sessioni di codice + ~7 blocchi = ~13 sessioni | **circa 3 settimane: settimana del 7 dicembre 2026**, se la chiave Pl@ntNet è su Vercel e l'account Upstash è pronto entro una settimana |
+| **R2** | **Schede generate al momento** (Cloudflare Workers AI + Upstash, dopo la prova su 10 specie) | ~3 sessioni + creazione dell'account Cloudflare (utente) | **+1-1,5 settimane: metà-fine dicembre 2026** |
+| **Ogni settimana dopo** | 3-4 blocchi (30-40 schede verificate): generi di casa, poi generi all'aperto, balcone, orto, specie all'aperto | 3-4 sessioni a settimana | pubblicate man mano, con push a fine blocco |
+| T1 (riferimento) | 18 tipi, 60 note, 120 generi, 80 specie verificate | ~26 blocchi in tutto (19 dopo R1, a 3-4 a settimana) | **circa fine gennaio 2027** |
+| T2 | 300 generi, 300 specie verificate | +45 blocchi (~13 settimane) | circa fine aprile 2027 |
+| T3 | fino a 1.000 specie verificate | +70 blocchi (~20 settimane) | circa settembre 2027 |
 
-**Cosa cambia per la versione 1.** La v1 esce con il **traguardo T1**. La produzione delle schede parte **subito**, in
-parallelo alle fasi 2 e 3, perché non dipende dal codice dell'app. Senza questo parallelo la v1 slitterebbe di 6-7
-settimane.
+**Cosa significa per l'utente dell'app:**
+- **dal primo giorno** ogni pianta riconosciuta ha una scheda completa: quella del tipo di pianta;
+- **da R2** quasi ogni specie ha la sua scheda: verificata, oppure generata e dichiarata come tale;
+- le schede verificate crescono ogni settimana e **sostituiscono** quelle generate.
+
+## 6. Schede generate al momento (opzione B corretta)
+**Decisione dell'utente del 2026-11-18**, che rivede D6. Servizio e verifiche:
+[AI gratuita per le schede generate](../api-documentation/ai-schede-generate.md).
+
+**Come funziona.** Per una specie riconosciuta senza scheda verificata, il server:
+1. raccoglie **dati reali**:
+   - la nostra scheda del genere e quella del tipo di pianta;
+   - le note di famiglia;
+   - Wikidata;
+   - Wikipedia (italiana o inglese);
+   - EIVE e WCVP;
+2. chiede a un'**AI gratuita** (proposta: Cloudflare Workers AI) di scrivere la scheda nel formato `CareSheet`,
+   **citando solo quei dati**;
+3. la controlla;
+4. la salva per tutti.
+
+**Mai dalla sola memoria del modello.**
+
+**Regole della scheda generata:**
+- tutte le sezioni, con **"Linee guida"** e **"Consigli dal pollice verde"** separati;
+  - nelle linee guida solo fonti A: la nostra scheda di genere o di tipo, EIVE, WCVP;
+  - Wikipedia vale come fonte C: va solo nel pollice verde, con l'etichetta "non ufficiale";
+- in cima: **"Scheda generata automaticamente"**, con le fonti usate e la data;
+- **tossicità:** mai "innocua" senza fonte verificata; altrimenti **"non verificata"** con il consiglio prudente;
+- si genera **una volta per specie** e si salva (cache gratuita); una scheda verificata la **sostituisce**;
+- se il servizio non risponde o finisce le richieste del giorno, la scheda del genere o del tipo, **subito**. Mai una
+  risposta vuota.
+
+**Controlli automatici al momento:**
+- formato completo;
+- solo fonti ricevute;
+- ogni numero presente nelle fonti;
+- livelli delle fonti;
+- tossicità;
+- nessuna contraddizione tra pollice verde e linee guida;
+- anti-copia.
+
+Se un controllo fallisce, la scheda **non si salva** e si mostra quella del genere o del tipo.
 
 ## Rischi
 | Rischio | Probabilità | Come lo gestiamo |
 |---|---|---|
-| Un dato sbagliato in una scheda (es. una pianta tossica detta innocua) | Media | Verifica indipendente frase per frase; tossicità sempre con 2 fonti concordi, altrimenti "unknown" e consiglio prudente; revisione dell'utente di **tutte** le voci tossicità del blocco |
-| Le schede di genere sono troppo vaghe | Media | Intervalli ed eccezioni espliciti; si passa alla specie per i generi con piante molto diverse (Ficus, Euphorbia) |
-| I tempi raddoppiano | Media | Ricalcolo dopo il blocco 1; si riduce T1 nei generi all'aperto, non nei controlli |
-| Troppo materiale da un solo sito (diritto sulle banche dati) | Bassa | Almeno 2 fonti per scheda; niente estrazioni sistematiche; parole nostre |
+| Un dato sbagliato in una scheda (es. una pianta tossica detta innocua) | Media | Tossicità solo da fonti A o due B concordi; tabella della tossicità approvata dall'utente in ogni blocco; nelle schede generate "non verificata" senza fonte verificata |
+| Un consiglio "dal pollice verde" sbagliato o rischioso | Media | Mai in contraddizione con le linee guida (test automatico); etichetta "non ufficiale"; se contraddice, diventa un falso mito |
+| L'AI gratuita inventa o sbaglia | Media | Solo dati ricevuti, controlli automatici, etichetta ben visibile, sostituzione con schede verificate ([dettagli](../api-documentation/ai-schede-generate.md)) |
+| Il piano gratuito dell'AI cambia | Media | Due riserve (Groq, OpenRouter); senza AI restano genere e tipo, sempre completi |
+| Revisione umana ridotta: errori che i test non vedono | Media | Agente di verifica indipendente frase per frase; letture complete facoltative; segnalazioni dell'utente dell'app (in futuro) |
+| I tempi raddoppiano | Media | Ricalcolo dopo il blocco 1; R1 resta piccolo (tipi, note, 30 specie); si riduce il ritmo settimanale, mai i controlli |
+| Troppo materiale da un solo sito (diritto sulle banche dati) | Bassa | Più fonti per scheda; niente estrazioni sistematiche; parole nostre |
 | Un sito fonte vieta gli strumenti di AI | Media | Controllo di robots.txt e termini; altrimenti lo legge l'utente, o si usa un'altra fonte |
-| L'utente non è un botanico: la revisione non basta a scoprire errori tecnici | Media | La revisione controlla **chiarezza e corrispondenza con le fonti**, non la competenza; in futuro, revisori esperti (D12, community) |
-| Piante d'appartamento poco rappresentate nei dati | Certa | Elenco a parte, con priorità nei primi blocchi |
 
 ## Decisioni aperte
-Vedi [D13](decisioni-da-prendere.md#d13--schede-complete-per-qualsiasi-pianta-riconosciuta):
-- traguardo T1 per la v1;
-- quota di revisione dell'utente;
-- elenco iniziale di casa e orto.
+- **Approvare l'[elenco casa, balcone e orto](../../data/elenco-priorita.json)** (61 specie, 42 generi).
+- **Creare gli account** (li crea l'utente, con il suo permesso per ogni servizio nuovo): Upstash, già previsto per R1;
+  Cloudflare per R2. Poi la scelta del modello dopo la prova su 10 specie.

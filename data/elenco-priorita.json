@@ -1,0 +1,711 @@
+{
+  "versione": 1,
+  "creato": "2026-11-18",
+  "stato": "PROPOSTA da approvare dall'utente: non usare prima dell'approvazione",
+  "scopo": "Ordine di scrittura delle schede per casa, balcone e orto (D13). Le piante all'aperto si aggiungeranno dai conteggi GBIF (docs/api-documentation/banche-dati-cura.md).",
+  "criteri": [
+    "piante d'appartamento più vendute e trattate dai siti istituzionali (RHS, servizi universitari), più le piante della prova D11",
+    "balcone e orto: piante più coltivate in vaso e negli orti di casa in Italia",
+    "rilascio 1 = piante di casa più comuni, nella prima pubblicazione; rilascio 2 = blocchi settimanali successivi",
+    "nomi scientifici da confermare con la tabella dei sinonimi (GBIF) prima di scrivere ogni scheda"
+  ],
+  "nota": "Elenco costruito da cataloghi pubblici e dall'uso comune, NON misurato: va corretto dall'utente.",
+  "specie": [
+    {
+      "livello": "specie",
+      "nome": "Epipremnum aureum",
+      "nomeComune": "Pothos",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Monstera deliciosa",
+      "nomeComune": "Monstera",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Dracaena trifasciata",
+      "nomeComune": "Sansevieria, lingua di suocera",
+      "ambiente": "casa",
+      "rilascio": 1,
+      "nota": "nome attuale; sinonimo Sansevieria trifasciata"
+    },
+    {
+      "livello": "specie",
+      "nome": "Zamioculcas zamiifolia",
+      "nomeComune": "Zamioculcas",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Spathiphyllum wallisii",
+      "nomeComune": "Spatifillo",
+      "ambiente": "casa",
+      "rilascio": 1,
+      "nota": "in commercio spesso ibridi: la scheda del genere li copre"
+    },
+    {
+      "livello": "specie",
+      "nome": "Ficus benjamina",
+      "nomeComune": "Ficus benjamin",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Ficus elastica",
+      "nomeComune": "Albero della gomma",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Ficus lyrata",
+      "nomeComune": "Ficus a foglia di violino",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Chlorophytum comosum",
+      "nomeComune": "Falangio, nastrino",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Dracaena fragrans",
+      "nomeComune": "Tronchetto della felicità",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Dracaena marginata",
+      "nomeComune": "Dracena marginata",
+      "ambiente": "casa",
+      "rilascio": 1,
+      "nota": "nome accettato da verificare con la tabella dei sinonimi (D. reflexa var. angustifolia)"
+    },
+    {
+      "livello": "specie",
+      "nome": "Aloe vera",
+      "nomeComune": "Aloe",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Crassula ovata",
+      "nomeComune": "Albero di giada",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Schlumbergera truncata",
+      "nomeComune": "Cactus di Natale",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Euphorbia pulcherrima",
+      "nomeComune": "Stella di Natale",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Anthurium andraeanum",
+      "nomeComune": "Anturio",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Philodendron hederaceum",
+      "nomeComune": "Filodendro rampicante",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Aglaonema commutatum",
+      "nomeComune": "Aglaonema",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Dieffenbachia seguine",
+      "nomeComune": "Dieffenbachia",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Maranta leuconeura",
+      "nomeComune": "Maranta, pianta della preghiera",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Peperomia obtusifolia",
+      "nomeComune": "Peperomia",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Pilea peperomioides",
+      "nomeComune": "Pilea, pianta delle monete",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Hedera helix",
+      "nomeComune": "Edera",
+      "ambiente": "casa",
+      "rilascio": 1,
+      "nota": "anche all'aperto"
+    },
+    {
+      "livello": "specie",
+      "nome": "Nephrolepis exaltata",
+      "nomeComune": "Felce di Boston",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Chamaedorea elegans",
+      "nomeComune": "Palmetta, chamaedorea",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Dypsis lutescens",
+      "nomeComune": "Areca",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Hoya carnosa",
+      "nomeComune": "Fiore di cera",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Kalanchoe blossfeldiana",
+      "nomeComune": "Kalanchoe",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Streptocarpus ionanthus",
+      "nomeComune": "Violetta africana",
+      "ambiente": "casa",
+      "rilascio": 1,
+      "nota": "sinonimo Saintpaulia ionantha"
+    },
+    {
+      "livello": "specie",
+      "nome": "Cyclamen persicum",
+      "nomeComune": "Ciclamino",
+      "ambiente": "casa",
+      "rilascio": 1
+    },
+    {
+      "livello": "specie",
+      "nome": "Howea forsteriana",
+      "nomeComune": "Kenzia",
+      "ambiente": "casa",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Yucca gigantea",
+      "nomeComune": "Yucca",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "nota": "sinonimo Yucca elephantipes"
+    },
+    {
+      "livello": "specie",
+      "nome": "Beaucarnea recurvata",
+      "nomeComune": "Beaucarnea",
+      "ambiente": "casa",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Strelitzia reginae",
+      "nomeComune": "Strelitzia, uccello del paradiso",
+      "ambiente": "casa",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Tradescantia zebrina",
+      "nomeComune": "Tradescantia",
+      "ambiente": "casa",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Curio rowleyanus",
+      "nomeComune": "Senecio a rosario",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "nota": "sinonimo Senecio rowleyanus"
+    },
+    {
+      "livello": "specie",
+      "nome": "Ceropegia woodii",
+      "nomeComune": "Collana di cuori",
+      "ambiente": "casa",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Syngonium podophyllum",
+      "nomeComune": "Singonio",
+      "ambiente": "casa",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Scindapsus pictus",
+      "nomeComune": "Scindapsus argenteo",
+      "ambiente": "casa",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Codiaeum variegatum",
+      "nomeComune": "Croton",
+      "ambiente": "casa",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Schefflera arboricola",
+      "nomeComune": "Schefflera",
+      "ambiente": "casa",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Aspidistra elatior",
+      "nomeComune": "Aspidistra",
+      "ambiente": "casa",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Pelargonium × hortorum",
+      "nomeComune": "Geranio zonale",
+      "ambiente": "balcone",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Hibiscus rosa-sinensis",
+      "nomeComune": "Ibisco cinese",
+      "ambiente": "balcone",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Citrus limon",
+      "nomeComune": "Limone",
+      "ambiente": "balcone",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Gardenia jasminoides",
+      "nomeComune": "Gardenia",
+      "ambiente": "balcone",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Lavandula angustifolia",
+      "nomeComune": "Lavanda",
+      "ambiente": "balcone",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Hydrangea macrophylla",
+      "nomeComune": "Ortensia",
+      "ambiente": "balcone",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Trachelospermum jasminoides",
+      "nomeComune": "Falso gelsomino",
+      "ambiente": "balcone",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Solanum lycopersicum",
+      "nomeComune": "Pomodoro",
+      "ambiente": "orto",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Capsicum annuum",
+      "nomeComune": "Peperone, peperoncino",
+      "ambiente": "orto",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Solanum melongena",
+      "nomeComune": "Melanzana",
+      "ambiente": "orto",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Cucurbita pepo",
+      "nomeComune": "Zucchina",
+      "ambiente": "orto",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Lactuca sativa",
+      "nomeComune": "Lattuga",
+      "ambiente": "orto",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Phaseolus vulgaris",
+      "nomeComune": "Fagiolo",
+      "ambiente": "orto",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Fragaria × ananassa",
+      "nomeComune": "Fragola",
+      "ambiente": "orto",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Ocimum basilicum",
+      "nomeComune": "Basilico",
+      "ambiente": "orto",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Salvia rosmarinus",
+      "nomeComune": "Rosmarino",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "nota": "sinonimo Rosmarinus officinalis"
+    },
+    {
+      "livello": "specie",
+      "nome": "Salvia officinalis",
+      "nomeComune": "Salvia",
+      "ambiente": "orto",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Petroselinum crispum",
+      "nomeComune": "Prezzemolo",
+      "ambiente": "orto",
+      "rilascio": 2
+    },
+    {
+      "livello": "specie",
+      "nome": "Mentha spicata",
+      "nomeComune": "Menta",
+      "ambiente": "orto",
+      "rilascio": 2
+    }
+  ],
+  "generi": [
+    {
+      "livello": "genere",
+      "nome": "Epipremnum",
+      "nomeComune": "Pothos",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Monstera",
+      "nomeComune": "Monstera",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Dracaena",
+      "nomeComune": "Dracena, sansevieria",
+      "ambiente": "casa",
+      "nota": "comprende le ex Sansevieria"
+    },
+    {
+      "livello": "genere",
+      "nome": "Spathiphyllum",
+      "nomeComune": "Spatifillo",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Ficus",
+      "nomeComune": "Ficus",
+      "ambiente": "casa",
+      "nota": "genere molto vario: anche il fico all'aperto"
+    },
+    {
+      "livello": "genere",
+      "nome": "Chlorophytum",
+      "nomeComune": "Falangio",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Aloe",
+      "nomeComune": "Aloe",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Crassula",
+      "nomeComune": "Crassula",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Schlumbergera",
+      "nomeComune": "Cactus di Natale",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Euphorbia",
+      "nomeComune": "Euforbia",
+      "ambiente": "casa",
+      "nota": "genere molto vario; lattice irritante"
+    },
+    {
+      "livello": "genere",
+      "nome": "Phalaenopsis",
+      "nomeComune": "Orchidea farfalla",
+      "ambiente": "casa",
+      "nota": "in commercio quasi solo ibridi: scheda di genere"
+    },
+    {
+      "livello": "genere",
+      "nome": "Anthurium",
+      "nomeComune": "Anturio",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Philodendron",
+      "nomeComune": "Filodendro",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Aglaonema",
+      "nomeComune": "Aglaonema",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Dieffenbachia",
+      "nomeComune": "Dieffenbachia",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Goeppertia",
+      "nomeComune": "Calathea",
+      "ambiente": "casa",
+      "nota": "molte Calathea in commercio oggi sono Goeppertia"
+    },
+    {
+      "livello": "genere",
+      "nome": "Maranta",
+      "nomeComune": "Maranta",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Peperomia",
+      "nomeComune": "Peperomia",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Hedera",
+      "nomeComune": "Edera",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Nephrolepis",
+      "nomeComune": "Felce",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Chamaedorea",
+      "nomeComune": "Palmetta",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Yucca",
+      "nomeComune": "Yucca",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Hoya",
+      "nomeComune": "Hoya",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Tradescantia",
+      "nomeComune": "Tradescantia",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Begonia",
+      "nomeComune": "Begonia",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Kalanchoe",
+      "nomeComune": "Kalanchoe",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Echeveria",
+      "nomeComune": "Echeveria",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Haworthiopsis",
+      "nomeComune": "Haworthia",
+      "ambiente": "casa",
+      "nota": "comprende ex Haworthia"
+    },
+    {
+      "livello": "genere",
+      "nome": "Alocasia",
+      "nomeComune": "Alocasia",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Mammillaria",
+      "nomeComune": "Mammillaria (cactus)",
+      "ambiente": "casa"
+    },
+    {
+      "livello": "genere",
+      "nome": "Pelargonium",
+      "nomeComune": "Geranio",
+      "ambiente": "balcone"
+    },
+    {
+      "livello": "genere",
+      "nome": "Hibiscus",
+      "nomeComune": "Ibisco",
+      "ambiente": "balcone"
+    },
+    {
+      "livello": "genere",
+      "nome": "Citrus",
+      "nomeComune": "Agrumi",
+      "ambiente": "balcone"
+    },
+    {
+      "livello": "genere",
+      "nome": "Lavandula",
+      "nomeComune": "Lavanda",
+      "ambiente": "balcone"
+    },
+    {
+      "livello": "genere",
+      "nome": "Hydrangea",
+      "nomeComune": "Ortensia",
+      "ambiente": "balcone"
+    },
+    {
+      "livello": "genere",
+      "nome": "Rosa",
+      "nomeComune": "Rosa",
+      "ambiente": "balcone"
+    },
+    {
+      "livello": "genere",
+      "nome": "Solanum",
+      "nomeComune": "Pomodoro, melanzana",
+      "ambiente": "orto",
+      "nota": "genere molto vario: piante tossiche e commestibili"
+    },
+    {
+      "livello": "genere",
+      "nome": "Capsicum",
+      "nomeComune": "Peperone",
+      "ambiente": "orto"
+    },
+    {
+      "livello": "genere",
+      "nome": "Cucurbita",
+      "nomeComune": "Zucca, zucchina",
+      "ambiente": "orto"
+    },
+    {
+      "livello": "genere",
+      "nome": "Ocimum",
+      "nomeComune": "Basilico",
+      "ambiente": "orto"
+    },
+    {
+      "livello": "genere",
+      "nome": "Salvia",
+      "nomeComune": "Salvia, rosmarino",
+      "ambiente": "orto"
+    },
+    {
+      "livello": "genere",
+      "nome": "Mentha",
+      "nomeComune": "Menta",
+      "ambiente": "orto"
+    }
+  ]
+}

@@ -293,7 +293,7 @@ Plant (pianta) 1 ──── * Photo (foto)
 - ogni `care` (scheda completa) e ogni `CareGroup` (consigli generici) ha **almeno una fonte verificabile** in `sources`,
   mostrata nella scheda. Un test automatico controllerà che nessuna scheda sia senza fonti;
 - i testi sono scritti con parole nostre, mai copiati dai concorrenti;
-- **⚠️ Aggiornamento del 2026-11-18 (D13, proposta in attesa di approvazione):** la scheda completa deve esserci per
+- **⚠️ Aggiornamento del 2026-11-18 (D13, approvata):** la scheda completa deve esserci per
   **qualsiasi** pianta riconosciuta. `Species.care` e `CareGroup` vengono sostituiti da un'unica struttura `CareSheet`
   a tre livelli: **specie → genere → tipo di pianta**, più le note di famiglia. Tutti i livelli hanno tutte le sezioni.
   L'app usa la scheda più precisa disponibile e lo dichiara in cima. Schema, scelta delle specie, controlli di qualità e
@@ -596,12 +596,16 @@ interface AppSettings {
 | `SunProvider` | `SunCalcProvider` | telefono | astronomy-engine **(da verificare)**; formule NOAA |
 | `AiProvider` | `RuleBasedAssistant` | telefono | v2: `OllamaProvider` personale |
 | `StorageProvider` | `IndexedDbStorage` | telefono | v2: sincronizzazione (D3) |
-| `CareSheetProvider` (D13, proposta) | `StaticCareSheets`: file JSON statici sul nostro sito (`public/schede/`), scelti specie → genere → tipo di pianta; si scarica solo la scheda aperta | telefono | Se una scheda non si scarica: copia salvata dal service worker; altrimenti la scheda del tipo di pianta, inclusa nell'app |
+| `CareSheetProvider` (D13) | `StaticCareSheets` + schede generate: specie verificata → specie generata → genere → tipo di pianta; file statici in `public/schede/`, schede generate da `/api/scheda` | telefono e server | Copia salvata dal service worker; altrimenti la scheda del tipo di pianta, inclusa nell'app |
+| `CardWriter` (D6 rivista, D13) | `WorkersAiCardWriter`: Cloudflare Workers AI, piano gratuito, solo dati reali ricevuti ([scheda](../api-documentation/ai-schede-generate.md)) | server | `GroqCardWriter`, `OpenRouterCardWriter` **(da verificare)**; ripiego: scheda del genere o del tipo |
+| `GeneratedCardStore` (D13) | `UpstashCardStore`: una scheda per specie, valida per tutti | server | `KvCardStore` (Cloudflare KV); export settimanale nel repository |
 | `QuotaStore` | `UpstashQuotaStore` | server | Cloudflare D1 o Supabase **(da verificare)**; ripiego: solo il dato di Pl@ntNet |
 | `ArticleFeedProvider` (v1.1, V-13) | `RssFeedProvider`: solo feed autorizzati per iscritto, una lettura al giorno, tiene solo titolo/data/link; ogni articolo resta in attesa finché una persona non lo approva ([scheda](../api-documentation/fonti-editoriali.md)) | server | Approfondimenti scelti a mano (F22), sempre presenti |
 
 ## 7. Sicurezza e privacy (riassunto)
-- Chiavi solo sul server, mai nel repository (CLAUDE.md §7). Variabili segrete: `PLANTNET_API_KEY`, `UPSTASH_REDIS_REST_URL`,
+- Chiavi solo sul server, mai nel repository (CLAUDE.md §7). Dal 2026-11-18 anche `CLOUDFLARE_ACCOUNT_ID` e
+  `CLOUDFLARE_AI_TOKEN` (schede generate, D13). Alla AI si mandano solo dati pubblici (nomi, testi aperti), mai foto,
+  posizione o dati degli utenti. Variabili segrete: `PLANTNET_API_KEY`, `UPSTASH_REDIS_REST_URL`,
   `UPSTASH_REDIS_REST_TOKEN` (solo nomi; i valori in `.env.local`). Variabili non segrete di configurazione:
   `QUOTA_TOTAL_PER_DAY`, `QUOTA_PER_DEVICE_PER_DAY`, `QUOTA_PER_IP_PER_DAY` (§4).
 - `/api/identify` accetta solo richieste dal nostro dominio, foto JPEG/PNG fino a 5 e una dimensione massima.
@@ -635,6 +639,9 @@ ampliata); feed RSS per la v1.1 (`ArticleFeedProvider`), solo con permesso scrit
 **Aggiornamento 2026-11-18 (correzione dell'utente):** **D13** (aperta) — scheda completa per qualsiasi pianta
 riconosciuta: `CareSheet` a tre livelli al posto di `Species.care` e `CareGroup`, adattatore `CareSheetProvider`;
 progetto in [schede su larga scala](schede-su-larga-scala.md).
+**Aggiornamento 2026-11-18 (decisioni dell'utente):** D13 decisa (A + B corretta): livelli specie verificata → specie
+generata → genere → tipo; ogni sezione con "Linee guida" e "Consigli dal pollice verde"; nuovi adattatori `CardWriter` e
+`GeneratedCardStore`; D6 rivista.
 
 ## Fonti
 1. Pl@ntNet API, "Introduction" e "Single-species identification" — https://my.plantnet.org/doc/getting-started/introduction , https://my.plantnet.org/doc/api/identify — consultati il 2026-11-16

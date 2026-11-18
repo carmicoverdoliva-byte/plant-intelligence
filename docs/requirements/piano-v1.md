@@ -29,7 +29,24 @@ pagare e senza registrarsi.
 ### Correzione fondamentale del 2026-11-18 (priorità massima)
 | Requisito | Dove | Versione | Perché |
 |---|---|---|---|
-| **Scheda completa per QUALSIASI pianta riconosciuta**: specie → genere → tipo di pianta, tutte con tutte le sezioni; l'app dice quale livello usa | F07, F08, [D13](../architecture/decisioni-da-prendere.md#d13--schede-complete-per-qualsiasi-pianta-riconosciuta) (proposta), [progetto](../architecture/schede-su-larga-scala.md) | **v1** con il traguardo **T1** (18 tipi, 60 note di famiglia, 120 generi, 80 specie); poi T2 e T3 | Le "22 schede" erano un errore di pianificazione: un'app che riconosce migliaia di piante deve dare una scheda vera a ognuna. Il livello del tipo di pianta garantisce il 100% subito; specie e generi crescono a blocchi, partendo da ciò che la gente fotografa davvero (dati Pl@ntNet su GBIF) |
+| **Scheda completa per QUALSIASI pianta riconosciuta**: specie → genere → tipo di pianta, tutte con tutte le sezioni; l'app dice quale livello usa | F07, F08, [D13](../architecture/decisioni-da-prendere.md#d13--schede-complete-per-qualsiasi-pianta-riconosciuta) (decisa), [progetto](../architecture/schede-su-larga-scala.md) | **v1 a rilasci progressivi** (decisione del 2026-11-18): R1 con tipi, note di famiglia e 30 specie di casa; R2 con le schede generate; poi schede nuove ogni settimana fino a T1, T2, T3 | Le "22 schede" erano un errore di pianificazione: un'app che riconosce migliaia di piante deve dare una scheda vera a ognuna. Il livello del tipo di pianta garantisce il 100% subito; specie e generi crescono a blocchi, partendo da ciò che la gente fotografa davvero (dati Pl@ntNet su GBIF) |
+
+### Rilascio progressivo (decisione dell'utente del 2026-11-18)
+Non si aspetta il traguardo T1: si pubblica appena il riconoscimento funziona, poi si aggiunge contenuto ogni settimana.
+Stime ricalcolate in [schede su larga scala §5](../architecture/schede-su-larga-scala.md#5-rilascio-progressivo-e-tempi-ricalcolati-il-2026-11-18),
+con circa 5 sessioni di lavoro a settimana. Si ricalcolano dopo il blocco 1.
+
+| Rilascio | Cosa contiene | Passi del piano | Quando (stima) |
+|---|---|---|---|
+| **R1 — prima pubblicazione** | Riconoscimento Pl@ntNet; scheda per ogni foto (18 tipi di pianta), 60 note di famiglia, 30 specie di casa più comuni | 2.1, 2.2, 2.3, 2.4, 3.3a e i primi 7 blocchi del 3.3b | **settimana del 7 dicembre 2026** |
+| **R2** | Schede generate al momento (AI gratuita da dati reali, cache condivisa) | 3.3c (nuovo) | metà-fine dicembre 2026 |
+| Ogni settimana | 3-4 blocchi di schede verificate (30-40 schede) | 3.3b | da R1 in poi |
+| Resto della v1 | Collezione, ricerca per nome, backup, anteprima live, ambiente e promemoria, rifiniture | fasi 3-6 | come da piano, alternando codice e blocchi |
+
+**Condizioni per R1:**
+- la chiave Pl@ntNet su Vercel;
+- l'account Upstash, che crei tu: è già previsto e serve per i contatori;
+- l'elenco casa e orto approvato.
 
 Revisione del piano: mancavano due funzioni già previste per la v1, ora aggiunte:
 - **ricerca per nome (F06)**, che serve a "Nuova pianta" per chi non vuole fotografare;
@@ -241,16 +258,23 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **Tu:** —
 
 ### 3.3 Schede botaniche e di cura (F07, F08, F18, F20, F21, F22)
-- **⚠️ Cambiato il 2026-11-18 (D13, se approvata):** il ripiego per famiglia è sostituito dai tre livelli
-  (specie → genere → tipo di pianta, [progetto](../architecture/schede-su-larga-scala.md)). Il passo diventa:
+- **⚠️ Cambiato il 2026-11-18 (D13, decisa):** il ripiego per famiglia è sostituito dai livelli specie verificata →
+  specie generata → genere → tipo di pianta ([progetto](../architecture/schede-su-larga-scala.md)). Ogni sezione ha
+  **"Linee guida"** (fonti A o due B concordi) e **"Consigli dal pollice verde"** (fonti B e C, "non ufficiale", mai in
+  contraddizione: altrimenti "Falsi miti"). Il passo diventa:
   - **3.3a — Motore delle schede:** formato `CareSheet`, `CareSheetProvider` (sceglie il livello più preciso e lo
     dichiara), schermata della scheda secondo il riferimento [scheda.html](../design/riferimenti/scheda.html), file
     statici scaricati quando servono e conservati per le piante salvate;
   - **3.3b — Produzione a blocchi** (passo nuovo, **in parallelo dalla fase 2**): elenco di priorità da GBIF e WCVP,
     blocchi di 10 schede scritti con la skill `plant-schede` (più fonti A/B/C, riassunto e "cose da fare" con parole
     nostre, ogni fonte citata, contraddizioni dichiarate e valutate per "Falsi miti", siti che vietano l'AI letti da te),
-    test `npm run schede:controlla`, verifica indipendente e tua revisione a campione,
-    fino al traguardo **T1** (circa 26 blocchi, 6-7 settimane stimate, da ricalcolare dopo il blocco 1).
+    test `npm run schede:controlla`, verifica indipendente e **tua tabella della tossicità** (5 minuti per blocco),
+    pubblicati man mano: i primi 7 blocchi per R1, poi 3-4 a settimana fino a T1 (circa fine gennaio 2027);
+  - **3.3c — Schede generate al momento** (per R2): `/api/scheda`, `CardWriter` con Cloudflare Workers AI (piano
+    gratuito), `GeneratedCardStore` con Upstash; dati reali in ingresso, controlli automatici, "Scheda generata
+    automaticamente", ripiego sul genere o sul tipo ([scheda del servizio](../api-documentation/ai-schede-generate.md)).
+    **Prima:** prova su 10 specie per scegliere il modello. **Tu:** crei l'account Cloudflare e inserisci le chiavi
+    su Vercel (ti spiego come).
 - **Cosa si costruisce (prima di D13):** la scheda del pothos (dall'[esempio](esempio-scheda-pothos.md)) con fonti per
   ogni sezione, più il **ripiego per famiglia o tipo di pianta**, dichiarato come tale (D8). Sezioni:
   - **acqua**: quando, **quanto**, come cambia con stagione e vaso;
@@ -383,7 +407,8 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 | Safari cancella i dati di chi non installa l'app | Media | Guida all'installazione sulla Home (1.2) e backup (3.4) |
 | La quota di Pl@ntNet finisce durante le prove | Bassa | Test sulle risposte salvate; prove vere solo quando servono |
 | Le schede complete per qualsiasi pianta richiedono molto lavoro di ricerca (D13) | Alta | Tre livelli: il tipo di pianta copre il 100% da subito; produzione a blocchi **in parallelo** allo sviluppo dalla fase 2; stime ricalcolate dopo il blocco 1; si riducono i generi all'aperto del T1, mai i controlli; i valori senza fonte restano "non indicati" |
-| Un errore in una scheda prodotta in serie (es. tossicità) | Media | Verifica indipendente frase per frase, 2 fonti concordi per la tossicità, tua revisione di tutte le voci tossicità del blocco |
+| Un errore in una scheda prodotta in serie (es. tossicità) | Media | Verifica indipendente frase per frase, 2 fonti concordi per la tossicità, tua tabella della tossicità per ogni blocco |
+| Una scheda generata dall'AI contiene un errore | Media | Solo dati reali in ingresso, controlli automatici, etichetta "generata automaticamente", tossicità mai "innocua" senza fonte verificata, sostituzione con schede verificate ogni settimana |
 | Le fonti non indicano alcuni valori (es. temperatura minima del pothos, prima concimazione) | Alta | La scheda lo dice; nessun promemoria senza fonte; si cercano fonti migliori prima della pubblicazione |
 | Il consiglio del posto sembra preciso ma si basa su una stima | Media | Parola "stima" sempre visibile, motivo spiegato, correzione manuale (F10) |
 | Trovare articoli coerenti con le fonti per tutte le schede richiede tempo | Alta | La sezione Approfondimenti può restare vuota, con un messaggio onesto; i falsi miti generali coprono ogni scheda |

@@ -8,6 +8,14 @@
 > **Ampliata il 2026-11-18:** acqua (quanto), concime (tipo preciso), temperature minima/ideale/massima, "Problemi più
 > comuni" (F20) e "Le prime settimane" (F19). Fonti nuove: [9]-[13].
 > **Ampliata il 2026-11-18 (sera):** sezioni "Falsi miti" (F21) e "Approfondimenti" (F22). Fonti nuove: [14]-[16].
+> **Aggiornata il 2026-11-18 (D13, decisione dell'utente):** ogni sezione ha due parti.
+> - **"Linee guida"**: solo fonti ufficiali e autorevoli (livello A, o due B concordi). Tutto il testo qui sotto è di
+>   questo tipo: le fonti [1]-[16] sono università, orti botanici, la RHS e studi scientifici, quindi tutte di livello A.
+> - **"Consigli dal pollice verde"** *(non ufficiali)*: trucchi pratici da vivai, appassionati, riviste e blog (fonti B
+>   e C), mai in contraddizione con le linee guida. Per il pothos sono **ancora da raccogliere** (blocco 1): i riquadri
+>   🌿 mostrano dove compariranno.
+> - Nella **revisione dell'utente** di questa scheda conta solo la tossicità: persone **tossica**, animali **tossica**,
+>   fonti [1][3].
 
 ---
 
@@ -21,7 +29,7 @@
 | **Difficoltà** | Facile, adatta a chi inizia [2] |
 | ⚠️ **Tossicità** | **Tossica se mangiata**, per persone, cani e gatti: contiene cristalli di ossalato di calcio, che irritano bocca, lingua e labbra [1][3]. La linfa può irritare la pelle: usa i guanti quando la tagli o la travasi [2][3]. Tienila lontana da bambini e animali [2]. |
 
-## Cura di tutti i giorni
+## Cura di tutti i giorni — Linee guida
 - **Luce:** molta luce ma **indiretta** (vicino a una finestra a est o a ovest, oppure a sud dietro una tenda). Il sole
   diretto può bruciare le foglie; con troppa poca luce le foglie variegate tornano verdi e la pianta cresce poco [1][2][3].
 - **Umidità:** non ha bisogno di aria particolarmente umida [2].
@@ -62,6 +70,11 @@ Dove l'acqua del rubinetto è molto calcarea, meglio usare acqua piovana o filtr
 | **Periodo** | da aprile a ottobre [2] (da marzo a ottobre secondo [13]); **niente concime in inverno** [1][2][3]. |
 | **Attenzione** | concima solo con il terriccio **già umido**: su terriccio secco il concime può danneggiare le radici [13]. Punte delle foglie marroni o una crosta bianca sul bordo del vaso possono indicare troppo concime: si rimedia facendo scorrere molta acqua nel vaso [13]. |
 
+> 🌿 **Consigli dal pollice verde** *(non ufficiali)* — luce, acqua e concime: da raccogliere nel blocco 1 da fonti B e C (vivai
+> specializzati come Vivai Le Georgiche, riviste e blog confermati in [fonti editoriali](../api-documentation/fonti-editoriali.md);
+> gli articoli di Gardenia li legge e li sceglie l'utente). Nessun consiglio inventato: finché non ci sono fonti, la parte
+> resta vuota. Un consiglio che contraddice le linee guida qui sopra non entra: si valuta come "Falso mito".
+
 ### 🌡️ Temperatura
 | Minima | Ideale | Massima |
 |---|---|---|
@@ -71,9 +84,14 @@ Dove l'acqua del rubinetto è molto calcarea, meglio usare acqua piovana o filtr
 - I passaggi bruschi da molto caldo a temperature moderate possono causare macchie marroni sparse sulle foglie [3].
 - Se la porti a casa quando fa freddo, tienila al caldo [2].
 
+> 🌿 **Consigli dal pollice verde** *(non ufficiali)* — temperatura: da raccogliere nel blocco 1 da fonti B e C (vivai
+> specializzati come Vivai Le Georgiche, riviste e blog confermati in [fonti editoriali](../api-documentation/fonti-editoriali.md);
+> gli articoli di Gardenia li legge e li sceglie l'utente). Nessun consiglio inventato: finché non ci sono fonti, la parte
+> resta vuota. Un consiglio che contraddice le linee guida qui sopra non entra: si valuta come "Falso mito".
+
 ---
 
-## 🌱 Coltivarla da zero
+## 🌱 Coltivarla da zero — Linee guida
 
 > **Nell'app** (novembre, Italia): *"Il periodo migliore per fare talee è la primavera (marzo-maggio): tra circa
 > 4 mesi. In primavera la talea attecchisce più facilmente [4]."*
@@ -123,9 +141,14 @@ suo vaso [4].
 3. Il nodo metterà radici nel nuovo vaso [2]. Quando la piantina cresce da sola, taglia il ramo che la unisce alla madre
    **(tempi: da verificare)**.
 
+> 🌿 **Consigli dal pollice verde** *(non ufficiali)* — talee e propaggine: da raccogliere nel blocco 1 da fonti B e C (vivai
+> specializzati come Vivai Le Georgiche, riviste e blog confermati in [fonti editoriali](../api-documentation/fonti-editoriali.md);
+> gli articoli di Gardenia li legge e li sceglie l'utente). Nessun consiglio inventato: finché non ci sono fonti, la parte
+> resta vuota. Un consiglio che contraddice le linee guida qui sopra non entra: si valuta come "Falso mito".
+
 ---
 
-## 🪴 Travaso
+## 🪴 Travaso — Linee guida
 
 > **Nell'app** (novembre, Italia, pianta in casa): *"Il periodo migliore per il travaso è la primavera (marzo-maggio).
 > Ultimo travaso: aprile 2025 → il prossimo controllo è consigliato nella primavera 2027."*
@@ -171,9 +194,14 @@ prima di usarlo [6].
 - Qualche foglia gialla o che cade dopo il travaso è **normale** [7].
 - Poi torna alla cura normale: annaffia solo quando il terriccio in superficie è asciutto [2].
 
+> 🌿 **Consigli dal pollice verde** *(non ufficiali)* — travaso: da raccogliere nel blocco 1 da fonti B e C (vivai
+> specializzati come Vivai Le Georgiche, riviste e blog confermati in [fonti editoriali](../api-documentation/fonti-editoriali.md);
+> gli articoli di Gardenia li legge e li sceglie l'utente). Nessun consiglio inventato: finché non ci sono fonti, la parte
+> resta vuota. Un consiglio che contraddice le linee guida qui sopra non entra: si valuta come "Falso mito".
+
 ---
 
-## 🩺 Problemi più comuni (prevenzione)
+## 🩺 Problemi più comuni (prevenzione) — Linee guida
 > **Come leggere la frequenza:** "frequente", "occasionale" e "raro" riportano le parole delle fonti (es. "most common",
 > "occasionally"). Quando una fonte nomina un problema senza dire quanto è frequente, scriviamo **"frequenza non
 > indicata"**. Mai percentuali.
@@ -194,6 +222,11 @@ In generale il pothos ha **pochi problemi** [2][3].
 > poca luce e annaffiature frequenti → rischio di marciume più alto del normale. Prima di annaffiare, controlla il
 > terriccio."* Prima di attivarlo serve una fonte per ogni regola che lega l'ambiente al rischio: per ora la fonte c'è solo
 > per "troppa acqua → marciume" [1][2][3]; il ruolo della poca luce è **(da verificare)**.
+
+> 🌿 **Consigli dal pollice verde** *(non ufficiali)* — parassiti e problemi: da raccogliere nel blocco 1 da fonti B e C (vivai
+> specializzati come Vivai Le Georgiche, riviste e blog confermati in [fonti editoriali](../api-documentation/fonti-editoriali.md);
+> gli articoli di Gardenia li legge e li sceglie l'utente). Nessun consiglio inventato: finché non ci sono fonti, la parte
+> resta vuota. Un consiglio che contraddice le linee guida qui sopra non entra: si valuta come "Falso mito".
 
 ---
 
@@ -282,9 +315,26 @@ scegli tu. Quello in tabella è solo una **proposta**, da confermare o sostituir
 ---
 
 ## Nota per lo sviluppo: come diventa un dato
-Nell'app questa scheda è un oggetto `Species` con `care.water`, `care.fertilizer`, `care.temperatureC`,
-`care.commonProblems`, `care.propagation`, `care.repotting`, `care.myths` e `care.furtherReading` (vedi
-[architettura §5](../architecture/architettura.md#5-schema-dei-dati)). Un estratto:
+**Aggiornato il 2026-11-18 (D13):** nell'app questa scheda è un oggetto `CareSheet` con `level: 'species'` e
+`origin: 'verified'`. Ogni sezione è una `Section` con due parti: `guidelines` (riassunto, cose da fare, dati
+strutturati, fonti A) e `greenThumb` (consigli non ufficiali, fonti B e C). Schema completo in
+[schede su larga scala §4](../architecture/schede-su-larga-scala.md#4-schema-dei-dati-sostituisce-speciescare-e-caregroup).
+Esempio della sezione acqua:
+
+```ts
+water: {
+  guidelines: {
+    summary: 'Annaffia a fondo solo quando il terriccio in superficie è asciutto; non lasciare acqua nel sottovaso.',
+    todo: ['Controlla con un dito a 2-3 cm di profondità', 'Annaffia finché l\'acqua esce dai fori', 'Svuota il sottovaso entro un\'ora'],
+    data: { when: 'terriccio asciutto in superficie', howMuch: [/* … */], seasonNotes: [/* … */], potNotes: [/* … */], sources: [/* [1][2][3][9] */] },
+    sources: [/* [1][2][3][9]: tutte di livello A */],
+  },
+  greenThumb: [],   // da raccogliere nel blocco 1 (fonti B e C)
+},
+```
+
+I campi qui sotto restano validi come contenuto di `guidelines.data` delle varie sezioni (estratto della versione
+precedente):
 
 ```ts
 repotting: {
