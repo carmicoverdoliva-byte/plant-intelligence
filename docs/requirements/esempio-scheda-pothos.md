@@ -249,14 +249,15 @@ diventano promemoria.
 |---|---|---|
 | [Pothos: come prendersi cura della pianta d'appartamento adatta anche ai pollici neri](https://www.venditapianteonline.it/blog/pothos-prendersi-cura-di-una-pianta-d-appartamento-adatta-anche-ai-pollici-neri/) (2026-10-21) | Vivai Le Georgiche, *sito di un vivaio* | La cura di tutti i giorni raccontata da chi coltiva piante per mestiere, con le varietà più diffuse |
 | [Argilla espansa sul fondo del vaso? Sì o no?](https://www.venditapianteonline.it/blog/argilla-espansa-sul-fondo-del-vaso-si-o-no/) (2021, aggiornato il 2026-08-18) | Vivai Le Georgiche, *sito di un vivaio* | Perché lo strato sul fondo non aiuta: spiegato bene e con le fonti universitarie |
-| [Quali sono le piante da interno che purificano l'aria?](https://gardenia.cairoeditore.it/piante-e-fiori/piante-da-interno-purificano-aria-mito-realta/) (E. Clementel, 2025-09-09, aggiornato il 2026-07-29) | Gardenia | La storia dello studio NASA e perché in casa l'effetto delle piante non si sente |
+| [Quali sono le piante da interno che purificano l'aria?](https://gardenia.cairoeditore.it/piante-e-fiori/piante-da-interno-purificano-aria-mito-realta/) (E. Clementel, 2025-09-09, aggiornato il 2026-07-29) — *proposta, da confermare dall'utente* | Gardenia | La storia dello studio NASA e perché in casa l'effetto delle piante non si sente |
 
 **Valutato e non inserito:** "Ecco le 12 piante migliori per depurare l'aria (ma è tutto falso)" (Vivai Le Georgiche,
 2025-08-07). La conclusione è giusta, ma riporta un valore dieci volte più piccolo di quello dello studio citato
 (0,0023 invece di 0,023 m³/h [15]).
 
-**Da fare prima della pubblicazione (tu):** rileggi a mano i tre articoli. Il controllo del 2026-11-18 è stato fatto su
-sintesi automatiche delle pagine.
+**Da fare prima della pubblicazione (tu):** rileggi a mano i due articoli di Le Georgiche: il controllo del 2026-11-18
+è stato fatto su sintesi automatiche delle pagine. **Gardenia:** per regola (2026-11-18) gli articoli li leggi e li
+scegli tu. Quello in tabella è solo una **proposta**, da confermare o sostituire dopo la tua lettura.
 
 ---
 
@@ -347,7 +348,8 @@ Nessuna nuova decisione: questa scheda applica D8. Da verificare prima della pub
 - seme, foglia, divisione, cambio dell'acqua, tempi della propaggine;
 - (2026-11-18) intervallo di annaffiatura in inverno, temperatura minima, ogni quanto controllare una pianta in
   isolamento, quando concimare una pianta appena comprata, ruolo della poca luce nel rischio di marciume;
-- (2026-11-18, sera) rilettura a mano dei tre articoli degli Approfondimenti.
+- (2026-11-18, sera) rilettura a mano dei due articoli di Le Georgiche; lettura e scelta degli articoli di Gardenia
+  da parte dell'utente.
 
 Fonti scartate il 2026-11-18:
 - **South Dakota State University Extension:** indica come "ideale" 50 °F (10 °C) e come "accettabili" 65-75 °F (18-24 °C),

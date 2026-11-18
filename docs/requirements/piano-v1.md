@@ -23,8 +23,8 @@ pagare e senza registrarsi.
 |---|---|---|---|
 | Sezione **"Falsi miti"** in ogni scheda (mito, verdetto, cosa dicono le fonti, cosa fare) | F21, passo 3.3 | **v1** | Contenuto statico con fonti, come le altre sezioni: costa ricerca, non programmazione. I miti generali (es. la ghiaia sul fondo) si scrivono una volta per tutte le schede |
 | Sezione **"Approfondimenti"**: articoli scelti a mano, solo titolo, sito, riga nostra e link | F22, passo 3.3 | **v1** | Un elenco statico nella scheda: nessun servizio esterno. Solo link, quindi consentiti; il lavoro è controllare che ogni articolo sia coerente con le fonti |
-| **"Ultimi articoli su questa pianta"** dal feed RSS | V-13 | **v1.1** (proposta) | I feed esistono (Le Georgiche, Gardenia), ma nessun sito concede esplicitamente di usarli in un'app: prima serve un permesso scritto. E un articolo dal feed non è controllato da nessuno ([fonti editoriali](../api-documentation/fonti-editoriali.md)) |
-| **Community** con consigli e voti | V-14, D12 | **v2 o oltre** | Richiede account, server, moderazione quotidiana e obblighi privacy: tutto ciò che la v1 evita (D3). Decisione aperta |
+| **"Ultimi articoli su questa pianta"** dal feed RSS | V-13 | **v1.1** | I feed esistono (Le Georgiche, Gardenia), ma nessun sito concede esplicitamente di usarli in un'app: servono un **permesso scritto** e il **controllo umano** di ogni articolo ([fonti editoriali](../api-documentation/fonti-editoriali.md), [email](../api-documentation/email-permesso-feed.md)) |
+| **Community** con consigli e voti | V-14, D12 | **da rivalutare nella v2** | Richiede account, server, moderazione quotidiana e obblighi privacy: tutto ciò che la v1 evita (D3). **D12 decisa: A**, solo link a community esistenti |
 
 Revisione del piano: mancavano due funzioni già previste per la v1, ora aggiunte:
 - **ricerca per nome (F06)**, che serve a "Nuova pianta" per chi non vuole fotografare;
@@ -208,9 +208,9 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
   - un valore senza fonte compare come "non indicata dalle fonti";
   - una pianta senza scheda mostra il ripiego con l'avviso;
   - i sinonimi aprono la stessa scheda.
-- **Tu:** rileggi la scheda del pothos, soprattutto i punti segnati "(da verificare)", e i tre articoli degli
-  Approfondimenti (li ho controllati su sintesi automatiche; quelli di Gardenia vanno letti da una persona, perché il
-  sito non vuole strumenti di intelligenza artificiale).
+- **Tu:** rileggi la scheda del pothos, soprattutto i punti segnati "(da verificare)", e gli articoli degli
+  Approfondimenti di Le Georgiche (li ho controllati su sintesi automatiche). **Gli articoli di Gardenia li leggi e li
+  scegli tu** (regola del 2026-11-18): io non apro le loro pagine.
 
 ### 3.4 Backup su file (F14)
 - **Cosa si costruisce:** esportazione della collezione in un file (es. da salvare su iCloud Drive) e importazione.
@@ -307,8 +307,10 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 4. **Schede:** nella v1, **22 schede complete** (le piante del catalogo dell'anteprima live) più il **ripiego per gruppo**
    per tutte le altre; circa 50 nelle versioni successive. Aggiornata D8.
 5. **Pulizia della cronologia git (0.1):** confermata, con copia di sicurezza.
-6. **Nuovi requisiti della sera (proposta, da confermare):** "Falsi miti" e "Approfondimenti" nella v1, dentro il
-   passo 3.3; "Ultimi articoli" dal feed in v1.1 con permesso scritto; community in v2 o oltre (D12 aperta).
+6. **Nuovi requisiti della sera (confermati il 2026-11-18):** "Falsi miti" e "Approfondimenti" nella v1, dentro il
+   passo 3.3; siti confermati: Le Georgiche, Gardenia, Vita in Campagna, Georgofili, CREA (escluso Il Floricultore);
+   articoli di Gardenia scelti dall'utente; "Ultimi articoli" dal feed in v1.1 con permesso scritto e controllo umano;
+   community: **D12 decisa A** (solo link a community esistenti nella v1 e v1.x, da rivalutare nella v2).
 
 ## Rischi
 | Rischio | Probabilità | Come lo gestiamo |

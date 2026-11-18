@@ -274,8 +274,10 @@ affidabili, per chi vuole leggere di più.
   3. leggibile gratis;
   4. se il sito vende piante, la scheda lo dice ("sito di un vivaio");
   5. data dell'ultimo controllo visibile.
-- **Siti di partenza:** Vivai Le Georgiche, Gardenia; proposti Vita in Campagna, Accademia dei Georgofili, CREA (da
-  confermare).
+- **Siti confermati (2026-11-18):** Vivai Le Georgiche, Gardenia, Vita in Campagna, Accademia dei Georgofili, CREA.
+  Escluso: Il Floricultore.
+- **Regola per Gardenia:** gli articoli li **legge e li sceglie l'utente**, a mano; nessuno strumento di intelligenza
+  artificiale apre o legge le pagine di Gardenia (il sito lo chiede nel suo `robots.txt`).
 - **Se non c'è nessun articolo** che rispetti i criteri, la sezione lo dice: *"Non abbiamo ancora trovato articoli che
   rispettino i nostri criteri."* Meglio vuota che con un articolo sbagliato.
 - Il contenuto degli articoli **non** viene mai usato dall'assistente o da modelli di intelligenza artificiale (alcuni
@@ -452,13 +454,14 @@ scaricare o cancellare il modello) e spiegazione la prima volta che si apre il m
 | V-11 | **Avviso di rischio personalizzato** (F20): problemi della scheda + ambiente della pianta (luce stimata, annaffiature, stagione) | v1.1 | Insieme a V-01, con le stesse regole; sempre "stima", nessuna percentuale; ogni regola con una fonte. Servono settimane di dati sulle annaffiature |
 | V-11 | **Stato di protezione e distribuzione** della specie | v2 | Da Flora Incognita; dati GBIF |
 | V-12 | Altre lingue oltre l'italiano | v3 | |
-| V-13 | **"Ultimi articoli su questa pianta"**: solo titolo e link dal feed RSS dei siti degli Approfondimenti | v1.1 (proposta) | Solo per i siti che lo permettono **per iscritto** (nessuno lo concede oggi in modo esplicito); separata dagli Approfondimenti verificati. Vedi [fonti editoriali](../api-documentation/fonti-editoriali.md) |
-| V-14 | **Community** di appassionati con consigli e voti | v2 o oltre | Decisione aperta **D12**: account, server, moderazione contro i falsi miti, privacy |
+| V-13 | **"Ultimi articoli su questa pianta"**: solo titolo e link dal feed RSS dei siti degli Approfondimenti | v1.1 | Solo per i siti che lo permettono **per iscritto** (nessuno lo concede oggi in modo esplicito) e solo dopo il **controllo umano** di ogni articolo. Vedi [fonti editoriali](../api-documentation/fonti-editoriali.md) |
+| V-14 | **Community** di appassionati con consigli e voti | da rivalutare nella v2 | **D12 decisa (2026-11-18): A**. Nella v1 e v1.x solo link a community esistenti |
 
 ## 4. Fuori dallo scopo (per ora)
 - Funzioni a pagamento di qualsiasi tipo, pubblicità, tracciamento.
 - App nativa per App Store (costerebbe 99 $/anno di iscrizione ad Apple **(da verificare)**): restiamo PWA.
-- Comunità e social **nella v1 e nella v1.x**. Una community per la v2 o oltre è in valutazione (V-14, decisione D12).
+- Comunità e social **nella v1 e nella v1.x**: solo link a community esistenti (D12, decisa il 2026-11-18). Da
+  rivalutare nella v2 (V-14).
 
 ## 5. Rischi
 | Rischio | Come lo gestiamo |
@@ -481,4 +484,5 @@ D11 approvata (prova sull'iPhone 16 con iOS 26.5.2); D10 rimandata all'esito di 
 **Nomi (D9, 2026-11-17):** i nomi scientifici seguono GBIF; *Aloe officinalis* / *Aloe vera* e i due nomi della Peperomia
 restano distinti ma aprono la stessa scheda di cura.
 **Aggiornamento 2026-11-18 (sera):** nuove sezioni delle schede F21 "Falsi miti" e F22 "Approfondimenti" (v1, D8
-ampliata); V-13 "Ultimi articoli" dal feed (v1.1, solo con permesso scritto); V-14 community (v2 o oltre, **D12 aperta**).
+ampliata); V-13 "Ultimi articoli" dal feed (v1.1, solo con permesso scritto e controllo umano); V-14 community
+(**D12 decisa: A**, solo link a community esistenti nella v1 e v1.x; da rivalutare nella v2).

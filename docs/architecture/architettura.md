@@ -590,7 +590,7 @@ interface AppSettings {
 | `AiProvider` | `RuleBasedAssistant` | telefono | v2: `OllamaProvider` personale |
 | `StorageProvider` | `IndexedDbStorage` | telefono | v2: sincronizzazione (D3) |
 | `QuotaStore` | `UpstashQuotaStore` | server | Cloudflare D1 o Supabase **(da verificare)**; ripiego: solo il dato di Pl@ntNet |
-| `ArticleFeedProvider` (v1.1, proposta V-13) | `RssFeedProvider`: solo feed autorizzati per iscritto, una lettura al giorno, tiene solo titolo/data/link ([scheda](../api-documentation/fonti-editoriali.md)) | server | Approfondimenti scelti a mano (F22), sempre presenti |
+| `ArticleFeedProvider` (v1.1, V-13) | `RssFeedProvider`: solo feed autorizzati per iscritto, una lettura al giorno, tiene solo titolo/data/link; ogni articolo resta in attesa finché una persona non lo approva ([scheda](../api-documentation/fonti-editoriali.md)) | server | Approfondimenti scelti a mano (F22), sempre presenti |
 
 ## 7. Sicurezza e privacy (riassunto)
 - Chiavi solo sul server, mai nel repository (CLAUDE.md §7). Variabili segrete: `PLANTNET_API_KEY`, `UPSTASH_REDIS_REST_URL`,
@@ -622,7 +622,8 @@ iPhone 16, iOS 26.5.2); D10 rimandata all'esito di D11.
 **Aggiornamento 2026-11-18:** D11 chiusa (fattibile sull'iPhone 16); D10 approvata (BioCLIP compresso int8, versione
 bloccata su Hugging Face); regole del popup aggiornate (ritmo adattivo, stabilità in secondi, piante gemelle).
 **Aggiornamento 2026-11-18 (sera):** schede con "Falsi miti" e "Approfondimenti" (`MythCheck`, `FurtherReading`; D8
-ampliata); feed RSS proposto per la v1.1 (`ArticleFeedProvider`); nuova decisione aperta **D12** (community, v2 o oltre).
+ampliata); feed RSS per la v1.1 (`ArticleFeedProvider`), solo con permesso scritto e controllo umano; **D12** decisa
+(A: nessuna community nella v1 e v1.x, solo link a community esistenti).
 
 ## Fonti
 1. Pl@ntNet API, "Introduction" e "Single-species identification" — https://my.plantnet.org/doc/getting-started/introduction , https://my.plantnet.org/doc/api/identify — consultati il 2026-11-16

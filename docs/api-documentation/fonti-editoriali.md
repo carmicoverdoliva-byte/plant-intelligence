@@ -15,8 +15,17 @@ Questa scheda risponde a tre domande sui siti italiani da cui vogliamo **consigl
 3. si può fare, nella versione 1.1, una sezione **"Ultimi articoli su questa pianta"** con solo titolo e link dal feed?
 
 Risposta breve: i **link** agli articoli sono consentiti, e sono la sezione "Approfondimenti" (F22) della v1, scelta a
-mano. **Nessun sito dà un permesso esplicito per usare il feed in un'app.** Per la v1.1 proponiamo i feed solo dopo un
+mano. **Nessun sito dà un permesso esplicito per usare il feed in un'app.** Per la v1.1 i feed si useranno solo dopo un
 **permesso scritto** dell'editore.
+
+## Regole decise il 2026-11-18 (dall'utente)
+1. **Siti confermati:** Vivai Le Georgiche, Gardenia, Vita in Campagna, Accademia dei Georgofili, CREA.
+   **Escluso:** Il Floricultore.
+2. **Feed RSS (v1.1):** solo con **permesso scritto** dell'editore **e controllo umano**. Ogni articolo arrivato dal feed
+   viene letto da una persona prima di comparire nell'app; non esiste una sezione di articoli "non controllati".
+   Testo dell'email per chiedere il permesso: [email-permesso-feed.md](email-permesso-feed.md) (da inviare a mano).
+3. **Gardenia:** gli articoli li **legge e li sceglie l'utente**, a mano. Nessuno strumento di intelligenza artificiale
+   apre, legge o riassume le pagine di Gardenia, per rispetto del suo `robots.txt` [8].
 
 ## Cosa usiamo e perché
 - **v1, "Approfondimenti" (F22):** un elenco **scelto a mano** di articoli per ogni scheda, con titolo, nome del sito,
@@ -37,11 +46,11 @@ in cui un sito dice quali programmi automatici possono leggere quali pagine).
 | Sito | Chi lo pubblica | Feed RSS | Termini su link, citazioni, feed | `robots.txt` | Uso proposto |
 |---|---|---|---|---|---|
 | **Vivai Le Georgiche** | Vivai Le Georgiche soc. agr., vivaio di Calvisano (BS) [1] | Sito principale: feed tecnico **vuoto** (0 articoli, ultimo aggiornamento 2022) [2]. **Blog** (sul sito del negozio venditapianteonline.it): feed **attivo**, `…/feed/`, 10 articoli, ultimo del 2026-09-30, con testo completo [3] | Nessuna pagina di termini d'uso. Piè di pagina: "copyright 2013 - tutti i diritti riservati"; pagina "Disclaimer": le fonti degli articoli sono citate quando disponibili [4]. Niente su link o feed | Nessun blocco per il feed [5] | **v1:** link scelti a mano (sì). **v1.1:** feed solo con permesso scritto |
-| **Gardenia** | Cairo Editore; testata registrata a Milano nel 1983, in edicola dal 1984; il sito è del 2025 [6] | **Attivo**: `https://gardenia.cairoeditore.it/feed/`, 10 articoli, ultimo del 2026-11-17, con testo completo [7] | Nessuna pagina di termini d'uso trovata: solo privacy e cookie [6] | **Blocca tutti i programmi di intelligenza artificiale** (anche quelli di Anthropic) e dichiara `Content-Usage: ai=n` (nessun uso per l'AI) e `DisallowAITraining`; gli altri programmi sono ammessi [8] | **v1:** link scelti a mano (sì). **v1.1:** feed solo con permesso scritto. I controlli sugli articoli li fa una persona, non l'AI |
-| **Vita in Campagna** (proposta) | Edizioni L'Informatore Agrario S.r.l. [9] | Non trovato (gli indirizzi `/feed` e `/rss` restituiscono pagine normali) | Contenuti di proprietà dell'editore; riproduzione solo senza scopo di lucro, con fonte e copyright; **scraping vietato**, cioè la raccolta automatica dei contenuti [9] | Blocca i programmi AI; `Content-Signal: ai-train=no, use=reference` [10] | **v1:** link scelti a mano. Forte su orto, frutteto, giardino; meno sulle piante d'appartamento. Niente feed |
-| **Accademia dei Georgofili** (proposta) | Accademia dei Georgofili, Firenze | Non trovato | Materiale protetto da copyright o con licenza CC dove indicato; copia vietata senza consenso, salvo estratti per uso personale [11] | Blocca i programmi AI [10] | **v1:** link per i falsi miti di orticoltura generale (articoli scientifici divulgativi). Niente feed |
-| **CREA**, Consiglio per la ricerca in agricoltura (proposta) | Ente pubblico di ricerca | **Attivo**, ma di **notizie istituzionali** (100 elementi), non articoli sulle singole piante [12] | **Licenza CC BY 3.0**, salvo dove indicato: riuso libero citando la fonte [12] | Nessun blocco | **v1:** anche come **fonte** per le schede e i falsi miti, oltre che per i link. Il feed serve a poco per "una pianta" |
-| **Il Floricultore** (valutato) | Agrital Editrice [13] | Non trovato | "All Rights Reserved" [13] | — | **Sconsigliato per ora:** rivista per professionisti del settore, non per chi cura piante in casa |
+| **Gardenia** | Cairo Editore; testata registrata a Milano nel 1983, in edicola dal 1984; il sito è del 2025 [6] | **Attivo**: `https://gardenia.cairoeditore.it/feed/`, 10 articoli, ultimo del 2026-11-17, con testo completo [7] | Nessuna pagina di termini d'uso trovata: solo privacy e cookie [6] | **Blocca tutti i programmi di intelligenza artificiale** (anche quelli di Anthropic) e dichiara `Content-Usage: ai=n` (nessun uso per l'AI) e `DisallowAITraining`; gli altri programmi sono ammessi [8] | **v1:** link letti e scelti **dall'utente**, a mano (regola 3). **v1.1:** feed solo con permesso scritto e controllo umano |
+| **Vita in Campagna** (confermato) | Edizioni L'Informatore Agrario S.r.l. [9] | Non trovato (gli indirizzi `/feed` e `/rss` restituiscono pagine normali) | Contenuti di proprietà dell'editore; riproduzione solo senza scopo di lucro, con fonte e copyright; **scraping vietato**, cioè la raccolta automatica dei contenuti [9] | Blocca i programmi AI; `Content-Signal: ai-train=no, use=reference` [10] | **v1:** link scelti a mano. Forte su orto, frutteto, giardino; meno sulle piante d'appartamento. Niente feed |
+| **Accademia dei Georgofili** (confermato) | Accademia dei Georgofili, Firenze | Non trovato | Materiale protetto da copyright o con licenza CC dove indicato; copia vietata senza consenso, salvo estratti per uso personale [11] | Blocca i programmi AI [10] | **v1:** link per i falsi miti di orticoltura generale (articoli scientifici divulgativi). Niente feed |
+| **CREA**, Consiglio per la ricerca in agricoltura (confermato) | Ente pubblico di ricerca | **Attivo**, ma di **notizie istituzionali** (100 elementi), non articoli sulle singole piante [12] | **Licenza CC BY 3.0**, salvo dove indicato: riuso libero citando la fonte [12] | Nessun blocco | **v1:** anche come **fonte** per le schede e i falsi miti, oltre che per i link. Il feed serve a poco per "una pianta" |
+| **Il Floricultore** (escluso il 2026-11-18) | Agrital Editrice [13] | Non trovato | "All Rights Reserved" [13] | — | **Escluso:** rivista per professionisti del settore, non per chi cura piante in casa |
 
 **Non proposti:** i siti di guide generiche che vivono di pubblicità e motori di ricerca (es. Giardinaggio.it). La qualità
 varia molto da articolo ad articolo e spesso non c'è un autore indicato.
@@ -75,8 +84,10 @@ pulita, mentre lo studio da cui prende il dato indica una mediana di **0,023 m³
 ## Come lo usiamo nel codice (adattatore)
 - **v1:** nessun adattatore. Gli articoli sono un campo statico della scheda (`furtherReading`, vedi
   [schema dei dati](../architecture/architettura.md#5-schema-dei-dati)).
-- **v1.1 (proposta):** adattatore `ArticleFeedProvider` sul server, con implementazione `RssFeedProvider`:
+- **v1.1:** adattatore `ArticleFeedProvider` sul server, con implementazione `RssFeedProvider`:
   - legge **solo i feed autorizzati**, elencati in un file di configurazione insieme alla data del permesso;
+  - mette gli articoli nuovi **in attesa**: compaiono nell'app solo dopo che una persona li ha letti e approvati
+    (regola 2). Per Gardenia la persona è l'utente (regola 3);
   - lo fa **una volta al giorno** per sito e conserva il risultato (cache), per non pesare sui siti;
   - si presenta con un nome che dice chi è (`User-Agent: PlantIntelligence-feed`) e rispetta `robots.txt`;
   - tiene solo **titolo, data, link**; scarta testo, immagini e autore del feed;
@@ -98,20 +109,16 @@ pulita, mentre lo studio da cui prende il dato indica una mediana di **0,023 m³
 | Rischio | Probabilità | Come lo gestiamo |
 |---|---|---|
 | Un articolo consigliato viene modificato e diventa sbagliato | Media | Ricontrollo a ogni versione (vedi criterio 6); data dell'ultima verifica salvata in `checkedAt` |
-| Il feed (v1.1) propone un articolo che contraddice la scheda | **Alta**: nessuno lo controlla prima | Proposta: sezione separata dagli Approfondimenti, con l'avviso "Articoli recenti dal sito X: non li abbiamo controllati uno per uno". Da decidere prima della v1.1 |
+| Il feed (v1.1) propone un articolo che contraddice la scheda | Media | Deciso: controllo umano di ogni articolo prima che compaia (regola 2). Costo: la sezione si aggiorna più lentamente |
 | Un editore chiede di togliere i link o il feed | Bassa | Si toglie subito: è un dato statico o una riga di configurazione |
 | L'utente prende un articolo esterno per un consiglio dell'app | Media | Etichetta "Articolo esterno" e nome del sito sempre visibili; il link apre Safari |
 | Un vivaio è in conflitto d'interessi (vende piante) | Certa per i vivai | Dichiarato nella scheda (criterio 4) |
-| Le pagine di Gardenia sono state lette una volta con uno strumento AI, prima di vedere il blocco nel `robots.txt` | Già successo (2026-11-18) | Da ora le verifiche sugli articoli di Gardenia le fa una persona |
+| Le pagine di Gardenia sono state lette una volta con uno strumento AI, prima di vedere il blocco nel `robots.txt` | Già successo (2026-11-18) | Da ora gli articoli di Gardenia li legge e li sceglie l'utente (regola 3) |
 
 ## Decisioni aperte
-- **Permesso scritto per i feed (prima della v1.1):** scrivere a Le Georgiche e a Cairo Editore (Gardenia) per chiedere
-  se possiamo mostrare titolo e link dal loro feed in un'app gratuita e non commerciale. **Lo fai tu**, se vuoi: io
-  preparo il testo dell'email.
-- **Feed non verificati (v1.1):** mostrarli con l'avviso "non controllati uno per uno", oppure solo dopo un controllo
-  umano settimanale? Raccomandazione: **controllo umano**, coerente con il criterio 2. Il costo è che la sezione si
-  aggiorna più lentamente.
-- **Siti proposti:** confermi Vita in Campagna, Georgofili e CREA? Il Floricultore è sconsigliato.
+- Nessuna. Le decisioni del 2026-11-18 sono in "Regole decise".
+- **Da fare prima della v1.1 (utente):** inviare a mano l'email di [richiesta del permesso](email-permesso-feed.md) a
+  Vivai Le Georgiche e a Cairo Editore e salvare qui la risposta, con la data.
 
 ## Fonti
 1. Vivai Le Georgiche, home page e piè di pagina (soc. agr., P.IVA indicata, sede di Calvisano) — https://www.legeorgiche.it/ — consultato il 2026-11-18

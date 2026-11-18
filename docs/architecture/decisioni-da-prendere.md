@@ -15,6 +15,9 @@ sulla fattibilità tecnica. Restano da misurare nella versione 1: calore e ralle
 (22 schede complete nella v1).
 **Aggiornamento 2026-11-18 (sera, nuovi requisiti):** D8 ampliata con "Falsi miti" e "Approfondimenti" (v1); aggiunta **D12** (community),
 aperta, per la v2 o oltre.
+**Aggiornamento 2026-11-18 (decisioni dell'utente):** fonti editoriali confermate (Vita in Campagna, Georgofili, CREA;
+escluso Il Floricultore); feed RSS in v1.1 solo con **permesso scritto e controllo umano**; articoli di Gardenia letti e
+scelti dall'utente; **D12 decisa: A** per v1 e v1.x, da rivalutare nella v2.
 
 ---
 
@@ -176,7 +179,10 @@ mostriamo consigli generici dichiarati come tali.
     link**. Mai testi copiati o riassunti. Criterio di scelta dichiarato: un articolo che contraddice le fonti non entra.
 
   Siti verificati e termini d'uso: [fonti editoriali](../api-documentation/fonti-editoriali.md). I feed RSS ("Ultimi
-  articoli", V-13) sono proposti per la v1.1, solo con permesso scritto degli editori.
+  articoli", V-13) sono previsti per la v1.1, solo con permesso scritto degli editori e controllo umano di ogni
+  articolo prima che compaia (decisione dell'utente, 2026-11-18). Siti confermati: Vivai Le Georgiche, Gardenia,
+  Vita in Campagna, Accademia dei Georgofili, CREA; escluso Il Floricultore. **Regola per Gardenia:** gli articoli li
+  legge e li sceglie l'utente, a mano (il sito non vuole strumenti di intelligenza artificiale).
 
 ---
 
@@ -340,7 +346,7 @@ compresso da Hugging Face. Sull'iPhone 16, in Safari, 4 sessioni brevi:
 
 ---
 
-## D12 — Una "community" di appassionati? *(aggiunta il 2026-11-18, per la v2 o oltre)* — **APERTA**
+## D12 — Una "community" di appassionati? *(aggiunta il 2026-11-18, per la v2 o oltre)*
 **L'idea:** chi usa l'app può lasciare **consigli** su una pianta (es. "il mio pothos sta benissimo in bagno") e
 **votare** quelli degli altri.
 
@@ -375,7 +381,8 @@ Motivo: il rischio più grande non è tecnico ma **di tempo**. Senza qualcuno ch
 diffonde proprio le informazioni sbagliate che le schede vogliono correggere. Prima di decidere servono anche la verifica
 dei piani gratuiti di database e autenticazione e quella degli obblighi DSA e privacy.
 
-**Scelta:** ⏳ da prendere (non serve prima della v2).
+**Scelta: ✅ DECISA il 2026-11-18 — A** per la v1 e la v1.x: nessuna community nell'app, solo **link a community
+esistenti** (es. dal menu o dalla Guida). Da **rivalutare nella v2**, con le regole indicate sopra se si sceglierà B.
 
 ---
 
@@ -393,4 +400,4 @@ dei piani gratuiti di database e autenticazione e quella degli obblighi DSA e pr
 | D9 Flora e soglie | ✅ (2026-11-17) `k-world-flora`; titolo nome comune + genere, specie "probabilmente", nessuna percentuale; soglie tarate; tabella sinonimi GBIF |
 | D10 Modello anteprima live | ✅ (2026-11-18) BioCLIP v1 compresso int8 (87 MB) da Hugging Face, versione bloccata; download alla prima apertura della fotocamera; nome comune o genere; gemelle "X o Y" |
 | D11 Prova su iPhone 16 | ✅ Chiusa (2026-11-18): fattibile (WebGPU, ~0,3 s, 0 errori); calore su 5 minuti e trappole da misurare nella v1 |
-| D12 Community | ⏳ Aperta (2026-11-18), per la v2 o oltre. Raccomandazione: nessuna community nella v1/v1.x, solo link a community esistenti; poi rivalutare |
+| D12 Community | ✅ (2026-11-18) A: nessuna community nella v1/v1.x, solo link a community esistenti; da rivalutare nella v2 |
