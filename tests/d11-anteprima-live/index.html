@@ -61,7 +61,7 @@
     <video id="video" playsinline muted autoplay></video>
     <div id="frame"></div>
     <div id="popup"><div class="name" id="popupName">Sto guardando…</div>
-      <div class="hint">Anteprima sul telefono · Scatta per il riconoscimento completo</div></div>
+      <div class="hint" id="popupHint">Anteprima sul telefono · Scatta per il riconoscimento completo</div></div>
   </div>
 
   <section class="panel" id="metrics" hidden>
@@ -74,8 +74,10 @@
       <tr><td>Ultima analisi</td><td id="mLast">—</td></tr>
       <tr><td>Media analisi (ultimo minuto)</td><td id="mAvg">—</td></tr>
       <tr><td>Analisi al secondo</td><td id="mRate">—</td></tr>
+      <tr><td>Pausa tra le analisi (adattiva)</td><td id="mPause">—</td></tr>
       <tr><td>Rallentamento rispetto al 1° minuto</td><td id="mTrend">—</td></tr>
       <tr><td>Blocco più lungo della pagina (ultimo minuto)</td><td id="mLag">—</td></tr>
+      <tr><td>Pause per cambio app (non contano come blocchi)</td><td id="mPauses">—</td></tr>
       <tr><td>Durata della prova</td><td id="mElapsed">—</td></tr>
     </table>
     <p class="small">Il riscaldamento non si può misurare dal browser: guarda il "rallentamento" (se il telefono si scalda,
@@ -102,8 +104,8 @@
     <input type="range" id="sProb" min="0.1" max="0.95" step="0.05">
     <label for="sSim">Somiglianza minima: <span id="vSim"></span></label>
     <input type="range" id="sSim" min="0.30" max="0.60" step="0.01">
-    <label for="sInterval">Intervallo tra le analisi: <span id="vInterval"></span></label>
-    <input type="range" id="sInterval" min="250" max="2000" step="250">
+    <label for="sInterval">Pausa minima tra le analisi: <span id="vInterval"></span></label>
+    <input type="range" id="sInterval" min="0" max="2000" step="50">
   </section>
 
   <section class="panel" id="export" hidden>
