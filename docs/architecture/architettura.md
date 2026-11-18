@@ -1,6 +1,6 @@
 # Architettura — Plant Intelligence
 
-> Ultimo aggiornamento: 2026-11-16 · Collegati: [specifiche funzionali](../requirements/specifiche-funzionali.md),
+> Ultimo aggiornamento: 2026-11-18 · Collegati: [specifiche funzionali](../requirements/specifiche-funzionali.md),
 > [decisioni da prendere](decisioni-da-prendere.md), schede [Pl@ntNet](../api-documentation/plantnet-api.md),
 > [Open-Meteo](../api-documentation/open-meteo.md), [SunCalc](../api-documentation/suncalc.md)
 
@@ -94,7 +94,7 @@ parte il riconoscimento completo con Pl@ntNet, con alternative e confidenza (F04
 │  Fotocamera (getUserMedia) ──fotogrammi──┐                      │
 │                                          v                      │
 │                         LivePreviewClassifier (modello locale)  │   Livello 1: ANTEPRIMA
-│                         ~2 analisi al secondo, niente rete      │   gratis, senza limiti,
+│                         ritmo adattivo (~1,6/s), niente rete    │   gratis, senza limiti,
 │                                          │                      │   anche offline
 │                                          v                      │
 │                         Regole del popup (soglia, stabilità)    │
@@ -117,8 +117,11 @@ parte il riconoscimento completo con Pl@ntNet, con alternative e confidenza (F04
 **Il modello locale.** Si scarica **una volta** e resta nella cache dell'app, gestita dal service worker (il pezzo
 della PWA che lavora in sottofondo e conserva i file per l'uso offline). Il download è **facoltativo** e viene proposto
 **alla prima apertura della fotocamera**, con un avviso sul peso e il consiglio di usare il Wi-Fi (D10). Senza modello
-l'app funziona lo stesso. Candidato: BioCLIP in versione **quantizzata**, cioè compressa salvando i numeri con meno
-cifre, per ridurre il peso.
+l'app funziona lo stesso. **Modello scelto (D10, 2026-11-18): BioCLIP v1 compresso int8** (87,3 MB), cioè con i numeri
+salvati con meno cifre per ridurre il peso. Si scarica da Hugging Face (`carmineverdoliva-byte/d11-bioclip-int8`) alla **versione bloccata**
+`ca03b3a`, e il telefono ne controlla l'impronta SHA-256 prima di usarlo. Il modello confronta
+l'immagine con le "impronte" (embedding) delle piante del catalogo, calcolate da foto di riferimento con licenza aperta.
+Tutto il lavoro pesante gira in un **Web Worker** (un "lavoratore" separato dalla pagina), così il mirino non si blocca.
 
 **Cosa mostra il popup:** **nome comune o genere, mai la specie** (D10), coerente con D9: il genere è affidabile, la
 specie no. Il modello gira con **ONNX Runtime Web**
@@ -132,16 +135,17 @@ inquadratura** calcolati in modo semplice (troppo buio, mossa, troppo lontano), 
 
 **Regole del popup** (dettaglio in [specifiche F17](../requirements/specifiche-funzionali.md#f17--anteprima-live-nel-mirino)).
 Tutti i numeri sono **valori di configurazione** (in un unico file, `src/config/livePreview.ts`), non sparsi nel codice,
-e verranno tarati con D11:
+e sono stati provati con D11 (aggiornati il 2026-11-18 dopo la prova sull'iPhone):
 
-| Regola | Valore iniziale | Perché |
+| Regola | Valore | Perché |
 |---|---|---|
-| Analisi al secondo | **2** (una ogni 500 ms), mai più di 4; una nuova analisi parte solo quando la precedente è finita | Fluido ma senza scaldare il telefono; niente code |
+| Ritmo delle analisi | **adattivo**: pausa lunga quanto l'ultima analisi (minimo 150 ms), cioè modello al lavoro al massimo **metà del tempo**; se le ultime 20 analisi sono il 25% più lente delle prime 20 (telefono caldo), al massimo **un terzo**. Una nuova analisi parte solo quando la precedente è finita | Sull'iPhone 16 un'analisi dura ~0,3 s: con la pausa fissa di 500 ms si arrivava solo a ~1,2 analisi al secondo. Atteso ~1,6, **da misurare** insieme al calore |
 | Area analizzata | quadrato centrale del mirino, ridotto alla dimensione richiesta dal modello | L'utente sa cosa sta "guardando" l'app |
-| Media mobile | punteggi mediati sulle ultime ~4 analisi (circa 2 secondi) | Un fotogramma mosso non cambia il risultato |
-| Soglia per mostrare un nome | somiglianza ≥ **0,42** e probabilità media ≥ **30%** con scala **30**, distacco dal 2° nome ≥ **0,15** (tarate sul PC il 2026-11-17, da ricontrollare con D11) | Sotto: nessun nome, solo "Sto guardando…" o un consiglio |
-| Comparsa | stesso nome in testa per **3** analisi di fila (~1,5 s) | Niente nomi lampo |
-| Cambio di nome | il nuovo nome deve stare in testa per **4** analisi di fila **e** superare il vecchio di **0,10** | Il popup non "balla" a ogni movimento |
+| Media mobile | punteggi mediati sulle analisi degli **ultimi 2 secondi** | Un fotogramma mosso non cambia il risultato |
+| Soglia per mostrare un nome | somiglianza ≥ **0,42** e probabilità media ≥ **30%** con scala **30**, distacco dal 2° nome ≥ **0,15** (tarate sul PC) | Sotto: nessun nome, solo "Sto guardando…" o un consiglio |
+| Piante gemelle | se i primi due nomi sono dello **stesso gruppo** (es. Pothos/Filodendro/Monstera) e distano meno di 0,15, insieme valgono almeno il 30% e staccano il 3° nome di 0,15 → **"Forse: X o Y – scatta per saperlo"**. Gruppi nel catalogo (`twinGroups`) | Meglio una coppia onesta che un nome tirato a sorte |
+| Comparsa | stesso nome (o stessa coppia) in testa per **1 secondo** e almeno **2** analisi | Niente nomi lampo; non dipende dalla velocità del telefono |
+| Cambio di nome | il nuovo nome deve restare in testa per **2 secondi** (almeno 3 analisi) **e** superare il vecchio di **0,10**; se il nuovo nome "affina" il vecchio ("X o Y" → "X") basta la stabilità | Il popup non "balla" a ogni movimento |
 | Scomparsa | probabilità media sotto i **3/4 della soglia** di comparsa (oggi 0,22) per 2 secondi → il popup sfuma in "Sto guardando…" | Meglio nessun nome che un nome sbagliato |
 | Pausa | app in background, schermo spento o mirino chiuso → analisi ferme | Batteria |
 
@@ -485,7 +489,7 @@ interface AppSettings {
 | Adattatore | Implementazione v1 | Dove gira | Alternativa gratuita / ripiego |
 |---|---|---|---|
 | `PlantRecognitionProvider` | `PlantNetProvider` tramite `/api/identify` | server | Ricerca per nome (F06) |
-| `LivePreviewClassifier` | da scegliere con D10, dopo D11 (candidato: BioCLIP quantizzato con la lista del catalogo) | telefono | Modello nostro piccolo; `NoopClassifier` (solo consigli di inquadratura) |
+| `LivePreviewClassifier` | BioCLIP v1 compresso int8 + impronte del catalogo (D10, 2026-11-18) | telefono | Modello nostro piccolo; `NoopClassifier` (solo consigli di inquadratura) |
 | `TaxonomyProvider` | `StaticSynonymTable` (file JSON generato sul PC da GBIF, [scheda](../api-documentation/sinonimi-botanici.md)) | telefono e server | World Flora Online **(da verificare)**; tabella a mano per il catalogo |
 | `WeatherProvider` | `OpenMeteoProvider` | telefono | MET Norway **(da verificare)**; intervalli standard |
 | `SunProvider` | `SunCalcProvider` | telefono | astronomy-engine **(da verificare)**; formule NOAA |
@@ -520,6 +524,8 @@ D1-D9 decise il 2026-11-16: vedi [decisioni-da-prendere.md](decisioni-da-prender
 verifica dei termini di Vercel (D2) e risultato del test delle foto (D9: flora e soglie definitive).
 **Aggiornamento 2026-11-17:** D9 chiusa (`k-world-flora`, soglie, tabella dei sinonimi); D11 approvata (prova su
 iPhone 16, iOS 26.5.2); D10 rimandata all'esito di D11.
+**Aggiornamento 2026-11-18:** D11 chiusa (fattibile sull'iPhone 16); D10 approvata (BioCLIP compresso int8, versione
+bloccata su Hugging Face); regole del popup aggiornate (ritmo adattivo, stabilità in secondi, piante gemelle).
 
 ## Fonti
 1. Pl@ntNet API, "Introduction" e "Single-species identification" — https://my.plantnet.org/doc/getting-started/introduction , https://my.plantnet.org/doc/api/identify — consultati il 2026-11-16

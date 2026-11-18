@@ -1,6 +1,6 @@
 # Decisioni da prendere insieme
 
-> Ultimo aggiornamento: 2026-11-16 · Collegati: [architettura](architettura.md), [specifiche funzionali](../requirements/specifiche-funzionali.md)
+> Ultimo aggiornamento: 2026-11-18 · Collegati: [architettura](architettura.md), [specifiche funzionali](../requirements/specifiche-funzionali.md)
 
 Queste scelte sono importanti o difficili da cambiare dopo, quindi **non le prende Claude da solo**. Per ognuna ci sono le
 opzioni, i pro e i contro e una **raccomandazione**. Quando una decisione è presa, scriviamo qui la scelta e la data, e
@@ -9,6 +9,8 @@ aggiorniamo i documenti collegati.
 **Stato:** D1-D9 **decise il 2026-11-16** (tutte secondo la raccomandazione, con le aggiunte indicate in D3, D5 e D8).
 **Prossimo passo:** il test delle foto (D9), poi la verifica dei termini di Vercel (D2).
 **Aggiornamento 2026-11-17:** D9 chiusa; D11 approvata; D10 rimandata all'esito di D11.
+**Aggiornamento 2026-11-18:** prova D11 fatta sull'iPhone 16 → **D10 approvata** (BioCLIP compresso int8), **D11 chiusa**
+sulla fattibilità tecnica. Restano da misurare nella versione 1: calore e rallentamento su 5 minuti, trappole.
 
 ---
 
@@ -223,7 +225,18 @@ pesante sull'iPhone, si passa a **C**. **E** resta sempre come ripiego automatic
 - Prova con la webcam dell'utente: ~190 ms per analisi, rallentamento 3% in 4 minuti. Davanti a una foto mostrata sullo
   schermo di un telefono, nessun popup: corretto.
 
-Dettagli nella [scheda dei modelli](../api-documentation/modelli-riconoscimento-live.md). Manca la prova sull'iPhone 16.
+Dettagli nella [scheda dei modelli](../api-documentation/modelli-riconoscimento-live.md).
+
+**Scelta: ✅ APPROVATA il 2026-11-18 — A, BioCLIP v1 compresso int8 (87,3 MB).**
+- Modello: Hugging Face [`carmineverdoliva-byte/d11-bioclip-int8`](https://huggingface.co/carmineverdoliva-byte/d11-bioclip-int8), **versione bloccata** al commit
+  `ca03b3ace7d6f841d4a11cd35d53f5ec10f90982`, SHA-256 `b7e02af2f88d77ae8019e3f3429d4c7d755e7de3d630cad87cea4bbd6282b1d3` (controllato dal telefono
+  a ogni download). Licenza MIT, deriva da BioCLIP (Imageomics) tramite `m3r1al/naturalist-bioclip-v1`.
+- Motore: ONNX Runtime Web, WebGPU con ripiego WebAssembly, in un Web Worker.
+- Download alla prima apertura della fotocamera; popup con nome comune o genere, mai la specie; piante "gemelle" mostrate
+  come "Forse: X o Y – scatta per saperlo".
+- Dati della prova sull'iPhone 16 (2026-11-18): WebGPU, ~0,3 s per analisi, 0 errori, modello conservato da Safari
+  (riapertura in 2,6-4,3 s). Riconoscimento: campione piccolo (3 annotazioni), confusione Pothos/Filodendro/Monstera coerente
+  con il PC. Dettagli: [`risultati-iphone-2026-11-18.md`](../../tests/d11-anteprima-live/risultati-iphone-2026-11-18.md).
 
 ---
 
@@ -253,6 +266,35 @@ Telefono di prova: **iPhone 16 con iOS 26.5.2** (dato fornito dall'utente il 202
 **Scelta: ✅ APPROVATA il 2026-11-17 — A.** La pagina di prova è in `tests/d11-anteprima-live/`. Prima di metterla online
 va spiegato all'utente cosa serve (account, servizio gratuito, passi) e si aspetta la sua conferma.
 
+**Esito: ✅ CHIUSA il 2026-11-18 sulla fattibilità tecnica.** Pagina pubblicata dall'utente su GitHub Pages, modello
+compresso da Hugging Face. Sull'iPhone 16, in Safari, 4 sessioni brevi:
+
+| Criterio | Risultato | Esito |
+|---|---|---|
+| Analisi in meno di 500 ms | 291-323 ms in media, WebGPU | ✅ |
+| Download sotto i 150 MB | 87,3 MB la prima volta; poi 0 (modello conservato da Safari) | ✅ |
+| Mirino fluido | blocchi della pagina 31-109 ms; un "blocco" di 4688 ms quasi certamente dovuto al passaggio a un'altra app (vedi sotto) | ✅ con nota |
+| Nome giusto in almeno 6 casi su 10 | 3 annotazioni soltanto: Maranta giusta, Monstera giusta, Pothos scambiato per Filodendro | ⚠️ campione troppo piccolo |
+| Trappole senza nome | non registrate | ⏳ da fare nella v1 |
+| Calore e rallentamento su 5 minuti | sessioni di massimo 1 min 20 s ("tiepido" dopo 2 minuti) | ⏳ da fare nella v1 |
+
+**Cosa è cambiato dopo la prova (2026-11-18):**
+- **Il blocco di 4688 ms.** Era nella seconda "sessione", che in realtà era la stessa pagina della prima: dopo il "Copia" la
+  pagina è rimasta ferma qualche secondo (mancano circa 11 s di analisi), probabilmente per incollare i risultati nella
+  chat. Al ritorno su Safari il misuratore scattava **prima** che la pagina risultasse di nuovo visibile, e contava il
+  tempo passato altrove come "blocco". Causa probabile, non dimostrata sul telefono. Correzione: ogni ritardo si giudica
+  1 secondo dopo, e se nel frattempo la pagina è stata nascosta o ha perso il fuoco diventa una "pausa per cambio app",
+  elencata a parte. Verifica sul PC: un finto cambio app di 3 s non è più un blocco, uno vero di 0,8 s sì.
+- **Analisi al secondo ~1 invece di 2.** La pausa fissa di 500 ms si sommava ai ~300 ms dell'analisi. Ora la pausa è
+  **adattiva**: lunga quanto l'analisi, quindi il modello lavora al massimo metà del tempo (prima circa il 37%). Se le
+  analisi rallentano del 25% (segno di telefono caldo), lavora al massimo un terzo del tempo. Atteso sull'iPhone: circa
+  1,6 analisi al secondo, **da misurare**. In più la stabilità del popup ora si misura **in secondi** e non in numero di
+  analisi: il nome compare dopo circa 1 s di risultati concordi, invece di circa 1,7 s.
+- **Piante gemelle.** 4 gruppi: Pothos/Filodendro/Monstera, Filodendro/Peperomia, Maranta/Calathea, Anthurium/Spatifillo.
+  Se i primi due nomi sono dello stesso gruppo e vicini, il popup dice **"Forse: X o Y – scatta per saperlo"**. Foto di
+  riferimento portate da 6 a 15 per queste 8 piante. Sul PC il modello compresso passa dall'86% al **93%** di piante
+  giuste al 1° posto, nessuna trappola con un nome.
+
 ---
 
 ## Riepilogo
@@ -267,5 +309,5 @@ va spiegato all'utente cosa serve (account, servizio gratuito, passi) e si aspet
 | D7 Promemoria | ✅ In-app + Calendario; push in v2 |
 | D8 Consigli di cura | ✅ Schede nostre con fonti citate + dati botanici aperti; ripiego generico per famiglia/tipo |
 | D9 Flora e soglie | ✅ (2026-11-17) `k-world-flora`; titolo nome comune + genere, specie "probabilmente", nessuna percentuale; soglie tarate; tabella sinonimi GBIF |
-| D10 Modello anteprima live | ⏸️ Rimandata a D11 — candidato BioCLIP quantizzato, download alla prima apertura della fotocamera, popup con nome comune o genere |
-| D11 Prova su iPhone 16 | ✅ (2026-11-17) Pagina di prova minima prima dell'interfaccia |
+| D10 Modello anteprima live | ✅ (2026-11-18) BioCLIP v1 compresso int8 (87 MB) da Hugging Face, versione bloccata; download alla prima apertura della fotocamera; nome comune o genere; gemelle "X o Y" |
+| D11 Prova su iPhone 16 | ✅ Chiusa (2026-11-18): fattibile (WebGPU, ~0,3 s, 0 errori); calore su 5 minuti e trappole da misurare nella v1 |

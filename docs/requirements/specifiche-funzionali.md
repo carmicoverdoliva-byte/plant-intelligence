@@ -246,28 +246,32 @@ quota cambia senza modificare il codice.
 > **PWA** (Progressive Web App): un sito che si comporta come un'app. Si aggiunge alla schermata Home e funziona anche senza rete.
 
 ### F17 — Anteprima live nel mirino
-> Livello 1 del riconoscimento (idea I6). Aggiunta il 2026-11-17. Entra nella v1 **solo se la prova sull'iPhone (D11) va bene**; altrimenti il mirino mostra solo
-> consigli di inquadratura e l'anteprima passa a una versione successiva. Modello: decisione D10.
+> Livello 1 del riconoscimento (idea I6). Aggiunta il 2026-11-17. **Entra nella v1:** la prova sull'iPhone (D11, 2026-11-18)
+> è andata bene. Modello: BioCLIP v1 compresso int8 (D10). Aggiornata il 2026-11-18 (ritmo adattivo, piante gemelle).
 
 **Cosa fa.** Mentre l'utente inquadra una pianta, un modello che gira **sul telefono** (gratis, senza limiti, anche
 offline) propone un nome probabile in un piccolo popup. Scattando, parte il riconoscimento completo con Pl@ntNet (F03-F04).
 
 **Regole del popup** (valori iniziali, configurabili e da tarare con D11; dettagli tecnici in
 [architettura §1b](../architecture/architettura.md#1b-riconoscimento-a-due-livelli)):
-1. **Quante analisi al secondo:** circa **2** (mai più di 4). Una nuova analisi parte solo quando la precedente è finita.
+1. **Quante analisi al secondo:** ritmo **adattivo**: il modello lavora al massimo metà del tempo (un terzo se il telefono
+   scalda); sull'iPhone 16 circa 1,6 al secondo **(da misurare)**. Una nuova analisi parte solo quando la precedente è finita.
    Le analisi si fermano quando l'app va in background o il mirino si chiude.
 2. **Soglia minima di sicurezza:** il nome compare solo se, in media negli ultimi ~2 secondi, la **somiglianza** con la pianta è
    almeno **0,42** e la sicurezza è almeno **30%** (calcolata con scala 30), e supera di almeno **15 punti** il secondo nome.
    Valori tarati sul PC il 2026-11-17; la prova D11 li ricontrolla. Sotto soglia: nessun nome, solo "Sto guardando…" o un consiglio
    ("Avvicinati a una foglia", "C'è poca luce").
 3. **Niente cambio di nome a ogni movimento:**
-   - un nome compare solo dopo essere rimasto primo per circa **1,5 secondi**;
+   - un nome compare solo dopo essere rimasto primo per circa **1 secondo** (e almeno 2 analisi);
    - per **cambiare** nome, il nuovo deve restare primo per circa **2 secondi** e superare il vecchio di **10 punti**;
    - se la sicurezza scende sotto i **3/4 della soglia** di comparsa per 2 secondi, il popup sfuma in "Sto guardando…" invece di cambiare nome.
 4. **Testo onesto:**
    - mostra **solo il nome comune o il genere, mai la specie** (D10): **"Forse: Pothos"** oppure
      **"Forse un *Philodendron*"**, mai "È un Pothos";
    - sotto il nome, piccolo: **"Anteprima sul telefono · Scatta per il riconoscimento completo"**;
+   - **piante gemelle** (gruppi che si confondono spesso, es. Pothos/Filodendro/Monstera, Maranta/Calathea): se i primi due
+     nomi sono dello stesso gruppo e vicini, il popup dice **"Forse: Pothos o Filodendro"** con sotto
+     **"Si somigliano molto: scatta per saperlo"**. Se poi uno dei due prevale in modo stabile, il popup passa al nome singolo;
    - nessuna percentuale, né nel popup né nel risultato completo (D9).
 5. **Tocco sul popup** = scatto della foto. Un piccolo link secondario "Come coltivarla" apre la scheda (F18) con
    l'avviso che la specie non è confermata.

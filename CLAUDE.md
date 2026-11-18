@@ -68,8 +68,10 @@ Ogni nuova funzione deve rispettare questo requisito:
 - Next.js + React + TypeScript + Tailwind CSS, installabile come PWA, mobile-first.
 - Riconoscimento a due livelli:
   - **completo**: Pl@ntNet API (piano gratuito), flora `k-world-flora` (D9);
-  - **anteprima live**: modello aperto nel browser con ONNX Runtime Web (WebGPU, ripiego WebAssembly). Candidato BioCLIP
-    limitato al catalogo; la scelta definitiva è D10, dopo la prova D11.
+  - **anteprima live** (D10, 2026-11-18): **BioCLIP v1 compresso int8** (87 MB) limitato al catalogo, scaricato da Hugging
+    Face (`carmineverdoliva-byte/d11-bioclip-int8`) alla **versione bloccata** con controllo SHA-256; ONNX Runtime Web in un Web Worker
+    (WebGPU, ripiego WebAssembly); piante "gemelle" mostrate come "Forse: X o Y".
+  - **completo allo scatto**: Pl@ntNet (sopra). L'anteprima non si salva mai; vale sempre Pl@ntNet.
 - Sinonimi botanici: tabella statica generata da GBIF Backbone Taxonomy (CC BY 4.0).
 - Meteo: Open-Meteo. Sole: SunCalc.
 - AI botanica: modello locale via Ollama quando possibile, provider configurabile.

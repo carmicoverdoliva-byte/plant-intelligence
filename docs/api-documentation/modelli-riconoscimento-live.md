@@ -141,6 +141,34 @@ Il compresso rispetta il limite di 150 MB di D11. La velocità sull'iPhone resta
 - **Verifica automatica:** 0 errori e blocco massimo della pagina di circa 25 ms, contro 1-2 s prima. Dettagli in
   [`tests/d11-anteprima-live/README.md`](../../tests/d11-anteprima-live/README.md).
 
+## Prova sull'iPhone 16 e modifiche (2026-11-18)
+Risultati grezzi: [`risultati-iphone-2026-11-18.md`](../../tests/d11-anteprima-live/risultati-iphone-2026-11-18.md).
+- **Fattibilità:** WebGPU in Safari, 291-323 ms per analisi, 0 errori, 87,3 MB scaricati una volta e poi conservati
+  (riapertura in 2,6-4,3 s). D10 approvata: modello compresso int8 da `carmineverdoliva-byte/d11-bioclip-int8`, commit `ca03b3a`.
+- **Blocco di 4688 ms:** quasi certamente tempo passato in un'altra app, contato per errore dal misuratore. Corretto
+  (ora è una "pausa per cambio app", elencata a parte). La pagina ora riporta anche i blocchi oltre 500 ms con il momento
+  in cui sono avvenuti e il tempo massimo di preparazione dell'immagine, per capire la causa se capitasse di nuovo.
+- **Ritmo:** ~1,2 analisi al secondo per la pausa fissa di 500 ms. Ora la pausa è lunga quanto l'analisi (modello al
+  lavoro al massimo metà del tempo, un terzo se il telefono scalda). Sul PC: 2,9 analisi al secondo con 170 ms per analisi.
+  Sull'iPhone: atteso ~1,6, da misurare insieme al calore su 5 minuti.
+- **Piante gemelle:** 4 gruppi, scelti con i dati (somiglianza fra impronte: Pothos/Filodendro 0,79, Calathea/Maranta 0,78,
+  Filodendro/Peperomia 0,75) e con gli errori osservati. Foto di riferimento da 6 a 15 per le 8 piante dei gruppi
+  (iNaturalist, licenze aperte, crediti in `crediti-riferimenti.md`). Per il Filodendro solo 1 foto nuova su 9 è di una
+  pianta coltivata: le altre sono selvatiche.
+
+| Modello compresso, sul PC (43 foto vere + 3 trappole) | Prima (6 foto per pianta) | Dopo (15 per le gemelle) |
+|---|---|---|
+| Pianta giusta al 1° posto | 86% | **93%** |
+| Fra le prime 3 | 98% | 95% |
+| Popup con un nome (giusti) | 40/43 (90%) | 42/43 (93%) |
+| Trappole con un nome | 0/3 | 0/3 |
+
+Sulle foto ferme del PC la regola "X o Y" non scatta mai, perché i primi due nomi sono sempre ben distanti. Servirà
+soprattutto con le immagini mosse del mirino: va verificata sul telefono. Restano due limiti:
+- la foto della Monstera dell'utente dà ancora **Filodendro all'86%**: è un errore "sicuro", che la regola delle gemelle
+  non può correggere. Decide Pl@ntNet allo scatto;
+- una foto di Ficus elastica è uscita dalle prime 3.
+
 ## Rischi
 | Rischio | Probabilità | Mitigazione |
 |---|---|---|
@@ -153,8 +181,8 @@ Il compresso rispetta il limite di 150 MB di D11. La velocità sull'iPhone resta
 | Il modello sceglie sempre una pianta del catalogo, anche davanti a un oggetto | Alta | Soglia di somiglianza (0,42 sul PC), da ritarare sul telefono con la prova D11 |
 
 ## Decisioni aperte
-[D10](../architecture/decisioni-da-prendere.md) (quale modello) e [D11](../architecture/decisioni-da-prendere.md)
-(prova pratica sull'iPhone 16).
+Nessuna: D10 approvata e D11 chiusa il 2026-11-18 ([decisioni](../architecture/decisioni-da-prendere.md)). Da misurare
+nella versione 1: calore e rallentamento su 5 minuti continui, trappole, efficacia della regola "X o Y".
 
 ## Fonti
 1. Imageomics, "BioCLIP" (scheda del modello) — https://huggingface.co/imageomics/bioclip — consultato il 2026-11-17
