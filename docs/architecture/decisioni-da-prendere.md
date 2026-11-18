@@ -11,6 +11,8 @@ aggiorniamo i documenti collegati.
 **Aggiornamento 2026-11-17:** D9 chiusa; D11 approvata; D10 rimandata all'esito di D11.
 **Aggiornamento 2026-11-18:** prova D11 fatta sull'iPhone 16 → **D10 approvata** (BioCLIP compresso int8), **D11 chiusa**
 sulla fattibilità tecnica. Restano da misurare nella versione 1: calore e rallentamento su 5 minuti, trappole.
+**Aggiornamento 2026-11-18 (sera):** [piano della versione 1](../requirements/piano-v1.md) approvato; D8 rivista
+(22 schede complete nella v1).
 
 ---
 
@@ -143,6 +145,11 @@ mostriamo consigli generici dichiarati come tali.
 
   Ogni numero compare solo con una fonte. Schema dei dati in
   [architettura §5](architettura.md#5-schema-dei-dati).
+- **Revisione del 2026-11-18 (piano della v1 approvato):** nella **versione 1** le schede complete sono **22**, cioè le
+  piante del catalogo dell'anteprima live (così il tocco sul popup apre sempre una scheda completa). Tutte le altre
+  piante usano il **ripiego per gruppo**, dichiarato come tale. Si arriva a circa 50 schede nelle versioni successive.
+  Motivo: con le sezioni nuove (acqua "quanto", concime, temperature, problemi più comuni) ogni scheda richiede molta
+  più ricerca sulle fonti.
 
 ---
 
@@ -316,7 +323,7 @@ compresso da Hugging Face. Sull'iPhone 16, in Safari, 4 sessioni brevi:
 | D5 Quota per dispositivo | ✅ 10 al giorno, valore configurabile |
 | D6 Botanico AI | ✅ Assistente a regole in v1; Ollama personale in v2 |
 | D7 Promemoria | ✅ In-app + Calendario; push in v2 |
-| D8 Consigli di cura | ✅ Schede nostre con fonti citate + dati botanici aperti; ripiego generico per famiglia/tipo |
+| D8 Consigli di cura | ✅ Schede nostre con fonti citate + dati botanici aperti; ripiego generico per famiglia/tipo. Rivista il 2026-11-18: 22 schede complete nella v1 (catalogo dell'anteprima live) |
 | D9 Flora e soglie | ✅ (2026-11-17) `k-world-flora`; titolo nome comune + genere, specie "probabilmente", nessuna percentuale; soglie tarate; tabella sinonimi GBIF |
 | D10 Modello anteprima live | ✅ (2026-11-18) BioCLIP v1 compresso int8 (87 MB) da Hugging Face, versione bloccata; download alla prima apertura della fotocamera; nome comune o genere; gemelle "X o Y" |
 | D11 Prova su iPhone 16 | ✅ Chiusa (2026-11-18): fattibile (WebGPU, ~0,3 s, 0 errori); calore su 5 minuti e trappole da misurare nella v1 |

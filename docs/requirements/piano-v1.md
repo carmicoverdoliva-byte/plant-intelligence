@@ -1,7 +1,8 @@
 # Piano della versione 1 — da rivedere insieme
 
 > Proposto il 2026-11-18 · Aggiornato il 2026-11-18 con i nuovi requisiti (schede più complete, problemi più comuni,
-> "Nuova pianta") · **Stato: bozza da rivedere, nessun passo iniziato.**
+> "Nuova pianta") · **Stato: ✅ APPROVATO il 2026-11-18** (decisioni in fondo). Ordine di esecuzione: fasi 0 → 1 → 2 → 3 →
+> 4 → 5 → 6, dopo la rinumerazione (la vecchia fase 4 "Collezione e schede" ora è la 3, l'anteprima live è la 4).
 > Collegati: [visione del prodotto](visione-prodotto.md), [specifiche funzionali](specifiche-funzionali.md),
 > [architettura](../architecture/architettura.md), [decisioni](../architecture/decisioni-da-prendere.md)
 
@@ -12,8 +13,8 @@ pagare e senza registrarsi.
 ## Nuovi requisiti del 2026-11-18: cosa entra nella v1 e cosa dopo
 | Requisito | Dove | Versione | Perché |
 |---|---|---|---|
-| Schede più complete: acqua **quanto**, concime **tipo preciso**, temperatura **minima/ideale/massima** | F08, passo 4.3 | **v1** | Sono contenuti della scheda, non funzioni nuove: costa scriverli, non programmarli. Servono anche ai promemoria (5.3), che devono dire *quanto* annaffiare e *che* concime usare |
-| Sezione **"Problemi più comuni"** (frequenza a parole, segnali, prevenzione) | F20, passo 4.3 | **v1** | Contenuto statico con fonti, come le altre sezioni: aiuta a prevenire, che è più facile che curare |
+| Schede più complete: acqua **quanto**, concime **tipo preciso**, temperatura **minima/ideale/massima** | F08, passo 3.3 | **v1** | Sono contenuti della scheda, non funzioni nuove: costa scriverli, non programmarli. Servono anche ai promemoria (5.3), che devono dire *quanto* annaffiare e *che* concime usare |
+| Sezione **"Problemi più comuni"** (frequenza a parole, segnali, prevenzione) | F20, passo 3.3 | **v1** | Contenuto statico con fonti, come le altre sezioni: aiuta a prevenire, che è più facile che curare |
 | **Avviso di rischio personalizzato** (es. poca luce + molta acqua → marciume) | V-11 | **v1.1** | Va bene solo se ogni regola "ambiente → rischio" ha una fonte. Per ora la fonte c'è per "troppa acqua → marciume", non per il ruolo della poca luce. Le abitudini di annaffiatura si conoscono solo dopo settimane d'uso. Si costruisce insieme alla diagnosi guidata (V-01), che usa lo stesso tipo di regole. Un avviso sbagliato spaventerebbe senza motivo |
 | **"Nuova pianta"**: stanze e finestre salvate, posto migliore con il motivo, piano delle prime settimane con promemoria | F19, passo 5.4 | **v1** | È esattamente l'obiettivo della v1 (riconoscere, salvare, promemoria adattati alla finestra). Riusa pezzi già nel piano (riconoscimento, ricerca, stima del sole, promemoria): il lavoro nuovo è soprattutto collegarli |
 
@@ -133,45 +134,22 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 
 ---
 
-## Fase 3 — Anteprima live (dalla pagina D11 all'app)
+## Fase 3 — Collezione e schede
 
-### 3.1 Anteprima nel mirino (F17)
-- **Cosa si costruisce:** l'adattatore `LivePreviewClassifier`, con il modello BioCLIP compresso (D10, versione bloccata e
-  controllo SHA-256) che gira in un Web Worker, e `NoopClassifier` come ripiego (solo consigli di inquadratura). Più:
-  - il download alla prima apertura della fotocamera, con il peso indicato e il consiglio del Wi-Fi;
-  - il popup con le regole di [architettura §1b](../architecture/architettura.md#1b-riconoscimento-a-due-livelli),
-    comprese le piante gemelle;
-  - il tocco sul popup, che equivale a scattare;
-  - i valori in un solo file di configurazione.
-- **Come si verifica:** la stessa prova automatica usata per la pagina D11 (ritmo, pause, popup "X o Y", nessun
-  blocco), più un controllo: se il modello non è scaricato, l'app funziona lo stesso.
-- **Tu:** —
-
-### 3.2 Prova lunga sull'iPhone (completa D11)
-- **Cosa si costruisce:** niente di nuovo: la scheda di prova, con i passi da seguire e cosa annotare.
-- **Come si verifica:** **5 minuti continui** di mirino (calore e rallentamento), le 3 trappole (nessun nome deve
-  comparire), almeno 10 piante di casa annotate. Criteri di D11: nome giusto in almeno 6 casi su 10 e nessun nome
-  sbagliato mostrato con sicurezza.
-- **Tu:** fai la prova e incolli i risultati. Se il telefono scalda troppo, riduciamo il ritmo prima di andare avanti.
-
----
-
-## Fase 4 — Collezione e schede
-
-### 4.1 Collezione personale (F09)
+### 3.1 Collezione personale (F09)
 - **Cosa si costruisce:** salvataggio delle piante **solo sul telefono** (D3), tramite l'adattatore `StorageProvider`:
   nome, foto ridotta, data, posizione in casa. Si salva il risultato completo o la scelta manuale, **mai** l'anteprima.
 - **Come si verifica:** prova automatica: salva, riapri la pagina, la pianta c'è ancora; modifica ed elimina funzionano.
 - **Tu:** salvi 2-3 piante sull'iPhone e controlli che restino dopo aver chiuso l'app.
 
-### 4.2 Ricerca per nome (F06)
+### 3.2 Ricerca per nome (F06)
 - **Cosa si costruisce:** ricerca di una pianta per nome comune o scientifico nel catalogo dell'app, passando dalla
   tabella dei sinonimi (stesso nome per la stessa pianta).
 - **Come si verifica:** test automatici: "pothos", "potos" ed *Epipremnum aureum* portano alla stessa scheda; un nome
   sconosciuto dà un messaggio chiaro, non una pagina vuota.
 - **Tu:** —
 
-### 4.3 Schede botaniche e di cura (F07, F08, F18, F20)
+### 3.3 Schede botaniche e di cura (F07, F08, F18, F20)
 - **Cosa si costruisce:** la scheda del pothos (dall'[esempio](esempio-scheda-pothos.md)) con fonti per ogni sezione,
   più il **ripiego per famiglia o tipo di pianta**, dichiarato come tale (D8). Sezioni:
   - **acqua**: quando, **quanto**, come cambia con stagione e vaso;
@@ -187,10 +165,34 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
   - i sinonimi aprono la stessa scheda.
 - **Tu:** rileggi la scheda del pothos, soprattutto i punti segnati "(da verificare)".
 
-### 4.4 Backup su file (F14)
+### 3.4 Backup su file (F14)
 - **Cosa si costruisce:** esportazione della collezione in un file (es. da salvare su iCloud Drive) e importazione.
 - **Come si verifica:** prova automatica: esporta, cancella tutto, importa, i dati sono identici.
 - **Tu:** fai un backup dall'iPhone e lo ripristini.
+
+---
+
+## Fase 4 — Anteprima live (dalla pagina D11 all'app)
+> Viene **dopo** collezione e schede (decisione del 2026-11-18): il tocco sul popup deve aprire una scheda già esistente.
+
+### 4.1 Anteprima nel mirino (F17)
+- **Cosa si costruisce:** l'adattatore `LivePreviewClassifier`, con il modello BioCLIP compresso (D10, versione bloccata e
+  controllo SHA-256) che gira in un Web Worker, e `NoopClassifier` come ripiego (solo consigli di inquadratura). Più:
+  - il download alla prima apertura della fotocamera, con il peso indicato e il consiglio del Wi-Fi;
+  - il popup con le regole di [architettura §1b](../architecture/architettura.md#1b-riconoscimento-a-due-livelli),
+    comprese le piante gemelle;
+  - il tocco sul popup, che equivale a scattare;
+  - i valori in un solo file di configurazione.
+- **Come si verifica:** la stessa prova automatica usata per la pagina D11 (ritmo, pause, popup "X o Y", nessun
+  blocco), più un controllo: se il modello non è scaricato, l'app funziona lo stesso.
+- **Tu:** —
+
+### 4.2 Prova lunga sull'iPhone (completa D11)
+- **Cosa si costruisce:** niente di nuovo: la scheda di prova, con i passi da seguire e cosa annotare.
+- **Come si verifica:** **5 minuti continui** di mirino (calore e rallentamento), le 3 trappole (nessun nome deve
+  comparire), almeno 10 piante di casa annotate. Criteri di D11: nome giusto in almeno 6 casi su 10 e nessun nome
+  sbagliato mostrato con sicurezza.
+- **Tu:** fai la prova e incolli i risultati. Se il telefono scalda troppo, riduciamo il ritmo prima di andare avanti.
 
 ---
 
@@ -249,25 +251,24 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 
 ---
 
-## Da decidere in revisione
-- **L'ordine delle fasi:** l'anteprima live (fase 3) potrebbe venire dopo la collezione (fase 4), se preferisci avere
-  prima un'app "completa" anche senza anteprima.
-- **Il punto in cui andare online (0.5):** subito, così ogni passo si prova sull'iPhone, oppure più tardi.
-- **Cosa resta fuori dalla v1:**
-  - in v1.1: avviso di rischio personalizzato (V-11) e diagnosi guidata (V-01);
-  - in v2: notifiche push (D7) e botanico AI con Ollama (D6).
-- **Quante schede complete nella v1:** D8 prevede circa 50 piante. Con le sezioni nuove ogni scheda richiede più ricerca.
-  Proposta: partire dalle **22 piante del catalogo dell'anteprima live**, con il ripiego per gruppo per tutte le altre, e
-  arrivare a 50 nelle versioni successive. Cambierebbe D8: decidi tu.
+## Decisioni della revisione (2026-11-18)
+1. **Ordine delle fasi:** collezione e schede **prima** dell'anteprima live, perché il tocco sul popup deve aprire una
+   scheda già esistente. Le fasi sono state rinumerate di conseguenza (3 = Collezione e schede, 4 = Anteprima live).
+2. **Online subito:** passo 0.5 appena dopo la verifica dei termini (0.2), così ogni passo si prova sull'iPhone.
+3. **Fuori dalla v1:** avviso di rischio personalizzato (V-11) e diagnosi guidata (V-01) in v1.1; notifiche push (D7) e
+   botanico AI con Ollama (D6) in v2.
+4. **Schede:** nella v1, **22 schede complete** (le piante del catalogo dell'anteprima live) più il **ripiego per gruppo**
+   per tutte le altre; circa 50 nelle versioni successive. Aggiornata D8.
+5. **Pulizia della cronologia git (0.1):** confermata, con copia di sicurezza.
 
 ## Rischi
 | Rischio | Probabilità | Come lo gestiamo |
 |---|---|---|
 | I termini di Vercel o Upstash non vanno bene | Bassa-media | Passo 0.2 prima di tutto; alternative già indicate in D2/D4 |
 | Installare i pacchetti sul PC di sviluppo crea problemi | Bassa | Solo pacchetti open source verificati, niente programmi di sistema; se serve ci fermiamo e valutiamo |
-| Il telefono scalda con l'anteprima su 5 minuti | Media | Ritmo adattivo già pronto; prova 3.2 prima di proseguire; ripiego senza nomi |
-| Safari cancella i dati di chi non installa l'app | Media | Guida all'installazione sulla Home (1.2) e backup (4.3) |
+| Il telefono scalda con l'anteprima su 5 minuti | Media | Ritmo adattivo già pronto; prova 4.2 prima di proseguire; ripiego senza nomi |
+| Safari cancella i dati di chi non installa l'app | Media | Guida all'installazione sulla Home (1.2) e backup (3.4) |
 | La quota di Pl@ntNet finisce durante le prove | Bassa | Test sulle risposte salvate; prove vere solo quando servono |
-| Le schede più complete richiedono molto lavoro di ricerca | Alta | Si parte da meno schede (vedi "Da decidere"); ripiego per gruppo dichiarato; i valori senza fonte restano "non indicati" invece di essere inventati |
+| Le schede più complete richiedono molto lavoro di ricerca | Alta | Nella v1 22 schede complete, non 50 (decisione del 2026-11-18); ripiego per gruppo dichiarato; i valori senza fonte restano "non indicati" invece di essere inventati |
 | Le fonti non indicano alcuni valori (es. temperatura minima del pothos, prima concimazione) | Alta | La scheda lo dice; nessun promemoria senza fonte; si cercano fonti migliori prima della pubblicazione |
 | Il consiglio del posto sembra preciso ma si basa su una stima | Media | Parola "stima" sempre visibile, motivo spiegato, correzione manuale (F10) |
