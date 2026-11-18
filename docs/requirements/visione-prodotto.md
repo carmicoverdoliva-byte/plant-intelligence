@@ -29,8 +29,22 @@ e aiuta a curarle, in modo **completamente gratuito**.
   specie va confermata scattando).
 - Consigli **collegati alla stagione e al meteo locale** ("il periodo giusto per il travaso è la primavera"), con un
   promemoria facoltativo.
-- Sempre con **fonti verificabili citate** e testi nostri; per le piante senza scheda completa, consigli generici per
-  famiglia o tipo di pianta, dichiarati come tali.
+- Sempre con **fonti verificabili citate** e testi nostri.
+- **Una scheda completa per qualsiasi pianta riconosciuta** (correzione del 2026-11-18, D13), con tutte le sezioni:
+  - luce;
+  - acqua (quando e quanto);
+  - temperatura;
+  - terriccio;
+  - concime;
+  - travaso;
+  - coltivarla da zero;
+  - problemi e malattie più comuni;
+  - falsi miti;
+  - approfondimenti.
+
+  L'app mostra la scheda più precisa disponibile (della specie, del genere o del tipo di pianta) e **dice sempre quale
+  sta usando**. Le schede di specie crescono nel tempo, partendo dalle piante più fotografate e coltivate in Italia e in
+  Europa.
 
 ### 4. Diagnosi dei problemi
 - Aiuto a riconoscere malattie, parassiti o carenze e indicazioni su cosa fare.

@@ -59,8 +59,11 @@ Ogni nuova funzione deve rispettare questo requisito:
   - Lo stesso nome per la stessa pianta: i nomi passano dalla tabella dei sinonimi (fonte verificabile, es. GBIF).
 - L'**anteprima live** è un "Forse…": mostra solo nome comune o genere, mai la specie; non viene mai salvata; vale sempre
   il riconoscimento completo.
-- Le **schede di cura** (comprese "Coltivarla da zero" e "Travaso") citano fonti verificabili per ogni sezione, con testi
-  nostri; senza scheda completa si usa il ripiego per famiglia o tipo di pianta, **dichiarato come tale**.
+- Le **schede di cura** esistono per **qualsiasi** pianta riconosciuta: specie → genere → tipo di pianta (D13). L'app usa
+  la più precisa e **dichiara quale**.
+  - Si scrivono con la **skill `plant-schede`**: più fonti autorevoli, riassunto e "cose da fare" con parole nostre,
+    ogni fonte citata con link, mai testi copiati.
+  - Contraddizioni dichiarate (e valutate per "Falsi miti"); i siti che vietano l'AI li legge l'utente.
 - L'esposizione al sole è una **stima**, non una misura: va sempre presentata come tale, con possibilità di calibrazione manuale.
 - Il "botanico AI" deve dichiarare incertezza e non presentare ipotesi come fatti.
 

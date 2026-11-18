@@ -293,7 +293,14 @@ Plant (pianta) 1 ──── * Photo (foto)
 - ogni `care` (scheda completa) e ogni `CareGroup` (consigli generici) ha **almeno una fonte verificabile** in `sources`,
   mostrata nella scheda. Un test automatico controllerà che nessuna scheda sia senza fonti;
 - i testi sono scritti con parole nostre, mai copiati dai concorrenti;
-- **come si sceglie cosa mostrare:**
+- **⚠️ Aggiornamento del 2026-11-18 (D13, proposta in attesa di approvazione):** la scheda completa deve esserci per
+  **qualsiasi** pianta riconosciuta. `Species.care` e `CareGroup` vengono sostituiti da un'unica struttura `CareSheet`
+  a tre livelli: **specie → genere → tipo di pianta**, più le note di famiglia. Tutti i livelli hanno tutte le sezioni.
+  L'app usa la scheda più precisa disponibile e lo dichiara in cima. Schema, scelta delle specie, controlli di qualità e
+  modo in cui le schede arrivano al telefono (file statici scaricati quando servono):
+  [schede su larga scala](schede-su-larga-scala.md). Le regole qui sotto restano valide: fonti, parole nostre, sezioni,
+  frequenze solo a parole.
+- **come si sceglie cosa mostrare** *(versione precedente, sostituita da D13 se approvata)*:
   1. la specie è nel catalogo e ha `care` → scheda completa;
   2. altrimenti, la famiglia (o il tipo) corrisponde a un `CareGroup` → consigli generici + messaggio *"La scheda completa
      per questa pianta non è ancora disponibile. Questi sono consigli generici per il suo gruppo."*;
@@ -589,6 +596,7 @@ interface AppSettings {
 | `SunProvider` | `SunCalcProvider` | telefono | astronomy-engine **(da verificare)**; formule NOAA |
 | `AiProvider` | `RuleBasedAssistant` | telefono | v2: `OllamaProvider` personale |
 | `StorageProvider` | `IndexedDbStorage` | telefono | v2: sincronizzazione (D3) |
+| `CareSheetProvider` (D13, proposta) | `StaticCareSheets`: file JSON statici sul nostro sito (`public/schede/`), scelti specie → genere → tipo di pianta; si scarica solo la scheda aperta | telefono | Se una scheda non si scarica: copia salvata dal service worker; altrimenti la scheda del tipo di pianta, inclusa nell'app |
 | `QuotaStore` | `UpstashQuotaStore` | server | Cloudflare D1 o Supabase **(da verificare)**; ripiego: solo il dato di Pl@ntNet |
 | `ArticleFeedProvider` (v1.1, V-13) | `RssFeedProvider`: solo feed autorizzati per iscritto, una lettura al giorno, tiene solo titolo/data/link; ogni articolo resta in attesa finché una persona non lo approva ([scheda](../api-documentation/fonti-editoriali.md)) | server | Approfondimenti scelti a mano (F22), sempre presenti |
 
@@ -624,6 +632,9 @@ bloccata su Hugging Face); regole del popup aggiornate (ritmo adattivo, stabilit
 **Aggiornamento 2026-11-18 (sera):** schede con "Falsi miti" e "Approfondimenti" (`MythCheck`, `FurtherReading`; D8
 ampliata); feed RSS per la v1.1 (`ArticleFeedProvider`), solo con permesso scritto e controllo umano; **D12** decisa
 (A: nessuna community nella v1 e v1.x, solo link a community esistenti).
+**Aggiornamento 2026-11-18 (correzione dell'utente):** **D13** (aperta) — scheda completa per qualsiasi pianta
+riconosciuta: `CareSheet` a tre livelli al posto di `Species.care` e `CareGroup`, adattatore `CareSheetProvider`;
+progetto in [schede su larga scala](schede-su-larga-scala.md).
 
 ## Fonti
 1. Pl@ntNet API, "Introduction" e "Single-species identification" — https://my.plantnet.org/doc/getting-started/introduction , https://my.plantnet.org/doc/api/identify — consultati il 2026-11-16

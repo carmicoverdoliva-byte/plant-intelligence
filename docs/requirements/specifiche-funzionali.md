@@ -122,18 +122,45 @@ invito discreto (chiudibile) a installarla.
     scrive "non indicata dalle fonti" e **non inventa un numero**.
 - Ogni valore numerico (NPK, diluizione, temperature, frequenze) compare **solo se una fonte lo indica**. Se le fonti non
   sono d'accordo, la scheda mostra l'intervallo e indica la via prudente.
-- Per le **piante d'appartamento più comuni** (circa 50 nella v1): schede scritte da noi (decisione D8).
-  - Ogni scheda si basa su **fonti verificabili** (orti botanici, università, servizi pubblici) **citate nella scheda**
-    con titolo, link e data di consultazione.
-  - Testi **con parole nostre**: vietato copiare testi dei concorrenti (CLAUDE.md §5).
-- **Ripiego per le piante senza scheda:** consigli generici per **famiglia o tipo di pianta** (es. "piante grasse",
-  "aracee"), anch'essi con fonti, e un messaggio chiaro: *"La scheda completa per questa pianta non è ancora disponibile.
-  Questi sono consigli generici per il suo gruppo."*
-- Se non c'è nemmeno un gruppo adatto: lo stesso messaggio e solo consigli di base, dichiarati come tali.
+- **Scheda completa per QUALSIASI pianta riconosciuta** (correzione dell'utente del 2026-11-18, decisione
+  [D13](../architecture/decisioni-da-prendere.md#d13--schede-complete-per-qualsiasi-pianta-riconosciuta), proposta;
+  progetto: [schede su larga scala](../architecture/schede-su-larga-scala.md)). Sostituisce "circa 50 schede" e il
+  ripiego per gruppo.
+  - **Tre livelli, tutti con tutte le sezioni:**
+    - scheda della **specie**;
+    - scheda del **genere** (rete di sicurezza: valori come intervalli, eccezioni dette);
+    - scheda del **tipo di pianta** (circa 18 tipi, es. "arbusto sempreverde di clima mediterraneo"), che esiste per
+      ogni pianta.
 
-**Criteri:** mai consigli specifici inventati; ogni scheda e ogni gruppo mostra almeno una fonte (controllato da un test
-automatico); quando i consigli sono generici, l'app lo dice in modo ben visibile; ogni scheda completa ha "quanto"
-annaffiare, il tipo di concime e le tre temperature (valore con fonte oppure "non indicata dalle fonti").
+    In più, le **note di famiglia** (es. tossicità tipica).
+  - L'app usa **sempre la scheda più precisa disponibile** e lo dichiara in cima:
+    - "Scheda della specie";
+    - "Scheda del genere Ficus: vale per la maggior parte dei Ficus";
+    - "Consigli per il tipo di pianta: la scheda della specie non è ancora disponibile".
+  - Le schede si producono **a blocchi di 10**, partendo dalle piante più fotografate e coltivate. L'ordine viene dai
+    dati di Pl@ntNet su GBIF per le piante all'aperto e da un elenco a parte per casa e orto.
+  - Ogni blocco passa da un **controllo di qualità**: test automatici, verifica indipendente frase per frase con le
+    fonti, confronto con dati aperti (EIVE, WCVP) e revisione a campione dell'utente. La scheda mostra quando è stata
+    verificata.
+  - **Metodo (deciso dall'utente):**
+    - per ogni pianta, **più fonti autorevoli**: orti botanici, università ed enti di ricerca, vivai specializzati,
+      riviste e blog di settore affidabili;
+    - per ogni sezione, un **riassunto** e una lista di **"cose da fare"** con parole nostre;
+    - ogni fonte **citata con link** (titolo, sito, data di consultazione);
+    - vietato copiare testi o riprodurre un articolo frase per frase (CLAUDE.md §5);
+    - qualità = autorevolezza + accordo tra fonti; le contraddizioni si dichiarano e si valutano per "Falsi miti";
+    - i siti che vietano l'AI li legge l'utente.
+  - **Quando un dato non si può generalizzare** (es. la tossicità di un intero genere), la sezione c'è ma lo dice e dà
+    un consiglio prudente, senza inventare.
+
+**Criteri:**
+- qualsiasi pianta riconosciuta (anche solo a livello di genere) apre una scheda con **tutte** le sezioni;
+- il livello della scheda è sempre visibile;
+- mai consigli specifici inventati;
+- ogni sezione mostra almeno una fonte (controllato da un test automatico);
+- ogni scheda ha "quanto" annaffiare, il tipo di concime e le tre temperature (valore con fonte oppure "non indicata
+  dalle fonti");
+- nella v1 almeno il traguardo T1 di D13.
 
 ### F18 — Coltivarla da zero e travaso
 > Aggiunta il 2026-11-17. Estende le schede di cura (F08, decisione D8). Esempio completo:

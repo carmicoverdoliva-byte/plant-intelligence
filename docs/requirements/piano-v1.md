@@ -26,6 +26,11 @@ pagare e senza registrarsi.
 | **"Ultimi articoli su questa pianta"** dal feed RSS | V-13 | **v1.1** | I feed esistono (Le Georgiche, Gardenia), ma nessun sito concede esplicitamente di usarli in un'app: servono un **permesso scritto** e il **controllo umano** di ogni articolo ([fonti editoriali](../api-documentation/fonti-editoriali.md), [email](../api-documentation/email-permesso-feed.md)) |
 | **Community** con consigli e voti | V-14, D12 | **da rivalutare nella v2** | Richiede account, server, moderazione quotidiana e obblighi privacy: tutto ciò che la v1 evita (D3). **D12 decisa: A**, solo link a community esistenti |
 
+### Correzione fondamentale del 2026-11-18 (priorità massima)
+| Requisito | Dove | Versione | Perché |
+|---|---|---|---|
+| **Scheda completa per QUALSIASI pianta riconosciuta**: specie → genere → tipo di pianta, tutte con tutte le sezioni; l'app dice quale livello usa | F07, F08, [D13](../architecture/decisioni-da-prendere.md#d13--schede-complete-per-qualsiasi-pianta-riconosciuta) (proposta), [progetto](../architecture/schede-su-larga-scala.md) | **v1** con il traguardo **T1** (18 tipi, 60 note di famiglia, 120 generi, 80 specie); poi T2 e T3 | Le "22 schede" erano un errore di pianificazione: un'app che riconosce migliaia di piante deve dare una scheda vera a ognuna. Il livello del tipo di pianta garantisce il 100% subito; specie e generi crescono a blocchi, partendo da ciò che la gente fotografa davvero (dati Pl@ntNet su GBIF) |
+
 Revisione del piano: mancavano due funzioni già previste per la v1, ora aggiunte:
 - **ricerca per nome (F06)**, che serve a "Nuova pianta" per chi non vuole fotografare;
 - **riconoscimento guidato (F05)**.
@@ -236,8 +241,18 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **Tu:** —
 
 ### 3.3 Schede botaniche e di cura (F07, F08, F18, F20, F21, F22)
-- **Cosa si costruisce:** la scheda del pothos (dall'[esempio](esempio-scheda-pothos.md)) con fonti per ogni sezione,
-  più il **ripiego per famiglia o tipo di pianta**, dichiarato come tale (D8). Sezioni:
+- **⚠️ Cambiato il 2026-11-18 (D13, se approvata):** il ripiego per famiglia è sostituito dai tre livelli
+  (specie → genere → tipo di pianta, [progetto](../architecture/schede-su-larga-scala.md)). Il passo diventa:
+  - **3.3a — Motore delle schede:** formato `CareSheet`, `CareSheetProvider` (sceglie il livello più preciso e lo
+    dichiara), schermata della scheda secondo il riferimento [scheda.html](../design/riferimenti/scheda.html), file
+    statici scaricati quando servono e conservati per le piante salvate;
+  - **3.3b — Produzione a blocchi** (passo nuovo, **in parallelo dalla fase 2**): elenco di priorità da GBIF e WCVP,
+    blocchi di 10 schede scritti con la skill `plant-schede` (più fonti A/B/C, riassunto e "cose da fare" con parole
+    nostre, ogni fonte citata, contraddizioni dichiarate e valutate per "Falsi miti", siti che vietano l'AI letti da te),
+    test `npm run schede:controlla`, verifica indipendente e tua revisione a campione,
+    fino al traguardo **T1** (circa 26 blocchi, 6-7 settimane stimate, da ricalcolare dopo il blocco 1).
+- **Cosa si costruisce (prima di D13):** la scheda del pothos (dall'[esempio](esempio-scheda-pothos.md)) con fonti per
+  ogni sezione, più il **ripiego per famiglia o tipo di pianta**, dichiarato come tale (D8). Sezioni:
   - **acqua**: quando, **quanto**, come cambia con stagione e vaso;
   - **concime**: tipo, NPK indicativo, diluizione, frequenza, periodo;
   - **temperatura**: minima, ideale, massima;
@@ -251,7 +266,8 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
   - ogni articolo degli Approfondimenti ha titolo, sito, riga nostra, link e data del controllo, e il link risponde;
   - nessuna percentuale nei problemi;
   - un valore senza fonte compare come "non indicata dalle fonti";
-  - una pianta senza scheda mostra il ripiego con l'avviso;
+  - una pianta senza scheda mostra il ripiego con l'avviso *(con D13: ogni genere della flora di Pl@ntNet porta almeno
+    alla scheda del suo tipo di pianta, controllato su tutto l'elenco; il livello è sempre scritto in cima)*;
   - i sinonimi aprono la stessa scheda.
 - **Tu:** rileggi la scheda del pothos, soprattutto i punti segnati "(da verificare)", e gli articoli degli
   Approfondimenti di Le Georgiche (li ho controllati su sintesi automatiche). **Gli articoli di Gardenia li leggi e li
@@ -349,8 +365,9 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 2. **Online subito:** passo 0.5 appena dopo la verifica dei termini (0.2), così ogni passo si prova sull'iPhone.
 3. **Fuori dalla v1:** avviso di rischio personalizzato (V-11) e diagnosi guidata (V-01) in v1.1; notifiche push (D7) e
    botanico AI con Ollama (D6) in v2.
-4. **Schede:** nella v1, **22 schede complete** (le piante del catalogo dell'anteprima live) più il **ripiego per gruppo**
-   per tutte le altre; circa 50 nelle versioni successive. Aggiornata D8.
+4. ~~**Schede:** nella v1, **22 schede complete** (le piante del catalogo dell'anteprima live) più il **ripiego per gruppo**
+   per tutte le altre; circa 50 nelle versioni successive. Aggiornata D8.~~ **Superata il 2026-11-18** dalla correzione
+   dell'utente: scheda completa per qualsiasi pianta riconosciuta (D13, proposta in attesa di approvazione).
 5. **Pulizia della cronologia git (0.1):** confermata, con copia di sicurezza.
 6. **Nuovi requisiti della sera (confermati il 2026-11-18):** "Falsi miti" e "Approfondimenti" nella v1, dentro il
    passo 3.3; siti confermati: Le Georgiche, Gardenia, Vita in Campagna, Georgofili, CREA (escluso Il Floricultore);
@@ -365,7 +382,8 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 | Il telefono scalda con l'anteprima su 5 minuti | Media | Ritmo adattivo già pronto; prova 4.2 prima di proseguire; ripiego senza nomi |
 | Safari cancella i dati di chi non installa l'app | Media | Guida all'installazione sulla Home (1.2) e backup (3.4) |
 | La quota di Pl@ntNet finisce durante le prove | Bassa | Test sulle risposte salvate; prove vere solo quando servono |
-| Le schede più complete richiedono molto lavoro di ricerca | Alta | Nella v1 22 schede complete, non 50 (decisione del 2026-11-18); ripiego per gruppo dichiarato; i valori senza fonte restano "non indicati" invece di essere inventati |
+| Le schede complete per qualsiasi pianta richiedono molto lavoro di ricerca (D13) | Alta | Tre livelli: il tipo di pianta copre il 100% da subito; produzione a blocchi **in parallelo** allo sviluppo dalla fase 2; stime ricalcolate dopo il blocco 1; si riducono i generi all'aperto del T1, mai i controlli; i valori senza fonte restano "non indicati" |
+| Un errore in una scheda prodotta in serie (es. tossicità) | Media | Verifica indipendente frase per frase, 2 fonti concordi per la tossicità, tua revisione di tutte le voci tossicità del blocco |
 | Le fonti non indicano alcuni valori (es. temperatura minima del pothos, prima concimazione) | Alta | La scheda lo dice; nessun promemoria senza fonte; si cercano fonti migliori prima della pubblicazione |
 | Il consiglio del posto sembra preciso ma si basa su una stima | Media | Parola "stima" sempre visibile, motivo spiegato, correzione manuale (F10) |
-| Trovare articoli coerenti con le fonti per tutte le 22 schede richiede tempo | Alta | La sezione Approfondimenti può restare vuota, con un messaggio onesto; i falsi miti generali coprono ogni scheda |
+| Trovare articoli coerenti con le fonti per tutte le schede richiede tempo | Alta | La sezione Approfondimenti può restare vuota, con un messaggio onesto; i falsi miti generali coprono ogni scheda |

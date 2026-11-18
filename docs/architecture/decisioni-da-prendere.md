@@ -18,6 +18,8 @@ aperta, per la v2 o oltre.
 **Aggiornamento 2026-11-18 (decisioni dell'utente):** fonti editoriali confermate (Vita in Campagna, Georgofili, CREA;
 escluso Il Floricultore); feed RSS in v1.1 solo con **permesso scritto e controllo umano**; articoli di Gardenia letti e
 scelti dall'utente; **D12 decisa: A** per v1 e v1.x, da rivalutare nella v2.
+**Aggiornamento 2026-11-18 (correzione fondamentale dell'utente):** scheda completa per **qualsiasi** pianta
+riconosciuta → nuova **D13** (aperta), che sostituisce le "22 schede" di D8.
 
 ---
 
@@ -167,7 +169,10 @@ mostriamo consigli generici dichiarati come tali.
 
   Ogni numero compare solo con una fonte. Schema dei dati in
   [architettura §5](architettura.md#5-schema-dei-dati).
-- **Revisione del 2026-11-18 (piano della v1 approvato):** nella **versione 1** le schede complete sono **22**, cioè le
+- **⚠️ Superata il 2026-11-18 da [D13](#d13--schede-complete-per-qualsiasi-pianta-riconosciuta)** (errore di
+  pianificazione, correzione dell'utente): la scheda completa deve esserci per **qualsiasi** pianta riconosciuta. Il
+  paragrafo che segue resta solo come storia.
+- ~~**Revisione del 2026-11-18 (piano della v1 approvato):**~~ nella **versione 1** le schede complete sono **22**, cioè le
   piante del catalogo dell'anteprima live (così il tocco sul popup apre sempre una scheda completa). Tutte le altre
   piante usano il **ripiego per gruppo**, dichiarato come tale. Si arriva a circa 50 schede nelle versioni successive.
   Motivo: con le sezioni nuove (acqua "quanto", concime, temperature, problemi più comuni) ogni scheda richiede molta
@@ -386,6 +391,70 @@ esistenti** (es. dal menu o dalla Guida). Da **rivalutare nella v2**, con le reg
 
 ---
 
+## D13 — Schede complete per qualsiasi pianta riconosciuta
+*Aggiunta il 2026-11-18, priorità massima.*
+**Richiesta dell'utente.** La scheda completa deve esserci per **qualsiasi** pianta riconosciuta, non solo per le 22
+del catalogo. Le sezioni sono:
+- luce;
+- acqua (quando e quanto);
+- temperatura;
+- terriccio;
+- concime;
+- travaso;
+- coltivarla da zero;
+- problemi e malattie;
+- falsi miti;
+- approfondimenti.
+
+Le "22 schede" della revisione di D8 erano un errore di pianificazione e vengono sostituite.
+
+Progetto completo: [schede su larga scala](schede-su-larga-scala.md). Banche dati verificate:
+[banche dati aperte](../api-documentation/banche-dati-cura.md).
+
+### Parte 1 — Come garantire una scheda a ogni pianta
+| Opzione | Pro | Contro |
+|---|---|---|
+| **A. Tre livelli: specie → genere → tipo di pianta (più note di famiglia), prodotti a blocchi con fonti e controlli** | Ogni pianta ha una scheda completa da subito; precisione che cresce blocco dopo blocco; nessun dato inventato | Le schede di genere e di tipo sono meno precise e lo devono dire; serve molto lavoro di scrittura |
+| B. Scheda generata al momento da un'intelligenza artificiale per qualsiasi specie | Copre tutto subito | **Viola le regole del progetto:** non verificabile, rischio di dati inventati (es. tossicità), nessuna fonte certa (CLAUDE.md §8) |
+| C. Banca dati di cura di terzi | Molte specie già pronte | Nessuna è aperta e completa: quelle complete sono protette o a pagamento ([verifica](../api-documentation/banche-dati-cura.md)) |
+| D. Solo schede di specie, senza livelli intermedi | Massima precisione | Per mesi molte piante resterebbero senza scheda: contraddice la richiesta |
+
+**Raccomandazione: A.** È l'unica che dà subito una scheda completa a ogni pianta senza inventare nulla. L'app mostra
+sempre in cima il livello ("Scheda della specie", "Scheda del genere…", "Consigli per il tipo di pianta…").
+
+### Parte 2 — Tre scelte da fare
+1. **Traguardo della versione 1.**
+   - **T1 (consigliato):** 18 tipi, 60 note di famiglia, 120 generi, 80 specie. Circa 26 blocchi, **6-7 settimane in
+     parallelo** con lo sviluppo.
+   - In alternativa un T1 ridotto: 18 tipi, 60 generi, 40 specie, in circa 3 settimane, con copertura minore.
+2. **Quanta revisione fa l'utente.**
+   - **Consigliato:** in ogni blocco, 2 schede su 10 lette per intero, più tutte le segnalazioni dei controlli, più
+     **tutte** le voci sulla tossicità.
+   - In alternativa la revisione completa di ogni scheda: circa 15 minuti a scheda, che con T1 fanno circa 70 ore.
+3. **Elenco iniziale di casa e orto.** Lo propongo io nel blocco 1, partendo dai siti istituzionali e dalle 22 piante
+   della prova D11. L'utente lo corregge con quello che conosce.
+
+**Metodo di scrittura: ✅ DECISO dall'utente il 2026-11-18.**
+- Per ogni pianta si raccolgono **più fonti autorevoli**: orti botanici, università ed enti di ricerca, vivai
+  specializzati, riviste e blog di settore affidabili.
+- Se ne ricavano fatti e consigli pratici, e si scrive con **parole nostre** un **riassunto** e una lista di
+  **"cose da fare"**, citando ogni fonte con link.
+- Mai copiare testi, né riprodurre un articolo frase per frase.
+- Criteri di qualità: **autorevolezza** della fonte e **accordo** tra più fonti. Se le fonti si contraddicono, lo si
+  dichiara e si valuta una voce in "Falsi miti".
+- I siti che vietano l'uso dell'AI (es. Gardenia) li legge e li seleziona l'utente.
+
+Procedura operativa: skill `plant-schede`.
+
+**Scelta sulle parti 1 e 2:** ⏳ in attesa dell'utente.
+
+**Cosa cambia se si sceglie A:**
+- D8 resta valida per le regole (fonti, parole nostre, falsi miti, approfondimenti);
+- le "22 schede" e il ripiego per gruppo (`CareGroup`) sono sostituiti dai tre livelli (`CareSheet`);
+- il catalogo dell'anteprima live (D10) non decide più quali schede esistono.
+
+---
+
 ## Riepilogo
 | Decisione | Scelta (2026-11-16) |
 |---|---|
@@ -396,8 +465,9 @@ esistenti** (es. dal menu o dalla Guida). Da **rivalutare nella v2**, con le reg
 | D5 Quota per dispositivo | ✅ 10 al giorno, valore configurabile |
 | D6 Botanico AI | ✅ Assistente a regole in v1; Ollama personale in v2 |
 | D7 Promemoria | ✅ In-app + Calendario; push in v2 |
-| D8 Consigli di cura | ✅ Schede nostre con fonti citate + dati botanici aperti; ripiego generico per famiglia/tipo. Rivista il 2026-11-18: 22 schede complete nella v1 (catalogo dell'anteprima live); ampliata con "Falsi miti" e "Approfondimenti" |
+| D8 Consigli di cura | ✅ Schede nostre con fonti citate + dati botanici aperti. Ampliata con "Falsi miti" e "Approfondimenti". ~~22 schede complete nella v1 e ripiego per gruppo~~: **superata da D13** (2026-11-18) |
 | D9 Flora e soglie | ✅ (2026-11-17) `k-world-flora`; titolo nome comune + genere, specie "probabilmente", nessuna percentuale; soglie tarate; tabella sinonimi GBIF |
 | D10 Modello anteprima live | ✅ (2026-11-18) BioCLIP v1 compresso int8 (87 MB) da Hugging Face, versione bloccata; download alla prima apertura della fotocamera; nome comune o genere; gemelle "X o Y" |
 | D11 Prova su iPhone 16 | ✅ Chiusa (2026-11-18): fattibile (WebGPU, ~0,3 s, 0 errori); calore su 5 minuti e trappole da misurare nella v1 |
 | D12 Community | ✅ (2026-11-18) A: nessuna community nella v1/v1.x, solo link a community esistenti; da rivalutare nella v2 |
+| D13 Schede per qualsiasi pianta | ⏳ (2026-11-18) Proposta A: specie → genere → tipo di pianta, a blocchi con fonti e controlli; T1 nella v1 (6-7 settimane in parallelo). Sostituisce le "22 schede" |
