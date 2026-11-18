@@ -25,3 +25,14 @@ export const CATALOG = [
   { slug: 'maranta', label: 'Maranta', genus: 'Maranta', inatName: 'Maranta leuconeura', rank: 'species' },
   { slug: 'monstera', label: 'Monstera', genus: 'Monstera', inatName: 'Monstera deliciosa', rank: 'species' },
 ];
+
+// Piante "gemelle" (D10/F17): gruppi che il modello confonde spesso. Se i primi due nomi sono nello stesso gruppo e
+// vicini, il popup dice "Forse: X o Y – scatta per saperlo" invece di scegliere a caso.
+// Scelti il 2026-11-18 con i dati: somiglianza fra le impronte (prototypes-int8.json) ed errori della prova sul PC e
+// sull'iPhone; Anthurium/Spatifillo per la somiglianza nota delle infiorescenze (spata). Una pianta può stare in più gruppi.
+export const TWIN_GROUPS = [
+  { id: 'aracee-rampicanti', slugs: ['pothos', 'filodendro', 'monstera'], why: 'Pothos/Filodendro somiglianza 0,79; iPhone: Pothos→Filodendro, Monstera→Filodendro' },
+  { id: 'foglie-a-cuore', slugs: ['filodendro', 'peperomia'], why: 'somiglianza 0,75; PC: 2 Peperomia su 2 con Filodendro al 1° posto' },
+  { id: 'marantacee', slugs: ['maranta', 'calathea'], why: 'somiglianza 0,78; stessa famiglia (Marantaceae)' },
+  { id: 'spate-bianche-rosse', slugs: ['anthurium', 'spatifillo'], why: 'somiglianza 0,66; infiorescenza a spata simile' },
+];

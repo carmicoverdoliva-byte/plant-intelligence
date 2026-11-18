@@ -14,7 +14,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import * as ort from 'onnxruntime-web'; // stesso motore (WebAssembly) usato dal telefono
 import sharp from 'sharp';
-import { CATALOG } from './catalogo.mjs';
+import { CATALOG, TWIN_GROUPS } from './catalogo.mjs';
 
 const args = process.argv.slice(2);
 const vi = args.indexOf('--variante');
@@ -148,12 +148,38 @@ for (const p of [0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7]) {
   if (shown.length && ok / shown.length >= 0.9 && trapShown === 0) { chosenProb = { p, shown: shown.length, ok, trapShown }; break; }
 }
 
+// --- 4b. piante gemelle: "Forse: X o Y" quando i primi due nomi sono dello stesso gruppo e vicini -----------
+// Stessa regola della pagina (app.js, candidate()): somiglianza >= soglia, p1+p2 >= soglia di probabilità,
+// distacco fra i due < 15 punti, distacco della coppia dal 3° nome >= 15 punti.
+const twinOf = (a, b) => TWIN_GROUPS.some((g) => g.slugs.includes(prototypes[a].slug) && g.slugs.includes(prototypes[b].slug));
+const MIN_MARGIN = 0.15;
+function popupFor(r, scale, minProb) {
+  const p = probs(r.sims, scale);
+  const o = p.map((x, i) => [x, i]).sort((a, b) => b[0] - a[0]);
+  const [[p1, i1], [p2, i2], [p3]] = o;
+  if (r.sims[i1] < MIN_SIM) return null;
+  if (p1 >= minProb && p1 - p2 >= MIN_MARGIN) return [i1];
+  if (twinOf(i1, i2) && p1 + p2 >= minProb && p1 - p2 < MIN_MARGIN && p1 + p2 - p3 >= MIN_MARGIN) return [i1, i2];
+  return null;
+}
+const twinEval = chosenProb && (() => {
+  const shown = real.map((r) => ({ r, s: popupFor(r, best.scale, chosenProb.p) })).filter((x) => x.s);
+  const singles = shown.filter((x) => x.s.length === 1), pairs = shown.filter((x) => x.s.length === 2);
+  const hit = (x) => x.s.includes(slugIdx[x.r.exp]);
+  return { singles: singles.length, singlesOk: singles.filter(hit).length, pairs: pairs.length, pairsOk: pairs.filter(hit).length,
+    traps: traps.filter((r) => popupFor(r, best.scale, chosenProb.p)).length,
+    pairList: pairs.map((x) => `${x.r.file}: ${x.s.map((i) => prototypes[i].label).join(' o ')} (atteso ${x.r.exp})`) };
+})();
+const refCounts = [...new Set(prototypes.map((p) => p.refs))].sort((a, b) => a - b);
+
 fs.writeFileSync(path.join(PAGE_DIR, `prototypes${SUFFIX}.json`), JSON.stringify({
   model: { ...MODEL, inputName, outputName, mean: MEAN, std: STD, logitScale: 100 },
   calibration: { logitScale: best.scale, minProb: chosenProb ? chosenProb.p : 0.6, minSim: MIN_SIM,
-    note: 'Tarata sul PC con le 43 foto vere del test D9 (le stesse usate per misurare: valori indicativi, da ricontrollare sul telefono).' },
+    minMargin: MIN_MARGIN,
+    note: `Tarata sul PC con le ${real.length} foto vere del test D9 (le stesse usate per misurare: valori indicativi, da ricontrollare sul telefono).` },
+  twinGroups: TWIN_GROUPS.map((g) => ({ id: g.id, slugs: g.slugs })),
   createdAt: new Date().toISOString().slice(0, 10),
-  method: 'Media delle impronte di 6 foto di riferimento iNaturalist per pianta (crediti in crediti-riferimenti.md)',
+  method: `Media delle impronte di ${refCounts.join(' o ')} foto di riferimento iNaturalist per pianta (di più per le piante gemelle; crediti in crediti-riferimenti.md)`,
   prototypes,
 }));
 fs.copyFileSync(path.join(BASE, 'riferimenti-d11', 'crediti.md'), path.join(PAGE_DIR, 'crediti-riferimenti.md'));
@@ -167,7 +193,7 @@ const screenEx = [0.32, 0.31, 0.31, ...new Array(19).fill(0.25)];
 const lines = [
   `# Prova sul PC dell'anteprima live (D11) — modello ${VARIANT}`, '',
   `Data: ${new Date().toISOString().slice(0, 10)} · Modello: ${MODEL.name} · ${(MODEL.bytes / 1e6).toFixed(1)} MB · SHA-256 \`${MODEL.sha256.slice(0, 16)}…\``,
-  'Metodo: confronto con le impronte medie di 6 foto di riferimento per pianta (22 piante). Foto di prova: quelle del test D9, **mai usate come riferimento**.',
+  `Metodo: confronto con le impronte medie di ${refCounts.join(' o ')} foto di riferimento per pianta (22 piante; 15 per le piante "gemelle").` + ' Foto di prova: quelle del test D9, **mai usate come riferimento**.',
   `Velocità sul PC (WebAssembly, senza scheda grafica): ${avgMs ? avgMs + ' ms per analisi in media' : 'impronte già in memoria, non rimisurata'}. Velocità e calore sul telefono li misura la prova D11.`, '',
   '| Gruppo | Foto | Pianta giusta al 1° posto | Fra le prime 3 |', '|---|---|---|---|',
   ...['ricevute', 'inaturalist-coltivate', 'inaturalist-selvatiche'].map((g) => {
@@ -186,6 +212,10 @@ const lines = [
     `${(probs(screenEx, 100)[0] * 100).toFixed(0)}% (scala 100) al ${(probs(screenEx, best.scale)[0] * 100).toFixed(0)}% (scala ${best.scale}).`,
   chosenProb ? `Soglie del popup per questa scala: probabilità ≥ ${Math.round(chosenProb.p * 100)}%, somiglianza ≥ ${MIN_SIM}, distacco ≥ 15 punti → nome mostrato per ${chosenProb.shown}/${real.length} foto vere, giusto in ${chosenProb.ok} (${pct(chosenProb.ok, chosenProb.shown)}), trappole con nome: ${chosenProb.trapShown}/3.`
     : 'Nessuna soglia di probabilità raggiunge il 90% di nomi giusti senza trappole: si tengono i valori precedenti.',
+  ...(twinEval ? ['', '## Piante gemelle ("Forse: X o Y")', '',
+    'Gruppi: ' + TWIN_GROUPS.map((g) => g.slugs.join('/')).join(' · ') + '.',
+    `Con le stesse soglie: nome singolo per ${twinEval.singles} foto (giusto ${twinEval.singlesOk}), coppia "X o Y" per ${twinEval.pairs} foto (pianta giusta nella coppia: ${twinEval.pairsOk}); trappole con un nome o una coppia: ${twinEval.traps}/3.`,
+    ...twinEval.pairList.map((x) => '- ' + x), ''] : []),
   '⚠️ Taratura fatta sulle stesse 43 foto usate per misurare: i valori sono indicativi e vanno ricontrollati sul telefono.', '',
   '## Dettaglio (scala 100)', '| Foto | Atteso | 1° nome | Somigl. | 2° nome | Esito |', '|---|---|---|---|---|---|',
   ...rows.map((r) => { const k = rank(r, 100); return `| ${r.file} | ${r.exp ?? '—'} | ${prototypes[k.top].label} | ${k.sim1.toFixed(3)} | ${prototypes[k.second].label} | ${r.exp ? (k.top === slugIdx[r.exp] ? '✅' : inTop3(r) ? '🔸' : '❌') : 'trappola'} |`; }),
