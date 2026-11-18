@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Icona di Plant Intelligence: disegno nostro (foglia stilizzata), licenza MIT come il resto del progetto.
+       Il fondo pieno copre tutto il quadrato, così l'icona funziona anche "mascherabile" (Android la ritaglia a cerchio). -->
+  <rect width="512" height="512" fill="#1f6b3a"/>
+  <path d="M256 104c-86 46-132 118-132 196 0 54 36 94 92 104l40-58 40 58c56-10 92-50 92-104 0-78-46-150-132-196z"
+        fill="#e8f5e9"/>
+  <path d="M256 150v260" stroke="#1f6b3a" stroke-width="16" stroke-linecap="round"/>
+  <path d="M256 250l-58-46M256 310l66-52M256 360l-46-36" stroke="#1f6b3a" stroke-width="12" stroke-linecap="round"/>
+</svg>

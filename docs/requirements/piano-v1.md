@@ -88,6 +88,16 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **Come si verifica:** Edge sul PC riconosce l'app come installabile e la pagina si riapre anche offline (prova
   automatica su localhost).
 - **Tu:** —
+- **✅ Fatto il 2026-11-18.** Costruito:
+  - icona nostra (foglia, SVG + PNG 180/192/512) e manifest (`src/app/manifest.ts`);
+  - impostazioni per iPhone (`appleWebApp`, colore della barra);
+  - service worker scritto a mano (`public/sw.js`): pagine prima dalla rete, file dell'app dalla copia salvata, **mai**
+    `/api/` né altri siti;
+  - intestazioni di sicurezza consigliate dalla guida PWA di Next.js.
+
+  Verifica automatica in Edge su 127.0.0.1, 15 controlli superati: manifest letto senza errori, app installabile,
+  service worker attivo, pagina riaperta con testi e stili **a server spento**, nessun errore. Sull'iPhone si verifica
+  dopo il passo 0.5; la spiegazione dell'installazione arriva con l'onboarding (1.2).
 
 ### 0.5 Primo indirizzo online (Vercel)
 - **Cosa si costruisce:** il collegamento del progetto a Vercel (D2), così l'app ha un indirizzo `https` da aprire
