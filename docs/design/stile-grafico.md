@@ -36,6 +36,9 @@ Verifica del 2026-11-18 (formula WCAG 2.x):
   bolle verde, acqua, azzurro e pesca (sotto 4,5:1). Come testo vanno bene viola `#5B3FD6` su `#E7DEFF` (5,2:1, usato
   nell'etichetta "Forse: …"), lime `#4D7A0C` su `#F1F9C4` (4,7:1), tossica `#8A3412` su `#F7DDD0` (6,3:1);
 - testo `#3D5A4A` su vetro (bianco) 7,6:1 · testo `#33553F` su vetro 8,4:1 (verificati il 2026-11-18, passi 1.1-1.2);
+- etichette del risultato (R0): `#0B5A33` su `#C3F0C6` 6,6:1 (affidabilità alta) · `#4D7A0C` su `#F1F9C4` 4,7:1
+  (buona) · `#8A6A00` su `#FFF3B0` 4,5:1 (bassa) · `#33553F` su `#C8F1EC` 6,9:1 ("Scheda di cura in arrivo") ·
+  `#B4441E` su vetro 5,5:1 ("Non ne sono sicuro");
 - **viola "magia" corretto:** con l'inizio della sfumatura del riferimento (`rgba(110,80,240,0.92)`) il testo chiaro era
   a 4,0:1 e l'etichetta gialla `#FFE36E` a 3,5:1. Con `rgba(88,58,210,0.92)` diventano 5,4:1 e 4,8:1. Il resto del
   riquadro è uguale.

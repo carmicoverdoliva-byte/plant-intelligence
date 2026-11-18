@@ -29,7 +29,9 @@ npm run build      # controlla che l'app si compili
 npm run start      # versione finale, dopo build: http://127.0.0.1:3000
 npm run lint       # controllo automatico del codice
 npm run guida      # copia i testi della Guida in docs/user-guide/guida.md
-node tests/app/prova-app.mjs   # prova automatica in Edge (con npm run start acceso)
+node tests/app/prova-app.mjs        # prova automatica in Edge (con npm run start acceso)
+node tests/app/prova-identify.mjs   # prova di /api/identify con un Pl@ntNet finto (dopo npm run build)
+node tests/app/prova-classifica.mjs # regole del risultato sulle risposte salvate del test D9
 ```
 
 Il server di prova risponde solo dal PC stesso (`127.0.0.1`), non dagli altri dispositivi della rete.

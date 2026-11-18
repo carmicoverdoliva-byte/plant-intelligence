@@ -116,6 +116,15 @@ punteggio bassissimo (5,6% su `k-world-flora`).
   Dettagli e limiti nella [decisione D9](../architecture/decisioni-da-prendere.md).
 - Nomi uniformati con la [tabella dei sinonimi](sinonimi-botanici.md). Pl@ntNet fornisce i codici GBIF e POWO di ogni specie.
 
+## Uso nell'app (rilascio R0, 2026-11-18)
+- Richiesta: `POST https://my-api.plantnet.org/v2/identify/k-world-flora` con `lang=it`, `nb-results=5`,
+  `include-related-images=true`; campi `images` e `organs` (uno per foto).
+- Con `include-related-images=true` ogni risultato ha `images[]` con `author`, `license` (es. `cc-by-sa`) e
+  `url.o/m/s`. Lo abbiamo verificato con un riconoscimento vero il 2026-11-18. L'app mostra la foto media con autore e
+  licenza.
+- La pagina della documentazione ufficiale (`/doc/api/identify`) il 2026-11-18 rispondeva con un errore 500: i campi
+  sono stati confermati dalla risposta vera.
+
 ## Come lo usiamo nel codice (adattatore)
 La chiave è segreta: **la usa solo il nostro server**, mai il telefono (CLAUDE.md §7).
 

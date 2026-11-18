@@ -57,6 +57,14 @@ facciamo poche centinaia di richieste in tutto.
 | Serve una chiave API? | No, per `species/match` | [2] |
 | Obblighi (attribuzione…) | Citare "GBIF Backbone Taxonomy", DOI 10.15468/39omei, nella pagina Informazioni (F15) | [1] |
 
+**Aggiornamento del 2026-11-18 (rilascio R0):** l'app riconosce **qualsiasi** pianta, non solo quelle del catalogo. Per
+questo, oltre alla tabella statica prevista, il server chiede a GBIF il nome accettato **al momento**
+(`GET https://api.gbif.org/v1/species/{codice}`, senza chiave). Usa il codice GBIF che Pl@ntNet dà per ogni specie
+e ricorda le risposte finché il server resta acceso (`src/lib/riconoscimento/gbif.ts`).
+- Se GBIF non risponde entro 2,5 s, si usano i nomi di Pl@ntNet.
+- Le richieste hanno un `User-Agent` con l'indirizzo dell'app, nessun dato personale.
+- La tabella statica resta utile per non chiedere ogni volta i nomi più comuni; si farà con le schede (R1).
+
 ## Come lo usiamo nel codice (adattatore)
 ```ts
 // src/lib/taxonomy/TaxonomyProvider.ts (da creare)

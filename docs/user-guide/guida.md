@@ -5,6 +5,17 @@
 
 ## Tutorial
 
+### Riconoscere una pianta
+
+_Una foto, la parte della pianta, e l'app ti dice come si chiama._
+
+1. Tocca il pulsante verde con la fotocamera, al centro della barra in basso.
+2. Tocca "Scatta" per fare una foto, oppure "Galleria" per sceglierne una già fatta. Puoi usare fino a 5 foto della stessa pianta.
+3. Per ogni foto indica che parte è: foglia, fiore, frutto o corteccia. Se non lo sai, lascia "Non so".
+4. Tocca "Riconosci". In pochi secondi vedi il nome, quanto è sicura l'app (detto a parole) e le piante simili da confrontare.
+5. Se l'affidabilità è bassa, aggiungi una foto di un'altra parte, per esempio il fiore: aiuta molto.
+6. Ogni giorno hai 10 riconoscimenti su questo telefono: i riconoscimenti gratuiti sono divisi tra tutti.
+
 ### Muoversi nell'app
 
 _La barra in basso porta a tutte le sezioni._
@@ -67,6 +78,14 @@ Restano sul tuo telefono. Non c'è un archivio online con i tuoi dati. Più avan
 
 L'app è in costruzione e cresce un passo alla volta. Ogni sezione dice onestamente in quale fase arriva, invece di mostrare pulsanti che non fanno niente.
 
+### Le mie foto vengono conservate?
+
+No. Le foto vengono rimpicciolite sul telefono (così perdono anche le informazioni sul luogo dello scatto) e mandate a Pl@ntNet solo per il riconoscimento. Né noi né Pl@ntNet le conserviamo.
+
+### Perché l'app non mi dà la percentuale?
+
+Perché una percentuale sembra più precisa di quanto sia. L'app dice a parole quanto è sicura (alta, buona, bassa) e, se non è sicura, ti mostra le piante simili invece di inventare un nome.
+
 ### Posso vedere come è fatta?
 
 Sì: Mandragola è open source, il codice è pubblico su GitHub con licenza MIT.
@@ -128,7 +147,7 @@ Qui troverai le piante che salvi dopo averle riconosciute, con le loro schede di
 
 ### Fotocamera
 
-Da qui fotograferai una pianta per sapere come si chiama. L'app ti dirà la specie più probabile e le alternative, senza inventare. Questa parte arriva nella fase 2 della versione 1.
+Fotografa una pianta, o scegli una foto dalla galleria, per sapere come si chiama. L'app ti dice il nome più probabile, quanto è sicura e le piante simili da confrontare. Se non è sicura, te lo dice e ti suggerisce come rifare la foto.
 
 ### Promemoria
 

@@ -241,6 +241,42 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
   non fa rompere l'app.
 - **Tu:** crei l'account gratuito Upstash e inserisci le sue chiavi nelle impostazioni segrete (ti spiego dove).
 
+### ✅ Rilascio R0 fatto il 2026-11-18 (passi 2.1-2.3 e messaggi di 2.4)
+- **Server:** `/api/identify` → Pl@ntNet `k-world-flora`, `lang=it`, 5 risultati con foto di esempio; la chiave si
+  legge solo lì e non compare mai nelle risposte. I nomi passano da GBIF (sinonimi uniti: *Aloe officinalis* = *Aloe
+  vera*), con ripiego sui nomi di Pl@ntNet se GBIF non risponde in 2,5 s. Adattatori `PlantRecognitionProvider`
+  (`PlantNetProvider`) e `TaxonomyProvider` (`GbifTaxonomy`).
+- **Telefono:** "Scatta" o "Galleria" (fino a 5 foto), parte della pianta, foto ridotte sul telefono (lato corto 1280,
+  JPEG 90%, senza dati sul luogo). Risultato:
+  - nome comune + genere e "probabilmente" + specie;
+  - affidabilità a parole (alta, buona, bassa), nessuna percentuale;
+  - fino a 3 specie simili con foto di esempio e autore;
+  - link a Wikipedia e la scritta "Scheda di cura in arrivo";
+  - "Non riesco a riconoscerla" con consigli di scatto; "Aggiungi una foto di un'altra parte" (F05).
+- **Limiti, in attesa di Upstash:**
+  - sul telefono 10 riconoscimenti al giorno (D5), contati in memoria locale;
+  - sul server un tetto prudente: 15 al giorno per indirizzo di rete, per copia del server;
+  - una riserva: stop quando Pl@ntNet dice che ne restano 25 o meno;
+  - tutti i valori si cambiano con variabili d'ambiente non segrete.
+  - **Rischio:** il limite del telefono si azzera cancellando i dati del browser, e i tetti del server non sono precisi
+    (Vercel può avere più copie del server, che ripartono da zero). Una sola persona potrebbe quindi consumare gran parte
+    delle 500 identificazioni del giorno. Con Upstash diventa una quota vera per dispositivo.
+- **Messaggi chiari** per: limite giornaliero, troppe richieste dalla stessa rete, servizio che non risponde (tempo
+  massimo 20 s), senza rete, foto non valida, quota del telefono finita.
+- **Verifiche:**
+  - `tests/app/prova-classifica.mjs`: 16/16, sulle 46 risposte salvate di D9; le 3 trappole finiscono in "Non riesco
+    a riconoscerla";
+  - `tests/app/prova-identify.mjs`: 15/15, con un Pl@ntNet finto (risposta normale, 404, 500, tempo scaduto, foto non
+    valida, tetto per indirizzo, riserva, nessun punteggio e nessuna chiave nelle risposte);
+  - `tests/app/prova-app.mjs`: 138/138 in Edge a 390 px, con le richieste intercettate;
+  - un riconoscimento vero dal PC con la foto del pothos dell'utente: "Pothos, probabilmente *Epipremnum aureum*",
+    affidabilità buona, in 3 secondi;
+  - lint, controllo dei tipi e build.
+- **Non ancora fatto:**
+  - tabella statica dei sinonimi (per ora GBIF al momento);
+  - quota vera per dispositivo con Upstash;
+  - ricerca per nome come ripiego (F06, passo 3.2).
+
 ---
 
 ## Fase 3 — Collezione e schede

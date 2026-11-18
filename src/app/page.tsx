@@ -50,12 +50,12 @@ export default function Home() {
             Riconosci una pianta{" "}
             <Sparkles size={18} strokeWidth={TRATTO} aria-hidden="true" className="inline align-[-2px] text-scintilla" />
           </h2>
-          <p className="text-sm leading-snug text-testo-2">Inquadrala: il nome compare mentre la guardi.</p>
+          <p className="text-sm leading-snug text-testo-2">Fotografala: ti dico come si chiama e quanto ne sono sicura.</p>
           <Link
             href="/fotocamera"
             className="mt-1.5 inline-flex h-11 items-center gap-2 self-start rounded-pillola bg-verde px-[18px] text-[15px] font-extrabold text-su-verde active:bg-verde-scuro"
           >
-            Inquadra
+            Fotografa
             <ArrowRight size={16} strokeWidth={TRATTO} aria-hidden="true" />
           </Link>
         </div>

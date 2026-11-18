@@ -41,7 +41,7 @@ export const sezioni = {
   fotocamera: {
     titolo: "Fotocamera",
     testo:
-      "Da qui fotograferai una pianta per sapere come si chiama. L'app ti dirà la specie più probabile e le alternative, senza inventare. Questa parte arriva nella fase 2 della versione 1.",
+      "Fotografa una pianta, o scegli una foto dalla galleria, per sapere come si chiama. L'app ti dice il nome più probabile, quanto è sicura e le piante simili da confrontare. Se non è sicura, te lo dice e ti suggerisce come rifare la foto.",
   },
   promemoria: {
     titolo: "Promemoria",
@@ -63,6 +63,21 @@ export const sezioni = {
 export type IdSezione = keyof typeof sezioni;
 
 export const tutorial: Tutorial[] = [
+  {
+    slug: "riconoscere-una-pianta",
+    titolo: "Riconoscere una pianta",
+    riassunto: "Una foto, la parte della pianta, e l'app ti dice come si chiama.",
+    bolla: "verde",
+    icona: "fotocamera",
+    passi: [
+      "Tocca il pulsante verde con la fotocamera, al centro della barra in basso.",
+      "Tocca \"Scatta\" per fare una foto, oppure \"Galleria\" per sceglierne una già fatta. Puoi usare fino a 5 foto della stessa pianta.",
+      "Per ogni foto indica che parte è: foglia, fiore, frutto o corteccia. Se non lo sai, lascia \"Non so\".",
+      "Tocca \"Riconosci\". In pochi secondi vedi il nome, quanto è sicura l'app (detto a parole) e le piante simili da confrontare.",
+      "Se l'affidabilità è bassa, aggiungi una foto di un'altra parte, per esempio il fiore: aiuta molto.",
+      "Ogni giorno hai 10 riconoscimenti su questo telefono: i riconoscimenti gratuiti sono divisi tra tutti.",
+    ],
+  },
   {
     slug: "muoversi-nell-app",
     titolo: "Muoversi nell'app",
@@ -148,6 +163,16 @@ export const domande: Domanda[] = [
     domanda: "Perché alcune sezioni dicono che arriveranno più avanti?",
     risposta:
       "L'app è in costruzione e cresce un passo alla volta. Ogni sezione dice onestamente in quale fase arriva, invece di mostrare pulsanti che non fanno niente.",
+  },
+  {
+    domanda: "Le mie foto vengono conservate?",
+    risposta:
+      "No. Le foto vengono rimpicciolite sul telefono (così perdono anche le informazioni sul luogo dello scatto) e mandate a Pl@ntNet solo per il riconoscimento. Né noi né Pl@ntNet le conserviamo.",
+  },
+  {
+    domanda: "Perché l'app non mi dà la percentuale?",
+    risposta:
+      "Perché una percentuale sembra più precisa di quanto sia. L'app dice a parole quanto è sicura (alta, buona, bassa) e, se non è sicura, ti mostra le piante simili invece di inventare un nome.",
   },
   {
     domanda: "Posso vedere come è fatta?",

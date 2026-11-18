@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { InArrivo } from "@/components/in-arrivo";
 import { IntestazioneSezione } from "@/components/intestazione-sezione";
+import { Riconoscimento } from "@/components/riconoscimento/riconoscimento";
 
 export const metadata: Metadata = { title: "Fotocamera · Mandragola" };
 
-// Sezione "Fotocamera": per ora solo la spiegazione e l'avviso onesto "in costruzione" (fase 2).
+// Sezione "Fotocamera" (rilascio R0, passi 2.1-2.4): riconoscimento da foto con Pl@ntNet.
+// L'anteprima live nel mirino (D10) arriverà nella fase 4.
 export default function Pagina() {
   return (
     <main className="pagina">
       <IntestazioneSezione id="fotocamera" />
-      <InArrivo fase="fase 2" bolla="verde" icona="fotocamera" />
+      <Riconoscimento />
     </main>
   );
 }

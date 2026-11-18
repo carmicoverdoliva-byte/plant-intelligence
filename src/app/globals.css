@@ -154,3 +154,10 @@ body::before {
     padding-bottom: max(28px, env(safe-area-inset-bottom));
   }
 }
+
+@layer components {
+  /* Foto della pianta in alto nella scheda e nel risultato (riferimento scheda.html) */
+  .ombra-foto {
+    box-shadow: 0 12px 30px rgb(10 80 45 / 0.18);
+  }
+}

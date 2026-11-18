@@ -6,6 +6,7 @@
 // - che non ci siano errori nella console;
 // - il riquadro di spiegazione della prima visita (compare, si chiude, resta chiuso, il "?" lo riapre);
 // - l'onboarding (se presente): percorso completo, salto, ripetizione dalla Guida, non ricompare al secondo avvio.
+// - la Fotocamera (R0): foto dalla galleria, risultato onesto, messaggi d'errore (richieste intercettate, nessuna quota usata).
 //
 // Uso: prima `npm run build` e `npm run start`, poi in un altro terminale:
 //   node tests/app/prova-app.mjs [indirizzo] [--foto cartella]
@@ -151,7 +152,7 @@ try {
   if (haOnboarding) await valuta(`localStorage.setItem("mandragola:onboarding", "visto"), true`);
 
   // --- 1. Tutte le schermate ---
-  const tutorial = ["muoversi-nell-app", "spiegazioni-delle-sezioni", "installare-l-app", "ripetere-il-tutorial-iniziale", "usare-la-guida"];
+  const tutorial = ["riconoscere-una-pianta", "muoversi-nell-app", "spiegazioni-delle-sezioni", "installare-l-app", "ripetere-il-tutorial-iniziale", "usare-la-guida"];
   const schermate = ["/", "/piante", "/fotocamera", "/promemoria", "/nuova-pianta", "/guida", ...tutorial.map((t) => `/guida/${t}`)];
   for (const s of schermate) {
     await apri(s);
@@ -197,7 +198,13 @@ try {
     "Vetro: effetto sfocato attivo (con ripiego opaco nei browser che non lo supportano)",
   );
 
-  // --- 6. Onboarding (passo 1.2) ---
+  // --- 6. Fotocamera e risultato (rilascio R0) ---
+  {
+    const { provaFotocamera } = await import("./prova-fotocamera.mjs");
+    await provaFotocamera({ apri, valuta, clicca, perTesto, ok, pausa, foto, cmd, ascoltatori, sessionId, controllaSchermata });
+  }
+
+  // --- 7. Onboarding (passo 1.2) ---
   if (haOnboarding) {
     const { provaOnboarding } = await import("./prova-onboarding.mjs");
     await provaOnboarding({ apri, valuta, clicca, perTesto, ok, pausa, foto, controllaSchermata });
