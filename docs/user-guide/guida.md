@@ -22,6 +22,24 @@ _La prima volta ogni sezione si presenta; il pulsante "?" la richiama._
 2. Tocca "Ho capito" per chiuderlo: non ricomparirà da solo.
 3. Per rileggerlo, tocca il pulsante con il punto di domanda in alto a destra nella sezione.
 
+### Installare l'app sulla schermata Home
+
+_Così Safari non cancella i tuoi dati e l'app si apre a schermo intero._
+
+1. Apri https://mandragola-app.vercel.app in Safari.
+2. Tocca il pulsante Condividi (il quadrato con la freccia verso l'alto). Se non lo vedi, tocca prima i tre puntini in basso.
+3. Scorri e tocca "Aggiungi alla schermata Home".
+4. Tocca "Aggiungi" in alto a destra. Se compare l'interruttore "Apri come app web", lascialo acceso.
+5. Da quel momento apri Mandragola dalla sua icona, non da Safari.
+
+### Ripetere il tutorial iniziale
+
+_Rivedi le schermate del primo avvio quando vuoi._
+
+1. Apri la Guida.
+2. Tocca "Ripeti il tutorial iniziale", sopra l'elenco dei tutorial.
+3. Scorri le schermate con "Avanti" e "Indietro"; "Salta" ti riporta alla Home in qualsiasi momento.
+
 ### Usare la Guida
 
 _Tutorial per ogni funzione e domande frequenti._
@@ -52,6 +70,55 @@ L'app è in costruzione e cresce un passo alla volta. Ogni sezione dice onestame
 ### Posso vedere come è fatta?
 
 Sì: Mandragola è open source, il codice è pubblico su GitHub con licenza MIT.
+
+## Tutorial iniziale (primo avvio)
+
+### Benvenuto in Mandragola
+
+Riconosci le piante con la fotocamera e impara a curarle.
+
+- **Gratis, davvero** — Niente pubblicità, niente abbonamenti, niente account.
+- **Tutto sul tuo telefono** — Le tue piante restano qui, non su un archivio online.
+
+### Come fotografare una pianta
+
+Una buona foto vale più di tutto il resto.
+
+- **Tanta luce** — Meglio la luce del giorno, senza controluce.
+- **Da vicino** — Una sola pianta, a fuoco, che riempie la foto.
+- **Fiori e frutti** — Se ci sono, fotografali: aiutano più delle foglie.
+- **Più foto** — Puoi usare fino a 5 foto della stessa pianta.
+
+### Come leggere i risultati
+
+Mandragola dice quanto è sicura, senza inventare.
+
+- **Nome e "probabilmente"** — In grande il nome comune e il genere; la specie è sempre introdotta da "probabilmente".
+- **Alternative** — Se non è sicura ti mostra le piante simili. Se non riesce, te lo dice e ti dà consigli per una foto migliore.
+- **Il "Forse…" nel mirino** — Mentre inquadri compare un nome con "Forse": è un'ipotesi veloce fatta sul telefono. Il risultato affidabile arriva quando scatti.
+
+### Fotocamera e posizione
+
+Prima di chiederti un permesso ti spieghiamo sempre a cosa serve.
+
+- **Fotocamera** — Serve per fotografare le piante. Te la chiederemo la prima volta che scatti.
+- **Posizione (facoltativa)** — Serve per il meteo e il sole della tua città. Se preferisci, scrivi solo il nome del comune.
+- **Puoi dire di no** — L'app funziona lo stesso. Per cambiare idea: Impostazioni di iPhone → App → Safari → Fotocamera o Posizione.
+
+### Mettila sulla schermata Home
+
+Se resta solo in Safari, dopo alcuni giorni senza visite Safari può cancellare i suoi dati: piante, foto e promemoria. Installata sulla Home, no. E in futuro potrà mandarti le notifiche.
+
+- **1. Condividi** — In Safari tocca Condividi. Se non lo vedi, tocca prima i tre puntini in basso.
+- **2. Aggiungi alla schermata Home** — Scorri l'elenco e toccalo.
+- **3. Aggiungi** — Tocca "Aggiungi". Poi apri Mandragola dalla sua icona.
+
+### Una copia di sicurezza
+
+Presto potrai salvare le tue piante in un file, per esempio su iCloud Drive, e ritrovarle su un altro telefono.
+
+- **Un file tutto tuo** — Lo salvi dove vuoi tu. Nessun account, nessun archivio online.
+- **Te lo ricorderemo** — La funzione arriva nella fase 3 della versione 1: per ora non devi fare niente.
 
 ## Spiegazioni delle sezioni (prima visita)
 

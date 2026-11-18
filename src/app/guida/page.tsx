@@ -15,6 +15,14 @@ export default function Guida() {
     <main className="pagina">
       <IntestazioneSezione id="guida" />
 
+      <Link
+        href="/benvenuto"
+        className="flex h-12 items-center justify-center gap-2 rounded-pillola bg-verde text-[15px] font-extrabold text-su-verde active:bg-verde-scuro"
+      >
+        <Icona nome="scintille" size={20} />
+        Ripeti il tutorial iniziale
+      </Link>
+
       <h2 className="text-[19px] font-black">Tutorial</h2>
       <ul className="vetro flex flex-col overflow-hidden rounded-[26px]">
         {tutorial.map((t) => (

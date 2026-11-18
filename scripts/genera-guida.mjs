@@ -5,7 +5,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { domande, sezioni, tutorial } from "../src/content/guida.ts";
+import { domande, onboarding, sezioni, tutorial } from "../src/content/guida.ts";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const destinazione = path.join(root, "docs/user-guide/guida.md");
@@ -26,6 +26,12 @@ for (const t of tutorial) {
 }
 righe.push("## Domande frequenti", "");
 for (const d of domande) righe.push(`### ${d.domanda}`, "", d.risposta, "");
+righe.push("## Tutorial iniziale (primo avvio)", "");
+for (const passo of onboarding) {
+  righe.push(`### ${passo.titolo}`, "", passo.testo, "");
+  for (const punto of passo.punti) righe.push(`- **${punto.titolo}** — ${punto.testo}`);
+  righe.push("");
+}
 righe.push("## Spiegazioni delle sezioni (prima visita)", "");
 for (const s of Object.values(sezioni)) righe.push(`### ${s.titolo}`, "", s.testo, "");
 const testo = righe.join("\n");

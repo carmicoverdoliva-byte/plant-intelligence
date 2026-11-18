@@ -119,7 +119,7 @@ const perTesto = (tag, testo) =>
   `[...document.querySelectorAll(${JSON.stringify(tag)})].find((e) => e.textContent.trim() === ${JSON.stringify(testo)})`;
 
 // Controlli comuni a ogni schermata
-const controllaSchermata = async (percorso, nome) => {
+const controllaSchermata = async (percorso, nome, { senzaBarra = false } = {}) => {
   const dati = await valuta(`(() => {
     const visibili = [...document.querySelectorAll("a, button, summary, input, select")].filter((e) => {
       const r = e.getBoundingClientRect();
@@ -136,7 +136,7 @@ const controllaSchermata = async (percorso, nome) => {
       font: getComputedStyle(document.body).fontFamily,
     };
   })()`);
-  ok(dati.guida, `${percorso}: Guida raggiungibile dalla barra in basso`);
+  if (!senzaBarra) ok(dati.guida, `${percorso}: Guida raggiungibile dalla barra in basso`);
   ok(dati.larghezza <= dati.finestra, `${percorso}: nessuno scorrimento laterale (${dati.larghezza} ≤ ${dati.finestra} px)`);
   ok(dati.piccoli.length === 0, `${percorso}: elementi toccabili ≥ 44 px${dati.piccoli.length ? " — troppo piccoli: " + dati.piccoli.join(", ") : ""}`);
   ok(dati.titolo.length > 0, `${percorso}: titolo presente ("${dati.titolo.replace(/\s+/g, " ")}")`);
@@ -151,7 +151,7 @@ try {
   if (haOnboarding) await valuta(`localStorage.setItem("mandragola:onboarding", "visto"), true`);
 
   // --- 1. Tutte le schermate ---
-  const tutorial = ["muoversi-nell-app", "spiegazioni-delle-sezioni", "usare-la-guida"];
+  const tutorial = ["muoversi-nell-app", "spiegazioni-delle-sezioni", "installare-l-app", "ripetere-il-tutorial-iniziale", "usare-la-guida"];
   const schermate = ["/", "/piante", "/fotocamera", "/promemoria", "/nuova-pianta", "/guida", ...tutorial.map((t) => `/guida/${t}`)];
   for (const s of schermate) {
     await apri(s);
@@ -200,7 +200,7 @@ try {
   // --- 6. Onboarding (passo 1.2) ---
   if (haOnboarding) {
     const { provaOnboarding } = await import("./prova-onboarding.mjs");
-    await provaOnboarding({ apri, valuta, clicca, perTesto, ok, pausa, foto });
+    await provaOnboarding({ apri, valuta, clicca, perTesto, ok, pausa, foto, controllaSchermata });
   }
 
   ok(erroriConsole.length === 0, `Console senza errori${erroriConsole.length ? ": " + erroriConsole.join(" | ") : ""}`);

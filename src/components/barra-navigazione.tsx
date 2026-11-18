@@ -17,6 +17,8 @@ const voci: { href: string; etichetta: string; icona: NomeIcona }[] = [
 
 export function BarraNavigazione() {
   const percorso = usePathname();
+  // Il tutorial iniziale occupa tutto lo schermo: lì la barra non serve (c'è "Salta")
+  if (percorso.startsWith("/benvenuto")) return null;
   const attiva = (href: string) => (href === "/" ? percorso === "/" : percorso.startsWith(href));
 
   return (

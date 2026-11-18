@@ -161,6 +161,22 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **Come si verifica:** una prova automatica percorre l'onboarding fino in fondo, lo salta, lo ripete dalla Guida, e
   controlla che al secondo avvio non ricompaia.
 - **Tu:** lo provi sull'iPhone, anche aggiungendo l'app alla schermata Home, e mi dici cosa non è chiaro.
+- **✅ Fatto il 2026-11-18.** Costruito con la skill `plant-ui`:
+  - 6 schermate (`/benvenuto`): benvenuto · come fotografare · come leggere i risultati (con esempio "Pothos, genere
+    Epipremnum · probabilmente E. aureum" e il "Forse…" dell'anteprima live) · fotocamera e posizione · installazione
+    sulla Home (D3) · copia di sicurezza (F14);
+  - "Salta" su ogni schermata, "Indietro"/"Avanti"; al primo avvio la Home porta qui; "Ripeti il tutorial iniziale"
+    nella Guida; invito discreto e chiudibile a installare l'app quando è aperta da Safari;
+  - testi nella stessa fonte della Guida (`src/content/guida.ts` → [guida.md](../user-guide/guida.md)), con 2 tutorial
+    nuovi: "Installare l'app sulla schermata Home" e "Ripetere il tutorial iniziale".
+  - **Scelta da confermare:** i permessi di iOS **non** si chiedono nell'onboarding. Lì si spiega a cosa servono; la
+    richiesta vera arriva quando servono: la fotocamera al primo scatto (fase 2), la posizione con le finestre (fase 5).
+    Motivo: chiedere un permesso per una funzione che non c'è ancora confonde, e sull'iPhone la scelta si ricorda meglio
+    se è legata a un gesto. La spiegazione verrà ripetuta un attimo prima della richiesta.
+  - **Da verificare sull'iPhone:** i passi di installazione in Safari su iOS 26 (pulsante Condividi dentro i "···") e il
+    percorso per riattivare i permessi (Impostazioni → App → Safari → Fotocamera / Posizione).
+  - Verifica: `tests/app/prova-app.mjs` 104/104 (con `prova-onboarding.mjs`: primo avvio, percorso completo, "Indietro",
+    "Salta", secondo avvio, ripetizione dalla Guida anche senza ricaricare, invito all'installazione); lint, tipi, build.
 
 ---
 

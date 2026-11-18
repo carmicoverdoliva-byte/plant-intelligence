@@ -146,3 +146,11 @@ body::before {
     padding-bottom: calc(68px + max(20px, env(safe-area-inset-bottom)) + 28px);
   }
 }
+
+@layer components {
+  /* Pagine senza barra in basso (tutorial iniziale): pulsanti in fondo allo schermo, meno spazio sotto */
+  .pagina.pagina-intera {
+    min-height: 100dvh;
+    padding-bottom: max(28px, env(safe-area-inset-bottom));
+  }
+}

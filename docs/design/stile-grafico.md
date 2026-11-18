@@ -33,7 +33,9 @@ Verifica del 2026-11-18 (formula WCAG 2.x):
 - testo `#12261C` su sfondo 15,2:1 · `#33553F` 8,0:1 · `#3D5A4A` 7,3:1 · link `#17804A` 4,8:1 ·
   testo `#F2F8EC` su pulsante `#17804A` 4,6:1 (non schiarire né il verde né il testo);
 - icone sulle bolle: tutte fra 3,9:1 e 6,3:1, quindi bene come grafica (3:1); **non usare quei colori per testo** sulle
-  bolle verde, acqua, azzurro e pesca (sotto 4,5:1);
+  bolle verde, acqua, azzurro e pesca (sotto 4,5:1). Come testo vanno bene viola `#5B3FD6` su `#E7DEFF` (5,2:1, usato
+  nell'etichetta "Forse: …"), lime `#4D7A0C` su `#F1F9C4` (4,7:1), tossica `#8A3412` su `#F7DDD0` (6,3:1);
+- testo `#3D5A4A` su vetro (bianco) 7,6:1 · testo `#33553F` su vetro 8,4:1 (verificati il 2026-11-18, passi 1.1-1.2);
 - **viola "magia" corretto:** con l'inizio della sfumatura del riferimento (`rgba(110,80,240,0.92)`) il testo chiaro era
   a 4,0:1 e l'etichetta gialla `#FFE36E` a 3,5:1. Con `rgba(88,58,210,0.92)` diventano 5,4:1 e 4,8:1. Il resto del
   riquadro è uguale.

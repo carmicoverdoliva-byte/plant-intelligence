@@ -1,5 +1,15 @@
 import {
   Bell,
+  Ellipsis,
+  FileDown,
+  Focus,
+  Images,
+  MapPin,
+  Share,
+  ShieldCheck,
+  Sparkles,
+  SquarePlus,
+  Sun,
   BookOpen,
   Camera,
   CircleHelp,
@@ -24,6 +34,17 @@ const icone: Record<NomeIcona, LucideIcon> = {
   aiuto: CircleHelp,
   "nuova-pianta": Flower2,
   telefono: Smartphone,
+  sole: Sun,
+  mirino: Focus,
+  fiore: Flower2,
+  foto: Images,
+  posizione: MapPin,
+  condividi: Share,
+  aggiungi: SquarePlus,
+  file: FileDown,
+  scintille: Sparkles,
+  scudo: ShieldCheck,
+  altro: Ellipsis,
 };
 
 export const TRATTO = 2.6;

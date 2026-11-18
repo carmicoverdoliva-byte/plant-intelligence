@@ -3,6 +3,8 @@ import { ArrowRight, CircleHelp, Sparkles } from "lucide-react";
 import { Bolla } from "@/components/bolla";
 import { Icona, TRATTO } from "@/components/icona";
 import { IllustrazioneRiconosci } from "@/components/illustrazione-riconosci";
+import { ControlloPrimoAvvio } from "@/components/controllo-primo-avvio";
+import { InvitoInstallazione } from "@/components/invito-installazione";
 import { LogoMandragola } from "@/components/logo-mandragola";
 import type { Bolla as TipoBolla, NomeIcona } from "@/content/guida";
 
@@ -19,6 +21,7 @@ const azioni: { href: string; etichetta: string; bolla: TipoBolla; icona: NomeIc
 export default function Home() {
   return (
     <main className="pagina">
+      <ControlloPrimoAvvio />
       <header className="flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <LogoMandragola size={44} />
@@ -38,6 +41,8 @@ export default function Home() {
         <br />
         <span className="text-verde">oggi?</span>
       </h1>
+
+      <InvitoInstallazione />
 
       <section className="vetro-forte flex items-center justify-between gap-3 rounded-card p-5">
         <div className="flex max-w-[190px] flex-col gap-2">
