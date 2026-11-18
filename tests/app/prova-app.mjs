@@ -126,7 +126,8 @@ const controllaSchermata = async (percorso, nome, { senzaBarra = false } = {}) =
       const r = e.getBoundingClientRect();
       return r.width > 0 && r.height > 0 && getComputedStyle(e).visibility !== "hidden";
     });
-    const piccoli = visibili.filter((e) => { const r = e.getBoundingClientRect(); return r.width < 44 || r.height < 44; })
+    // I link dentro una frase (es. attribuzione di Wikipedia, attributo data-inline) sono esclusi dalla regola dei 44 px (WCAG 2.5.8)
+    const piccoli = visibili.filter((e) => !e.hasAttribute("data-inline")).filter((e) => { const r = e.getBoundingClientRect(); return r.width < 44 || r.height < 44; })
       .map((e) => (e.getAttribute("aria-label") || e.textContent.trim()).slice(0, 40) + " (" + Math.round(e.getBoundingClientRect().width) + "×" + Math.round(e.getBoundingClientRect().height) + ")");
     return {
       guida: !!document.querySelector('nav[aria-label="Navigazione principale"] a[href="/guida"]'),

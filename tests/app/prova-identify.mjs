@@ -11,6 +11,7 @@ const PORTA_APP = 3100 + Math.floor(Math.random() * 300);
 let modo = "ok";
 let richiestePlantNet = 0;
 let ultimaQuery = null;
+let wikiUserAgent = "";
 
 // Risposta di Pl@ntNet come quella vera (struttura del test D9), con foto di esempio
 const rispostaOk = (rimaste) => ({
@@ -27,6 +28,18 @@ const rispostaOk = (rimaste) => ({
 const finto = createServer((req, res) => {
   const url = new URL(req.url, "http://x");
   const json = (stato, corpo) => { res.writeHead(stato, { "content-type": "application/json" }); res.end(JSON.stringify(corpo)); };
+  // Wikipedia finta: voce italiana su Aloe vera; per "Planta ignota" nessuna voce, ma voce inglese sul genere "Planta"
+  if (url.pathname.includes("/api/rest_v1/page/summary/")) {
+    wikiUserAgent = req.headers["user-agent"] ?? "";
+    const lingua = url.pathname.startsWith("/wiki-it") ? "it" : "en";
+    const titolo = decodeURIComponent(url.pathname.split("/").pop());
+    const voce = (t, testo) =>
+      json(200, { type: "standard", title: t, extract: testo, content_urls: { desktop: { page: `https://${lingua}.wikipedia.org/wiki/${t}` } } });
+    if (lingua === "it" && titolo === "Aloe_vera") return voce("Aloe vera", "L'aloe vera è una pianta succulenta della famiglia delle Asphodelaceae.");
+    if (lingua === "en" && titolo === "Planta") return voce("Planta", "Planta is a genus used only in this test.");
+    if (titolo === "Disambigua") return json(200, { type: "disambiguation", title: "Disambigua", extract: "Può riferirsi a…", content_urls: { desktop: { page: "x" } } });
+    return json(404, {});
+  }
   if (url.pathname.startsWith("/v1/species/")) {
     const id = url.pathname.split("/").pop();
     if (id === "2777592") return json(200, { key: 2777592, taxonomicStatus: "SYNONYM", acceptedKey: 2777724, canonicalName: "Aloe officinalis" });
@@ -58,6 +71,7 @@ const app = spawn(process.execPath, ["node_modules/next/dist/bin/next", "start",
     PLANTNET_API_KEY: CHIAVE_FINTA, // ha la precedenza su .env.local: la chiave vera non viene usata
     PLANTNET_API_URL: `http://127.0.0.1:${PORTA_FINTO}`,
     GBIF_API_URL: `http://127.0.0.1:${PORTA_FINTO}`,
+    WIKIPEDIA_BASE_URL: `http://127.0.0.1:${PORTA_FINTO}/wiki-{lingua}`,
     PLANTNET_TIMEOUT_MS: "1500",
     IDENTIFY_PER_IP_PER_DAY: "3",
     NEXT_TELEMETRY_DISABLED: "1",
@@ -120,6 +134,26 @@ try {
     "restano poche identificazioni (riserva) → il server si ferma senza chiamare Pl@ntNet");
 
   ok(!/Error|stack|at Object|http:\/\/127/.test(r.testo), "nessun dettaglio tecnico nelle risposte");
+
+  // --- "Cos'è": riassunto di Wikipedia ---
+  const desc = async (q) => {
+    const x = await fetch(BASE + "/api/descrizione?" + q);
+    return { stato: x.status, dati: await x.json(), cache: x.headers.get("cache-control") ?? "" };
+  };
+  let d = await desc("specie=Aloe%20vera&genere=Aloe");
+  ok(d.dati.ok && d.dati.descrizione.lingua === "it" && d.dati.descrizione.livello === "specie", "Cos'è: voce italiana sulla specie");
+  ok(
+    d.dati.descrizione.licenza === "CC BY-SA 4.0" && d.dati.descrizione.autori.endsWith("?action=history") && d.dati.descrizione.url.includes("wikipedia.org"),
+    "Cos'è: titolo, link, autori e licenza CC BY-SA 4.0",
+  );
+  ok(/^Mandragola\/.*mandragola-app\.vercel\.app/.test(wikiUserAgent), "Cos'è: User-Agent con nome dell'app e contatto");
+  ok(/s-maxage=86400/.test(d.cache), "Cos'è: risposta conservata un giorno dalla rete (poche richieste a Wikipedia)");
+  d = await desc("specie=Planta%20ignota&genere=Planta");
+  ok(d.dati.ok && d.dati.descrizione.livello === "genere" && d.dati.descrizione.lingua === "en", "Cos'è: senza voce sulla specie, voce sul genere (in inglese se manca in italiano)");
+  d = await desc("specie=Disambigua");
+  ok(d.dati.ok === false, "Cos'è: le pagine di disambiguazione non si mostrano");
+  d = await desc("specie=%3Cscript%3E");
+  ok(d.stato === 400, "Cos'è: nomi non validi rifiutati, niente arriva a Wikipedia");
 } catch (e) {
   ok(false, `errore durante la prova: ${e.message}`);
 } finally {

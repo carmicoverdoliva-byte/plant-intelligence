@@ -31,9 +31,25 @@ export async function provaFotocamera({ apri, valuta, clicca, perTesto, ok, paus
 
   let prossima = "probabile";
   let intercettate = 0;
-  await cmd("Fetch.enable", { patterns: [{ urlPattern: "*/api/identify*" }] });
+  await cmd("Fetch.enable", { patterns: [{ urlPattern: "*/api/identify*" }, { urlPattern: "*/api/descrizione*" }] });
   ascoltatori.push(async (m) => {
     if (m.method !== "Fetch.requestPaused" || m.sessionId !== sessionId) return;
+    if (m.params.request.url.includes("/api/descrizione")) {
+      const descr = {
+        ok: true,
+        descrizione: {
+          titolo: "Epipremnum aureum", estratto: "Descrizione di prova presa da Wikipedia. ".repeat(20),
+          url: "https://it.wikipedia.org/wiki/Epipremnum_aureum", autori: "https://it.wikipedia.org/wiki/Epipremnum_aureum?action=history",
+          lingua: "it", livello: "specie", licenza: "CC BY-SA 4.0",
+        },
+      };
+      await cmd("Fetch.fulfillRequest", {
+        requestId: m.params.requestId, responseCode: 200,
+        responseHeaders: [{ name: "content-type", value: "application/json" }],
+        body: Buffer.from(JSON.stringify(descr)).toString("base64"),
+      });
+      return;
+    }
     intercettate++;
     const corpo = RISPOSTE[prossima];
     await cmd("Fetch.fulfillRequest", {
@@ -79,6 +95,9 @@ export async function provaFotocamera({ apri, valuta, clicca, perTesto, ok, paus
   ok(t.includes("Pothos") && t.includes("probabilmente Epipremnum aureum"), "Risultato: nome comune e \"probabilmente\" + specie");
   ok(t.includes("Affidabilità buona"), "Risultato: affidabilità detta a parole");
   ok(!/\d\s?%/.test(t), "Risultato: nessuna percentuale");
+  ok(await aspettaTesto("Descrizione da Wikipedia · non è una scheda di cura"), "Cos'è: riquadro con l'etichetta \"non è una scheda di cura\"");
+  ok((await testoPagina()).includes("CC BY-SA 4.0") && (await testoPagina()).includes("«Epipremnum aureum»"), "Cos'è: titolo della voce e licenza visibili");
+  ok(await valuta(`!!${perTesto("button", "Leggi tutto il riassunto")}`), "Cos'è: testo lungo accorciato, con \"Leggi tutto il riassunto\"");
   ok(t.includes("Filodendro") && t.includes("Pothos gigante"), "Risultato: specie simili da confrontare");
   ok(await valuta(`!![...document.querySelectorAll("a")].find(a => a.textContent.includes("Approfondisci") && a.href.includes("wikipedia"))`), "Risultato: link per approfondire");
   ok(await valuta(`!!${perTesto("button", "Aggiungi una foto di un'altra parte")}`), "Risultato probabile: si può aggiungere una foto di un'altra parte (F05)");

@@ -74,6 +74,7 @@ export const tutorial: Tutorial[] = [
       "Tocca \"Scatta\" per fare una foto, oppure \"Galleria\" per sceglierne una già fatta. Puoi usare fino a 5 foto della stessa pianta.",
       "Per ogni foto indica che parte è: foglia, fiore, frutto o corteccia. Se non lo sai, lascia \"Non so\".",
       "Tocca \"Riconosci\". In pochi secondi vedi il nome, quanto è sicura l'app (detto a parole) e le piante simili da confrontare.",
+      "Sotto il nome c'è il riquadro \"Cos'è\": una breve descrizione presa da Wikipedia, con il link alla voce. È una descrizione della pianta, non una scheda di cura.",
       "Se l'affidabilità è bassa, aggiungi una foto di un'altra parte, per esempio il fiore: aiuta molto.",
       "Ogni giorno hai 10 riconoscimenti su questo telefono: i riconoscimenti gratuiti sono divisi tra tutti.",
     ],

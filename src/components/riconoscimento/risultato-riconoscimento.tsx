@@ -3,6 +3,7 @@ import { BookOpen, Camera, ExternalLink, Leaf, Plus, Sun, Sprout } from "lucide-
 import type { Candidato, Risultato } from "@/lib/riconoscimento/classifica";
 import { Bolla } from "../bolla";
 import { TRATTO } from "../icona";
+import { CosE } from "./cos-e";
 
 // Schermata del risultato (passo 2.3, F04), dal riferimento docs/design/riferimenti/scheda.html: foto della pianta in
 // alto, card in vetro sovrapposta con nome comune + genere e "probabilmente" + specie. Nessuna percentuale.
@@ -118,6 +119,8 @@ export function RisultatoRiconoscimento({
           <ExternalLink size={16} strokeWidth={TRATTO} aria-hidden="true" />
         </a>
       </section>
+
+      <CosE specie={p.nomeScientifico} genere={p.genere} />
 
       {risultato.gemelle.length > 0 && (
         <section aria-label="Specie simili" className="flex flex-col gap-2.5">

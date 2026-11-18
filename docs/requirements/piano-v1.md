@@ -272,6 +272,13 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
   - un riconoscimento vero dal PC con la foto del pothos dell'utente: "Pothos, probabilmente *Epipremnum aureum*",
     affidabilità buona, in 3 secondi;
   - lint, controllo dei tipi e build.
+- **Aggiunta del 2026-11-18 (richiesta dell'utente dopo la prova su iPhone):** riquadro **"Cos'è"** sotto il nome.
+  - Contiene il riassunto della voce di Wikipedia, cercata nell'ordine: specie in italiano, in inglese, poi genere.
+  - Mostra titolo, link, autori e licenza **CC BY-SA 4.0**, con l'etichetta "Descrizione da Wikipedia · non è una
+    scheda di cura".
+  - Route `/api/descrizione`, con User-Agent dell'app.
+  - Risposte conservate un giorno dalla rete di Vercel; se Wikipedia è lenta non si conserva nulla.
+  - Prove: identify 22/22, app 141/141.
 - **Non ancora fatto:**
   - tabella statica dei sinonimi (per ora GBIF al momento);
   - quota vera per dispositivo con Upstash;
