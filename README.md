@@ -2,6 +2,8 @@
 
 Web app **open source**, **mobile-first** e **installabile (PWA)** che riconosce le piante dalla fotocamera e aiuta a curarle. Completamente gratuita.
 
+**Progetto non commerciale** (decisione D1): niente pubblicità, niente abbonamenti, niente account.
+
 ## Funzioni previste
 - Riconoscimento da foto con livello di confidenza e alternative
 - Scheda botanica e consigli di cura
@@ -12,7 +14,21 @@ Web app **open source**, **mobile-first** e **installabile (PWA)** che riconosce
 - Onboarding al primo avvio e sezione "Guida" sempre disponibile
 
 ## Stato
-🚧 Fase iniziale: solo struttura e documentazione. Il codice dell'app non è ancora presente.
+🚧 Versione 1 in costruzione, seguendo il [piano della v1](docs/requirements/piano-v1.md).
+
+## Provarla sul PC
+Serve [Node.js](https://nodejs.org) (versione 20.9 o successiva).
+
+```bash
+npm install        # scarica le librerie (solo la prima volta)
+npm run dev        # versione di sviluppo: http://127.0.0.1:3000
+npm run build      # controlla che l'app si compili
+npm run start      # versione finale, dopo build: http://127.0.0.1:3000
+npm run lint       # controllo automatico del codice
+```
+
+Il server di prova risponde solo dal PC stesso (`127.0.0.1`), non dagli altri dispositivi della rete.
+Le chiavi dei servizi vanno solo in `.env.local`, mai nel codice (vedi `.env.example` quando ci sarà).
 
 ## Documentazione
 - Visione prodotto: [`docs/requirements/visione-prodotto.md`](docs/requirements/visione-prodotto.md)

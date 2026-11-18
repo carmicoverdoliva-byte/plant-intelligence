@@ -75,6 +75,12 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **Come si verifica:** compilazione (`npm run build`) e controllo del codice (`npm run lint`) senza errori; la pagina si
   apre sul PC all'indirizzo `localhost` (solo dal PC, non da altri dispositivi).
 - **Tu:** —
+- **✅ Fatto il 2026-11-18.**
+  - Next.js 16.4.6, React 19.3, Tailwind CSS 4.3, TypeScript 5 ed ESLint 9 (scheda
+    [dipendenze.md](../api-documentation/dipendenze.md)).
+  - Verifiche: `npm run lint` e `npm run build` senza errori; pagina in italiano che risponde su `127.0.0.1:3000`, in
+    ascolto solo sul PC.
+  - Statistiche anonime di Next.js disattivate sul PC; README aggiornato, con la frase "progetto non commerciale" (D1).
 
 ### 0.4 App installabile (PWA)
 - **Cosa si costruisce:** il "manifest" (nome, icona, colori), un'icona provvisoria nostra e un service worker minimo,
