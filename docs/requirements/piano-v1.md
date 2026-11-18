@@ -43,6 +43,18 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
   restano identici a prima. Prima della pulizia faccio una copia di sicurezza della cartella `.git`, fuori dal progetto.
 - **Tu:** confermi la pulizia. Riscrive la cronologia, ma non è ancora stato pubblicato nulla, quindi non crea
   problemi ad altri.
+- **✅ Fatto il 2026-11-18.**
+  - Copia di sicurezza: `backup-git/plant-intelligence-prima-della-pulizia-2026-11-18.bundle`, nella cartella utente,
+    fuori dal progetto e dalle cartelle sincronizzate nel cloud, verificata con `git bundle verify`.
+  - Il percorso è stato sostituito con `<cartella-utente>` nell'unico commit che lo conteneva, "Pagina di prova D11"
+    (prima `f6b0700`): 5 righe in 3 file.
+  - Verifiche:
+    - l'impronta dei file attuali (albero dell'ultimo commit) è identica a prima della pulizia;
+    - nessun altro commit è cambiato nel contenuto;
+    - nessun oggetto del repository contiene più il percorso.
+  - Gli identificativi dei commit da quello in poi sono cambiati.
+  - Nota: i commit riportano l'email dell'autore, che diventerà pubblica con il codice. Si può sostituire con l'indirizzo
+    anonimo di GitHub (`…@users.noreply.github.com`), ma solo se lo decidi tu.
 
 ### 0.2 Verifica dei termini di Vercel e Upstash
 - **Cosa si costruisce:** due schede in `docs/api-documentation/` (Vercel Hobby per D2, Upstash Redis per D4). Ognuna
