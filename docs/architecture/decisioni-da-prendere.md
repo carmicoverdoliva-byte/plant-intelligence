@@ -13,6 +13,8 @@ aggiorniamo i documenti collegati.
 sulla fattibilità tecnica. Restano da misurare nella versione 1: calore e rallentamento su 5 minuti, trappole.
 **Aggiornamento 2026-11-18 (sera):** [piano della versione 1](../requirements/piano-v1.md) approvato; D8 rivista
 (22 schede complete nella v1).
+**Aggiornamento 2026-11-18 (sera, nuovi requisiti):** D8 ampliata con "Falsi miti" e "Approfondimenti" (v1); aggiunta **D12** (community),
+aperta, per la v2 o oltre.
 
 ---
 
@@ -167,6 +169,14 @@ mostriamo consigli generici dichiarati come tali.
   piante usano il **ripiego per gruppo**, dichiarato come tale. Si arriva a circa 50 schede nelle versioni successive.
   Motivo: con le sezioni nuove (acqua "quanto", concime, temperature, problemi più comuni) ogni scheda richiede molta
   più ricerca sulle fonti.
+- **Ampliamento del 2026-11-18, sera (nuovo requisito, v1):** ogni scheda, e ogni gruppo del ripiego, ha anche:
+  - **"Falsi miti"** (F21): mito, verdetto a quattro livelli (falso, esagerato, vero solo in parte, fonti in
+    disaccordo), cosa dicono le fonti, cosa fare. Fonti scientifiche o istituzionali, mai blog;
+  - **"Approfondimenti"** (F22): articoli di blog e riviste italiane affidabili, **solo titolo, sito, una riga nostra e
+    link**. Mai testi copiati o riassunti. Criterio di scelta dichiarato: un articolo che contraddice le fonti non entra.
+
+  Siti verificati e termini d'uso: [fonti editoriali](../api-documentation/fonti-editoriali.md). I feed RSS ("Ultimi
+  articoli", V-13) sono proposti per la v1.1, solo con permesso scritto degli editori.
 
 ---
 
@@ -330,6 +340,45 @@ compresso da Hugging Face. Sull'iPhone 16, in Safari, 4 sessioni brevi:
 
 ---
 
+## D12 — Una "community" di appassionati? *(aggiunta il 2026-11-18, per la v2 o oltre)* — **APERTA**
+**L'idea:** chi usa l'app può lasciare **consigli** su una pianta (es. "il mio pothos sta benissimo in bagno") e
+**votare** quelli degli altri.
+
+**Perché conta:** cambia la natura dell'app. Oggi tutto resta sul telefono (D3) e ogni consiglio ha una fonte (D8).
+Una community richiede invece:
+- **account**, cioè un modo per sapere chi ha scritto cosa;
+- un **server** con un database sempre acceso;
+- **moderazione**: qualcuno che legge e toglie i messaggi sbagliati, offensivi o pericolosi, compresi i falsi miti che
+  F21 smentisce (es. "metti la ghiaia sul fondo");
+- **privacy**: email, nomi e testi degli utenti sono dati personali. Servono un'informativa, la possibilità di
+  cancellare l'account e un'età minima (in Italia, 14 anni per dare da soli il consenso ai servizi online
+  **(da verificare)**). Le regole europee sui servizi che ospitano contenuti degli utenti (Digital Services Act)
+  chiedono, per esempio, un modo per segnalare i contenuti illeciti **(da verificare quali obblighi valgono per un
+  progetto piccolo e non commerciale)**.
+
+| Opzione | Pro | Contro |
+|---|---|---|
+| **A. Nessuna community nell'app; link a community esistenti** (es. il forum di iNaturalist, gruppi di appassionati) | Zero costi, zero moderazione, nessun dato personale; l'app resta "ogni consiglio ha una fonte" | Niente scambio dentro l'app |
+| B. Community leggera nell'app: consigli brevi sotto la scheda, voti, account con email | L'esperienza più ricca; i consigli pratici completano le schede | Server e database (piani gratuiti con limiti e sospensioni **da verificare**); moderazione da fare **ogni giorno**; obblighi privacy e DSA; rischio di diffondere proprio i falsi miti |
+| C. Spazio su una piattaforma esistente gratuita (es. GitHub Discussions o un forum federato), collegato dal menu | Account e moderazione degli strumenti già pronti; niente server nostro | Poco adatto a chi non è tecnico (GitHub); la moderazione resta comunque nostra; l'esperienza è fuori dall'app |
+| D. Solo **"consigli di uso" anonimi e senza testo libero** (es. "lo tengo in bagno: sta bene / male"), raccolti come statistiche | Nessun testo da moderare; pochi dati personali | Serve comunque un server; il valore è minore; i dati possono essere manipolati |
+
+**Raccomandazione: A per la v1 e la v1.x.** Rivalutare **B** solo nella v2, dopo l'account facoltativo e la
+sincronizzazione (V-04), e solo con queste regole:
+- i consigli degli utenti stanno **sotto** la scheda, con l'etichetta *"Consiglio di un appassionato, non verificato"*;
+- i voti **non cambiano mai** la scheda né i promemoria;
+- un consiglio che ripete un mito già smentito nella scheda viene **trattenuto e controllato** prima della pubblicazione;
+- all'inizio la moderazione è **preventiva**: niente si pubblica senza un controllo;
+- nomi di fantasia, nessuna foto di persone, cancellazione dell'account con tutti i contenuti.
+
+Motivo: il rischio più grande non è tecnico ma **di tempo**. Senza qualcuno che moderi ogni giorno, una community
+diffonde proprio le informazioni sbagliate che le schede vogliono correggere. Prima di decidere servono anche la verifica
+dei piani gratuiti di database e autenticazione e quella degli obblighi DSA e privacy.
+
+**Scelta:** ⏳ da prendere (non serve prima della v2).
+
+---
+
 ## Riepilogo
 | Decisione | Scelta (2026-11-16) |
 |---|---|
@@ -340,7 +389,8 @@ compresso da Hugging Face. Sull'iPhone 16, in Safari, 4 sessioni brevi:
 | D5 Quota per dispositivo | ✅ 10 al giorno, valore configurabile |
 | D6 Botanico AI | ✅ Assistente a regole in v1; Ollama personale in v2 |
 | D7 Promemoria | ✅ In-app + Calendario; push in v2 |
-| D8 Consigli di cura | ✅ Schede nostre con fonti citate + dati botanici aperti; ripiego generico per famiglia/tipo. Rivista il 2026-11-18: 22 schede complete nella v1 (catalogo dell'anteprima live) |
+| D8 Consigli di cura | ✅ Schede nostre con fonti citate + dati botanici aperti; ripiego generico per famiglia/tipo. Rivista il 2026-11-18: 22 schede complete nella v1 (catalogo dell'anteprima live); ampliata con "Falsi miti" e "Approfondimenti" |
 | D9 Flora e soglie | ✅ (2026-11-17) `k-world-flora`; titolo nome comune + genere, specie "probabilmente", nessuna percentuale; soglie tarate; tabella sinonimi GBIF |
 | D10 Modello anteprima live | ✅ (2026-11-18) BioCLIP v1 compresso int8 (87 MB) da Hugging Face, versione bloccata; download alla prima apertura della fotocamera; nome comune o genere; gemelle "X o Y" |
 | D11 Prova su iPhone 16 | ✅ Chiusa (2026-11-18): fattibile (WebGPU, ~0,3 s, 0 errori); calore su 5 minuti e trappole da misurare nella v1 |
+| D12 Community | ⏳ Aperta (2026-11-18), per la v2 o oltre. Raccomandazione: nessuna community nella v1/v1.x, solo link a community esistenti; poi rivalutare |

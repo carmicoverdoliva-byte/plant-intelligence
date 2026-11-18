@@ -231,6 +231,64 @@ percentuali, e ogni regola che lega l'ambiente a un rischio deve avere una fonte
 - nessuna percentuale compare nella sezione;
 - per una pianta senza scheda compare l'avviso del ripiego prima dei problemi del gruppo.
 
+### F21 — Falsi miti
+> Aggiunta il 2026-11-18. Estende le schede di cura (F08, D8). Esempio: [scheda del pothos](esempio-scheda-pothos.md#-falsi-miti).
+
+Ogni scheda ha una sezione **"Falsi miti"**: credenze diffuse su quella pianta (o su tutte le piante in vaso) messe a
+confronto con quello che dicono le fonti. Esempi: "il pothos purifica l'aria", "la ghiaia sul fondo del vaso aiuta il
+drenaggio".
+
+- **Per ogni mito:** il mito come lo dice la gente; un **verdetto**; cosa dicono le fonti, con parole nostre; cosa fare in
+  pratica, in una frase; le fonti.
+- **Verdetto a quattro livelli:** **Falso**, **Esagerato** (c'è del vero, ma in casa l'effetto non conta), **Vero solo
+  in parte**, **Le fonti non sono d'accordo** (si mostrano entrambe le posizioni). Mai "Falso" se le fonti dicono solo
+  "esagerato" (CLAUDE.md §8).
+- **Fonti:** dello stesso livello del resto della scheda (studi, università, orti botanici, enti pubblici). Gli articoli
+  di blog e riviste **non bastano** per smentire un mito: stanno negli Approfondimenti (F22).
+- **Miti generali:** quelli che valgono per tutte le piante in vaso si scrivono una volta e compaiono in ogni scheda e
+  nel ripiego per gruppo, con la nota "Vale per tutte le piante in vaso".
+- **Tono:** spiegare senza prendere in giro chi ci credeva ("è un'idea molto diffusa, ecco cosa hanno misurato").
+- **Ripiego:** per le piante senza scheda completa, i miti del gruppo e quelli generali, con l'avviso del ripiego (D8).
+
+**Guida:** voce "Falsi miti: come li verifichiamo" (CLAUDE.md §6).
+
+**Criteri di accettazione:**
+- ogni scheda completa ha almeno un mito (anche solo uno generale), ciascuno con verdetto, "in pratica" e almeno una
+  fonte (controllato da un test automatico);
+- nessuna fonte di un mito ha come tipo un blog o una rivista;
+- per una pianta senza scheda, i miti del gruppo compaiono dopo l'avviso del ripiego.
+
+### F22 — Approfondimenti (articoli consigliati)
+> Aggiunta il 2026-11-18. Estende le schede di cura (F08, D8). Verifica dei siti, termini d'uso e criterio completo:
+> [fonti editoriali](../api-documentation/fonti-editoriali.md). Esempio: [scheda del pothos](esempio-scheda-pothos.md#-approfondimenti).
+
+Ogni scheda ha una sezione **"Approfondimenti"**: pochi articoli (indicativamente da 1 a 4) di blog e riviste italiane
+affidabili, per chi vuole leggere di più.
+
+- **Cosa si mostra, e solo questo:** titolo dell'articolo, nome del sito, **una riga scritta da noi** (di cosa parla e
+  perché leggerlo), link all'articolo originale. Il tocco apre il sito in Safari, con l'etichetta "Articolo esterno".
+- **Vietato:** copiare, citare o riassumere punto per punto i testi; mostrare immagini o loghi dei siti (CLAUDE.md §5).
+- **Criterio di scelta dichiarato**, raggiungibile dalla sezione con "Come scegliamo gli articoli":
+  1. sito affidabile, con editore o autore identificabile;
+  2. **coerente con le fonti scientifiche della scheda**: se contraddice le fonti anche su un solo punto, non lo inseriamo;
+  3. leggibile gratis;
+  4. se il sito vende piante, la scheda lo dice ("sito di un vivaio");
+  5. data dell'ultimo controllo visibile.
+- **Siti di partenza:** Vivai Le Georgiche, Gardenia; proposti Vita in Campagna, Accademia dei Georgofili, CREA (da
+  confermare).
+- **Se non c'è nessun articolo** che rispetti i criteri, la sezione lo dice: *"Non abbiamo ancora trovato articoli che
+  rispettino i nostri criteri."* Meglio vuota che con un articolo sbagliato.
+- Il contenuto degli articoli **non** viene mai usato dall'assistente o da modelli di intelligenza artificiale (alcuni
+  siti lo vietano esplicitamente).
+
+**Guida:** voce "Approfondimenti: come scegliamo gli articoli" (CLAUDE.md §6).
+
+**Criteri di accettazione:**
+- ogni articolo ha titolo, sito, riga nostra, link e data del controllo (controllato da un test automatico);
+- un test automatico controlla che ogni link risponda prima di ogni pubblicazione;
+- la riga nostra è al massimo di una frase (test sulla lunghezza);
+- la sezione vuota mostra il messaggio previsto.
+
 ### F09 — Collezione personale
 - Aggiungere una pianta (da riconoscimento o ricerca), con soprannome, foto, stanza e finestra (F10).
 - Elenco delle piante con stato dei promemoria ("da annaffiare oggi").
@@ -394,11 +452,13 @@ scaricare o cancellare il modello) e spiegazione la prima volta che si apre il m
 | V-11 | **Avviso di rischio personalizzato** (F20): problemi della scheda + ambiente della pianta (luce stimata, annaffiature, stagione) | v1.1 | Insieme a V-01, con le stesse regole; sempre "stima", nessuna percentuale; ogni regola con una fonte. Servono settimane di dati sulle annaffiature |
 | V-11 | **Stato di protezione e distribuzione** della specie | v2 | Da Flora Incognita; dati GBIF |
 | V-12 | Altre lingue oltre l'italiano | v3 | |
+| V-13 | **"Ultimi articoli su questa pianta"**: solo titolo e link dal feed RSS dei siti degli Approfondimenti | v1.1 (proposta) | Solo per i siti che lo permettono **per iscritto** (nessuno lo concede oggi in modo esplicito); separata dagli Approfondimenti verificati. Vedi [fonti editoriali](../api-documentation/fonti-editoriali.md) |
+| V-14 | **Community** di appassionati con consigli e voti | v2 o oltre | Decisione aperta **D12**: account, server, moderazione contro i falsi miti, privacy |
 
 ## 4. Fuori dallo scopo (per ora)
 - Funzioni a pagamento di qualsiasi tipo, pubblicità, tracciamento.
 - App nativa per App Store (costerebbe 99 $/anno di iscrizione ad Apple **(da verificare)**): restiamo PWA.
-- Comunità e social.
+- Comunità e social **nella v1 e nella v1.x**. Una community per la v2 o oltre è in valutazione (V-14, decisione D12).
 
 ## 5. Rischi
 | Rischio | Come lo gestiamo |
@@ -411,6 +471,8 @@ scaricare o cancellare il modello) e spiegazione la prima volta che si apre il m
 | L'anteprima live viene presa per un risultato certo | Testo "Forse…", soglie, stabilità; mai salvata; vale sempre il riconoscimento completo |
 | Consigli di propagazione o travaso sbagliati per una specie | Fonti per ogni sezione; ripiego per gruppo dichiarato; avviso se la scheda viene dall'anteprima live |
 | Scrivere due sezioni in più per ~50 piante richiede tempo | Partire dalle piante più comuni; ripiego per famiglia/tipo per le altre |
+| Un articolo consigliato (F22) è sbagliato o cambia dopo il controllo | Criterio di coerenza con le fonti; data del controllo visibile; ricontrollo a ogni versione; test sui link |
+| Un falso mito (F21) viene smentito con troppa sicurezza | Verdetto a quattro livelli; solo fonti scientifiche o istituzionali |
 
 ## 6. Decisioni
 Le decisioni D1-D9 sono state **approvate il 2026-11-16**: vedi [decisioni](../architecture/decisioni-da-prendere.md).
@@ -418,3 +480,5 @@ Le decisioni D1-D9 sono state **approvate il 2026-11-16**: vedi [decisioni](../a
 D11 approvata (prova sull'iPhone 16 con iOS 26.5.2); D10 rimandata all'esito di D11.
 **Nomi (D9, 2026-11-17):** i nomi scientifici seguono GBIF; *Aloe officinalis* / *Aloe vera* e i due nomi della Peperomia
 restano distinti ma aprono la stessa scheda di cura.
+**Aggiornamento 2026-11-18 (sera):** nuove sezioni delle schede F21 "Falsi miti" e F22 "Approfondimenti" (v1, D8
+ampliata); V-13 "Ultimi articoli" dal feed (v1.1, solo con permesso scritto); V-14 community (v2 o oltre, **D12 aperta**).

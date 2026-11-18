@@ -7,6 +7,7 @@
 > I riquadri "Nell'app" mostrano come l'app collega i consigli a stagione e meteo, per un utente in Italia a novembre.
 > **Ampliata il 2026-11-18:** acqua (quanto), concime (tipo preciso), temperature minima/ideale/massima, "Problemi più
 > comuni" (F20) e "Le prime settimane" (F19). Fonti nuove: [9]-[13].
+> **Ampliata il 2026-11-18 (sera):** sezioni "Falsi miti" (F21) e "Approfondimenti" (F22). Fonti nuove: [14]-[16].
 
 ---
 
@@ -212,6 +213,53 @@ diventano promemoria.
 
 ---
 
+## 🧐 Falsi miti
+> **Come leggere il verdetto:** **Falso** = le fonti dicono il contrario; **Esagerato** = c'è un fondo di vero, ma l'effetto
+> è troppo piccolo per contare in casa; **Vero solo in parte**; **Le fonti non sono d'accordo**. Le fonti di questa
+> sezione sono studi e servizi universitari, come nel resto della scheda. Gli articoli di blog e riviste stanno negli
+> Approfondimenti.
+
+### "Il pothos purifica l'aria di casa" → **Esagerato**
+- **Da dove nasce:** uno studio della NASA del 1989 ha provato il pothos e altre piante dentro **piccole camere
+  sigillate**, con gas inquinanti messi apposta [14]. In quelle condizioni la concentrazione dei gas scendeva.
+- **Cosa dicono le fonti:** una revisione del 2020 ha rifatto i conti su 196 risultati di 12 studi di questo tipo. Una
+  pianta pulisce in media circa **0,023 m³ d'aria all'ora**. Per fare quanto fa già il normale ricambio d'aria di una
+  casa servirebbero da **10 a 1.000 piante per ogni metro quadrato** di pavimento [15].
+- **In pratica:** per l'aria di casa conta **aprire le finestre**. Tieni il pothos perché è bello e facile, non come
+  depuratore.
+
+### "Uno strato di ghiaia o argilla espansa sul fondo del vaso migliora il drenaggio" → **Falso**
+- **Cosa dicono le fonti:** l'acqua passa male da un materiale fine (il terriccio) a uno grosso (la ghiaia). Scende
+  nello strato grosso solo quando il terriccio sopra è **già zuppo**. Lo strato quindi **alza** la zona bagnata verso le
+  radici: proprio il ristagno che voleva evitare [16].
+- **In pratica:** usa un vaso **con i fori**, riempilo tutto di terriccio drenante e svuota il sottovaso [2][9][16].
+  Mescolare un po' di ghiaino **dentro** il terriccio, come nella ricetta della sezione "Cura di tutti i giorni" [2], è
+  un'altra cosa: cambia tutto il terriccio, non crea uno strato separato.
+- **Vale per tutte le piante in vaso**, non solo per il pothos: nell'app questo mito compare anche nel ripiego per gruppo.
+
+---
+
+## 📚 Approfondimenti
+> Articoli di siti italiani scelti a mano, controllati il 2026-11-18. Mostriamo solo titolo, sito, una riga nostra e il
+> link: per leggerli si apre il sito originale. **Come li scegliamo:** sito affidabile, articolo gratuito e **coerente con
+> le fonti di questa scheda**. Se contraddice le fonti anche su un solo punto, non lo inseriamo. Criterio completo in
+> [fonti editoriali](../api-documentation/fonti-editoriali.md#criterio-di-scelta-degli-articoli-f22-mostrato-nellapp-in-come-scegliamo-gli-articoli).
+
+| Articolo | Sito | Perché leggerlo (parole nostre) |
+|---|---|---|
+| [Pothos: come prendersi cura della pianta d'appartamento adatta anche ai pollici neri](https://www.venditapianteonline.it/blog/pothos-prendersi-cura-di-una-pianta-d-appartamento-adatta-anche-ai-pollici-neri/) (2026-10-21) | Vivai Le Georgiche, *sito di un vivaio* | La cura di tutti i giorni raccontata da chi coltiva piante per mestiere, con le varietà più diffuse |
+| [Argilla espansa sul fondo del vaso? Sì o no?](https://www.venditapianteonline.it/blog/argilla-espansa-sul-fondo-del-vaso-si-o-no/) (2021, aggiornato il 2026-08-18) | Vivai Le Georgiche, *sito di un vivaio* | Perché lo strato sul fondo non aiuta: spiegato bene e con le fonti universitarie |
+| [Quali sono le piante da interno che purificano l'aria?](https://gardenia.cairoeditore.it/piante-e-fiori/piante-da-interno-purificano-aria-mito-realta/) (E. Clementel, 2025-09-09, aggiornato il 2026-07-29) | Gardenia | La storia dello studio NASA e perché in casa l'effetto delle piante non si sente |
+
+**Valutato e non inserito:** "Ecco le 12 piante migliori per depurare l'aria (ma è tutto falso)" (Vivai Le Georgiche,
+2025-08-07). La conclusione è giusta, ma riporta un valore dieci volte più piccolo di quello dello studio citato
+(0,0023 invece di 0,023 m³/h [15]).
+
+**Da fare prima della pubblicazione (tu):** rileggi a mano i tre articoli. Il controllo del 2026-11-18 è stato fatto su
+sintesi automatiche delle pagine.
+
+---
+
 ## Fonti
 1. NC State Extension, "Epipremnum aureum (Devil's Vine)" — Gardener Plant Toolbox — https://plants.ces.ncsu.edu/plants/epipremnum-aureum/common-name/devils-vine — consultato il 2026-11-17
 2. Royal Horticultural Society (RHS), "How to grow epipremnum" — https://www.rhs.org.uk/plants/epipremnum/growing-guide — consultato il 2026-11-17 (data della pagina non indicata)
@@ -226,12 +274,15 @@ diventano promemoria.
 11. University of Kentucky, ENTFACT-406 "Houseplant Insect Control" (L. Townsend; revisione indicata "3/26") — https://entomology.mgcafe.uky.edu/ef406 — consultato il 2026-11-18
 12. Clemson University HGIC 1450, "Indoor Plants – Cleaning, Fertilizing, Containers & Light Requirements" (D. Shaughnessy, A. Pertuit; 1999) — https://hgic.clemson.edu/factsheet/indoor-plants-cleaning-fertilizing-containers-light-requirements/ — consultato il 2026-11-18
 13. UConn Home and Garden Education Center, "Houseplant Fertilization" (2016) — https://homegarden.cahnr.uconn.edu/factsheets/houseplant-fertilization/ — consultato il 2026-11-18
+14. B. C. Wolverton, A. Johnson, K. Bounds, "Interior Landscape Plants for Indoor Air Pollution Abatement", rapporto finale NASA (NASA-TM-101766), 15 settembre 1989 — https://ntrs.nasa.gov/citations/19930073077 — consultato il 2026-11-18 (il pothos è indicato come "golden pothos, *Scindapsus aureus*"; prove in camere sigillate)
+15. B. E. Cummings, M. S. Waring, "Potted plants do not improve indoor air quality: a review and analysis of reported VOC removal efficiencies", *Journal of Exposure Science & Environmental Epidemiology* 30, 253-261 (2020) — DOI 10.1038/s41370-019-0175-9 — abstract consultato su Europe PMC il 2026-11-18
+16. L. Chalker-Scott, Washington State University, Puyallup Research and Extension Center, "The Myth of Drainage Material in Container Plantings" (data non indicata) — https://s3.wp.wsu.edu/uploads/sites/403/2015/03/container-drainage.pdf — consultato il 2026-11-18
 
 ---
 
 ## Nota per lo sviluppo: come diventa un dato
 Nell'app questa scheda è un oggetto `Species` con `care.water`, `care.fertilizer`, `care.temperatureC`,
-`care.commonProblems`, `care.propagation` e `care.repotting` (vedi
+`care.commonProblems`, `care.propagation`, `care.repotting`, `care.myths` e `care.furtherReading` (vedi
 [architettura §5](../architecture/architettura.md#5-schema-dei-dati)). Un estratto:
 
 ```ts
@@ -265,6 +316,20 @@ commonProblems: [
   { name: 'Marciume delle radici', kind: 'disease', frequency: 'not-stated',
     riskFactors: [{ factor: 'frequent-watering', sources: [/* [1][2][3] */] }], /* … */ sources: [/* [1][2][3] */] },
 ],
+myths: [
+  { claim: 'Il pothos purifica l’aria di casa', verdict: 'overstated', scope: 'species',
+    whatSourcesSay: 'servirebbero da 10 a 1.000 piante per metro quadrato per eguagliare il ricambio d’aria',
+    inPractice: 'per l’aria conta aprire le finestre', sources: [/* [14][15] */] },
+  { claim: 'La ghiaia sul fondo del vaso migliora il drenaggio', verdict: 'false', scope: 'all-potted-plants',
+    /* … */ sources: [/* [16] */] },
+],
+furtherReading: [
+  { title: 'Argilla espansa sul fondo del vaso? Sì o no?', siteName: 'Vivai Le Georgiche', siteKind: 'nursery',
+    url: 'https://www.venditapianteonline.it/blog/argilla-espansa-sul-fondo-del-vaso-si-o-no/',
+    ourLine: 'Perché lo strato sul fondo non aiuta: spiegato bene e con le fonti universitarie',
+    publishedAt: '2021-07-29', checkedAt: '2026-11-18', consistentWith: [/* myths[1] */] },
+  /* … */
+],
 ```
 
 ## Rischi
@@ -273,13 +338,16 @@ commonProblems: [
 | Un consiglio senza fonte esplicita passa per verificato | I punti "(da verificare)" non compaiono nell'app finché non c'è una fonte |
 | Le fonti si contraddicono (concime, prima annaffiatura) | La scheda dice che non sono d'accordo e propone la via prudente |
 | Fonti in inglese tradotte male | Rilettura prima della pubblicazione; frasi brevi e semplici |
+| Un articolo degli Approfondimenti cambia e diventa sbagliato | Data di controllo salvata; ricontrollo a ogni versione; test automatico sui link |
+| Un falso mito viene "smentito" con troppa sicurezza | Verdetto a 4 livelli ("Esagerato" non è "Falso"); "Le fonti non sono d'accordo" quando serve |
 
 ## Decisioni aperte
 Nessuna nuova decisione: questa scheda applica D8. Da verificare prima della pubblicazione, i punti segnati
 "(da verificare)":
 - seme, foglia, divisione, cambio dell'acqua, tempi della propaggine;
 - (2026-11-18) intervallo di annaffiatura in inverno, temperatura minima, ogni quanto controllare una pianta in
-  isolamento, quando concimare una pianta appena comprata, ruolo della poca luce nel rischio di marciume.
+  isolamento, quando concimare una pianta appena comprata, ruolo della poca luce nel rischio di marciume;
+- (2026-11-18, sera) rilettura a mano dei tre articoli degli Approfondimenti.
 
 Fonti scartate il 2026-11-18:
 - **South Dakota State University Extension:** indica come "ideale" 50 °F (10 °C) e come "accettabili" 65-75 °F (18-24 °C),

@@ -18,6 +18,14 @@ pagare e senza registrarsi.
 | **Avviso di rischio personalizzato** (es. poca luce + molta acqua → marciume) | V-11 | **v1.1** | Va bene solo se ogni regola "ambiente → rischio" ha una fonte. Per ora la fonte c'è per "troppa acqua → marciume", non per il ruolo della poca luce. Le abitudini di annaffiatura si conoscono solo dopo settimane d'uso. Si costruisce insieme alla diagnosi guidata (V-01), che usa lo stesso tipo di regole. Un avviso sbagliato spaventerebbe senza motivo |
 | **"Nuova pianta"**: stanze e finestre salvate, posto migliore con il motivo, piano delle prime settimane con promemoria | F19, passo 5.4 | **v1** | È esattamente l'obiettivo della v1 (riconoscere, salvare, promemoria adattati alla finestra). Riusa pezzi già nel piano (riconoscimento, ricerca, stima del sole, promemoria): il lavoro nuovo è soprattutto collegarli |
 
+### Nuovi requisiti del 2026-11-18 (sera)
+| Requisito | Dove | Versione | Perché |
+|---|---|---|---|
+| Sezione **"Falsi miti"** in ogni scheda (mito, verdetto, cosa dicono le fonti, cosa fare) | F21, passo 3.3 | **v1** | Contenuto statico con fonti, come le altre sezioni: costa ricerca, non programmazione. I miti generali (es. la ghiaia sul fondo) si scrivono una volta per tutte le schede |
+| Sezione **"Approfondimenti"**: articoli scelti a mano, solo titolo, sito, riga nostra e link | F22, passo 3.3 | **v1** | Un elenco statico nella scheda: nessun servizio esterno. Solo link, quindi consentiti; il lavoro è controllare che ogni articolo sia coerente con le fonti |
+| **"Ultimi articoli su questa pianta"** dal feed RSS | V-13 | **v1.1** (proposta) | I feed esistono (Le Georgiche, Gardenia), ma nessun sito concede esplicitamente di usarli in un'app: prima serve un permesso scritto. E un articolo dal feed non è controllato da nessuno ([fonti editoriali](../api-documentation/fonti-editoriali.md)) |
+| **Community** con consigli e voti | V-14, D12 | **v2 o oltre** | Richiede account, server, moderazione quotidiana e obblighi privacy: tutto ciò che la v1 evita (D3). Decisione aperta |
+
 Revisione del piano: mancavano due funzioni già previste per la v1, ora aggiunte:
 - **ricerca per nome (F06)**, che serve a "Nuova pianta" per chi non vuole fotografare;
 - **riconoscimento guidato (F05)**.
@@ -182,21 +190,27 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
   sconosciuto dà un messaggio chiaro, non una pagina vuota.
 - **Tu:** —
 
-### 3.3 Schede botaniche e di cura (F07, F08, F18, F20)
+### 3.3 Schede botaniche e di cura (F07, F08, F18, F20, F21, F22)
 - **Cosa si costruisce:** la scheda del pothos (dall'[esempio](esempio-scheda-pothos.md)) con fonti per ogni sezione,
   più il **ripiego per famiglia o tipo di pianta**, dichiarato come tale (D8). Sezioni:
   - **acqua**: quando, **quanto**, come cambia con stagione e vaso;
   - **concime**: tipo, NPK indicativo, diluizione, frequenza, periodo;
   - **temperatura**: minima, ideale, massima;
   - **"Coltivarla da zero"** e **"Travaso"**;
-  - **"Problemi più comuni"**, con la frequenza solo a parole.
+  - **"Problemi più comuni"**, con la frequenza solo a parole;
+  - **"Falsi miti"** (F21), con i miti generali condivisi da tutte le schede;
+  - **"Approfondimenti"** (F22), con il testo "Come scegliamo gli articoli".
 - **Come si verifica:** test automatici:
   - ogni sezione e ogni problema ha almeno una fonte;
+  - ogni scheda ha almeno un falso mito con verdetto e fonte scientifica o istituzionale;
+  - ogni articolo degli Approfondimenti ha titolo, sito, riga nostra, link e data del controllo, e il link risponde;
   - nessuna percentuale nei problemi;
   - un valore senza fonte compare come "non indicata dalle fonti";
   - una pianta senza scheda mostra il ripiego con l'avviso;
   - i sinonimi aprono la stessa scheda.
-- **Tu:** rileggi la scheda del pothos, soprattutto i punti segnati "(da verificare)".
+- **Tu:** rileggi la scheda del pothos, soprattutto i punti segnati "(da verificare)", e i tre articoli degli
+  Approfondimenti (li ho controllati su sintesi automatiche; quelli di Gardenia vanno letti da una persona, perché il
+  sito non vuole strumenti di intelligenza artificiale).
 
 ### 3.4 Backup su file (F14)
 - **Cosa si costruisce:** esportazione della collezione in un file (es. da salvare su iCloud Drive) e importazione.
@@ -293,6 +307,8 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 4. **Schede:** nella v1, **22 schede complete** (le piante del catalogo dell'anteprima live) più il **ripiego per gruppo**
    per tutte le altre; circa 50 nelle versioni successive. Aggiornata D8.
 5. **Pulizia della cronologia git (0.1):** confermata, con copia di sicurezza.
+6. **Nuovi requisiti della sera (proposta, da confermare):** "Falsi miti" e "Approfondimenti" nella v1, dentro il
+   passo 3.3; "Ultimi articoli" dal feed in v1.1 con permesso scritto; community in v2 o oltre (D12 aperta).
 
 ## Rischi
 | Rischio | Probabilità | Come lo gestiamo |
@@ -305,3 +321,4 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 | Le schede più complete richiedono molto lavoro di ricerca | Alta | Nella v1 22 schede complete, non 50 (decisione del 2026-11-18); ripiego per gruppo dichiarato; i valori senza fonte restano "non indicati" invece di essere inventati |
 | Le fonti non indicano alcuni valori (es. temperatura minima del pothos, prima concimazione) | Alta | La scheda lo dice; nessun promemoria senza fonte; si cercano fonti migliori prima della pubblicazione |
 | Il consiglio del posto sembra preciso ma si basa su una stima | Media | Parola "stima" sempre visibile, motivo spiegato, correzione manuale (F10) |
+| Trovare articoli coerenti con le fonti per tutte le 22 schede richiede tempo | Alta | La sezione Approfondimenti può restare vuota, con un messaggio onesto; i falsi miti generali coprono ogni scheda |

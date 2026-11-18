@@ -306,6 +306,15 @@ Plant (pianta) 1 ──── * Photo (foto)
   Una piccola funzione (`seasonToMonths`) li traduce in mesi in base all'emisfero, ricavato dalla latitudine
   (in Italia: primavera = marzo-maggio). Per le piante all'aperto, `WeatherProvider` controlla gelo o caldo previsti
   nei 7 giorni successivi e, se serve, l'app consiglia di rimandare. Nessun nuovo servizio esterno.
+- **Sezioni "Falsi miti" e "Approfondimenti"** (aggiunte il 2026-11-18, F21 e F22): stanno in `care.myths` e
+  `care.furtherReading` (e negli stessi campi di `CareGroup`).
+  - Un mito ha un **verdetto** a quattro livelli e **fonti dello stesso tipo del resto della scheda**: studi, università,
+    orti botanici. Mai un blog.
+  - I miti validi per tutte le piante in vaso (es. la ghiaia sul fondo) hanno `scope: 'all-potted-plants'`: si scrivono
+    una volta e compaiono in tutte le schede e nei gruppi.
+  - Un articolo consigliato salva solo **titolo, sito, una riga nostra, link e data del controllo**: nessun testo,
+    immagine o logo del sito. Criterio di scelta in [fonti editoriali](../api-documentation/fonti-editoriali.md).
+  - Tutto è statico, dentro la scheda: **nessun nuovo servizio esterno nella v1**.
 
 ```ts
 type ID = string;              // codice univoco casuale (UUID)
@@ -435,6 +444,8 @@ interface Species {             // catalogo fornito con l'app (sola lettura)
     repotEveryYears?: number;
     propagation: PropagationGuide;   // "Coltivarla da zero" (F18)
     repotting: RepottingGuide;       // "Travaso" (F18)
+    myths: MythCheck[];              // "Falsi miti" (F21): almeno uno, anche solo quelli 'all-potted-plants'
+    furtherReading: FurtherReading[]; // "Approfondimenti" (F22): può essere vuoto, e l'app lo dice
   };
   toxicity?: { pets: 'toxic' | 'non-toxic' | 'unknown'; children: 'toxic' | 'non-toxic' | 'unknown'; source: string };
   sources: Source[];           // obbligatorie (almeno una) se c'è `care`
@@ -497,7 +508,33 @@ interface CareGroup {           // consigli generici per famiglia o tipo di pian
   commonProblems?: CommonProblem[];
   propagation?: PropagationGuide;  // consigli generici del gruppo (es. "aracee rampicanti: talea con nodo")
   repotting?: RepottingGuide;
+  myths?: MythCheck[];             // falsi miti del gruppo (+ quelli 'all-potted-plants')
+  furtherReading?: FurtherReading[];
   sources: Source[];           // almeno una
+}
+
+interface MythCheck {            // F21: "Falsi miti"
+  claim: string;               // il mito, come lo dice la gente: "Il pothos purifica l'aria di casa"
+  // false = le fonti dicono il contrario; overstated = c'è del vero ma l'effetto in casa è trascurabile;
+  // partly-true = vero solo in parte; sources-disagree = le fonti non sono d'accordo (si mostrano entrambe)
+  verdict: 'false' | 'overstated' | 'partly-true' | 'sources-disagree';
+  origin?: string;             // da dove nasce il mito, se una fonte lo dice
+  whatSourcesSay: string;      // parole nostre
+  inPractice: string;          // cosa fare, in una frase
+  scope: 'species' | 'group' | 'all-potted-plants';
+  sources: Source[];           // almeno una; studi, università, orti botanici (mai blog o riviste)
+}
+
+interface FurtherReading {       // F22: "Approfondimenti", articoli esterni scelti a mano
+  title: string;               // titolo dell'articolo, così com'è
+  siteName: string;            // "Gardenia", "Vivai Le Georgiche"
+  siteKind: 'magazine' | 'nursery' | 'public-body' | 'university' | 'association';  // 'nursery' → "sito di un vivaio"
+  url: string;                 // articolo originale, leggibile gratis
+  ourLine: string;             // UNA riga scritta da noi: mai citazioni né riassunti punto per punto
+  author?: string;
+  publishedAt?: string;        // data dell'articolo o del suo ultimo aggiornamento
+  checkedAt: string;           // quando una persona l'ha confrontato con le fonti della scheda
+  consistentWith?: string[];   // sezioni o miti con cui è stato confrontato (es. 'myths[1]')
 }
 
 type Season = 'spring' | 'summer' | 'autumn' | 'winter' | 'any';  // tradotta in mesi secondo l'emisfero
@@ -553,6 +590,7 @@ interface AppSettings {
 | `AiProvider` | `RuleBasedAssistant` | telefono | v2: `OllamaProvider` personale |
 | `StorageProvider` | `IndexedDbStorage` | telefono | v2: sincronizzazione (D3) |
 | `QuotaStore` | `UpstashQuotaStore` | server | Cloudflare D1 o Supabase **(da verificare)**; ripiego: solo il dato di Pl@ntNet |
+| `ArticleFeedProvider` (v1.1, proposta V-13) | `RssFeedProvider`: solo feed autorizzati per iscritto, una lettura al giorno, tiene solo titolo/data/link ([scheda](../api-documentation/fonti-editoriali.md)) | server | Approfondimenti scelti a mano (F22), sempre presenti |
 
 ## 7. Sicurezza e privacy (riassunto)
 - Chiavi solo sul server, mai nel repository (CLAUDE.md §7). Variabili segrete: `PLANTNET_API_KEY`, `UPSTASH_REDIS_REST_URL`,
@@ -583,6 +621,8 @@ verifica dei termini di Vercel (D2) e risultato del test delle foto (D9: flora e
 iPhone 16, iOS 26.5.2); D10 rimandata all'esito di D11.
 **Aggiornamento 2026-11-18:** D11 chiusa (fattibile sull'iPhone 16); D10 approvata (BioCLIP compresso int8, versione
 bloccata su Hugging Face); regole del popup aggiornate (ritmo adattivo, stabilità in secondi, piante gemelle).
+**Aggiornamento 2026-11-18 (sera):** schede con "Falsi miti" e "Approfondimenti" (`MythCheck`, `FurtherReading`; D8
+ampliata); feed RSS proposto per la v1.1 (`ArticleFeedProvider`); nuova decisione aperta **D12** (community, v2 o oltre).
 
 ## Fonti
 1. Pl@ntNet API, "Introduction" e "Single-species identification" — https://my.plantnet.org/doc/getting-started/introduction , https://my.plantnet.org/doc/api/identify — consultati il 2026-11-16
