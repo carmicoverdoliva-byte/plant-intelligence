@@ -5,6 +5,8 @@
 > rimandano alle fonti. Ciò che nessuna fonte conferma è segnato **(da verificare)** e, nell'app, non comparirebbe come
 > consiglio finché non è verificato.
 > I riquadri "Nell'app" mostrano come l'app collega i consigli a stagione e meteo, per un utente in Italia a novembre.
+> **Ampliata il 2026-11-18:** acqua (quanto), concime (tipo preciso), temperature minima/ideale/massima, "Problemi più
+> comuni" (F20) e "Le prime settimane" (F19). Fonti nuove: [9]-[13].
 
 ---
 
@@ -21,14 +23,52 @@
 ## Cura di tutti i giorni
 - **Luce:** molta luce ma **indiretta** (vicino a una finestra a est o a ovest, oppure a sud dietro una tenda). Il sole
   diretto può bruciare le foglie; con troppa poca luce le foglie variegate tornano verdi e la pianta cresce poco [1][2][3].
-- **Acqua:** annaffia solo quando il terriccio in superficie è **asciutto**: prima tocca con un dito. Troppa acqua, o un
-  sottovaso sempre pieno, fa marcire le radici. È l'errore più comune [1][2][3].
-- **Temperatura:** tra 18 e 30 °C, lontano da spifferi freddi e termosifoni [2].
 - **Umidità:** non ha bisogno di aria particolarmente umida [2].
-- **Concime:** da aprile a ottobre, un concime per piante da appartamento ogni 1-2 mesi; niente concime in inverno. Le
-  fonti indicano una frequenza diversa: una volta al mese [2] oppure ogni due mesi [3].
 - **Terriccio:** leggero e ben drenato [1][3]. Una ricetta consigliata: 3 parti di terriccio acido senza torba, 1 parte
   di ghiaino e 1 parte di corteccia per orchidee [2].
+
+### 💧 Acqua
+**Quando:** solo quando il terriccio in superficie è **asciutto** [1][2][3]. Prova con un dito: senti se c'è umidità a
+circa 2-3 cm di profondità [9]. Meglio controllare ogni volta che seguire un calendario fisso [9].
+
+**Quanto**
+1. Annaffia **a fondo**: versa l'acqua finché, dopo circa un minuto, esce dai fori del vaso [9].
+2. **Svuota il sottovaso** entro un'ora circa: se le radici restano nell'acqua a lungo, marciscono [2][9].
+3. Evita di dare poca acqua spesso: fa crescere radici corte e superficiali [9].
+4. Se il terriccio è secchissimo e si stacca dalle pareti del vaso, immergi il vaso in acqua finché smettono di uscire
+   bolle, poi lascialo sgocciolare bene [9].
+
+Dove l'acqua del rubinetto è molto calcarea, meglio usare acqua piovana o filtrata [2].
+
+**Come cambia**
+- **Con la stagione:** vicino ai termosifoni, in inverno, il terriccio si asciuga prima: controllalo più spesso, sempre con
+  il dito [9]. Le fonti consultate non dicono di quanto si allunghi l'intervallo in inverno **(da verificare)**: per
+  questo, nell'app, i promemoria dell'acqua sono un invito a **controllare** il terriccio, non un ordine di annaffiare.
+- **Con il vaso:** la terracotta non smaltata asciuga prima della plastica o della ceramica smaltata [9]. Un vaso piccolo
+  rispetto alla pianta va controllato più spesso; uno troppo grande resta bagnato a lungo e aumenta il rischio di
+  marciume [2][9].
+
+> **Nell'app:** "Controlla il terriccio del pothos: se i primi 2-3 cm sono asciutti, annaffia finché l'acqua esce dai
+> fori e poi svuota il sottovaso."
+
+### 🧪 Concime
+| | |
+|---|---|
+| **Tipo** | concime per **piante verdi** (da foglia), **bilanciato**, per esempio **20-20-20**: i tre numeri sono le percentuali di azoto, fosforo e potassio (NPK) [12]. Le piante da foglia gradiscono concimi ricchi di azoto; quelli con più fosforo sono per le piante da fiore [12][13]. |
+| **Forma** | **liquido o idrosolubile**, sciolto nell'acqua dell'annaffiatura: diluito, riduce il rischio di danneggiare le radici [12]. Esistono anche granuli, bastoncini e pastiglie a lenta cessione [12][13]. |
+| **Diluizione** | quella indicata sull'**etichetta**. In alternativa: metà dose con frequenza doppia [13], oppure circa un decimo della dose a ogni annaffiatura nella stagione di crescita [12]. |
+| **Frequenza** | le fonti non sono d'accordo: una volta al mese [2] oppure ogni due mesi [1][3]. La scheda indica **ogni 1-2 mesi**. |
+| **Periodo** | da aprile a ottobre [2] (da marzo a ottobre secondo [13]); **niente concime in inverno** [1][2][3]. |
+| **Attenzione** | concima solo con il terriccio **già umido**: su terriccio secco il concime può danneggiare le radici [13]. Punte delle foglie marroni o una crosta bianca sul bordo del vaso possono indicare troppo concime: si rimedia facendo scorrere molta acqua nel vaso [13]. |
+
+### 🌡️ Temperatura
+| Minima | Ideale | Massima |
+|---|---|---|
+| **Non indicata dalle fonti consultate (da verificare)**: nell'app non compare un numero finché non c'è una fonte | **18-30 °C** [2] (21-32 °C secondo [3]) | nessuna fonte indica una massima: 30 °C è il limite superiore dell'intervallo consigliato [2] |
+
+- Lontano da spifferi freddi e termosifoni [2].
+- I passaggi bruschi da molto caldo a temperature moderate possono causare macchie marroni sparse sulle foglie [3].
+- Se la porti a casa quando fa freddo, tienila al caldo [2].
 
 ---
 
@@ -132,6 +172,46 @@ prima di usarlo [6].
 
 ---
 
+## 🩺 Problemi più comuni (prevenzione)
+> **Come leggere la frequenza:** "frequente", "occasionale" e "raro" riportano le parole delle fonti (es. "most common",
+> "occasionally"). Quando una fonte nomina un problema senza dire quanto è frequente, scriviamo **"frequenza non
+> indicata"**. Mai percentuali.
+
+In generale il pothos ha **pochi problemi** [2][3].
+
+| Problema | Tipo | Frequenza secondo le fonti | Segnali da riconoscere | Come prevenirlo |
+|---|---|---|---|---|
+| **Cocciniglia farinosa** | parassita | **frequente**: fra gli insetti più comuni sul pothos in casa [3]; da tenere d'occhio [1] | ciuffetti bianchi e cotonosi; foglie appiccicose (melata) e, col tempo, una muffa nera (fumaggine) [10] | guarda spesso il sotto delle foglie, meglio con una lente [10]; lava le foglie ogni 2-3 settimane [10]; isola le piante nuove [10][11] |
+| **Cocciniglie a scudetto** | parassita | **frequente** [3]; da tenere d'occhio [1] | piccoli "gusci" immobili su fusti e sotto le foglie; a volte melata e fumaggine [10] | come per la cocciniglia farinosa [10][11] |
+| **Ragnetto rosso** (acaro) | parassita | **occasionale** [3] | puntini chiari sulla parte superiore delle foglie, aspetto sbiadito; nei casi gravi ragnatele sottili [10] | guarda il sotto delle foglie [10]; è più comune sulle piante che restano in casa tutto l'anno [10] |
+| **Tripidi** | parassita | frequenza non indicata [1] | foglie argentate o punteggiate, simili ai danni del ragnetto [10] | controlli regolari delle foglie [10][11] |
+| **Marciume delle radici** | malattia (da cura sbagliata) | frequenza non indicata; la causa che tutte le fonti citano è la **troppa acqua** [1][2][3] | margini delle foglie che anneriscono [1] | annaffia solo con il terriccio asciutto, svuota il sottovaso, usa un vaso con fori e non troppo grande [2][9] |
+| **Foglie bruciate** | problema di cura | frequenza non indicata [2] | macchie secche sulle foglie esposte al sole diretto [2] | luce indiretta [1][2][3] |
+| **Foglie che tornano verdi** | problema di cura | frequenza non indicata [2][3] | le foglie variegate perdono le striature chiare [2][3] | più luce, ma indiretta [2][3] |
+
+> **Nell'app (versione 1.1, V-11):** se il pothos è nella tua collezione, un avviso personalizzato, per esempio *"Stima:
+> poca luce e annaffiature frequenti → rischio di marciume più alto del normale. Prima di annaffiare, controlla il
+> terriccio."* Prima di attivarlo serve una fonte per ogni regola che lega l'ambiente al rischio: per ora la fonte c'è solo
+> per "troppa acqua → marciume" [1][2][3]; il ruolo della poca luce è **(da verificare)**.
+
+---
+
+## 🆕 Le prime settimane (funzione "Nuova pianta")
+Esempio del piano che l'app propone per un pothos appena comprato. Ogni passo ha la sua fonte; quelli senza fonte non
+diventano promemoria.
+
+| Quando | Cosa fare | Fonte |
+|---|---|---|
+| Il giorno dell'acquisto | Controlla pianta e vaso: il sotto delle foglie, i fusti, il terriccio; una lente aiuta [10] | [10] |
+| Dal 1° giorno per **6 settimane** | Tienila **separata** dalle altre piante, per accorgerti di eventuali parassiti. Le fonti indicano 30 giorni [11] o 6 settimane [10]: l'app propone la durata più prudente | [10][11] |
+| Durante l'isolamento | Controlli regolari delle foglie [11] (ogni quanto: **da verificare**; l'app propone una volta a settimana come promemoria modificabile) | [11] |
+| Primi giorni | Prima annaffiatura **solo se** il terriccio in superficie è asciutto [2][9] | [2][9] |
+| Niente travaso subito | Si travasa quando le radici riempiono il vaso o escono dai fori, in primavera; il pothos può restare anche anni nel vaso in cui l'hai comprato [2] | [2] |
+| Prima concimazione | Nessuna fonte consultata dice quando concimare una pianta appena comprata **(da verificare)**; molti terricci contengono già concime [8]. Finché manca una fonte, l'app **non crea** questo promemoria e rimanda al periodo normale (aprile-ottobre) | [8] |
+| Dove metterla | Luce **indiretta**: finestra a est o a ovest, oppure a sud dietro una tenda [1][2][3]. L'app sceglie fra le finestre che hai salvato quella con la **stima** di sole più adatta e ti dice perché | [1][2][3] |
+
+---
+
 ## Fonti
 1. NC State Extension, "Epipremnum aureum (Devil's Vine)" — Gardener Plant Toolbox — https://plants.ces.ncsu.edu/plants/epipremnum-aureum/common-name/devils-vine — consultato il 2026-11-17
 2. Royal Horticultural Society (RHS), "How to grow epipremnum" — https://www.rhs.org.uk/plants/epipremnum/growing-guide — consultato il 2026-11-17 (data della pagina non indicata)
@@ -141,11 +221,17 @@ prima di usarlo [6].
 6. Penn State Extension, "Repotting Houseplants" (M. Concklin, S. Marquesen; aggiornato il 2026-02-23) — https://extension.psu.edu/repotting-houseplants — consultato il 2026-11-17
 7. Montana State University Extension, "Repotting houseplants" (J. Weiss; data non indicata) — https://montana.edu/extension/lila_extn/askstewardrepothouseplant.html — consultato il 2026-11-17
 8. Brooklyn Botanic Garden, "When, Why, and How to Repot Your Houseplants" (M. Inciarrano, 2021-01-19) — https://www.bbg.org/article/when_why_and_how_to_repot_your_houseplants — consultato il 2026-11-17
+9. UConn Home and Garden Education Center, "Houseplant Watering Recommendations" (2016) — https://homegarden.cahnr.uconn.edu/factsheets/houseplant-watering-recommendations — consultato il 2026-11-18
+10. Clemson University HGIC 2252, "Common Houseplant Insects & Related Pests" (J. McLeod Scott; revisione di J. Williamson, aggiornato il 2021-09-10) — https://hgic.clemson.edu/factsheet/common-houseplant-insects-related-pests/ — consultato il 2026-11-18
+11. University of Kentucky, ENTFACT-406 "Houseplant Insect Control" (L. Townsend; revisione indicata "3/26") — https://entomology.mgcafe.uky.edu/ef406 — consultato il 2026-11-18
+12. Clemson University HGIC 1450, "Indoor Plants – Cleaning, Fertilizing, Containers & Light Requirements" (D. Shaughnessy, A. Pertuit; 1999) — https://hgic.clemson.edu/factsheet/indoor-plants-cleaning-fertilizing-containers-light-requirements/ — consultato il 2026-11-18
+13. UConn Home and Garden Education Center, "Houseplant Fertilization" (2016) — https://homegarden.cahnr.uconn.edu/factsheets/houseplant-fertilization/ — consultato il 2026-11-18
 
 ---
 
 ## Nota per lo sviluppo: come diventa un dato
-Nell'app questa scheda è un oggetto `Species` con `care.propagation` e `care.repotting` (vedi
+Nell'app questa scheda è un oggetto `Species` con `care.water`, `care.fertilizer`, `care.temperatureC`,
+`care.commonProblems`, `care.propagation` e `care.repotting` (vedi
 [architettura §5](../architecture/architettura.md#5-schema-dei-dati)). Un estratto:
 
 ```ts
@@ -159,6 +245,26 @@ repotting: {
   aftercare: ['luce indiretta per qualche giorno', 'niente concime per almeno 2 settimane', /* … */],
   sources: [{ title: 'RHS — How to grow epipremnum', url: 'https://www.rhs.org.uk/plants/epipremnum/growing-guide', accessedAt: '2026-11-17' }, /* … */],
 }
+fertilizer: {
+  forms: ['liquid', 'water-soluble', 'slow-release'],
+  plantType: 'foliage',
+  npk: { n: 20, p: 20, k: 20, note: 'bilanciato, indicativo' },
+  dilution: "come da etichetta; oppure metà dose con frequenza doppia",
+  everyWeeks: { min: 4, max: 8 },     // le fonti dicono "ogni mese" e "ogni due mesi"
+  seasons: ['spring', 'summer', 'autumn'],
+  warnings: ['solo su terriccio già umido', 'punte marroni o crosta bianca: troppo concime'],
+  sources: [/* [1][2][3][12][13] */],
+},
+temperatureC: { ideal: { min: 18, max: 30 }, notes: ['lontano da spifferi e termosifoni'], sources: [/* [2][3] */] },
+// min e max assenti: nessuna fonte li indica → l'app scrive "non indicata dalle fonti"
+commonProblems: [
+  { name: 'Cocciniglia farinosa', kind: 'pest', frequency: 'frequent',
+    signs: ['ciuffetti bianchi e cotonosi', 'foglie appiccicose'], prevention: ['guarda il sotto delle foglie', 'isola le piante nuove'],
+    sources: [/* [3][10][11] */] },
+  { name: 'Ragnetto rosso', kind: 'pest', frequency: 'occasional', /* … */ sources: [/* [3][10] */] },
+  { name: 'Marciume delle radici', kind: 'disease', frequency: 'not-stated',
+    riskFactors: [{ factor: 'frequent-watering', sources: [/* [1][2][3] */] }], /* … */ sources: [/* [1][2][3] */] },
+],
 ```
 
 ## Rischi
@@ -169,5 +275,13 @@ repotting: {
 | Fonti in inglese tradotte male | Rilettura prima della pubblicazione; frasi brevi e semplici |
 
 ## Decisioni aperte
-Nessuna nuova decisione: questa scheda applica D8. Da verificare prima della pubblicazione: i punti segnati
-"(da verificare)" (seme, foglia, divisione, cambio dell'acqua, tempi della propaggine).
+Nessuna nuova decisione: questa scheda applica D8. Da verificare prima della pubblicazione, i punti segnati
+"(da verificare)":
+- seme, foglia, divisione, cambio dell'acqua, tempi della propaggine;
+- (2026-11-18) intervallo di annaffiatura in inverno, temperatura minima, ogni quanto controllare una pianta in
+  isolamento, quando concimare una pianta appena comprata, ruolo della poca luce nel rischio di marciume.
+
+Fonti scartate il 2026-11-18:
+- **South Dakota State University Extension:** indica come "ideale" 50 °F (10 °C) e come "accettabili" 65-75 °F (18-24 °C),
+  due valori in contraddizione;
+- **studi dell'Università della Florida sul freddo:** pagina non raggiungibile.

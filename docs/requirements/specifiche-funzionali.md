@@ -1,6 +1,6 @@
 # Specifiche funzionali — Plant Intelligence
 
-> Ultimo aggiornamento: 2026-11-16 · Basato su: [visione prodotto](visione-prodotto.md), [analisi dei concorrenti](../competitor-analysis/matrice-confronto.md),
+> Ultimo aggiornamento: 2026-11-18 · Basato su: [visione prodotto](visione-prodotto.md), [analisi dei concorrenti](../competitor-analysis/matrice-confronto.md),
 > [schede dei servizi](../api-documentation/) · Architettura: [architettura.md](../architecture/architettura.md)
 
 Questo documento elenca **cosa fa l'app**, non come è programmata. Ogni funzione ha un codice (es. `F03`) per poterla citare.
@@ -109,7 +109,19 @@ invito discreto (chiudibile) a installarla.
 **Criteri:** ogni scheda mostra almeno una fonte.
 
 ### F08 — Consigli di cura (idea I3)
-- Acqua, luce, terreno, temperatura, concime, rinvaso. In più le sezioni **"Coltivarla da zero"** e **"Travaso"** (F18).
+- Acqua, luce, terreno, temperatura, concime, rinvaso. In più le sezioni **"Coltivarla da zero"** e **"Travaso"** (F18)
+  e **"Problemi più comuni"** (F20).
+- **Contenuto minimo delle sezioni** (ampliato il 2026-11-18):
+  - **Acqua — quando e quanto.** Quando annaffiare (es. "terriccio asciutto in superficie: prova con un dito") e
+    **quanto**, con indicazioni pratiche: "annaffia finché l'acqua esce dai fori, poi svuota il sottovaso". Più **come
+    cambia** con la **stagione** e con il **vaso** (dimensione e materiale: la terracotta asciuga prima della plastica).
+  - **Concime — tipo preciso.** Forma (liquido/idrosolubile, granulare, a lenta cessione); per **piante verdi o da
+    fiore**; **rapporto NPK indicativo** (azoto-fosforo-potassio, es. "bilanciato, tipo 20-20-20"); **diluizione**;
+    **frequenza**; **periodo** dell'anno; segnali di troppo concime.
+  - **Temperatura — minima, ideale e massima**, in °C. Se una fonte non indica un valore (es. la minima), la scheda
+    scrive "non indicata dalle fonti" e **non inventa un numero**.
+- Ogni valore numerico (NPK, diluizione, temperature, frequenze) compare **solo se una fonte lo indica**. Se le fonti non
+  sono d'accordo, la scheda mostra l'intervallo e indica la via prudente.
 - Per le **piante d'appartamento più comuni** (circa 50 nella v1): schede scritte da noi (decisione D8).
   - Ogni scheda si basa su **fonti verificabili** (orti botanici, università, servizi pubblici) **citate nella scheda**
     con titolo, link e data di consultazione.
@@ -120,7 +132,8 @@ invito discreto (chiudibile) a installarla.
 - Se non c'è nemmeno un gruppo adatto: lo stesso messaggio e solo consigli di base, dichiarati come tali.
 
 **Criteri:** mai consigli specifici inventati; ogni scheda e ogni gruppo mostra almeno una fonte (controllato da un test
-automatico); quando i consigli sono generici, l'app lo dice in modo ben visibile.
+automatico); quando i consigli sono generici, l'app lo dice in modo ben visibile; ogni scheda completa ha "quanto"
+annaffiare, il tipo di concime e le tre temperature (valore con fonte oppure "non indicata dalle fonti").
 
 ### F18 — Coltivarla da zero e travaso
 > Aggiunta il 2026-11-17. Estende le schede di cura (F08, decisione D8). Esempio completo:
@@ -185,6 +198,39 @@ Ogni scheda di cura ha due sezioni in più.
 - con posizione in Italia, a novembre la scheda del pothos dice che il periodo migliore per il travaso è la primavera;
 - il promemoria si crea, compare in "Oggi" e si può cancellare.
 
+### F20 — Problemi più comuni (prevenzione)
+> Aggiunta il 2026-11-18. Estende le schede di cura (F08, D8). Esempio: [scheda del pothos](esempio-scheda-pothos.md).
+
+Ogni scheda ha una sezione **preventiva** "Problemi più comuni": non è una diagnosi (quella è V-01), ma aiuta a
+**accorgersi presto** dei problemi tipici di quella pianta.
+
+- **Quali problemi:** malattie, parassiti e problemi di cura (es. scottature, marciume per troppa acqua) **tipici di
+  quella pianta secondo le fonti**. Niente elenchi generici copiati su tutte le schede.
+- **Frequenza a parole, mai percentuali:** **frequente**, **occasionale** o **raro**, solo se la fonte lo dice con parole
+  sue (es. "most common" → frequente, "occasionally" → occasionale, "rarely" → raro). Se la fonte nomina il problema senza
+  dire quanto è frequente: **"frequenza non indicata dalle fonti"**. Se le fonti non sono d'accordo, la scheda riporta
+  entrambe le indicazioni.
+- **Segnali da riconoscere:** cosa si vede (es. "ciuffetti bianchi cotonosi", "puntini chiari sulle foglie, ragnatele
+  sottili"), con parole semplici.
+- **Come prevenirli:** abitudini pratiche (es. controllare il sotto delle foglie, svuotare il sottovaso, isolare le
+  piante nuove).
+- **Fonti** per ogni problema, come nelle altre sezioni.
+- **Ripiego:** per le piante senza scheda completa, i problemi tipici del **gruppo** (es. aracee), con l'avviso del
+  ripiego (D8).
+
+**Avviso di rischio personalizzato** (versione 1.1, vedi V-11): se la pianta è nella collezione, l'app combina i problemi
+della scheda con l'ambiente (luce stimata, abitudini di annaffiatura, stagione) e mostra un avviso, per esempio *"Stima:
+poca luce e annaffiature frequenti → rischio di marciume più alto del normale"*. Sempre etichettato come **stima**, senza
+percentuali, e ogni regola che lega l'ambiente a un rischio deve avere una fonte.
+
+**Guida:** voce "Prevenire i problemi più comuni" (CLAUDE.md §6).
+
+**Criteri di accettazione:**
+- ogni problema ha tipo, frequenza (parola o "non indicata dalle fonti"), almeno un segnale, almeno un consiglio di
+  prevenzione e almeno una fonte (controllato da un test automatico);
+- nessuna percentuale compare nella sezione;
+- per una pianta senza scheda compare l'avviso del ripiego prima dei problemi del gruppo.
+
 ### F09 — Collezione personale
 - Aggiungere una pianta (da riconoscimento o ricerca), con soprannome, foto, stanza e finestra (F10).
 - Elenco delle piante con stato dei promemoria ("da annaffiare oggi").
@@ -215,6 +261,41 @@ Ogni scheda di cura ha due sezioni in più.
 - Pulsanti "Fatto" e "Rimanda di 1 giorno".
 
 **Criteri:** un promemoria segnato "Fatto" ricalcola la scadenza successiva. Le notifiche push sono previste in una versione successiva (V-03).
+
+### F19 — Nuova pianta
+> Aggiunta il 2026-11-18. Usa il riconoscimento (F03) o la ricerca (F06), la stima del sole (F10) e i promemoria (F12).
+
+**Cosa fa.** Accompagna chi ha **appena comprato** (o ricevuto) una pianta:
+1. **Quale pianta:** l'utente la fotografa (riconoscimento completo) o la cerca per nome.
+2. **Stanze e finestre di casa:** l'utente indica le **stanze** e le **finestre** disponibili: orientamento (8 pulsanti o
+   bussola), piano, ostacoli (palazzo, albero, balcone, tenda) e, per ogni posto possibile, la distanza dalla finestra.
+   Si inseriscono **una volta** e restano salvate per le piante successive (si possono modificare).
+3. **Il posto migliore, con il motivo:** l'app confronta la **stima del sole** di ogni posto (F10) con il bisogno della
+   pianta (scheda di cura) e propone il posto più adatto, con una frase che spiega perché: *"Soggiorno, a 1 m dalla
+   finestra a est: circa 2 ore di sole del mattino (stima). Il pothos preferisce luce indiretta."* Mostra anche le
+   alternative e cosa non va negli altri posti. La stima del sole resta **sempre etichettata come stima** e la correzione
+   manuale prevale (F10).
+4. **Piano delle prime settimane, con promemoria:** una lista di passi datati, ognuno con la sua fonte, per esempio:
+   - tenerla **separata** dalle altre piante per controllare i parassiti (durata secondo le fonti, es. 30 giorni-6
+     settimane), con un **controllo** a intervalli regolari;
+   - **non travasarla subito**: il travaso si fa quando serve e nel periodo giusto (F18);
+   - **prima annaffiatura** solo quando il terriccio lo richiede (regola della scheda);
+   - **prima concimazione** solo quando la scheda o il gruppo hanno una fonte che dice quando; altrimenti nessun
+     promemoria e un rimando al periodo normale di concimazione.
+   L'utente può togliere o spostare ogni passo; i promemoria finiscono in "Oggi" e si esportano nel Calendario (F12).
+
+**Regole**
+- Ogni passo del piano ha una fonte. Senza fonte, il passo non diventa un promemoria.
+- Senza scheda completa si usa il ripiego per gruppo, dichiarato (D8).
+- Se l'utente non vuole inserire finestre, l'app dà solo i consigli di luce della scheda, senza scegliere il posto.
+
+**Guida:** voce "Hai appena comprato una pianta?" e spiegazione la prima volta che si apre la funzione (CLAUDE.md §6).
+
+**Criteri di accettazione:**
+- stanze e finestre inserite per la prima pianta compaiono già pronte per la seconda;
+- con almeno due finestre, l'app propone un posto e mostra il motivo con la parola "stima";
+- il piano crea i promemoria in "Oggi"; ogni passo mostra la sua fonte; nessun promemoria senza fonte;
+- con la correzione manuale del sole (F10), il consiglio del posto cambia di conseguenza.
 
 ### F13 — Limiti e messaggi d'errore (idea I4)
 - Messaggi chiari quando il riconoscimento giornaliero è esaurito, il servizio non risponde o manca la rete (vedi
@@ -310,6 +391,7 @@ scaricare o cancellare il modello) e spiegazione la prima volta che si apre il m
 | V-08 | **Misura della luce** con il sensore o la fotocamera del telefono, per affinare la stima | v3 | Da verificare cosa permette il browser su iPhone |
 | V-09 | **Avvisi sui gruppi difficili** (graminacee, ombrellifere…) | v1.1 | Dagli studi su Flora Incognita |
 | V-10 | **Condivisione della cura** con un'altra persona | v3 | Da Planta; richiede sincronizzazione (V-04) |
+| V-11 | **Avviso di rischio personalizzato** (F20): problemi della scheda + ambiente della pianta (luce stimata, annaffiature, stagione) | v1.1 | Insieme a V-01, con le stesse regole; sempre "stima", nessuna percentuale; ogni regola con una fonte. Servono settimane di dati sulle annaffiature |
 | V-11 | **Stato di protezione e distribuzione** della specie | v2 | Da Flora Incognita; dati GBIF |
 | V-12 | Altre lingue oltre l'italiano | v3 | |
 

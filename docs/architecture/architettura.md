@@ -321,6 +321,11 @@ interface Plant {
   potDiameterCm?: number;
   lastRepottedAt?: ISODate;    // data dell'ultimo travaso, inserita dall'utente (F18)
   acquiredAt?: ISODate;
+  newPlantPlan?: {              // piano delle prime settimane (F19), creato dalla funzione "Nuova pianta"
+    startedAt: ISODate;
+    steps: { kind: 'isolate' | 'inspect' | 'first-water-check' | 'no-repot-yet' | 'first-fertilize' | 'end-isolation';
+             dueAt: ISODate; reminderId?: ID; sources: Source[] }[];  // nessun passo senza fonte
+  };
   notes?: string;
   createdAt: ISODate;
   updatedAt: ISODate;
@@ -366,7 +371,8 @@ interface Candidate {
 interface Reminder {
   id: ID;
   plantId: ID;
-  kind: 'water' | 'fertilize' | 'repot' | 'propagate' | 'check';
+  kind: 'water' | 'fertilize' | 'repot' | 'propagate' | 'check' | 'inspect' | 'end-isolation';
+  // 'inspect' ed 'end-isolation' nascono dal piano delle prime settimane (F19)
   // 'repot' e 'propagate' sono facoltativi (pulsante "Ricordamelo", F18) e cadono nel periodo consigliato
   season?: Season;             // periodo consigliato a cui è legato il promemoria
   baseIntervalDays: number;    // dalla scheda di cura
@@ -378,8 +384,14 @@ interface Reminder {
   enabled: boolean;
 }
 
+interface Room {                // stanza di casa (F19): inserita una volta, riusata per tutte le piante
+  id: ID;
+  name: string;                // "Soggiorno"
+}
+
 interface Window {
   id: ID;
+  roomId?: ID;                 // stanza in cui si trova (F19)
   name: string;                // "Finestra soggiorno"
   azimuthDeg: number;          // direzione verso cui guarda: 0 = Nord, 90 = Est, 180 = Sud (convenzione SunCalc v2)
   azimuthSource: 'compass' | 'manual';
@@ -415,10 +427,11 @@ interface Species {             // catalogo fornito con l'app (sola lettura)
   careGroupId?: ID;            // gruppo per i consigli generici, se manca la scheda completa
   care?: {                     // presente solo per le specie con scheda di cura scritta da noi
     light: { minSunHours: number; maxSunHours: number; note: string };
-    waterIntervalDays: { summer: number; winter: number };
-    temperatureC: { min: number; max: number };
+    water: WaterGuide;               // quando E quanto (F08, 2026-11-18)
+    temperatureC: TemperatureGuide;  // minima, ideale, massima
     soil: string;
-    fertilizeEveryDays?: number;
+    fertilizer: FertilizerGuide;     // tipo preciso, diluizione, frequenza, periodo
+    commonProblems: CommonProblem[]; // "Problemi più comuni" (F20)
     repotEveryYears?: number;
     propagation: PropagationGuide;   // "Coltivarla da zero" (F18)
     repotting: RepottingGuide;       // "Travaso" (F18)
@@ -433,11 +446,55 @@ interface Source {              // fonte verificabile, mostrata nella scheda
   accessedAt: string;          // data di consultazione, es. "2026-11-16"
 }
 
+interface WaterGuide {           // F08: quando e quanto annaffiare
+  when: string;                // "quando il terriccio in superficie è asciutto: prova con un dito"
+  howMuch: string[];           // passi pratici: "finché l'acqua esce dai fori", "svuota il sottovaso entro un'ora"
+  intervalDays?: { summer?: number; winter?: number };  // solo se una fonte lo indica; base dei promemoria
+  seasonNotes: string[];       // come cambia con la stagione
+  potNotes: string[];          // come cambia con dimensione e materiale del vaso
+  sources: Source[];
+}
+
+interface TemperatureGuide {     // °C; un valore manca se nessuna fonte lo indica ("non indicata dalle fonti")
+  min?: number;
+  ideal: { min: number; max: number };
+  max?: number;
+  notes: string[];             // spifferi, termosifoni, sbalzi
+  sources: Source[];
+}
+
+interface FertilizerGuide {      // F08: tipo preciso di concime
+  forms: ('liquid' | 'water-soluble' | 'granular' | 'slow-release')[];  // il primo è il consigliato
+  plantType: 'foliage' | 'flowering';  // concime per piante verdi o da fiore
+  npk?: { n: number; p: number; k: number; note: string };  // indicativo, es. 20-20-20 "bilanciato"; solo con fonte
+  dilution: string;            // "come da etichetta; oppure metà dose con frequenza doppia"
+  everyWeeks?: { min: number; max: number };  // le fonti possono differire
+  seasons: Season[];           // periodo in cui concimare
+  warnings: string[];          // segnali di troppo concime, terriccio umido prima di concimare
+  sources: Source[];
+}
+
+interface CommonProblem {        // F20: problemi tipici di quella pianta (prevenzione, non diagnosi)
+  name: string;                // "Cocciniglia farinosa"
+  kind: 'pest' | 'disease' | 'care';   // parassita, malattia, problema di cura
+  // Frequenza SOLO a parole e solo come la dice la fonte; 'not-stated' = la fonte non lo dice. Mai percentuali.
+  frequency: 'frequent' | 'occasional' | 'rare' | 'not-stated';
+  signs: string[];             // cosa si vede
+  prevention: string[];        // come prevenirlo
+  // Per l'avviso personalizzato (V-11, versione 1.1): fattori dell'ambiente che aumentano il rischio, ognuno con fonte
+  riskFactors?: { factor: 'low-light' | 'frequent-watering' | 'standing-water' | 'dry-air' | 'cold' | 'new-plant';
+                  sources: Source[] }[];
+  sources: Source[];
+}
+
 interface CareGroup {           // consigli generici per famiglia o tipo di pianta (ripiego, D8)
   id: ID;
   name: string;                // "Piante grasse", "Aracee"
   families: string[];          // famiglie botaniche che rientrano nel gruppo, es. ["Araceae"]
   advice: { light: string; water: string; temperature: string; soil: string };
+  water?: WaterGuide;              // versioni strutturate, quando le fonti del gruppo le permettono
+  fertilizer?: FertilizerGuide;
+  commonProblems?: CommonProblem[];
   propagation?: PropagationGuide;  // consigli generici del gruppo (es. "aracee rampicanti: talea con nodo")
   repotting?: RepottingGuide;
   sources: Source[];           // almeno una

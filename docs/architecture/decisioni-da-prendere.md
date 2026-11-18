@@ -134,6 +134,15 @@ mostriamo consigli generici dichiarati come tali.
 - **Ampliamento del 2026-11-17 (nuovo requisito):** ogni scheda, e ogni gruppo del ripiego, ha anche le sezioni
   **"Coltivarla da zero"** e **"Travaso"**, con fonti per ogni sezione, periodo consigliato collegato a stagione e meteo
   e promemoria facoltativo (F18). Esempio: [scheda del pothos](../requirements/esempio-scheda-pothos.md).
+- **Ampliamento del 2026-11-18 (nuovo requisito):**
+  - acqua con **quanto** oltre a quando, e come cambia con stagione e vaso;
+  - concime con **tipo preciso** (forma, piante verdi o da fiore, NPK indicativo, diluizione, frequenza, periodo);
+  - temperatura **minima, ideale e massima**;
+  - sezione **"Problemi più comuni"** (F20), con frequenza solo a parole e come la dicono le fonti
+    (frequente/occasionale/raro/non indicata), mai percentuali.
+
+  Ogni numero compare solo con una fonte. Schema dei dati in
+  [architettura §5](architettura.md#5-schema-dei-dati).
 
 ---
 

@@ -1,12 +1,25 @@
 # Piano della versione 1 — da rivedere insieme
 
-> Proposto il 2026-11-18 · **Stato: bozza da rivedere, nessun passo iniziato.**
+> Proposto il 2026-11-18 · Aggiornato il 2026-11-18 con i nuovi requisiti (schede più complete, problemi più comuni,
+> "Nuova pianta") · **Stato: bozza da rivedere, nessun passo iniziato.**
 > Collegati: [visione del prodotto](visione-prodotto.md), [specifiche funzionali](specifiche-funzionali.md),
 > [architettura](../architecture/architettura.md), [decisioni](../architecture/decisioni-da-prendere.md)
 
 **Obiettivo della versione 1** (dalle specifiche, §2): chi apre l'app per la prima volta riesce a **riconoscere una pianta
 di casa**, **salvarla** nella collezione e **ricevere promemoria di cura** adattati alla sua finestra e al meteo, senza
 pagare e senza registrarsi.
+
+## Nuovi requisiti del 2026-11-18: cosa entra nella v1 e cosa dopo
+| Requisito | Dove | Versione | Perché |
+|---|---|---|---|
+| Schede più complete: acqua **quanto**, concime **tipo preciso**, temperatura **minima/ideale/massima** | F08, passo 4.3 | **v1** | Sono contenuti della scheda, non funzioni nuove: costa scriverli, non programmarli. Servono anche ai promemoria (5.3), che devono dire *quanto* annaffiare e *che* concime usare |
+| Sezione **"Problemi più comuni"** (frequenza a parole, segnali, prevenzione) | F20, passo 4.3 | **v1** | Contenuto statico con fonti, come le altre sezioni: aiuta a prevenire, che è più facile che curare |
+| **Avviso di rischio personalizzato** (es. poca luce + molta acqua → marciume) | V-11 | **v1.1** | Va bene solo se ogni regola "ambiente → rischio" ha una fonte. Per ora la fonte c'è per "troppa acqua → marciume", non per il ruolo della poca luce. Le abitudini di annaffiatura si conoscono solo dopo settimane d'uso. Si costruisce insieme alla diagnosi guidata (V-01), che usa lo stesso tipo di regole. Un avviso sbagliato spaventerebbe senza motivo |
+| **"Nuova pianta"**: stanze e finestre salvate, posto migliore con il motivo, piano delle prime settimane con promemoria | F19, passo 5.4 | **v1** | È esattamente l'obiettivo della v1 (riconoscere, salvare, promemoria adattati alla finestra). Riusa pezzi già nel piano (riconoscimento, ricerca, stima del sole, promemoria): il lavoro nuovo è soprattutto collegarli |
+
+Revisione del piano: mancavano due funzioni già previste per la v1, ora aggiunte:
+- **ricerca per nome (F06)**, che serve a "Nuova pianta" per chi non vuole fotografare;
+- **riconoscimento guidato (F05)**.
 
 ## Regole che valgono per ogni passo
 - Un passo alla volta. Prima di iniziarlo spiego cosa farò; alla fine riassumo cosa è cambiato (CLAUDE.md §2).
@@ -103,7 +116,9 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
   - titolo con nome comune + genere, la specie introdotta da "probabilmente";
   - nessuna percentuale; alternative;
   - "Non riesco a riconoscerla" con consigli di scatto;
-  - sinonimi dalla tabella GBIF (stessa scheda di cura).
+  - sinonimi dalla tabella GBIF (stessa scheda di cura);
+  - **riconoscimento guidato (F05)**: se il risultato è incerto, l'app propone una seconda foto di un'altra parte della
+    pianta.
 - **Come si verifica:** test automatici sulle **risposte di Pl@ntNet già salvate** nel test D9 (nessuna richiesta nuova,
   nessun consumo della quota): ogni foto deve finire nel livello previsto dalle soglie D9, e le trappole in
   "Non riesco a riconoscerla".
@@ -149,16 +164,30 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **Come si verifica:** prova automatica: salva, riapri la pagina, la pianta c'è ancora; modifica ed elimina funzionano.
 - **Tu:** salvi 2-3 piante sull'iPhone e controlli che restino dopo aver chiuso l'app.
 
-### 4.2 Schede botaniche e di cura (F07, F08, F18)
+### 4.2 Ricerca per nome (F06)
+- **Cosa si costruisce:** ricerca di una pianta per nome comune o scientifico nel catalogo dell'app, passando dalla
+  tabella dei sinonimi (stesso nome per la stessa pianta).
+- **Come si verifica:** test automatici: "pothos", "potos" ed *Epipremnum aureum* portano alla stessa scheda; un nome
+  sconosciuto dà un messaggio chiaro, non una pagina vuota.
+- **Tu:** —
+
+### 4.3 Schede botaniche e di cura (F07, F08, F18, F20)
 - **Cosa si costruisce:** la scheda del pothos (dall'[esempio](esempio-scheda-pothos.md)) con fonti per ogni sezione,
-  "Coltivarla da zero" e "Travaso", più il **ripiego per famiglia o tipo di pianta**, dichiarato come tale (D8).
+  più il **ripiego per famiglia o tipo di pianta**, dichiarato come tale (D8). Sezioni:
+  - **acqua**: quando, **quanto**, come cambia con stagione e vaso;
+  - **concime**: tipo, NPK indicativo, diluizione, frequenza, periodo;
+  - **temperatura**: minima, ideale, massima;
+  - **"Coltivarla da zero"** e **"Travaso"**;
+  - **"Problemi più comuni"**, con la frequenza solo a parole.
 - **Come si verifica:** test automatici:
-  - ogni sezione ha almeno una fonte;
+  - ogni sezione e ogni problema ha almeno una fonte;
+  - nessuna percentuale nei problemi;
+  - un valore senza fonte compare come "non indicata dalle fonti";
   - una pianta senza scheda mostra il ripiego con l'avviso;
   - i sinonimi aprono la stessa scheda.
-- **Tu:** rileggi la scheda del pothos.
+- **Tu:** rileggi la scheda del pothos, soprattutto i punti segnati "(da verificare)".
 
-### 4.3 Backup su file (F14)
+### 4.4 Backup su file (F14)
 - **Cosa si costruisce:** esportazione della collezione in un file (es. da salvare su iCloud Drive) e importazione.
 - **Come si verifica:** prova automatica: esporta, cancella tutto, importa, i dati sono identici.
 - **Tu:** fai un backup dall'iPhone e lo ripristini.
@@ -173,9 +202,10 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **Come si verifica:** test automatici con risposte salvate; una richiesta vera dal PC.
 - **Tu:** —
 
-### 5.2 Stima del sole (F10)
-- **Cosa si costruisce:** stima delle ore di sole della finestra con SunCalc (orientamento, piano, ostacoli),
-  **presentata come stima** e con calibrazione manuale.
+### 5.2 Stanze, finestre e stima del sole (F10)
+- **Cosa si costruisce:** stanze e finestre di casa salvate **una volta** e riusabili (orientamento, piano, ostacoli;
+  distanza di ogni posto dalla finestra); stima delle ore di sole con SunCalc, **presentata come stima** e con
+  calibrazione manuale.
 - **Come si verifica:** test con casi noti (finestra a sud d'inverno e d'estate); il testo dice sempre che è una stima.
 - **Tu:** inserisci una tua finestra vera e mi dici se il risultato è credibile.
 
@@ -185,6 +215,21 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **Come si verifica:** test automatici: un periodo caldo anticipa l'annaffiatura, l'inverno la ritarda; il file `.ics`
   si apre in un calendario.
 - **Tu:** aggiungi un promemoria al Calendario dell'iPhone.
+
+### 5.4 Nuova pianta (F19)
+- **Cosa si costruisce:** il percorso per una pianta appena comprata:
+  1. fotografia o ricerca della pianta;
+  2. scelta fra le stanze e finestre salvate (5.2);
+  3. **posto consigliato con il motivo**, confrontando la stima del sole con il bisogno della pianta;
+  4. **piano delle prime settimane** con promemoria (isolamento e controlli, niente travaso subito, prima annaffiatura,
+     prima concimazione solo se una fonte dice quando). Ogni passo ha la sua fonte.
+- **Come si verifica:** test automatici:
+  - stanze e finestre inserite per una pianta ricompaiono per la successiva;
+  - con due finestre l'app sceglie il posto giusto e la frase contiene "stima";
+  - una correzione manuale del sole cambia il consiglio;
+  - ogni promemoria del piano ha una fonte, e senza fonte non nasce.
+- **Tu:** provi il percorso sull'iPhone con una pianta vera (anche una che hai già) e mi dici se il consiglio del posto
+  ti sembra sensato.
 
 ---
 
@@ -208,7 +253,12 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **L'ordine delle fasi:** l'anteprima live (fase 3) potrebbe venire dopo la collezione (fase 4), se preferisci avere
   prima un'app "completa" anche senza anteprima.
 - **Il punto in cui andare online (0.5):** subito, così ogni passo si prova sull'iPhone, oppure più tardi.
-- **Cosa resta fuori dalla v1:** già previsto per la v2: notifiche push (D7) e botanico AI con Ollama (D6).
+- **Cosa resta fuori dalla v1:**
+  - in v1.1: avviso di rischio personalizzato (V-11) e diagnosi guidata (V-01);
+  - in v2: notifiche push (D7) e botanico AI con Ollama (D6).
+- **Quante schede complete nella v1:** D8 prevede circa 50 piante. Con le sezioni nuove ogni scheda richiede più ricerca.
+  Proposta: partire dalle **22 piante del catalogo dell'anteprima live**, con il ripiego per gruppo per tutte le altre, e
+  arrivare a 50 nelle versioni successive. Cambierebbe D8: decidi tu.
 
 ## Rischi
 | Rischio | Probabilità | Come lo gestiamo |
@@ -218,3 +268,6 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 | Il telefono scalda con l'anteprima su 5 minuti | Media | Ritmo adattivo già pronto; prova 3.2 prima di proseguire; ripiego senza nomi |
 | Safari cancella i dati di chi non installa l'app | Media | Guida all'installazione sulla Home (1.2) e backup (4.3) |
 | La quota di Pl@ntNet finisce durante le prove | Bassa | Test sulle risposte salvate; prove vere solo quando servono |
+| Le schede più complete richiedono molto lavoro di ricerca | Alta | Si parte da meno schede (vedi "Da decidere"); ripiego per gruppo dichiarato; i valori senza fonte restano "non indicati" invece di essere inventati |
+| Le fonti non indicano alcuni valori (es. temperatura minima del pothos, prima concimazione) | Alta | La scheda lo dice; nessun promemoria senza fonte; si cercano fonti migliori prima della pubblicazione |
+| Il consiglio del posto sembra preciso ma si basa su una stima | Media | Parola "stima" sempre visibile, motivo spiegato, correzione manuale (F10) |
