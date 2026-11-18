@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 // Carattere Nunito (licenza OFL) ospitato da noi: i file arrivano dal nostro sito, non da Google
 import "@fontsource-variable/nunito";
 import "./globals.css";
+import { BarraNavigazione } from "@/components/barra-navigazione";
 import { RegistraServiceWorker } from "./registra-service-worker";
 
 // Testi dell'interfaccia in italiano (CLAUDE.md §1). Stile grafico: docs/design/stile-grafico.md.
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="it" className="h-full antialiased">
       <body className="min-h-full flex flex-col">
         {children}
+        <BarraNavigazione />
         <RegistraServiceWorker />
       </body>
     </html>

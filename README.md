@@ -16,6 +16,9 @@ Web app **open source**, **mobile-first** e **installabile (PWA)** che riconosce
 ## Stato
 🚧 Versione 1 in costruzione, seguendo il [piano della v1](docs/requirements/piano-v1.md).
 
+**Provala sul telefono:** https://mandragola-app.vercel.app (si aggiorna da sola a ogni modifica pubblicata).
+Su iPhone: aprila in Safari, poi Condividi → "Aggiungi a Home".
+
 ## Provarla sul PC
 Serve [Node.js](https://nodejs.org) (versione 20.9 o successiva).
 
@@ -25,6 +28,8 @@ npm run dev        # versione di sviluppo: http://127.0.0.1:3000
 npm run build      # controlla che l'app si compili
 npm run start      # versione finale, dopo build: http://127.0.0.1:3000
 npm run lint       # controllo automatico del codice
+npm run guida      # copia i testi della Guida in docs/user-guide/guida.md
+node tests/app/prova-app.mjs   # prova automatica in Edge (con npm run start acceso)
 ```
 
 Il server di prova risponde solo dal PC stesso (`127.0.0.1`), non dagli altri dispositivi della rete.

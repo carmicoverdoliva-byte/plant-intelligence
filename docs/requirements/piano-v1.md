@@ -113,7 +113,8 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **Come si verifica:** l'indirizzo risponde. Lo controllo da qui: la pagina c'è e non contiene chiavi.
 - **Tu:** crei l'account Vercel (se serve, collegato a GitHub), carichi il codice seguendo i passi e apri l'indirizzo in
   Safari sull'iPhone. Mai password o token in chat.
-- **✅ Fatto il 2026-11-18.** App online su https://plant-intelligence-six.vercel.app, collegata al repository GitHub:
+- **✅ Fatto il 2026-11-18.** App online su **https://mandragola-app.vercel.app** (il primo indirizzo,
+  `plant-intelligence-six.vercel.app`, resta attivo), collegata al repository GitHub:
   Vercel la aggiorna da solo a ogni push sul ramo `main`.
   - Controllo da qui: pagina, manifest e service worker rispondono (200), `.env.local` non esiste online (404), nessuna
     chiave nella pagina.
@@ -128,6 +129,8 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **Come si verifica:** `npm run lint` e `npm run build` senza errori; pagina iniziale confrontata con il riferimento Home;
   anteprima dell'icona a 60 px; contrasto dei colori calcolato.
 - **Tu:** rinomini il repository su GitHub e l'indirizzo su Vercel (`mandragola-app.vercel.app`); approvi l'icona.
+- **✅ Fatto il 2026-11-18** (commit "Passo 0.6"). Icona approvata dall'utente; nuovo indirizzo verificato (risponde, titolo
+  "Mandragola"). Il repository su GitHub risulta ancora `plant-intelligence` (il push funziona lo stesso).
 
 ---
 
@@ -139,6 +142,17 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **Come si verifica:** una prova automatica apre ogni schermata e controlla che la Guida sia raggiungibile da tutte.
   Controllo anche la larghezza del telefono (niente scorrimento laterale).
 - **Tu:** dai un'occhiata sull'iPhone e mi dici se i testi sono chiari.
+- **✅ Fatto il 2026-11-18.** Costruito, seguendo la skill `plant-ui` e il riferimento Home:
+  - Home come nel riferimento; barra in basso in vetro (Home, Le mie piante, Fotocamera al centro, Promemoria, Guida);
+  - Guida con 3 tutorial e 5 domande frequenti; testi in `src/content/guida.ts`, copiati in
+    [docs/user-guide/guida.md](../user-guide/guida.md) con `npm run guida` (una sola fonte);
+  - spiegazione alla prima visita in ogni sezione, chiudibile e richiamabile con "?";
+  - sezioni non ancora pronte con un avviso onesto ("arriva nella fase N"), senza pulsanti finti.
+  - Differenze volute dal riferimento: niente campo di ricerca finché la ricerca non funziona (3.2); "Da fare oggi"
+    vuoto finché non ci sono promemoria; il Falso mito cita la sua fonte.
+  - Verifica: `tests/app/prova-app.mjs` in Edge a 390 px, 54/54 controlli (Guida raggiungibile da ogni schermata,
+    niente scorrimento laterale, tocchi ≥ 44 px, Nunito, spiegazioni, domande frequenti, console senza errori);
+    lint, controllo dei tipi e build senza errori.
 
 ### 1.2 Onboarding al primo avvio (F01)
 - **Cosa si costruisce:** benvenuto, tutorial "come fotografare una pianta", come leggere i risultati, spiegazione dei

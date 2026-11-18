@@ -11,6 +11,7 @@ esterni: girano dentro l'app o sul PC durante lo sviluppo, e non mandano dati a 
 |---|---|---|---|---|
 | Next.js (`next`) | 16.4.6 | Struttura dell'app: pagine, server per le chiavi segrete, compilazione | MIT | Gratis |
 | React (`react`, `react-dom`) | 19.3.0 | Costruisce l'interfaccia | MIT | Gratis |
+| Icone Lucide (`lucide-react`) | 1.66.0 | Icone dell'interfaccia (stile grafico: tratto 2,6) | ISC | Gratis |
 | Nunito (`@fontsource-variable/nunito`) | 5.3.0 | Carattere dell'app (stile grafico), ospitato da noi | SIL OFL 1.1 | Gratis |
 
 ## Strumenti di sviluppo (restano sul PC)
@@ -26,8 +27,16 @@ Le versioni di Next.js, React e strumenti sono quelle scelte dallo strumento uff
 `npm view <pacchetto> license` il 2026-11-18.
 
 ## Scelte fatte
-- **Niente caratteri scaricati da Google** (`next/font/google`, presente nel modello iniziale): si usano i caratteri del
-  telefono. Una dipendenza esterna in meno, pagina più leggera.
+- **Nunito ospitato da noi, non scaricato da Google** (2026-11-18, aggiorna la scelta del passo 0.3 di usare i caratteri
+  del telefono). Lo stile grafico deciso usa Nunito; il pacchetto `@fontsource-variable/nunito` mette i file del
+  carattere dentro l'app, quindi **nessuna richiesta a Google** (l'indirizzo IP dell'utente non va a terzi) e il carattere
+  funziona anche senza rete. Alternativa scartata: `next/font/google`, che scarica il carattere da Google durante la
+  compilazione. Versione "variabile": un solo file per tutti i pesi; il telefono scarica solo l'alfabeto latino (circa 40 KB).
+- **Lucide 1.66.0 e non l'ultima versione** (1.75.0, uscita il giorno stesso, 2026-11-18): scegliamo versioni pubblicate
+  da almeno due settimane, per ridurre il rischio di pacchetti compromessi appena usciti. Si importano solo le icone usate,
+  quindi al telefono arriva poco codice. Licenza ISC letta con `npm view` il 2026-11-18; `npm audit --omit=dev`: 0 problemi.
+- **Icone dell'app generate con `sharp`**, la libreria per immagini che arriva già con Next.js (licenza Apache 2.0):
+  nessuna dipendenza nuova. Script: `scripts/genera-icone.mjs`.
 - **Statistiche anonime di Next.js disattivate sul PC di sviluppo** (`npx next telemetry disable`, 2026-11-18). Next.js
   le invia per migliorare il prodotto [1]; sul PC di sviluppo preferiamo non inviare nulla. Si riattivano con
   `npx next telemetry enable`.
