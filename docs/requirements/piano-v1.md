@@ -62,6 +62,11 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **Come si verifica:** ogni dato ha una fonte ufficiale con data; quello che non si trova è marcato "(da verificare)".
   Se i termini non vanno bene, si torna a D2 o D4 con le alternative (es. Cloudflare).
 - **Tu:** leggi il riassunto e confermi, oppure scegli l'alternativa.
+- **✅ Fatto il 2026-11-18.**
+  - Schede [vercel.md](../api-documentation/vercel.md) e [upstash.md](../api-documentation/upstash.md), fonti ufficiali
+    con data.
+  - Esito: entrambi vanno bene per il nostro uso.
+  - Resta un dubbio, le donazioni su Vercel Hobby: per ora nessuna richiesta di donazioni nell'app; non blocca il passo 0.5.
 
 ### 0.3 Scheletro dell'app
 - **Cosa si costruisce:** il progetto Next.js + React + TypeScript + Tailwind CSS in `src/`, con una pagina vuota

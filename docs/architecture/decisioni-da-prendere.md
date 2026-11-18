@@ -45,6 +45,15 @@ andasse bene, si passa a B.
 **Scelta: ✅ DECISA il 2026-11-16 — A, Vercel Hobby**, a condizione che la lettura dei termini di servizio confermi che il
 nostro uso è ammesso. Se non lo fosse: B (Cloudflare).
 
+**Verifica dei termini (2026-11-18, passo 0.2): ✅ uso ammesso.**
+- Il piano Hobby è gratuito, senza carta di credito, solo per "uso personale o non commerciale" (termini del 19 ottobre
+  2026): il nostro progetto lo è.
+- Limiti ampiamente sufficienti; ogni richiesta al server al massimo 4,5 MB (conta per le foto).
+- **Dubbio:** le donazioni (ammesse in D1) non sono menzionate da nessuna pagina ufficiale attuale. Proposta: nessuna
+  richiesta di donazioni nell'app finché non è chiarito. Non blocca la v1, che non prevede donazioni.
+
+Dettagli: [scheda Vercel](../api-documentation/vercel.md).
+
 ---
 
 ## D3 — Dove salviamo i dati dell'utente?
@@ -72,6 +81,14 @@ nostro uso è ammesso. Se non lo fosse: B (Cloudflare).
 **Raccomandazione: A** (oppure B se in D2 scegliamo Cloudflare).
 
 **Scelta: ✅ DECISA il 2026-11-16 — A, Upstash Redis** (B solo se in D2 si passa a Cloudflare).
+
+**Verifica (2026-11-18, passo 0.2): ✅ confermata.**
+- Gratuito, senza carta di credito: 500.000 comandi al mese e 250 MB.
+- Oltre il limite, i comandi danno errore e l'app deve gestirlo.
+- Database archiviato dopo almeno 30 giorni senza uso, ripristinabile.
+- ⚠️ Non aggiungere una carta di credito: il database passerebbe al piano a consumo.
+
+Dettagli: [scheda Upstash](../api-documentation/upstash.md).
 
 ---
 
@@ -317,9 +334,9 @@ compresso da Hugging Face. Sull'iPhone 16, in Safari, 4 sessioni brevi:
 | Decisione | Scelta (2026-11-16) |
 |---|---|
 | D1 Commerciale? | ✅ No: open source, niente pubblicità, donazioni ammesse |
-| D2 Hosting | ✅ Vercel Hobby, dopo aver verificato i termini (altrimenti Cloudflare) |
+| D2 Hosting | ✅ Vercel Hobby; termini verificati il 2026-11-18 (uso non commerciale ammesso; donazioni da chiarire, nessuna nell'app per ora) |
 | D3 Dati utente | ✅ Solo telefono + backup su file; onboarding guida all'installazione sulla Home e propone il backup |
-| D4 Contatori | ✅ Upstash Redis |
+| D4 Contatori | ✅ Upstash Redis; piano gratuito verificato il 2026-11-18 |
 | D5 Quota per dispositivo | ✅ 10 al giorno, valore configurabile |
 | D6 Botanico AI | ✅ Assistente a regole in v1; Ollama personale in v2 |
 | D7 Promemoria | ✅ In-app + Calendario; push in v2 |
