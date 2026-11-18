@@ -31,22 +31,23 @@ pagare e senza registrarsi.
 |---|---|---|---|
 | **Scheda completa per QUALSIASI pianta riconosciuta**: specie → genere → tipo di pianta, tutte con tutte le sezioni; l'app dice quale livello usa | F07, F08, [D13](../architecture/decisioni-da-prendere.md#d13--schede-complete-per-qualsiasi-pianta-riconosciuta) (decisa), [progetto](../architecture/schede-su-larga-scala.md) | **v1 a rilasci progressivi** (decisione del 2026-11-18): R1 con tipi, note di famiglia e 30 specie di casa; R2 con le schede generate; poi schede nuove ogni settimana fino a T1, T2, T3 | Le "22 schede" erano un errore di pianificazione: un'app che riconosce migliaia di piante deve dare una scheda vera a ognuna. Il livello del tipo di pianta garantisce il 100% subito; specie e generi crescono a blocchi, partendo da ciò che la gente fotografa davvero (dati Pl@ntNet su GBIF) |
 
-### Rilascio progressivo (decisione dell'utente del 2026-11-18)
-Non si aspetta il traguardo T1: si pubblica appena il riconoscimento funziona, poi si aggiunge contenuto ogni settimana.
-Stime ricalcolate in [schede su larga scala §5](../architecture/schede-su-larga-scala.md#5-rilascio-progressivo-e-tempi-ricalcolati-il-2026-11-18),
-con circa 5 sessioni di lavoro a settimana. Si ricalcolano dopo il blocco 1.
+### Rilascio progressivo (decisioni dell'utente del 2026-11-18)
+L'app deve diventare **utile il prima possibile, a pezzi**. Ogni rilascio si pubblica **appena è pronto e verificato**
+(push su `main` → Vercel lo mette online da solo). Le date sono **stime** con circa 5 sessioni di lavoro a settimana e
+dipendono da quando arrivano chiavi e account; si ricalcolano dopo R0 e dopo il primo blocco di schede. Dettagli in
+[schede su larga scala §5](../architecture/schede-su-larga-scala.md#5-rilascio-progressivo-e-tempi-ricalcolati-il-2026-11-18).
 
-| Rilascio | Cosa contiene | Passi del piano | Quando (stima) |
-|---|---|---|---|
-| **R1 — prima pubblicazione** | Riconoscimento Pl@ntNet; scheda per ogni foto (18 tipi di pianta), 60 note di famiglia, 30 specie di casa più comuni | 2.1, 2.2, 2.3, 2.4, 3.3a e i primi 7 blocchi del 3.3b | **settimana del 7 dicembre 2026** |
-| **R2** | Schede generate al momento (AI gratuita da dati reali, cache condivisa) | 3.3c (nuovo) | metà-fine dicembre 2026 |
-| Ogni settimana | 3-4 blocchi di schede verificate (30-40 schede) | 3.3b | da R1 in poi |
-| Resto della v1 | Collezione, ricerca per nome, backup, anteprima live, ambiente e promemoria, rifiniture | fasi 3-6 | come da piano, alternando codice e blocchi |
+| Rilascio | Cosa contiene | Passi del piano | Condizione | Quando (stima) |
+|---|---|---|---|---|
+| **R0** | Riconoscimento Pl@ntNet da foto per **qualsiasi pianta**: nome, specie simili, affidabilità a parole, "Non riesco a riconoscerla" con consigli di scatto | 2.1, 2.2, 2.3 e i messaggi d'errore di 2.4 | chiave Pl@ntNet su Vercel | **~1 settimana dopo la chiave: circa 26-27 novembre 2026** |
+| **R1** | **18 schede per tipo di pianta** e **60 note di famiglia**: ogni foto ha subito una scheda completa | 3.3a (motore e schermata della scheda) + blocchi dei tipi e delle note (3.3b) | — | **circa 4-5 dicembre 2026** |
+| **R2** | **Schede generate al momento** con l'AI gratuita, da dati reali, salvate per tutti | prova su 10 specie + 3.3c | account Cloudflare e Upstash (li crei tu) | **circa 11-14 dicembre 2026** |
+| **Poi, ogni settimana** | 3-4 blocchi di **schede verificate** (30-40), che sostituiscono quelle generate: prima le 30 specie di casa più comuni (entro fine dicembre), poi generi di casa, generi all'aperto, balcone, orto | 3.3b | elenco casa e orto approvato | dal **15 dicembre 2026**; traguardo T1 **circa fine gennaio 2027** |
+| Resto della v1 | Collezione, ricerca per nome, backup, anteprima live, ambiente e promemoria, rifiniture | fasi 3-6 | — | alternando codice e blocchi, come da piano |
 
-**Condizioni per R1:**
-- la chiave Pl@ntNet su Vercel;
-- l'account Upstash, che crei tu: è già previsto e serve per i contatori;
-- l'elenco casa e orto approvato.
+**Contatori (quota per dispositivo, D5):** servono l'account Upstash. Se a R0 non è ancora pronto, R0 esce lo stesso con
+il solo limite giornaliero di Pl@ntNet (messaggio chiaro quando finisce); la quota per dispositivo arriva appena
+l'account c'è.
 
 Revisione del piano: mancavano due funzioni già previste per la v1, ora aggiunte:
 - **ricerca per nome (F06)**, che serve a "Nuova pianta" per chi non vuole fotografare;
@@ -269,7 +270,8 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
     blocchi di 10 schede scritti con la skill `plant-schede` (più fonti A/B/C, riassunto e "cose da fare" con parole
     nostre, ogni fonte citata, contraddizioni dichiarate e valutate per "Falsi miti", siti che vietano l'AI letti da te),
     test `npm run schede:controlla`, verifica indipendente e **tua tabella della tossicità** (5 minuti per blocco),
-    pubblicati man mano: i primi 7 blocchi per R1, poi 3-4 a settimana fino a T1 (circa fine gennaio 2027);
+    pubblicati man mano: tipi di pianta e note di famiglia per R1, poi 3-4 blocchi a settimana da metà dicembre fino a T1
+    (circa fine gennaio 2027);
   - **3.3c — Schede generate al momento** (per R2): `/api/scheda`, `CardWriter` con Cloudflare Workers AI (piano
     gratuito), `GeneratedCardStore` con Upstash; dati reali in ingresso, controlli automatici, "Scheda generata
     automaticamente", ripiego sul genere o sul tipo ([scheda del servizio](../api-documentation/ai-schede-generate.md)).

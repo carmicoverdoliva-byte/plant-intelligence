@@ -472,11 +472,13 @@ senza servizi a pagamento. Le decisioni prevalgono su quanto scritto sopra dove 
    - genere;
    - tipo di pianta;
    - più le note di famiglia.
-2. **Rilascio progressivo, senza aspettare T1.**
-   - Prima pubblicazione (R1): riconoscimento Pl@ntNet, **18 schede per tipo di pianta**, note di famiglia e le
-     **30 specie di casa più comuni**. Stima: **settimana del 7 dicembre 2026**.
-   - Poi R2: schede generate.
-   - Poi nuove schede verificate **ogni settimana**.
+2. **Rilascio progressivo, senza aspettare T1** (ordine rivisto dall'utente il 2026-11-18: utile il prima possibile).
+   Ogni rilascio si pubblica appena pronto e verificato.
+   - **R0:** riconoscimento Pl@ntNet per qualsiasi pianta (nome, specie simili, affidabilità). Stima: circa
+     **26-27 novembre 2026**, una settimana dopo che la chiave è su Vercel.
+   - **R1:** 18 schede per tipo di pianta e note di famiglia. Stima: circa **4-5 dicembre 2026**.
+   - **R2:** schede generate. Stima: circa **11-14 dicembre 2026**.
+   - Poi nuove schede verificate **ogni settimana**, che sostituiscono quelle generate.
 3. **Ogni sezione ha due parti:**
    - **"Linee guida"**: solo fonti ufficiali e autorevoli (A, o due B concordi);
    - **"Consigli dal pollice verde"**: fonti B e C, etichettati come non ufficiali, mai in contraddizione con le linee
@@ -510,4 +512,4 @@ Progetto aggiornato: [schede su larga scala](schede-su-larga-scala.md).
 | D10 Modello anteprima live | ✅ (2026-11-18) BioCLIP v1 compresso int8 (87 MB) da Hugging Face, versione bloccata; download alla prima apertura della fotocamera; nome comune o genere; gemelle "X o Y" |
 | D11 Prova su iPhone 16 | ✅ Chiusa (2026-11-18): fattibile (WebGPU, ~0,3 s, 0 errori); calore su 5 minuti e trappole da misurare nella v1 |
 | D12 Community | ✅ (2026-11-18) A: nessuna community nella v1/v1.x, solo link a community esistenti; da rivalutare nella v2 |
-| D13 Schede per qualsiasi pianta | ✅ (2026-11-18) A + B corretta: specie verificata → specie generata → genere → tipo; linee guida e pollice verde; rilascio progressivo (R1 ~7 dicembre 2026); revisione utente = tabella tossicità. Sostituisce le "22 schede" |
+| D13 Schede per qualsiasi pianta | ✅ (2026-11-18) A + B corretta: specie verificata → specie generata → genere → tipo; linee guida e pollice verde; rilasci R0 riconoscimento (~26-27/11), R1 tipi e note (~4-5/12), R2 schede generate (~11-14/12), poi blocchi settimanali; revisione utente = tabella tossicità. Sostituisce le "22 schede" |

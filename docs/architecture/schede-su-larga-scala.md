@@ -40,7 +40,8 @@ Le "22 schede" del vecchio piano erano un errore di pianificazione.
    - un agente di verifica indipendente;
    - confronto con i dati aperti;
    - una **revisione dell'utente di 5 minuti**: solo la tabella della tossicità.
-5. **Rilascio progressivo:** la prima pubblicazione non aspetta il traguardo T1; poi nuove schede **ogni settimana**.
+5. **Rilascio progressivo:** R0 riconoscimento, R1 tipi di pianta e note di famiglia, R2 schede generate, poi schede
+   verificate **ogni settimana**; ognuno si pubblica appena pronto.
 6. **Nessun dato inventato:** ogni numero ha la sua fonte. Quando un dato non si può generalizzare, la scheda lo dice e dà
    un consiglio prudente.
 
@@ -102,11 +103,11 @@ decide più quali schede esistono.
 
 **In casa, sul balcone e nell'orto: un elenco a parte**, perché su GBIF arrivano poche foto di queste piante. La
 proposta è in [`data/elenco-priorita.json`](../../data/elenco-priorita.json): **61 specie e 42 generi**, di cui 30 specie
-di casa per la prima pubblicazione. È **da approvare dall'utente** prima dell'uso.
+di casa per i primi blocchi settimanali (dopo R2). È **da approvare dall'utente** prima dell'uso.
 
 **Ordine dei blocchi:**
 1. tipi di pianta e note di famiglia;
-2. le 30 specie di casa più comuni;
+2. le 30 specie di casa più comuni (primi blocchi settimanali, dopo R2);
 3. i generi di casa;
 4. i generi all'aperto più fotografati;
 5. balcone, orto e aromatiche;
@@ -263,17 +264,22 @@ type PlantTypeIndex = Record<string /* genere */, { typeId: string; basis: 'wcvp
 
 Si ricalcola dopo il blocco 1.
 
+**Ordine dei rilasci (decisione dell'utente del 2026-11-18): utile il prima possibile, a pezzi.** Ogni rilascio si
+pubblica appena è pronto e verificato.
+
 | Rilascio | Contenuto | Lavoro (stima) | Quando (stima) |
 |---|---|---|---|
-| **R1 — prima pubblicazione** | Riconoscimento Pl@ntNet (passi 2.1-2.4) + motore e schermata della scheda (3.3a) + **18 schede per tipo di pianta** (ogni foto ha subito una scheda completa) + **60 note di famiglia** + **30 specie di casa** | ~6 sessioni di codice + ~7 blocchi = ~13 sessioni | **circa 3 settimane: settimana del 7 dicembre 2026**, se la chiave Pl@ntNet è su Vercel e l'account Upstash è pronto entro una settimana |
-| **R2** | **Schede generate al momento** (Cloudflare Workers AI + Upstash, dopo la prova su 10 specie) | ~3 sessioni + creazione dell'account Cloudflare (utente) | **+1-1,5 settimane: metà-fine dicembre 2026** |
-| **Ogni settimana dopo** | 3-4 blocchi (30-40 schede verificate): generi di casa, poi generi all'aperto, balcone, orto, specie all'aperto | 3-4 sessioni a settimana | pubblicate man mano, con push a fine blocco |
-| T1 (riferimento) | 18 tipi, 60 note, 120 generi, 80 specie verificate | ~26 blocchi in tutto (19 dopo R1, a 3-4 a settimana) | **circa fine gennaio 2027** |
+| **R0** | Riconoscimento Pl@ntNet da foto per qualsiasi pianta: nome, specie simili, affidabilità (passi 2.1-2.3 e messaggi d'errore di 2.4) | ~4 sessioni, dopo la chiave su Vercel | **circa 26-27 novembre 2026** |
+| **R1** | **18 schede per tipo di pianta** + **60 note di famiglia** + motore e schermata della scheda (3.3a): ogni foto ha subito una scheda completa | ~2 sessioni di codice + ~4-5 blocchi | **circa 4-5 dicembre 2026** |
+| **R2** | **Schede generate al momento** (Cloudflare Workers AI + Upstash, dopo la prova su 10 specie) | ~3-4 sessioni + account Cloudflare e Upstash (utente) | **circa 11-14 dicembre 2026** |
+| **Poi, ogni settimana** | 3-4 blocchi di schede verificate (30-40), che **sostituiscono** quelle generate: 30 specie di casa (entro fine dicembre), generi di casa, generi all'aperto, balcone, orto, specie all'aperto | 3-4 sessioni a settimana | dal **15 dicembre 2026** |
+| T1 (riferimento) | 18 tipi, 60 note, 120 generi, 80 specie verificate | ~21 blocchi dopo R1, a 3-4 a settimana | **circa fine gennaio 2027** |
 | T2 | 300 generi, 300 specie verificate | +45 blocchi (~13 settimane) | circa fine aprile 2027 |
 | T3 | fino a 1.000 specie verificate | +70 blocchi (~20 settimane) | circa settembre 2027 |
 
 **Cosa significa per l'utente dell'app:**
-- **dal primo giorno** ogni pianta riconosciuta ha una scheda completa: quella del tipo di pianta;
+- **da R0** l'app riconosce qualsiasi pianta (nome, specie simili, affidabilità);
+- **da R1** ogni pianta riconosciuta ha una scheda completa: almeno quella del tipo di pianta;
 - **da R2** quasi ogni specie ha la sua scheda: verificata, oppure generata e dichiarata come tale;
 - le schede verificate crescono ogni settimana e **sostituiscono** quelle generate.
 
@@ -324,7 +330,7 @@ Se un controllo fallisce, la scheda **non si salva** e si mostra quella del gene
 | L'AI gratuita inventa o sbaglia | Media | Solo dati ricevuti, controlli automatici, etichetta ben visibile, sostituzione con schede verificate ([dettagli](../api-documentation/ai-schede-generate.md)) |
 | Il piano gratuito dell'AI cambia | Media | Due riserve (Groq, OpenRouter); senza AI restano genere e tipo, sempre completi |
 | Revisione umana ridotta: errori che i test non vedono | Media | Agente di verifica indipendente frase per frase; letture complete facoltative; segnalazioni dell'utente dell'app (in futuro) |
-| I tempi raddoppiano | Media | Ricalcolo dopo il blocco 1; R1 resta piccolo (tipi, note, 30 specie); si riduce il ritmo settimanale, mai i controlli |
+| I tempi raddoppiano | Media | Ricalcolo dopo il blocco 1; R1 resta piccolo (solo tipi e note di famiglia); si riduce il ritmo settimanale, mai i controlli |
 | Troppo materiale da un solo sito (diritto sulle banche dati) | Bassa | Più fonti per scheda; niente estrazioni sistematiche; parole nostre |
 | Un sito fonte vieta gli strumenti di AI | Media | Controllo di robots.txt e termini; altrimenti lo legge l'utente, o si usa un'altra fonte |
 
