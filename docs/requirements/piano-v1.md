@@ -78,7 +78,7 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 
 ### 0.3 Scheletro dell'app
 - **Cosa si costruisce:** il progetto Next.js + React + TypeScript + Tailwind CSS in `src/`, con una pagina vuota
-  "Plant Intelligence" e il file `.env.example` (solo nomi delle variabili, valori finti). Prima di installare controllo
+  "Mandragola" e il file `.env.example` (solo nomi delle variabili, valori finti). Prima di installare controllo
   licenze e versioni dei pacchetti.
 - **Come si verifica:** compilazione (`npm run build`) e controllo del codice (`npm run lint`) senza errori; la pagina si
   apre sul PC all'indirizzo `localhost` (solo dal PC, non da altri dispositivi).
@@ -113,6 +113,21 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 - **Come si verifica:** l'indirizzo risponde. Lo controllo da qui: la pagina c'è e non contiene chiavi.
 - **Tu:** crei l'account Vercel (se serve, collegato a GitHub), carichi il codice seguendo i passi e apri l'indirizzo in
   Safari sull'iPhone. Mai password o token in chat.
+- **✅ Fatto il 2026-11-18.** App online su https://plant-intelligence-six.vercel.app, collegata al repository GitHub:
+  Vercel la aggiorna da solo a ogni push sul ramo `main`.
+  - Controllo da qui: pagina, manifest e service worker rispondono (200), `.env.local` non esiste online (404), nessuna
+    chiave nella pagina.
+  - Regola per i push (decisa dall'utente): alla fine di ogni passo verificato si può fare il push su `origin/main`,
+    **solo dopo** aver controllato che non ci siano chiavi, file `.env`, dati personali o percorsi del PC. Ogni altra
+    pubblicazione (nuovi servizi, account, repository, impostazioni di Vercel) si chiede prima.
+
+### 0.6 Nome, stile grafico e icona
+- **Cosa si costruisce:** il nome **Mandragola** (repository, app, documenti), lo stile "Serra di vetro"
+  ([stile-grafico.md](../design/stile-grafico.md)) applicato allo scheletro, la skill `plant-ui` e le icone
+  dall'icona master.
+- **Come si verifica:** `npm run lint` e `npm run build` senza errori; pagina iniziale confrontata con il riferimento Home;
+  anteprima dell'icona a 60 px; contrasto dei colori calcolato.
+- **Tu:** rinomini il repository su GitHub e l'indirizzo su Vercel (`mandragola-app.vercel.app`); approvi l'icona.
 
 ---
 

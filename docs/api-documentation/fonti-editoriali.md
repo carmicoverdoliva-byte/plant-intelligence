@@ -89,7 +89,7 @@ pulita, mentre lo studio da cui prende il dato indica una mediana di **0,023 m³
   - mette gli articoli nuovi **in attesa**: compaiono nell'app solo dopo che una persona li ha letti e approvati
     (regola 2). Per Gardenia la persona è l'utente (regola 3);
   - lo fa **una volta al giorno** per sito e conserva il risultato (cache), per non pesare sui siti;
-  - si presenta con un nome che dice chi è (`User-Agent: PlantIntelligence-feed`) e rispetta `robots.txt`;
+  - si presenta con un nome che dice chi è (`User-Agent: Mandragola-feed`) e rispetta `robots.txt`;
   - tiene solo **titolo, data, link**; scarta testo, immagini e autore del feed;
   - abbina un articolo a una pianta solo se il **titolo** contiene il nome comune o scientifico (dalla tabella dei
     [sinonimi](sinonimi-botanici.md)).

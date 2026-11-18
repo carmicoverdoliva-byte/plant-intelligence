@@ -6,7 +6,7 @@ description: Analisi di un'app concorrente di riconoscimento o cura delle piante
 # Skill: plant-research — analisi di un'app concorrente
 
 Scopo: capire cosa fa bene e cosa fa male un'app concorrente, per decidere cosa prendere e cosa migliorare
-in "Plant Intelligence". Il nome dell'app da analizzare è l'argomento passato alla skill (es. `PictureThis`).
+in "Mandragola". Il nome dell'app da analizzare è l'argomento passato alla skill (es. `PictureThis`).
 Se manca, chiedilo all'utente prima di iniziare.
 
 **Lingua:** tutto in italiano semplice. L'utente è alle prime armi: prima di ogni fase dì cosa stai per fare,
@@ -111,7 +111,7 @@ note dei test manuali già fatte dall'utente) e cambia la data. Usa **esattament
 <Cosa funziona bene e potremmo adottare (riscritto con parole e design nostri, senza copiare asset).>
 
 ## 6. Idee da migliorare
-<Dove possiamo fare meglio, collegato ai principi di Plant Intelligence: gratuità, onestà sulla confidenza,
+<Dove possiamo fare meglio, collegato ai principi di Mandragola: gratuità, onestà sulla confidenza,
 sole come stima calibrabile, onboarding e Guida.>
 
 ## 7. Protocollo di test manuale (iPhone)

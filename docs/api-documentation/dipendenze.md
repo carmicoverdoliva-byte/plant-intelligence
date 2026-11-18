@@ -11,6 +11,7 @@ esterni: girano dentro l'app o sul PC durante lo sviluppo, e non mandano dati a 
 |---|---|---|---|---|
 | Next.js (`next`) | 16.4.6 | Struttura dell'app: pagine, server per le chiavi segrete, compilazione | MIT | Gratis |
 | React (`react`, `react-dom`) | 19.3.0 | Costruisce l'interfaccia | MIT | Gratis |
+| Nunito (`@fontsource-variable/nunito`) | 5.3.0 | Carattere dell'app (stile grafico), ospitato da noi | SIL OFL 1.1 | Gratis |
 
 ## Strumenti di sviluppo (restano sul PC)
 | Strumento | Versione | A cosa serve | Licenza |
@@ -20,7 +21,8 @@ esterni: girano dentro l'app o sul PC durante lo sviluppo, e non mandano dati a 
 | ESLint (`eslint`, `eslint-config-next`) | 9.x / 16.4.6 | Controllo automatico del codice (`npm run lint`) | MIT |
 | Tipi per TypeScript (`@types/node`, `@types/react`, `@types/react-dom`) | — | Descrizioni dei tipi | MIT |
 
-Le versioni sono quelle scelte dallo strumento ufficiale `create-next-app` 16.4.6, che le prova insieme. Licenze lette con
+Licenza di Nunito letta nel file `LICENSE` del pacchetto e con `npm view` il 2026-11-18; `npm audit --omit=dev`: 0 problemi.
+Le versioni di Next.js, React e strumenti sono quelle scelte dallo strumento ufficiale `create-next-app` 16.4.6, che le prova insieme. Licenze lette con
 `npm view <pacchetto> license` il 2026-11-18.
 
 ## Scelte fatte

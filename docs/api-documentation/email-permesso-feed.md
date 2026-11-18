@@ -24,7 +24,7 @@
 
 Buongiorno,
 
-sono [Nome] e sviluppo **Plant Intelligence**, un'app gratuita e open source che aiuta a riconoscere e curare le piante
+sono [Nome] e sviluppo **Mandragola**, un'app gratuita e open source che aiuta a riconoscere e curare le piante
 di casa. Il progetto è **non commerciale**: niente pubblicità, niente abbonamenti, nessuna vendita di dati. Il codice è
 pubblico: [link al repository].
 
@@ -51,7 +51,7 @@ Grazie per il tempo e per gli articoli che pubblicate.
 
 Cordiali saluti,
 [Nome]
-Plant Intelligence — [email di contatto del progetto]
+Mandragola — [email di contatto del progetto]
 
 ---
 
@@ -61,7 +61,7 @@ Plant Intelligence — [email di contatto del progetto]
 
 Gentile redazione di Gardenia,
 
-sono [Nome] e sviluppo **Plant Intelligence**, un'app gratuita e open source che aiuta a riconoscere e curare le piante
+sono [Nome] e sviluppo **Mandragola**, un'app gratuita e open source che aiuta a riconoscere e curare le piante
 di casa. Il progetto è **non commerciale**: niente pubblicità, niente abbonamenti, nessuna vendita di dati. Il codice è
 pubblico: [link al repository].
 
@@ -88,4 +88,4 @@ Grazie, e complimenti per il lavoro di divulgazione.
 
 Cordiali saluti,
 [Nome]
-Plant Intelligence — [email di contatto del progetto]
+Mandragola — [email di contatto del progetto]

@@ -46,7 +46,7 @@ tags:
 
 # BioCLIP v1 image encoder — int8 (weight-only) ONNX, for a browser test
 
-**Test artifact** for an open-source, non-commercial plant-care web app ("Plant Intelligence", decision D11): it measures
+**Test artifact** for an open-source, non-commercial plant-care web app ("Mandragola", decision D11): it measures
 whether a plant-recognition model can run in the iPhone browser (ONNX Runtime Web, WebGPU / WebAssembly).
 Not intended for production use.
 
@@ -86,7 +86,7 @@ fs.writeFileSync(path.join(S, 'prototypes-int8.json'), JSON.stringify(p8));
 fs.copyFileSync(path.join(REPO_ROOT, 'LICENSE'), path.join(S, 'LICENSE'));
 fs.writeFileSync(path.join(S, 'README.md'), `# Prova D11 · Anteprima live
 
-Pagina di prova (non è l'app) del progetto open source e non commerciale **Plant Intelligence**: misura se un modello di
+Pagina di prova (non è l'app) del progetto open source e non commerciale **Mandragola**: misura se un modello di
 riconoscimento delle piante può girare nel browser dell'iPhone.
 
 - Indirizzo: https://${GH}.github.io/${GH_REPO}/ (modello originale, 173 MB) ·

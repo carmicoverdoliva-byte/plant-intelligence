@@ -1,4 +1,4 @@
-// Service worker di Plant Intelligence (passo 0.4 del piano della v1, F16).
+// Service worker di Mandragola (passo 0.4 del piano della v1, F16).
 // È un piccolo programma che lavora in sottofondo e conserva le pagine dell'app, così si riapre anche senza rete.
 // Regole:
 // - pagine: prima la rete (contenuto aggiornato); senza rete, l'ultima copia salvata;
@@ -6,9 +6,10 @@
 // - icone e manifest: copia salvata, aggiornata in sottofondo;
 // - MAI salvate: le richieste al server (/api/...) e quelle verso altri siti. Riconoscimento, contatori e meteo
 //   devono sempre andare in rete, e senza rete l'app lo dice (F13).
-const VERSIONE = 'v1';
-const CACHE = `plant-intelligence-${VERSIONE}`;
-const DA_SALVARE_SUBITO = ['/', '/manifest.webmanifest', '/icons/icona-192.png', '/icons/icona-512.png'];
+// v2: nuovo nome (Mandragola) e nuove icone. Cambiare la versione fa scaricare di nuovo i file salvati.
+const VERSIONE = 'v2';
+const CACHE = `mandragola-${VERSIONE}`;
+const DA_SALVARE_SUBITO = ['/', '/manifest.webmanifest', '/icons/icona-192.png', '/icons/icona-512.png', '/icons/icona-512-maskable.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
@@ -24,8 +25,10 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
   event.waitUntil((async () => {
-    // Cancella le copie delle versioni precedenti del service worker
-    for (const key of await caches.keys()) if (key.startsWith('plant-intelligence-') && key !== CACHE) await caches.delete(key);
+    // Cancella le copie delle versioni precedenti (anche quelle col vecchio nome "plant-intelligence-")
+    for (const key of await caches.keys()) {
+      if ((key.startsWith('mandragola-') || key.startsWith('plant-intelligence-')) && key !== CACHE) await caches.delete(key);
+    }
     await self.clients.claim();
   })());
 });

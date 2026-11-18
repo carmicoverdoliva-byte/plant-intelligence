@@ -1,4 +1,4 @@
-# CLAUDE.md — Regole del progetto "Plant Intelligence"
+# CLAUDE.md — Regole del progetto "Mandragola"
 
 Queste regole valgono per chiunque (persona o assistente AI) lavori su questo progetto.
 La visione completa del prodotto è in `docs/requirements/visione-prodotto.md`.
@@ -83,7 +83,17 @@ Ogni nuova funzione deve rispettare questo requisito:
 - `docs/architecture/` — scelte architetturali
 - `docs/api-documentation/` — servizi esterni usati, limiti, costi, alternative
 - `docs/user-guide/` — contenuti della Guida per l'utente
-- `src/` — codice dell'app · `public/` — file statici · `tests/` — test e pagine di prova (es. `tests/d11-anteprima-live/`)
+- `docs/design/` — stile grafico (`stile-grafico.md`), schermate di riferimento (`riferimenti/`), icona master
+- `src/` — codice dell'app (`src/components/` per i pezzi d'interfaccia riusabili) · `scripts/` — piccoli strumenti (es. `genera-icone.mjs`) · `public/` — file statici · `tests/` — test e pagine di prova (es. `tests/d11-anteprima-live/`)
 - Foto di prova, modelli scaricati e risposte grezze dei servizi restano **fuori dal repository**
   (es. la cartella `test-piante` nella cartella utente), non su cartelle sincronizzate nel cloud.
 - `.claude/skills/`, `.claude/agents/` — configurazioni per Claude Code
+
+## 11. Stile grafico (nome dell'app: **Mandragola**)
+- Le regole grafiche sono in **`docs/design/stile-grafico.md`** ("Serra di vetro": sfondo chiaro con aloni, vetro
+  smerigliato con ripiego, verde principale, viola solo per la "magia", Nunito, forme tonde, icone Lucide tratto 2,6,
+  target 44 px, contrasto 4,5:1). Le schermate approvate sono in `docs/design/riferimenti/`.
+- **Ogni schermata o modifica visiva passa dalla skill `plant-ui`** (`.claude/skills/plant-ui/SKILL.md`): si leggono
+  regole e riferimenti prima, si confronta il risultato con i riferimenti dopo.
+- Colori, raggi e carattere sono token in `src/app/globals.css`: niente colori scritti a mano nelle pagine.
+- Le icone dell'app si rigenerano dall'icona master con `node scripts/genera-icone.mjs`.

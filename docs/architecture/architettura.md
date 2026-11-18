@@ -1,4 +1,4 @@
-# Architettura — Plant Intelligence
+# Architettura — Mandragola
 
 > Ultimo aggiornamento: 2026-11-18 · Collegati: [specifiche funzionali](../requirements/specifiche-funzionali.md),
 > [decisioni da prendere](decisioni-da-prendere.md), schede [Pl@ntNet](../api-documentation/plantnet-api.md),

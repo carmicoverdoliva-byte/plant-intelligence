@@ -1,4 +1,4 @@
-# Specifiche funzionali — Plant Intelligence
+# Specifiche funzionali — Mandragola
 
 > Ultimo aggiornamento: 2026-11-18 · Basato su: [visione prodotto](visione-prodotto.md), [analisi dei concorrenti](../competitor-analysis/matrice-confronto.md),
 > [schede dei servizi](../api-documentation/) · Architettura: [architettura.md](../architecture/architettura.md)

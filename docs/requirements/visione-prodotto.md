@@ -1,4 +1,4 @@
-# Visione prodotto — Plant Intelligence
+# Visione prodotto — Mandragola
 
 ## In una frase
 Una web app **open source**, **mobile-first** e **installabile come PWA** che riconosce le piante dalla fotocamera

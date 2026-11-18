@@ -1,9 +1,9 @@
 ---
 name: plant-architect
-description: Progettazione di Plant Intelligence — architettura, schema dei dati, integrazioni con servizi esterni (Pl@ntNet, Open-Meteo, SunCalc, AI, hosting, database) e specifiche funzionali. Usala quando l'utente chiede di progettare, pianificare o documentare come è fatta l'app, scegliere un servizio o una libreria, scrivere specifiche o requisiti, definire i dati, valutare limiti/licenze/costi di un servizio, o scrive "/plant-architect <argomento>". Produce documenti in italiano semplice in docs/architecture, docs/requirements e docs/api-documentation, con diagrammi testuali, alternative gratuite, rischi e decisioni aperte.
+description: Progettazione di Mandragola — architettura, schema dei dati, integrazioni con servizi esterni (Pl@ntNet, Open-Meteo, SunCalc, AI, hosting, database) e specifiche funzionali. Usala quando l'utente chiede di progettare, pianificare o documentare come è fatta l'app, scegliere un servizio o una libreria, scrivere specifiche o requisiti, definire i dati, valutare limiti/licenze/costi di un servizio, o scrive "/plant-architect <argomento>". Produce documenti in italiano semplice in docs/architecture, docs/requirements e docs/api-documentation, con diagrammi testuali, alternative gratuite, rischi e decisioni aperte.
 ---
 
-# Skill: plant-architect — progettare Plant Intelligence
+# Skill: plant-architect — progettare Mandragola
 
 Scopo: prendere decisioni tecniche **documentate, gratuite e reversibili**, spiegate in modo comprensibile a chi è alle
 prime armi. L'argomento passato alla skill indica cosa progettare (es. `architettura`, `schema dati`, `Open-Meteo`).

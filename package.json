@@ -1,8 +1,8 @@
 {
-  "name": "plant-intelligence",
+  "name": "mandragola",
   "version": "0.1.0",
   "private": true,
-  "description": "Plant Intelligence: PWA open source e non commerciale per riconoscere e curare le piante",
+  "description": "Mandragola: PWA open source e non commerciale per riconoscere e curare le piante",
   "license": "MIT",
   "scripts": {
     "dev": "next dev -H 127.0.0.1",
@@ -11,6 +11,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@fontsource-variable/nunito": "5.3.0",
     "next": "16.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0"

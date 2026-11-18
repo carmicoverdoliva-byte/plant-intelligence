@@ -37,7 +37,7 @@ segreta da proteggere.
 | Serve una chiave API? | No per il piano gratuito | [1] |
 | Obblighi (attribuzione, logo…) | Dati con licenza **CC BY 4.0**: va citata la fonte (es. "Dati meteo: Open-Meteo.com" con link) | [1][2] |
 
-**Plant Intelligence** è open source, gratuita e senza pubblicità: rientra nell'uso **non commerciale**. Se un giorno
+**Mandragola** è open source, gratuita e senza pubblicità: rientra nell'uso **non commerciale**. Se un giorno
 aggiungessimo pubblicità o abbonamenti, Open-Meteo andrebbe pagato o sostituito. È la [decisione D1](../architecture/decisioni-da-prendere.md).
 
 ## Come lo usiamo nel codice (adattatore)

@@ -1,4 +1,4 @@
-# 🌿 Plant Intelligence
+# 🌿 Mandragola
 
 Web app **open source**, **mobile-first** e **installabile (PWA)** che riconosce le piante dalla fotocamera e aiuta a curarle. Completamente gratuita.
 
