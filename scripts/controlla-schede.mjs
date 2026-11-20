@@ -96,6 +96,12 @@ function controllaScheda(file) {
     if ([t.persone, t.animali].includes("non tossica") && t.fonti.filter((id) => fonti.get(id)?.livello === "A").length < 2)
       errore(`${dove} › tossicità`, "\"non tossica\" solo con almeno due fonti A");
     if (!t.nota) errore(`${dove} › tossicità`, "manca la nota (consiglio prudente)");
+    for (const c of t.casi ?? []) {
+      if (!c.taxa?.length || !TOSSICITA.includes(c.persone) || !TOSSICITA.includes(c.animali) || !c.nota) errore(`${dove} › tossicità › casi`, "caso incompleto");
+      if ([c.persone, c.animali].includes("non tossica") && c.fonti.filter((id) => fonti.get(id)?.livello === "A").length < 2)
+        errore(`${dove} › tossicità › ${c.taxa.join(",")}`, "'non tossica' solo con almeno due fonti A");
+      usa(c.fonti);
+    }
     usa(t.fonti);
   }
   for (const f of s.fonti ?? []) if (!usate.has(f.id)) avviso(dove, `fonte ${f.id} mai citata`);

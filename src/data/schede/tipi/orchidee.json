@@ -488,6 +488,21 @@
       4,
       7,
       8
+    ],
+    "casi": [
+      {
+        "taxa": [
+          "Phalaenopsis"
+        ],
+        "persone": "non verificata",
+        "animali": "non tossica",
+        "nota": "La Phalaenopsis (orchidea farfalla) non è tossica per cani e gatti: lo indicano due fonti concordi. Per le persone non abbiamo fonti: tienila comunque fuori dalla portata dei bambini piccoli.",
+        "fonti": [
+          4,
+          7,
+          8
+        ]
+      }
     ]
   },
   "fonti": [
@@ -568,6 +583,6 @@
     "controlliAutomatici": "2026-11-18",
     "verificaIndipendente": "2026-11-18"
   },
-  "versione": 3,
+  "versione": 4,
   "aggiornata": "2026-11-18"
 }

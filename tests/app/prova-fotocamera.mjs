@@ -92,7 +92,7 @@ export async function provaFotocamera({ apri, valuta, clicca, perTesto, ok, paus
   await clicca(`[...document.querySelectorAll('[role="radio"]')].find(b => b.textContent === "Foglia")`);
   await controllaSchermata("/fotocamera (foto scelta)", "fotocamera-scelta");
   await clicca(`[...document.querySelectorAll("button")].find(b => b.textContent.startsWith("Riconosci"))`);
-  ok(await aspettaTesto("Scheda per il tipo: rampicanti e ricadenti tropicali"), "Risultato: scheda di cura del tipo di pianta, con il livello scritto in cima");
+  ok(await aspettaTesto("Scheda del tipo: rampicanti e ricadenti tropicali"), "Risultato: scheda di cura del tipo di pianta, con il livello scritto in cima");
   ok((await testoPagina()).includes("Linee guida") || (await valuta(`document.querySelectorAll('section[aria-label="Scheda di cura"] details').length >= 8`)), "Scheda: le 8 sezioni (luce, acqua, temperatura…) si aprono al tocco");
   ok((await testoPagina()).includes("Tossicità") && (await testoPagina()).includes("Nota sulla famiglia: aracee"), "Scheda: tossicità e nota sulla famiglia (aracee)");
   const t = await testoPagina();

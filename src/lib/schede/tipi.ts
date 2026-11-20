@@ -77,7 +77,15 @@ export interface SchedaCura {
   };
   falsiMiti: FalsoMito[];
   approfondimenti: { titolo: string; sito: string; url: string; nostraRiga: string }[]; // può essere vuoto (F22)
-  tossicita: { persone: Tossicita; animali: Tossicita; nota: string; fonti: number[] };
+  tossicita: {
+    persone: Tossicita;
+    animali: Tossicita;
+    nota: string;
+    fonti: number[];
+    // Casi verificati più precisi del tipo (per genere o specie), es. Phalaenopsis non tossica per cani e gatti.
+    // "non tossica" solo con almeno due fonti A (controllato da npm run schede:controlla).
+    casi?: { taxa: string[]; persone: Tossicita; animali: Tossicita; nota: string; fonti: number[] }[];
+  };
   fonti: Fonte[];
   verifica: {
     controlliAutomatici?: string; // data dell'ultimo `npm run schede:controlla` superato

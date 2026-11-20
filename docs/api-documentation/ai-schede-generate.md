@@ -165,3 +165,16 @@ per richiesta.
 12. MediaWiki, "Wikimedia APIs/Content reuse" — https://www.mediawiki.org/wiki/Wikimedia_APIs/Content_reuse — consultato il 2026-11-18
 13. MediaWiki, "Wikimedia APIs/Access policy" — https://www.mediawiki.org/wiki/Wikimedia_APIs/Access_policy — consultato il 2026-11-18
 14. Vercel, "Vercel Functions Limits" (durata massima 300 s sul piano Hobby; aggiornata il 2026-08-24) — https://vercel.com/docs/functions/limitations — consultato il 2026-11-18
+
+## Decisione e misure reali (2026-11-19)
+
+- **Modello principale:** `@cf/qwen/qwen3-30b-a3b-fp8`. **Riserva:** `@cf/google/gemma-4-26b-a4b-it`, usata se qwen non
+  risponde o la scheda non passa i controlli. Mistral escluso (decisione dell'utente).
+- **Misure nella prova (8 schede):** qwen circa 10 secondi e **circa 63 neuron** per scheda (7 su 8 senza problemi);
+  gemma circa 37 secondi e 72 neuron (1 su 8). Con 10.000 neuron al giorno: circa 150 schede al giorno.
+- **Quota finita:** l'adattatore (`src/lib/schede/genera/scrittore.ts`) riconosce l'errore di quota e l'app mostra
+  subito la scheda del tipo, senza riprovare e senza passare alla riserva (che userebbe la stessa quota).
+- **Dove è accesa:** in locale con `R2_SPERIMENTALE=1` e nelle anteprime di Vercel; **spenta in produzione** finché
+  l'utente non dà l'ok.
+- Le regole che rendono sicura la scheda sono in `src/lib/schede/genera/regole.ts` e si provano con
+  `tests/app/prova-regole-r2.mjs` (nessuna rete, nessun consumo).

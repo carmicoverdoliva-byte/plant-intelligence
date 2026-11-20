@@ -20,11 +20,12 @@ mkdirSync(USCITA, { recursive: true });
 
 // Modelli candidati e costo in neuron per milione di token (pagina prezzi Cloudflare, 2026-11-12)
 const MODELLI = [
-  { nome: "gemma-4-26b", ricerca: "gemma-4-26b", ingresso: 9091, uscita: 27273 },
-  { nome: "qwen3-30b", ricerca: "qwen3-30b-a3b", ingresso: 4625, uscita: 30475 },
+  // senzaRagionamento: questi modelli "pensano" prima di rispondere e consumano token; per una scheda non serve
+  { nome: "gemma-4-26b", ricerca: "gemma-4-26b", ingresso: 9091, uscita: 27273, senzaRagionamento: true },
+  { nome: "qwen3-30b", ricerca: "qwen3-30b-a3b", ingresso: 4625, uscita: 30475, senzaRagionamento: true },
   { nome: "mistral-small-3.1", ricerca: "mistral-small-3.1", ingresso: 31876, uscita: 50488 },
 ];
-const TETTO_NEURON = 8500;
+const TETTO_NEURON = Number(process.env.TETTO_NEURON) || 7500; // margine rispetto ai 10.000 gratuiti del giorno
 
 const SPECIE = [
   ["Phalaenopsis amabilis", "Orchidaceae", "orchidee"],
@@ -82,19 +83,29 @@ async function modelloId(ricerca) {
   return m?.name ?? null;
 }
 
-async function genera(modello, messaggi) {
+async function genera(modello, messaggi, senzaRagionamento) {
   const t0 = Date.now();
+  try {
   const r = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/ai/run/${modello}`, {
     method: "POST",
     headers: { Authorization: `Bearer ${TOKEN}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ messages: messaggi, max_tokens: 3500, temperature: 0.2 }),
+    body: JSON.stringify({
+      messages: messaggi, max_tokens: 3500, temperature: 0.2,
+      response_format: { type: "json_object" },
+      ...(senzaRagionamento ? { chat_template_kwargs: { enable_thinking: false } } : {}),
+    }),
     signal: AbortSignal.timeout(180000),
   });
   const j = await r.json().catch(() => ({}));
   const res = j.result ?? {};
-  const testo = res.response ?? res.choices?.[0]?.message?.content ?? "";
+  const msg = res.choices?.[0]?.message ?? {};
+  // Alcuni modelli mettono il testo in un altro campo (es. reasoning_content) anche con il ragionamento spento
+  const testo = msg.content || msg.reasoning_content || res.response || "";
   const usage = res.usage ?? {};
-  return { ok: r.ok && j.success !== false, stato: r.status, errori: (j.errors ?? []).map((e) => e.message).join("; "), testo: typeof testo === "string" ? testo : JSON.stringify(testo), usage, ms: Date.now() - t0 };
+  return { ok: r.ok && j.success !== false, stato: r.status, errori: (j.errors ?? []).map((e) => e.message).join("; "), testo: typeof testo === "string" ? testo : JSON.stringify(testo ?? ""), usage, fine: res.choices?.[0]?.finish_reason, ms: Date.now() - t0 };
+  } catch (e) {
+    return { ok: false, stato: 0, errori: e.name === "TimeoutError" ? "tempo scaduto (oltre 3 minuti)" : "errore di rete", testo: "", usage: {}, ms: Date.now() - t0 };
+  }
 }
 
 const parole = (t) => t.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim().split(" ");
@@ -118,6 +129,9 @@ function controlla(json, fonti) {
     for (const p of s.pollice ?? []) for (const id of p.fonti ?? []) if (!fonti[id]) problemi.push(`${k}: pollice con fonte inesistente ${id}`);
   }
   const t = json.tossicita ?? {};
+  // La tossicità si scrive solo con fonti A (regola D13): mai da Wikipedia
+  for (const id of t.fonti ?? []) if (fonti[id] && fonti[id].livello !== "A") problemi.push(`tossicità: fonte ${id} di livello ${fonti[id].livello}`);
+  if (/non (è )?tossic/i.test(t.nota ?? "") || /non (è )?tossic/i.test(json.riassunto ?? "")) problemi.push("tossicità: frase \"non tossica\" nel testo libero (va solo nei valori, con due fonti A)");
   for (const chi of ["persone", "animali"]) {
     if (t[chi] === "non tossica" && !(t.fonti ?? []).some((id) => fonti[id]?.livello === "A")) problemi.push(`tossicità ${chi}: "non tossica" senza fonte A`);
     if (!["tossica", "non tossica", "varia", "non verificata"].includes(t[chi])) problemi.push(`tossicità ${chi}: valore non ammesso (${t[chi]})`);
@@ -131,9 +145,11 @@ function controlla(json, fonti) {
 }
 
 let neuron = 0;
+const saltati = new Set();
 const risultati = [];
 const ids = {};
-for (const m of MODELLI) ids[m.nome] = await modelloId(m.ricerca);
+const SOLO = process.env.SOLO_MODELLI?.split(",");
+for (const m of MODELLI) if (!SOLO || SOLO.includes(m.nome)) ids[m.nome] = await modelloId(m.ricerca);
 console.log("Modelli trovati:", JSON.stringify(ids));
 
 for (const [specie, famiglia, tipo] of SPECIE) {
@@ -156,18 +172,21 @@ for (const [specie, famiglia, tipo] of SPECIE) {
   for (const m of MODELLI) {
     if (!ids[m.nome]) continue;
     if (neuron > TETTO_NEURON) { console.log("Tetto di sicurezza raggiunto: mi fermo."); break; }
-    const g = await genera(ids[m.nome], messaggi);
-    const n = ((g.usage.prompt_tokens ?? 0) * m.ingresso + (g.usage.completion_tokens ?? 0) * m.uscita) / 1e6;
+    if (saltati.has(m.nome)) continue;
+    const g = await genera(ids[m.nome], messaggi, m.senzaRagionamento);
+    if (/paid|plan|billing|upgrade/i.test(g.errori)) { saltati.add(m.nome); console.log(`${m.nome}: richiede un piano a pagamento, saltato`); continue; }
+    // neuron veri se il servizio li comunica, altrimenti stima dai token
+    const n = g.usage.neurons ?? ((g.usage.prompt_tokens ?? 0) * m.ingresso + (g.usage.completion_tokens ?? 0) * m.uscita) / 1e6;
     neuron += n;
     let json = null;
     try { json = JSON.parse(g.testo.slice(g.testo.indexOf("{"), g.testo.lastIndexOf("}") + 1)); } catch { /* JSON non valido */ }
     const problemi = json ? controlla(json, fonti) : ["JSON non valido o risposta vuota" + (g.errori ? `: ${g.errori}` : "")];
-    risultati.push({ specie, modello: m.nome, ms: g.ms, neuron: Math.round(n), tokenUscita: g.usage.completion_tokens, valida: Boolean(json), problemi });
+    risultati.push({ specie, modello: m.nome, ms: g.ms, neuron: Math.round(n), tokenUscita: g.usage.completion_tokens, fine: g.fine, valida: Boolean(json), problemi });
     writeFileSync(path.join(USCITA, `${m.nome}__${specie.replace(/ /g, "_")}.json`), JSON.stringify({ specie, modello: ids[m.nome], fonti: Object.fromEntries(Object.entries(fonti).map(([k, f]) => [k, { livello: f.livello, titolo: f.titolo, url: f.url }])), scheda: json, grezzo: json ? undefined : g.testo, problemi }, null, 2));
     console.log(`${specie} · ${m.nome}: ${json ? "JSON ok" : "JSON NON valido"} · problemi ${problemi.length} · ${Math.round(n)} neuron · ${(g.ms / 1000).toFixed(1)} s`);
   }
 }
-writeFileSync(path.join(USCITA, "riepilogo.json"), JSON.stringify({ neuronStimati: Math.round(neuron), risultati }, null, 2));
+writeFileSync(path.join(USCITA, SOLO ? `riepilogo-${SOLO.join("-")}.json` : "riepilogo.json"), JSON.stringify({ neuronStimati: Math.round(neuron), risultati }, null, 2));
 console.log(`\nNeuron stimati in tutto: ${Math.round(neuron)} (piano gratuito: 10.000 al giorno)`);
 for (const m of MODELLI) {
   const r = risultati.filter((x) => x.modello === m.nome);

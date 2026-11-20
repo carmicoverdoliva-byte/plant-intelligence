@@ -171,6 +171,11 @@ export const domande: Domanda[] = [
       "No. Le foto vengono rimpicciolite sul telefono (così perdono anche le informazioni sul luogo dello scatto) e mandate a Pl@ntNet solo per il riconoscimento. Né noi né Pl@ntNet le conserviamo.",
   },
   {
+    domanda: "Perché la scheda di cura cambia dopo qualche secondo?",
+    risposta:
+      "Appena riconosciuta la pianta vedi la scheda del suo tipo (per esempio \"rampicanti tropicali\"), che vale per molte piante simili. Intanto l'app prepara la scheda della specie: dopo circa 10 secondi prende il suo posto. In cima c'è sempre scritto quale stai guardando: \"Scheda della specie (generata, basata sulle nostre fonti verificate)\", \"Scheda della specie · NON VERIFICATA\" (solo consigli non ufficiali) oppure \"Scheda del tipo\". La scheda della specie la scrive un'intelligenza artificiale gratuita usando solo le fonti citate, e regole automatiche tolgono ciò che le fonti non dicono. Se non riesce a prepararla, resta la scheda del tipo.",
+  },
+  {
     domanda: "Perché l'app non mi dà la percentuale?",
     risposta:
       "Perché una percentuale sembra più precisa di quanto sia. L'app dice a parole quanto è sicura (alta, buona, bassa) e, se non è sicura, ti mostra le piante simili invece di inventare un nome.",

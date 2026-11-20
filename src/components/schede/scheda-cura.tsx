@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChevronDown, Droplet, ExternalLink, FlaskConical, Layers, Leaf, Shovel, Sprout, Sun, Thermometer, TriangleAlert, Bug } from "lucide-react";
+import { ChevronDown, Loader2, Droplet, ExternalLink, FlaskConical, Layers, Leaf, Shovel, Sprout, Sun, Thermometer, TriangleAlert, Bug } from "lucide-react";
 import type { SceltaScheda } from "@/lib/schede/scegli";
 import type { Fonte, Sezione, SchedaCura as Scheda, Tossicita } from "@/lib/schede/tipi";
 import type { Bolla as TipoBolla } from "@/content/guida";
 import { Bolla } from "../bolla";
 import { TRATTO } from "../icona";
+import { SchedaGenerata } from "./scheda-generata";
+import type { RispostaSchedaGenerata } from "@/app/api/scheda-generata/route";
 
 // Scheda di cura sotto il risultato del riconoscimento (rilascio R1, D13). Dal riferimento scheda.html:
 // elenco di sezioni in vetro; ogni sezione ha "Linee guida" (fonti ufficiali) e "Consigli dal pollice verde"
@@ -135,6 +137,25 @@ function ElencoFonti({ fonti, titolo }: { fonti: Fonte[]; titolo: string }) {
 export function SchedaCura({ specie, genere, famiglia }: { specie: string; genere: string; famiglia: string }) {
   const chiave = `${specie}|${genere}|${famiglia}`;
   const [stato, setStato] = useState<{ per: string; dati: (SceltaScheda & { ok: true }) | null } | null>(null);
+  // Scheda della SPECIE generata (R2): si chiede subito, in parallelo; intanto si vede la scheda del tipo.
+  // Se non arriva (spenta, quota finita, errore) resta la scheda del tipo, senza messaggi tecnici.
+  const [generata, setGenerata] = useState<{ per: string; dati: RispostaSchedaGenerata | null } | null>(null);
+  const conSpecie = specie.trim().split(/\s+/).length >= 2;
+
+  useEffect(() => {
+    if (!conSpecie) return;
+    let attivo = true;
+    const q = new URLSearchParams({ specie, genere, ...(famiglia ? { famiglia } : {}) });
+    fetch(`/api/scheda-generata?${q}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => attivo && setGenerata({ per: chiave, dati: j?.ok && j.tipo === "generata" ? j : null }))
+      .catch(() => attivo && setGenerata({ per: chiave, dati: null }));
+    return () => {
+      attivo = false;
+    };
+  }, [chiave, conSpecie, specie, genere, famiglia]);
+  const inPreparazione = conSpecie && (!generata || generata.per !== chiave);
+  const datiGenerata = generata?.per === chiave ? generata.dati : null;
 
   useEffect(() => {
     let attivo = true;
@@ -152,6 +173,7 @@ export function SchedaCura({ specie, genere, famiglia }: { specie: string; gener
     return <p className="vetro rounded-riquadro p-4 text-sm text-testo-3">Preparo la scheda di cura…</p>;
   }
   const d = stato.dati;
+  if (datiGenerata) return <SchedaGenerata dati={datiGenerata} nomeTipo={d?.nomeTipo} />;
   if (!d) {
     return (
       <p className="vetro rounded-riquadro p-4 text-[15px] text-testo-2">
@@ -164,13 +186,18 @@ export function SchedaCura({ specie, genere, famiglia }: { specie: string; gener
   return (
     <section aria-label="Scheda di cura" className="flex flex-col gap-3">
       <div className="vetro-forte flex flex-col gap-2 rounded-card p-[18px]">
-        <span className="self-start rounded-pillola bg-bolla-verde px-3 py-1 text-[13px] font-extrabold text-verde-scuro">
-          Scheda per il tipo: {d.nomeTipo}
+        <span className="self-start rounded-pillola bg-bolla-acqua px-3 py-1 text-[13px] font-extrabold text-testo-2">
+          Scheda del tipo: {d.nomeTipo}
         </span>
         <p className="text-[13px] leading-snug text-testo-3">
-          Vale per molte piante di questo tipo, non solo per la tua: {BASE[d.base]}. La scheda della specie arriverà più
-          avanti.
+          Vale per molte piante di questo tipo, non solo per la tua: {BASE[d.base]}.
         </p>
+        {inPreparazione && (
+          <p role="status" className="flex items-center gap-2 rounded-bolla bg-bolla-verde px-3 py-2 text-[13px] font-bold text-verde-scuro">
+            <Loader2 size={16} strokeWidth={TRATTO} aria-hidden="true" className="shrink-0 animate-spin" />
+            Sto preparando la scheda di questa specie… circa 10 secondi
+          </p>
+        )}
         {s ? (
           <>
             <h2 className="text-[22px] leading-tight font-black">Come curarla</h2>
