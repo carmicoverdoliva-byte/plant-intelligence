@@ -1,6 +1,8 @@
 // Prova delle regole delle schede generate (R2) su casi costruiti: nessuna rete, nessun consumo.
 // Uso: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tests/app/prova-regole-r2.mjs
+import { readFileSync } from "node:fs";
 import { applicaRegole, NON_INDICATA, SEZIONI } from "../../src/lib/schede/genera/regole.ts";
+import { tossicitaPerPianta } from "../../src/lib/schede/tossicita.ts";
 
 let fatti = 0, errori = 0;
 const ok = (c, d) => { fatti++; if (!c) errori++; console.log(`${c ? "✓" : "✗"} ${d}`); };
@@ -126,6 +128,11 @@ ok(e.scheda.sezioni.temperatura.lineeGuida.riassunto === "La minima è 10 °C.",
 s = base({ riassunto: "Pianta rampicante da casa. Sta bene a temperature tra 10 e 30 °C." });
 e = applicaRegole(s, fontiConA);
 ok(e.scheda.riassunto === "Pianta rampicante da casa.", "Riassunto generale: tolte le frasi con numeri");
+// …anche le misure scritte in lettere (albero di giada: "un metro e mezzo", da Wikipedia), ma non "una volta" o "una gradevole"
+s = base({ riassunto: "Succulenta facile da casa. In vaso arriva a un metro e mezzo. Riposa per due settimane dopo il travaso. Annaffiala una volta che il terriccio è asciutto. Ha una gradevole forma ad alberello." });
+e = applicaRegole(s, fontiConA);
+ok(e.scheda.riassunto === "Succulenta facile da casa. Annaffiala una volta che il terriccio è asciutto. Ha una gradevole forma ad alberello.",
+  "Riassunto generale: tolte le misure in lettere ('un metro e mezzo', 'due settimane'), tenute 'una volta' e 'una gradevole'");
 
 // Numeri nel pollice verde: devono stare nella fonte, in una frase che parla della stessa cosa
 const wikiFiori = "Le foglie sono ovali. L'infiorescenza può sembrare composta da 6 fiori, il petalo è lungo 4–6 mm. Cresce a pieno sole.";
@@ -153,6 +160,15 @@ ok(e.bloccanti.some((b) => b.startsWith("copia")), "Regola 3: una sequenza di 8 
 // Formato non valido
 e = applicaRegole("testo qualsiasi", fontiConA);
 ok(e.bloccanti.includes("formato non valido"), "Formato non valido → bloccante");
+
+// Tossicità per la pianta riconosciuta: il caso del suo genere, se le nostre fonti A lo nominano
+const t = (f) => JSON.parse(readFileSync(new URL(`../../src/data/schede/tipi/${f}.json`, import.meta.url), "utf8")).tossicita;
+const succ = t("succulente");
+ok(tossicitaPerPianta(succ, "Crassula ovata", "Crassula").animali === "tossica", "Tossicità: albero di giada (Crassula) → Animali: Tossica");
+ok(tossicitaPerPianta(succ, "Kalanchoe blossfeldiana", "Kalanchoe").animali === "tossica", "Tossicità: kalanchoe → Animali: Tossica");
+ok(tossicitaPerPianta(succ, "Echeveria elegans", "Echeveria").animali === "varia", "Tossicità: echeveria (non nominata) → resta 'Dipende dalla specie'");
+ok(tossicitaPerPianta(t("rampicanti-tropicali"), "Epipremnum aureum", "Epipremnum").persone === "tossica", "Tossicità: pothos → Persone: Tossica");
+ok(tossicitaPerPianta(t("orchidee"), "Phalaenopsis amabilis", "Phalaenopsis").animali === "non tossica", "Tossicità: Phalaenopsis → Animali: Non tossica");
 
 console.log(`\n${fatti - errori}/${fatti} controlli superati.`);
 process.exit(errori ? 1 : 0);

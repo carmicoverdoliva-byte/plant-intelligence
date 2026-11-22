@@ -108,9 +108,30 @@ export async function provaFotocamera({ apri, valuta, clicca, perTesto, ok, paus
   await controllaSchermata("/fotocamera (risultato)", "fotocamera-risultato");
   ok((await testoPagina()).length > 0 && intercettate === 1, "Una sola richiesta inviata (intercettata, nessun consumo della quota)");
 
+  ok((await testoPagina()).includes("Persone: Tossica · Animali: Tossica"), "Tossicità per questa pianta: pothos (nominato dalle nostre fonti) → Tossica, non \"Dipende dalla specie\"");
+
+  // Tasto verde della barra con un risultato aperto: chiede prima (finestrella dell'app, non l'avviso di sistema)
+  const tastoVerde = `document.querySelector('nav a[aria-label="Fotocamera"]')`;
+  const finestraAperta = () => valuta(`document.querySelector("dialog")?.open === true`);
+  await clicca(tastoVerde);
+  await pausa(300);
+  ok((await finestraAperta()) && (await valuta(`document.querySelector("dialog").innerText.includes("Vuoi riconoscere un'altra pianta?")`)),
+    "Tasto verde con un risultato aperto: finestrella \"Vuoi riconoscere un'altra pianta?\"");
+  await clicca(`[...document.querySelectorAll("dialog button")].find(b => b.textContent.includes("No, resto qui"))`);
+  await pausa(200);
+  ok(!(await finestraAperta()) && (await testoPagina()).includes("probabilmente Epipremnum aureum"), "\"No, resto qui\": la finestrella si chiude e il risultato resta");
+  await clicca(tastoVerde);
+  await pausa(300);
+  await clicca(`[...document.querySelectorAll("dialog button")].find(b => b.textContent.includes("Sì, nuova foto"))`);
+  await pausa(300);
+  ok(!(await finestraAperta()) && !(await testoPagina()).includes("probabilmente") && (await valuta(`!!${perTesto("button", "Scatta")} && !document.querySelector('ul[aria-label="Foto scelte"] li')`)),
+    "\"Sì, nuova foto\": fotocamera pulita, pronta per una nuova foto");
+  await clicca(tastoVerde);
+  await pausa(300);
+  ok(!(await finestraAperta()), "Tasto verde senza risultato aperto: nessuna domanda");
+
   // 2. Risultato "incerto": lo dice chiaramente e dà i consigli di scatto
   prossima = "incerto";
-  await clicca(perTesto("button", "Riconosci un'altra pianta"));
   await pausa(200);
   await scegliFoto();
   await clicca(`[...document.querySelectorAll("button")].find(b => b.textContent.startsWith("Riconosci"))`);

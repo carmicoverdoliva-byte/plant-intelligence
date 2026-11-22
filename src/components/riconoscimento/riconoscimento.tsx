@@ -6,6 +6,7 @@ import { Camera, ImagePlus, LoaderCircle, Search, X } from "lucide-react";
 import type { Risultato } from "@/lib/riconoscimento/classifica";
 import { riduciFoto } from "@/lib/riconoscimento/foto";
 import { ascolta } from "@/lib/memoria-locale";
+import { ascoltaNuovaFoto, segnaRisultatoAperto } from "@/lib/risultato-aperto";
 import { oraRipartenza, quotaGiornaliera, registraUso, rimastiOggi, salvaQuota } from "@/lib/riconoscimento/quota-telefono";
 import { TRATTO } from "../icona";
 import { ConsigliScatto, RisultatoRiconoscimento } from "./risultato-riconoscimento";
@@ -159,6 +160,26 @@ export function Riconoscimento() {
     setProblema(null);
     setFase("scelta");
   }
+
+  // Il tasto verde della barra in basso deve sapere se c'è un risultato aperto (per chiedere prima di chiuderlo)
+  const conRisultato = fase === "risultato" && risultato !== null;
+  useEffect(() => {
+    segnaRisultatoAperto(conRisultato);
+    return () => segnaRisultatoAperto(false);
+  }, [conRisultato]);
+  // "Sì, nuova foto" nella finestrella della barra: come il pulsante "Riconosci un'altra pianta", poi in cima
+  const nuovoRef = useRef(nuovo);
+  useEffect(() => {
+    nuovoRef.current = nuovo;
+  });
+  useEffect(
+    () =>
+      ascoltaNuovaFoto(() => {
+        nuovoRef.current();
+        window.scrollTo({ top: 0 });
+      }),
+    [],
+  );
 
   if (fase === "risultato" && risultato) {
     const puoiAggiungere =

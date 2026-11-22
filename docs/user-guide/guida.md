@@ -85,12 +85,11 @@ No. Le foto vengono rimpicciolite sul telefono (così perdono anche le informazi
 
 ### Perché la scheda di cura cambia dopo qualche secondo?
 
-Appena riconosciuta la pianta vedi la scheda del suo tipo (per esempio "rampicanti tropicali"), che vale per molte piante
-simili. Intanto l'app prepara la scheda della specie: dopo circa 10 secondi prende il suo posto. In cima c'è sempre scritto
-quale stai guardando: "Scheda della specie (generata, basata sulle nostre fonti verificate)", "Scheda della specie · NON
-VERIFICATA" (solo consigli non ufficiali) oppure "Scheda del tipo". La scheda della specie la scrive un'intelligenza
-artificiale gratuita usando solo le fonti citate, e regole automatiche tolgono ciò che le fonti non dicono. Se non riesce
-a prepararla, resta la scheda del tipo.
+Appena riconosciuta la pianta vedi la scheda del suo tipo (per esempio "rampicanti tropicali"), che vale per molte piante simili. Intanto l'app prepara la scheda della specie: dopo circa 10 secondi prende il suo posto. In cima c'è sempre scritto quale stai guardando: "Scheda della specie (generata, basata sulle nostre fonti verificate)", "Scheda della specie · NON VERIFICATA" (solo consigli non ufficiali) oppure "Scheda del tipo". La scheda della specie la scrive un'intelligenza artificiale gratuita usando solo le fonti citate, e regole automatiche tolgono ciò che le fonti non dicono. Se non riesce a prepararla, resta la scheda del tipo.
+
+### Sto guardando un risultato: cosa fa il tasto verde della fotocamera?
+
+Ti chiede "Vuoi riconoscere un'altra pianta?". Con "Sì, nuova foto" il risultato si chiude e la fotocamera è pronta per una nuova foto; con "No, resto qui" continui a leggere il risultato. Se non hai un risultato aperto, il tasto porta subito alla fotocamera. In fondo al risultato c'è anche il pulsante "Riconosci un'altra pianta".
 
 ### Perché l'app non mi dà la percentuale?
 

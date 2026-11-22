@@ -20,6 +20,7 @@ export interface RispostaSchedaGenerata {
 }
 
 const memoria = new Map<string, RispostaSchedaGenerata>();
+const inPreparazione = new Map<string, ReturnType<typeof generaScheda>>();
 
 export async function GET(request: Request) {
   await connection(); // si decide a ogni richiesta, non durante la compilazione
@@ -37,9 +38,16 @@ export async function GET(request: Request) {
   const giaFatta = memoria.get(chiave);
   if (giaFatta) return Response.json(giaFatta, { headers: { "Cache-Control": "no-store" } });
 
-  const r = await generaScheda(specie, genere, famiglia);
+  // Due richieste uguali nello stesso momento aspettano la STESSA generazione (non si pagano neuron due volte)
+  let inCorso = inPreparazione.get(chiave);
+  if (!inCorso) {
+    inCorso = generaScheda(specie, genere, famiglia).finally(() => inPreparazione.delete(chiave));
+    inPreparazione.set(chiave, inCorso);
+  }
+  const r = await inCorso;
   if (r.tipo !== "generata") {
-    // Ripiego: l'app resta sulla scheda del tipo. Nessun dettaglio tecnico al telefono.
+    // Ripiego: l'app resta sulla scheda del tipo. Nessun dettaglio tecnico al telefono; il motivo resta nel registro del server.
+    console.info(`[scheda-generata] ripiego per ${specie}: ${r.motivo} · ${r.tentativi.map((t) => `${t.modello} ${t.esito}`).join(" · ")}`);
     return Response.json({ ok: true, tipo: "ripiego" }, { headers: { "Cache-Control": "no-store" } });
   }
   const risposta: RispostaSchedaGenerata = {

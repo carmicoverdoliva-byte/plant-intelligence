@@ -416,6 +416,32 @@
       4,
       5,
       8
+    ],
+    "casi": [
+      {
+        "taxa": [
+          "Crassula"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica",
+        "nota": "L'albero di giada (Crassula) è tossico per cani e gatti. Per le persone non abbiamo ancora dati verificati: tienilo comunque lontano dai bambini.",
+        "fonti": [
+          4,
+          7
+        ]
+      },
+      {
+        "taxa": [
+          "Kalanchoe"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica",
+        "nota": "La kalanchoe è tossica per cani e gatti e può dare anche problemi al cuore. Per le persone abbiamo una sola fonte, che la indica come pericolosa anche per i bambini: non è ancora verificato, ma tienila lontana dai bambini.",
+        "fonti": [
+          5,
+          8
+        ]
+      }
     ]
   },
   "fonti": [

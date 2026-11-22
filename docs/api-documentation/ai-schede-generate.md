@@ -178,3 +178,15 @@ per richiesta.
   l'utente non dà l'ok.
 - Le regole che rendono sicura la scheda sono in `src/lib/schede/genera/regole.ts` e si provano con
   `tests/app/prova-regole-r2.mjs` (nessuna rete, nessun consumo).
+
+## Avviso (2026-11-22): il modello principale è stato ritirato
+
+- Cloudflare ha **ritirato `@cf/qwen/qwen3-30b-a3b-fp8` il 2026-11-20**: risponde con errore 410 ("Model has been
+  deprecated"). L'adattatore lo tratta come un errore e passa alla riserva (gemma), quindi l'app non si rompe: o arriva la
+  scheda di gemma, o resta la scheda del tipo.
+- Prova del 2026-11-22: albero di giada → scheda di gemma, verificata; Monstera → gemma ha copiato da Wikipedia → ripiego
+  sulla scheda del tipo.
+- **Decisione aperta (dell'utente):** quale modello mettere al posto di qwen. Nel catalogo Cloudflare del 2026-11-22 ci
+  sono, tra gli altri, `@cf/qwen/qwen3.8-27b`, `@cf/openai/gpt-oss-20b`, `@cf/zai-org/glm-4.7-flash` (da provare con le
+  stesse schede prima di scegliere).
+- Nel registro del server, ogni ripiego scrive il motivo e l'esito dei tentativi (`[scheda-generata] ripiego per …`).

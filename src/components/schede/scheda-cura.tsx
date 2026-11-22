@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown, Loader2, Droplet, ExternalLink, FlaskConical, Layers, Leaf, Shovel, Sprout, Sun, Thermometer, TriangleAlert, Bug } from "lucide-react";
 import type { SceltaScheda } from "@/lib/schede/scegli";
 import type { Fonte, Sezione, SchedaCura as Scheda, Tossicita } from "@/lib/schede/tipi";
+import { tossicitaPerPianta } from "@/lib/schede/tossicita";
 import type { Bolla as TipoBolla } from "@/content/guida";
 import { Bolla } from "../bolla";
 import { TRATTO } from "../icona";
@@ -134,6 +135,25 @@ function ElencoFonti({ fonti, titolo }: { fonti: Fonte[]; titolo: string }) {
   );
 }
 
+// Una sola richiesta per pianta: se la scheda si ricarica mentre aspetta, riusa la stessa (niente neuron sprecati)
+const richiesteGenerate = new Map<string, Promise<RispostaSchedaGenerata | null>>();
+function chiediGenerata(chiave: string, specie: string, genere: string, famiglia: string) {
+  let p = richiesteGenerate.get(chiave);
+  if (!p) {
+    const q = new URLSearchParams({ specie, genere, ...(famiglia ? { famiglia } : {}) });
+    p = fetch(`/api/scheda-generata?${q}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => (j?.ok && j.tipo === "generata" ? (j as RispostaSchedaGenerata) : null))
+      .catch(() => null);
+    richiesteGenerate.set(chiave, p);
+    // Se non è arrivata (ripiego, errore) si potrà riprovare la prossima volta che si apre questa pianta
+    void p.then((d) => {
+      if (!d) richiesteGenerate.delete(chiave);
+    });
+  }
+  return p;
+}
+
 export function SchedaCura({ specie, genere, famiglia }: { specie: string; genere: string; famiglia: string }) {
   const chiave = `${specie}|${genere}|${famiglia}`;
   const [stato, setStato] = useState<{ per: string; dati: (SceltaScheda & { ok: true }) | null } | null>(null);
@@ -145,11 +165,7 @@ export function SchedaCura({ specie, genere, famiglia }: { specie: string; gener
   useEffect(() => {
     if (!conSpecie) return;
     let attivo = true;
-    const q = new URLSearchParams({ specie, genere, ...(famiglia ? { famiglia } : {}) });
-    fetch(`/api/scheda-generata?${q}`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((j) => attivo && setGenerata({ per: chiave, dati: j?.ok && j.tipo === "generata" ? j : null }))
-      .catch(() => attivo && setGenerata({ per: chiave, dati: null }));
+    chiediGenerata(chiave, specie, genere, famiglia).then((dati) => attivo && setGenerata({ per: chiave, dati }));
     return () => {
       attivo = false;
     };
@@ -182,6 +198,8 @@ export function SchedaCura({ specie, genere, famiglia }: { specie: string; gener
     );
   }
   const s = d.scheda;
+  // Tossicità per QUESTA pianta: se le nostre fonti nominano il suo genere vale quel caso, non "Dipende dalla specie"
+  const tossicita = s ? tossicitaPerPianta(s.tossicita, specie, genere) : null;
 
   return (
     <section aria-label="Scheda di cura" className="flex flex-col gap-3">
@@ -265,18 +283,18 @@ export function SchedaCura({ specie, genere, famiglia }: { specie: string; gener
         </section>
       ))}
 
-      {s && (
+      {tossicita && (
         <section aria-label="Tossicità" className="flex flex-col gap-2 rounded-riquadro bg-bolla-tossica p-4 text-icona-tossica">
           <div className="flex items-center gap-2">
             <TriangleAlert size={20} strokeWidth={TRATTO} aria-hidden="true" />
             <h3 className="text-[17px] font-black">Tossicità</h3>
           </div>
           <p className="text-sm font-extrabold">
-            Persone: {testoTossicita[s.tossicita.persone]} · Animali: {testoTossicita[s.tossicita.animali]}
+            Persone: {testoTossicita[tossicita.persone]} · Animali: {testoTossicita[tossicita.animali]}
           </p>
           <p className="text-sm leading-snug">
-            {s.tossicita.nota}
-            <Rimandi ids={s.tossicita.fonti} />
+            {tossicita.nota}
+            <Rimandi ids={tossicita.fonti} />
           </p>
         </section>
       )}

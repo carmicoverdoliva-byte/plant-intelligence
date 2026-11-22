@@ -348,6 +348,24 @@
       2,
       3,
       4
+    ],
+    "casi": [
+      {
+        "taxa": [
+          "Epipremnum",
+          "Philodendron",
+          "Monstera"
+        ],
+        "persone": "tossica",
+        "animali": "tossica",
+        "nota": "Pothos, filodendro e monstera sono aracee: masticate irritano bocca, lingua e gola, possono dare vomito e la linfa irrita la pelle. Tienila lontana da bambini e animali e, per prudenza, usa i guanti quando la tagli.",
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
     ]
   },
   "fonti": [

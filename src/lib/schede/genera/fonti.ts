@@ -2,6 +2,7 @@
 // A = nostre schede verificate (tipo di pianta, nota di famiglia) · C = Wikipedia (CC BY-SA 4.0).
 import type { SchedaCura } from "../tipi";
 import { scegliScheda, type SceltaScheda } from "../scegli";
+import { casoTossicita } from "../tossicita";
 import { tossicitaPrudente, type FonteData, type SchedaGenerata } from "./regole";
 
 const UA = "Mandragola/0.1 (https://mandragola-app.vercel.app; app open source non commerciale)";
@@ -66,7 +67,7 @@ export async function raccogliFonti(specie: string, genere: string, famiglia?: s
 function tossicitaDalleNostreFonti(scelta: SceltaScheda, specie: string, genere: string): SchedaGenerata["tossicita"] {
   const t = scelta.scheda?.tossicita;
   const notaFam = scelta.notaFamiglia?.note.find((n) => n.tema === "tossicità")?.testo;
-  const caso = t?.casi?.find((c) => c.taxa.some((x) => x === specie || x === genere || specie.startsWith(x + " ")));
+  const caso = casoTossicita(t, specie, genere);
   if (caso) return { persone: caso.persone, animali: caso.animali, nota: caso.nota, fonti: ["S1"] };
   if (t) return { persone: t.persone, animali: t.animali, nota: senzaRipetizioni(t.nota), fonti: ["S1"] };
   if (notaFam) return { persone: "varia", animali: "varia", nota: senzaRipetizioni(`Dipende dalla specie. ${notaFam}`), fonti: ["S2"] };

@@ -58,6 +58,12 @@ const fontiNormalizzate = (t: string) => t.replace(/\s*[-–]\s*(?=\d)/g, "-");
 /** Il numero compare nel testo COME NUMERO A SÉ? ("6" non vale dentro "16", "2016" o "6,5") */
 const numeroIn = (n: string, testo: string) =>
   new RegExp(`(?<![\\d.,])${n.replace(/[.]/g, "\\.")}(?!\\d|[.,]\\d)`).test(fontiNormalizzate(testo));
+/** Una misura scritta in lettere: numero a parole + unità ("un metro", "due settimane", "una decina di centimetri") */
+export const MISURA_IN_LETTERE = new RegExp(
+  "(?<![\\p{L}])(?:un[oa]?|un'|mezz[oa]|due|tre|quattro|cinque|sei|sette|otto|nove|dieci|undici|dodici|quindici|venti|trenta|quaranta|cinquanta|sessanta|settanta|ottanta|novanta|cento|mille|decin[ae]|dozzin[ae]|centinai[oa]|paio)" +
+    "\\s*(?:di\\s+)?(?:metr[oi]|centimetr[oi]|millimetr[oi]|chilometr[oi]|grad[oi]|litr[oi]|chil[oi]|chilogramm[oi]|gramm[oi]|giorn[oi]|settiman[ae]|mes[ei]|ann[oi]|or[ae])(?![\\p{L}])",
+  "iu",
+);
 /** Tutti i numeri della frase compaiono nel testo delle fonti? */
 const numeriNelleFonti = (frase: string, testoFonti: string) => numeriDi(frase).every((n) => numeroIn(n, testoFonti));
 // Verbi e parole generiche: non bastano a dire che un consiglio viene dalla fonte
@@ -225,10 +231,11 @@ export function applicaRegole(
   scheda.riassunto = pulisci(scheda.riassunto, "riassunto");
   // Riassunto generale senza numeri (2026-11-19): il modello mescolava minima e ideale ("tra 10 e 30 °C").
   // I numeri stanno solo nelle sezioni, dove sono controllati con le fonti.
+  // Dal 2026-11-22 anche le misure scritte in lettere ("un metro e mezzo", "due settimane").
   {
     const tutte = frasi(scheda.riassunto);
-    const senza = tutte.filter((f) => !/\d/.test(f));
-    if (senza.length < tutte.length) interventi.push("riassunto: tolte le frasi con numeri (i numeri stanno solo nelle sezioni)");
+    const senza = tutte.filter((f) => !/\d/.test(f) && !MISURA_IN_LETTERE.test(f));
+    if (senza.length < tutte.length) interventi.push("riassunto: tolte le frasi con numeri o misure (i numeri stanno solo nelle sezioni)");
     scheda.riassunto = senza.join(" ");
   }
   for (const k of SEZIONI) {
