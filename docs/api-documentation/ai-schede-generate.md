@@ -190,3 +190,35 @@ per richiesta.
   sono, tra gli altri, `@cf/qwen/qwen3.8-27b`, `@cf/openai/gpt-oss-20b`, `@cf/zai-org/glm-4.7-flash` (da provare con le
   stesse schede prima di scegliere).
 - Nel registro del server, ogni ripiego scrive il motivo e l'esito dei tentativi (`[scheda-generata] ripiego per …`).
+
+## Gara per il sostituto (2026-11-23)
+
+Script `scripts/gara-modelli.mjs` (codice vero dell'app, tutte le regole, ogni modello da solo, senza riserva),
+10 specie della prima gara, schede in `~/test-piante/prova-r2/gara2`. Nessun modello è segnato "deprecated" nel catalogo.
+
+| Modello | Al primo colpo | Riprova per copia | Ripiego | Secondi medi | Neuron medi |
+|---|---|---|---|---|---|
+| gemma-4-26b | 7 | 3 | 1 | 37 | 84 |
+| glm-4.7-flash | 4 | 5 | 3 (1 tempo scaduto) | 83 | 93 |
+| gpt-oss-20b | 1 | 0 | 9 ("formato non valido") | 21 | 86 |
+| qwen3.8-27b | 3 | 2 | 7 (6 per tempo scaduto a 90 s) | 92 | ~600 per scheda riuscita |
+
+- gpt-oss-20b: la risposta non è nel formato atteso dall'adattatore (causa non ancora indagata: non è detto che sia
+  la qualità del modello).
+- qwen3.8-27b costa circa 7-10 volte gli altri e spesso supera i 90 secondi: con 10.000 neuron al giorno farebbe solo
+  15 schede circa.
+- Le chiamate interrotte per tempo scaduto probabilmente si pagano lo stesso, ma lo script non ne vede i neuron: il
+  consumo reale della gara può essere stato fino a circa 9.900 neuron (stima prudente; il token non può leggere le
+  statistiche d'uso).
+- **Scelta dell'utente (2026-11-23): principale `gemma-4-26b`, riserva `glm-4.7-flash`.** I modelli si cambiano in un
+  solo punto: `src/lib/schede/genera/modelli.ts` (il commento in cima spiega come).
+- Lo script della gara ora conta nel tetto il costo pieno previsto delle chiamate interrotte.
+
+### gpt-oss-20b riparato (2026-11-23)
+
+- Causa del "formato non valido": gpt-oss chiude il JSON con **una graffa in meno** alla fine. La lettura del JSON
+  (`src/lib/schede/genera/json.ts`) ora aggiunge solo le chiusure mancanti in fondo; un JSON rotto in mezzo resta rifiutato.
+- Prova (186 neuron in tutto): albero di giada 9,3 s e 111 neuron, la scheda si legge ma ha una frase copiata da
+  Wikipedia (servirebbe la riprova, non fatta per restare sotto 300 neuron); Monstera **al primo colpo, 16,1 s e 75 neuron**.
+- Contenuto della Monstera: corretto ma quasi uguale alla nostra scheda del tipo, nessun consiglio dal pollice verde,
+  un errore di italiano ("marcare" invece di "marcire"). Due schede sono poche per sceglierlo come principale.

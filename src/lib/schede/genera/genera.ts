@@ -1,13 +1,15 @@
 // Generazione di una scheda di specie (R2, decisioni dell'utente del 2026-11-19). SOLO SERVER.
-// Ordine dei tentativi:
-//   1. qwen3-30b
-//   2. se la scheda COPIA da Wikipedia → qwen3-30b di nuovo, chiedendo di riscrivere con parole sue
-//   3. se ricapita, o se qwen non risponde o la scheda non passa i controlli → gemma-4-26b (riserva)
-//   4. se fallisce anche gemma → ripiego: la scheda di genere o di tipo (o "in preparazione")
+// Ordine dei tentativi (i modelli si scelgono in ./modelli.ts):
+//   1. modello principale
+//   2. se la scheda COPIA da Wikipedia → di nuovo il principale, chiedendo di riscrivere con parole sue
+//   3. se ricapita, o se il principale non risponde o la scheda non passa i controlli → modello di riserva
+//   4. se fallisce anche la riserva → ripiego: la scheda di genere o di tipo (o "in preparazione")
 // Regola 1: senza nessuna fonte A, se esiste una scheda di genere o di tipo si mostra quella al posto della generata.
 import { raccogliFonti } from "./fonti";
+import { leggiJson } from "./json";
 import { applicaRegole, type EsitoRegole, type FonteData } from "./regole";
-import { MODELLI, WorkersAiCardWriter, type CardWriter } from "./scrittore";
+import { MODELLI_SCHEDE } from "./modelli";
+import { WorkersAiCardWriter, type CardWriter } from "./scrittore";
 import type { SceltaScheda } from "../scegli";
 
 const ISTRUZIONI = `Sei il redattore di Mandragola, un'app italiana per la cura delle piante. Scrivi una SCHEDA DI CURA per la specie indicata, in italiano semplice e corretto, usando SOLO le fonti fornite (S1, S2, S3). Non usare conoscenze tue: se un'informazione non è nelle fonti, scrivi "Non indicata dalle fonti.".
@@ -40,21 +42,14 @@ export type RisultatoGenerazione =
   | { tipo: "generata"; esito: EsitoRegole; modello: string; fonti: Record<string, FonteData>; tentativi: Tentativo[]; ms: number }
   | { tipo: "ripiego"; motivo: string; scelta: SceltaScheda; tentativi: Tentativo[]; ms: number };
 
-function leggiJson(testo: string): unknown {
-  try {
-    return JSON.parse(testo.slice(testo.indexOf("{"), testo.lastIndexOf("}") + 1));
-  } catch {
-    return null;
-  }
-}
 
 export async function generaScheda(
   specie: string,
   genere: string,
   famiglia?: string,
   scrittori: { principale: CardWriter; riserva: CardWriter } = {
-    principale: new WorkersAiCardWriter("qwen3-30b", MODELLI.principale),
-    riserva: new WorkersAiCardWriter("gemma-4-26b", MODELLI.riserva),
+    principale: new WorkersAiCardWriter(MODELLI_SCHEDE.principale.nome, MODELLI_SCHEDE.principale.id),
+    riserva: new WorkersAiCardWriter(MODELLI_SCHEDE.riserva.nome, MODELLI_SCHEDE.riserva.id),
   },
 ): Promise<RisultatoGenerazione> {
   const t0 = Date.now();

@@ -1,16 +1,11 @@
 // Adattatore CardWriter (D6 rivista, D13): Cloudflare Workers AI, piano gratuito. SOLO SERVER.
 // Chiavi: CLOUDFLARE_ACCOUNT_ID e CLOUDFLARE_AI_TOKEN, solo nelle variabili d'ambiente (mai nel codice, mai nei log).
-// Modelli decisi dall'utente il 2026-11-19: principale qwen3-30b, riserva gemma-4-26b; Mistral escluso.
+// Quali modelli usare si decide in UN SOLO posto: ./modelli.ts (MODELLI_SCHEDE).
 
 export interface CardWriter {
   nome: string;
   scrivi(messaggi: { role: "system" | "user"; content: string }[]): Promise<{ testo: string; neuron: number; ms: number; errore?: string }>;
 }
-
-export const MODELLI = {
-  principale: "@cf/qwen/qwen3-30b-a3b-fp8",
-  riserva: "@cf/google/gemma-4-26b-a4b-it",
-} as const;
 
 export class WorkersAiCardWriter implements CardWriter {
   constructor(
@@ -35,6 +30,8 @@ export class WorkersAiCardWriter implements CardWriter {
           response_format: { type: "json_object" },
           // Questi modelli "ragionano" prima di rispondere: per una scheda non serve e costa tempo e neuron
           chat_template_kwargs: { enable_thinking: false },
+          // Per i modelli che ragionano sempre (es. gpt-oss): il meno possibile (provato il 2026-11-23 su 4 modelli)
+          reasoning_effort: "low",
         }),
         signal: AbortSignal.timeout(this.tempoMassimoMs),
       });
