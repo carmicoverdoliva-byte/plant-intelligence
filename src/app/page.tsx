@@ -12,7 +12,7 @@ import type { Bolla as TipoBolla, NomeIcona } from "@/content/guida";
 // Differenze volute: niente campo di ricerca finché la ricerca non funziona (passo 3.2); "Da fare oggi" vuoto
 // finché non ci sono promemoria (fase 5); il Falso mito cita la sua fonte (CLAUDE.md §8).
 const azioni: { href: string; etichetta: string; bolla: TipoBolla; icona: NomeIcona }[] = [
-  { href: "/piante", etichetta: "Le mie piante", bolla: "verde", icona: "piante" },
+  { href: "/vivaio", etichetta: "Vivaio", bolla: "verde", icona: "piante" },
   { href: "/promemoria", etichetta: "Promemoria", bolla: "acqua", icona: "promemoria" },
   { href: "/nuova-pianta", etichetta: "Nuova pianta", bolla: "viola", icona: "nuova-pianta" },
   { href: "/guida", etichetta: "Guida", bolla: "lime", icona: "guida" },

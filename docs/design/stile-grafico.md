@@ -39,6 +39,8 @@ Verifica del 2026-11-18 (formula WCAG 2.x):
 - etichette del risultato (R0): `#0B5A33` su `#C3F0C6` 6,6:1 (affidabilità alta) · `#4D7A0C` su `#F1F9C4` 4,7:1
   (buona) · `#8A6A00` su `#FFF3B0` 4,5:1 (bassa) · `#33553F` su `#C8F1EC` 6,9:1 ("Scheda di cura in arrivo") ·
   `#B4441E` su vetro 5,5:1 ("Non ne sono sicuro");
+- azioni che cancellano (Vivaio, 2026-11-23): testo `#F2F8EC` su pulsante `#8A3412` (colore della tossicità) 7,5:1
+  ("Sì, elimina"); pulsante "Elimina dal Vivaio" in vetro con testo `#8A3412` 7,8-8,1:1;
 - **viola "magia" corretto:** con l'inizio della sfumatura del riferimento (`rgba(110,80,240,0.92)`) il testo chiaro era
   a 4,0:1 e l'etichetta gialla `#FFE36E` a 3,5:1. Con `rgba(88,58,210,0.92)` diventano 5,4:1 e 4,8:1. Il resto del
   riquadro è uguale.

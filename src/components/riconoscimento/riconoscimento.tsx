@@ -192,6 +192,7 @@ export function Riconoscimento() {
         <RisultatoRiconoscimento
           risultato={risultato}
           fotoUtente={foto[0]?.anteprima}
+          fotoDati={foto[0]?.dati}
           onAggiungiFoto={puoiAggiungere ? () => setFase("scelta") : undefined}
           onNuovo={nuovo}
         />

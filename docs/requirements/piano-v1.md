@@ -293,6 +293,11 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
   nome, foto ridotta, data, posizione in casa. Si salva il risultato completo o la scelta manuale, **mai** l'anteprima.
 - **Come si verifica:** prova automatica: salva, riapri la pagina, la pianta c'è ancora; modifica ed elimina funzionano.
 - **Tu:** salvi 2-3 piante sull'iPhone e controlli che restino dopo aver chiuso l'app.
+- **Stato (2026-11-23): costruito come "Vivaio" sul ramo anteprima-r2** (sostituisce "Le mie piante"): salva foto
+  ridotta, nomi, data e la scheda di cura mostrata (specie generata o tipo, con fonti e tossicità); bacheca, scheda
+  salvata senza internet, soprannome, elimina con conferma, "Già nel tuo Vivaio", backup su file (esporta/importa).
+  Archivio: IndexedDB tramite l'adattatore `ArchivioVivaio` (`src/lib/vivaio/archivio.ts`). Prova: `tests/app/prova-vivaio.mjs`.
+  Non ancora: posizione in casa, promemoria del backup.
 
 ### 3.2 Ricerca per nome (F06)
 - **Cosa si costruisce:** ricerca di una pianta per nome comune o scientifico nel catalogo dell'app, passando dalla

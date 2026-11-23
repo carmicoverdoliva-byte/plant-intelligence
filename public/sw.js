@@ -7,16 +7,19 @@
 // - MAI salvate: le richieste al server (/api/...) e quelle verso altri siti. Riconoscimento, contatori e meteo
 //   devono sempre andare in rete, e senza rete l'app lo dice (F13).
 // v2: nuovo nome (Mandragola) e nuove icone. Cambiare la versione fa scaricare di nuovo i file salvati.
-const VERSIONE = 'v2';
+// v3 (2026-11-23): anche la pagina Vivaio e i suoi file, così le piante salvate si aprono senza internet.
+const VERSIONE = 'v3';
 const CACHE = `mandragola-${VERSIONE}`;
-const DA_SALVARE_SUBITO = ['/', '/manifest.webmanifest', '/icons/icona-192.png', '/icons/icona-512.png', '/icons/icona-512-maskable.png'];
+const PAGINE_SUBITO = ['/', '/vivaio'];
+const DA_SALVARE_SUBITO = [...PAGINE_SUBITO, '/manifest.webmanifest', '/icons/icona-192.png', '/icons/icona-512.png', '/icons/icona-512-maskable.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);
     await cache.addAll(DA_SALVARE_SUBITO);
-    // Salva anche i file dell'app usati dalla pagina iniziale, letti dal suo HTML
-    const html = await (await fetch('/', { cache: 'no-store' })).text();
+    // Salva anche i file dell'app usati dalla Home e dal Vivaio, letti dal loro HTML
+    let html = '';
+    for (const pagina of PAGINE_SUBITO) html += await (await fetch(pagina, { cache: 'no-store' })).text();
     const files = [...new Set(html.match(/\/_next\/static\/[^"'\s)]+/g) || [])];
     await Promise.all(files.map((u) => cache.add(u).catch(() => { /* un file mancante non blocca l'installazione */ })));
     await self.skipWaiting();

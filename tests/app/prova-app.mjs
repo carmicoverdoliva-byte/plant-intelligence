@@ -154,7 +154,7 @@ try {
 
   // --- 1. Tutte le schermate ---
   const tutorial = ["riconoscere-una-pianta", "muoversi-nell-app", "spiegazioni-delle-sezioni", "installare-l-app", "ripetere-il-tutorial-iniziale", "usare-la-guida"];
-  const schermate = ["/", "/piante", "/fotocamera", "/promemoria", "/nuova-pianta", "/guida", ...tutorial.map((t) => `/guida/${t}`)];
+  const schermate = ["/", "/vivaio", "/fotocamera", "/promemoria", "/nuova-pianta", "/guida", ...tutorial.map((t) => `/guida/${t}`)];
   for (const s of schermate) {
     await apri(s);
     await controllaSchermata(s, s === "/" ? "home" : s.slice(1).replace(/\//g, "-"));
@@ -174,15 +174,15 @@ try {
   }
   ok(attiva, "Barra: la voce Guida risulta attiva");
 
-  // --- 3. Spiegazione della prima visita (sezione Le mie piante) ---
-  await valuta(`localStorage.removeItem("mandragola:spiegazione:piante"), true`);
-  await apri("/piante");
+  // --- 3. Spiegazione della prima visita (sezione Vivaio) ---
+  await valuta(`localStorage.removeItem("mandragola:spiegazione:vivaio"), true`);
+  await apri("/vivaio");
   const riquadro = `document.querySelector('section[aria-label^="Spiegazione"]')`;
   ok(await valuta(`!!${riquadro}`), "Spiegazione: compare alla prima visita");
   await clicca(perTesto("button", "Ho capito"));
   await pausa(200);
   ok(await valuta(`!${riquadro}`), "Spiegazione: \"Ho capito\" la chiude");
-  await apri("/piante");
+  await apri("/vivaio");
   ok(await valuta(`!${riquadro}`), "Spiegazione: non ricompare alla visita successiva");
   await clicca(`document.querySelector('button[aria-label^="Cos\\'è la sezione"]')`);
   await pausa(200);
@@ -203,6 +203,12 @@ try {
   {
     const { provaFotocamera } = await import("./prova-fotocamera.mjs");
     await provaFotocamera({ apri, valuta, clicca, perTesto, ok, pausa, foto, cmd, ascoltatori, sessionId, controllaSchermata });
+  }
+
+  // --- 6b. Vivaio (fase 3.1) ---
+  {
+    const { provaVivaio } = await import("./prova-vivaio.mjs");
+    await provaVivaio({ apri, valuta, clicca, perTesto, ok, pausa, foto, cmd, ascoltatori, sessionId, controllaSchermata });
   }
 
   // --- 7. Avviso di nuova versione ---

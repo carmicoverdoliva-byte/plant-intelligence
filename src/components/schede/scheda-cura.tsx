@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import type { DatiSchedaTipo, SchedaMostrata } from "@/lib/vivaio/tipi";
 import { ChevronDown, Loader2, Droplet, ExternalLink, FlaskConical, Layers, Leaf, Shovel, Sprout, Sun, Thermometer, TriangleAlert, Bug } from "lucide-react";
 import type { SceltaScheda } from "@/lib/schede/scegli";
 import type { Fonte, Sezione, SchedaCura as Scheda, Tossicita } from "@/lib/schede/tipi";
@@ -154,7 +155,18 @@ function chiediGenerata(chiave: string, specie: string, genere: string, famiglia
   return p;
 }
 
-export function SchedaCura({ specie, genere, famiglia }: { specie: string; genere: string; famiglia: string }) {
+export function SchedaCura({
+  specie,
+  genere,
+  famiglia,
+  onMostrata,
+}: {
+  specie: string;
+  genere: string;
+  famiglia: string;
+  /** Avvisa quale scheda si vede adesso e se ne sta arrivando una più precisa (per "Salva nel Vivaio") */
+  onMostrata?: (scheda: SchedaMostrata | null, inArrivo: boolean) => void;
+}) {
   const chiave = `${specie}|${genere}|${famiglia}`;
   const [stato, setStato] = useState<{ per: string; dati: (SceltaScheda & { ok: true }) | null } | null>(null);
   // Scheda della SPECIE generata (R2): si chiede subito, in parallelo; intanto si vede la scheda del tipo.
@@ -185,10 +197,21 @@ export function SchedaCura({ specie, genere, famiglia }: { specie: string; gener
     };
   }, [chiave, specie, genere, famiglia]);
 
-  if (!stato || stato.per !== chiave) {
+  const pronta = !!stato && stato.per === chiave;
+  const d = stato && stato.per === chiave ? stato.dati : null;
+  // Cosa si vede adesso (e se sta ancora arrivando qualcosa): serve al pulsante "Salva nel Vivaio"
+  const mostrata = useMemo<SchedaMostrata | null>(
+    () => (datiGenerata ? { tipo: "generata", dati: datiGenerata, nomeTipo: d?.nomeTipo } : d ? { tipo: "tipo", dati: d } : null),
+    [datiGenerata, d],
+  );
+  const inArrivo = !pronta || inPreparazione;
+  useEffect(() => {
+    onMostrata?.(mostrata, inArrivo);
+  }, [mostrata, inArrivo, onMostrata]);
+
+  if (!pronta) {
     return <p className="vetro rounded-riquadro p-4 text-sm text-testo-3">Preparo la scheda di cura…</p>;
   }
-  const d = stato.dati;
   if (datiGenerata) return <SchedaGenerata dati={datiGenerata} nomeTipo={d?.nomeTipo} />;
   if (!d) {
     return (
@@ -197,6 +220,30 @@ export function SchedaCura({ specie, genere, famiglia }: { specie: string; gener
       </p>
     );
   }
+  return <SchedaTipo dati={d} specie={specie} genere={genere} inPreparazione={inPreparazione} />;
+}
+
+/** Una scheda salvata nel Vivaio: si ridisegna dai dati conservati, senza internet e senza chiamate. */
+export function SchedaSalvata({ scheda, specie, genere }: { scheda: SchedaMostrata; specie: string; genere: string }) {
+  return scheda.tipo === "generata" ? (
+    <SchedaGenerata dati={scheda.dati} nomeTipo={scheda.nomeTipo} />
+  ) : (
+    <SchedaTipo dati={scheda.dati} specie={specie} genere={genere} />
+  );
+}
+
+/** La scheda del TIPO di pianta, disegnata dai suoi dati (presi dal server o dal Vivaio). */
+function SchedaTipo({
+  dati: d,
+  specie,
+  genere,
+  inPreparazione = false,
+}: {
+  dati: DatiSchedaTipo;
+  specie: string;
+  genere: string;
+  inPreparazione?: boolean;
+}) {
   const s = d.scheda;
   // Tossicità per QUESTA pianta: se le nostre fonti nominano il suo genere vale quel caso, non "Dipende dalla specie"
   const tossicita = s ? tossicitaPerPianta(s.tossicita, specie, genere) : null;

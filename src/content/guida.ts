@@ -33,10 +33,10 @@ export interface Spiegazione {
 }
 
 export const sezioni = {
-  piante: {
-    titolo: "Le mie piante",
+  vivaio: {
+    titolo: "Vivaio",
     testo:
-      "Qui troverai le piante che salvi dopo averle riconosciute, con le loro schede di cura. Restano solo sul tuo telefono. Questa parte arriva nella fase 3 della versione 1.",
+      "Qui ritrovi le piante che salvi dopo averle riconosciute, con la tua foto e la loro scheda di cura, anche senza internet. Tocca una pianta per aprirla, darle un soprannome o eliminarla. Restano solo sul tuo telefono: ogni tanto salvane una copia con \"Esporta backup\".",
   },
   fotocamera: {
     titolo: "Fotocamera",
@@ -87,7 +87,7 @@ export const tutorial: Tutorial[] = [
     icona: "casa",
     passi: [
       "In basso c'è sempre la barra di navigazione, su ogni schermata.",
-      "Da sinistra: Home, Le mie piante, Fotocamera (il pulsante verde al centro), Promemoria e Guida.",
+      "Da sinistra: Home, Vivaio (le tue piante), Fotocamera (il pulsante verde al centro), Promemoria e Guida.",
       "La sezione in cui ti trovi ha l'icona verde su uno sfondo chiaro.",
       "Dalla Home puoi aprire le stesse sezioni anche con i quattro pulsanti colorati sotto la card \"Riconosci una pianta\".",
     ],
@@ -158,7 +158,12 @@ export const domande: Domanda[] = [
   {
     domanda: "Dove finiscono i miei dati?",
     risposta:
-      "Restano sul tuo telefono. Non c'è un archivio online con i tuoi dati. Più avanti potrai salvarne una copia in un file, per esempio su iCloud Drive.",
+      "Restano sul tuo telefono. Non c'è un archivio online con i tuoi dati. Nel Vivaio puoi salvarne una copia in un file con \"Esporta backup\", per esempio su iCloud Drive.",
+  },
+  {
+    domanda: "Come funziona il Vivaio?",
+    risposta:
+      "Dopo un riconoscimento tocca \"Salva nel Vivaio\": si salvano la tua foto (rimpicciolita), i nomi, la data e la scheda di cura che stai vedendo, con fonti e tossicità. Se la scheda della specie sta ancora arrivando, l'app aspetta e salva quella. Nel Vivaio tocca una pianta per riaprire la sua scheda, anche senza internet; puoi darle un soprannome (per esempio \"la monstera del soggiorno\") o eliminarla. Se la stessa specie è già salvata vedi \"Già nel tuo Vivaio\", ma puoi salvarla comunque come pianta diversa. Tutto resta sul telefono: con \"Esporta backup\" ne salvi una copia in un file e con \"Importa backup\" la riprendi, anche su un altro telefono.",
   },
   {
     domanda: "Perché alcune sezioni dicono che arriveranno più avanti?",
@@ -262,10 +267,10 @@ export const onboarding: PassoOnboarding[] = [
   {
     id: "backup",
     titolo: "Una copia di sicurezza",
-    testo: "Presto potrai salvare le tue piante in un file, per esempio su iCloud Drive, e ritrovarle su un altro telefono.",
+    testo: "Nel Vivaio puoi salvare le tue piante in un file, per esempio su iCloud Drive, e ritrovarle su un altro telefono.",
     punti: [
       { icona: "file", bolla: "acqua", titolo: "Un file tutto tuo", testo: "Lo salvi dove vuoi tu. Nessun account, nessun archivio online." },
-      { icona: "campanella", bolla: "lime", titolo: "Te lo ricorderemo", testo: "La funzione arriva nella fase 3 della versione 1: per ora non devi fare niente." },
+      { icona: "piante", bolla: "verde", titolo: "Quando vuoi", testo: "Nel Vivaio tocca \"Esporta backup\". Per riprendere le piante: \"Importa backup\" e scegli il file." },
     ],
   },
 ];

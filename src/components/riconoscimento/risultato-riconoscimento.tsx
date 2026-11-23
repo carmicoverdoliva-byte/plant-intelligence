@@ -1,9 +1,14 @@
+"use client";
+
 import Image from "next/image";
+import { useCallback, useState } from "react";
 import { Camera, ExternalLink, Leaf, Plus, Sun, Sprout } from "lucide-react";
 import type { Candidato, Risultato } from "@/lib/riconoscimento/classifica";
 import { Bolla } from "../bolla";
 import { TRATTO } from "../icona";
 import { SchedaCura } from "../schede/scheda-cura";
+import { SalvaNelVivaio } from "../vivaio/salva-nel-vivaio";
+import type { SchedaMostrata } from "@/lib/vivaio/tipi";
 import { CosE } from "./cos-e";
 
 // Schermata del risultato (passo 2.3, F04), dal riferimento docs/design/riferimenti/scheda.html: foto della pianta in
@@ -46,15 +51,21 @@ function nomeConGenere(c: Candidato) {
 export function RisultatoRiconoscimento({
   risultato,
   fotoUtente,
+  fotoDati,
   onAggiungiFoto,
   onNuovo,
 }: {
   risultato: Risultato;
   fotoUtente?: string;
+  /** La foto già ridotta per il riconoscimento: da qui le copie piccole per il Vivaio */
+  fotoDati?: Blob;
   onAggiungiFoto?: () => void;
   onNuovo: () => void;
 }) {
   const p = risultato.principale;
+  // Quale scheda di cura si vede adesso (e se ne sta arrivando una più precisa): serve a "Salva nel Vivaio"
+  const [mostrata, setMostrata] = useState<{ scheda: SchedaMostrata | null; inArrivo: boolean }>({ scheda: null, inArrivo: true });
+  const segnaMostrata = useCallback((scheda: SchedaMostrata | null, inArrivo: boolean) => setMostrata({ scheda, inArrivo }), []);
 
   if (risultato.livello === "non-riconosciuta" || !p) {
     return (
@@ -117,6 +128,8 @@ export function RisultatoRiconoscimento({
         </a>
       </section>
 
+      {!incerto && <SalvaNelVivaio pianta={p} foto={fotoDati} scheda={mostrata.scheda} inArrivo={mostrata.inArrivo} />}
+
       <CosE specie={p.nomeScientifico} genere={p.genere} />
 
       {risultato.gemelle.length > 0 && (
@@ -159,7 +172,7 @@ export function RisultatoRiconoscimento({
           della pianta.
         </p>
       ) : (
-        <SchedaCura specie={p.nomeScientifico} genere={p.genere} famiglia={p.famiglia} />
+        <SchedaCura specie={p.nomeScientifico} genere={p.genere} famiglia={p.famiglia} onMostrata={segnaMostrata} />
       )}
 
       {incerto && <ConsigliScatto />}
