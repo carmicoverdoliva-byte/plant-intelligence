@@ -10,6 +10,12 @@
 //  6. (2026-11-19) Pollice verde ANCORATO alla fonte: ogni consiglio deve avere almeno 2 parole importanti presenti nel
 //     testo della fonte citata, e i suoi numeri devono comparire lì; altrimenti si toglie. Un consiglio che cita una
 //     fonte A non è "non ufficiale": passa nelle cose da fare delle linee guida della sua sezione.
+//  7. (2026-11-25, versione 2 delle regole, dopo la rilettura delle prime 24 schede)
+//     a. un numero che nella fonte è una minima o una massima deve restarlo nella frase, altrimenti la frase si toglie;
+//     b. "Coltivarla da zero" basata solo sul tipo di pianta si dichiara indicazione generale;
+//     c. niente promesse (aria pulita, fortuna, salute) e niente frasi che parlano dell'app o delle schede;
+//     d. fonte A citata insieme a Wikipedia: nelle linee guida resta solo ciò che la fonte A dice davvero;
+//     e. un consiglio del pollice verde deve dire cosa FARE.
 
 export type LivelloFonte = "A" | "C";
 export interface FonteData {
@@ -17,6 +23,7 @@ export interface FonteData {
   titolo: string;
   url?: string;
   testo: string;
+  generale?: boolean; // vale per il tipo di pianta o la famiglia, non per la singola specie (regola 7b)
 }
 export type Tossicita = "tossica" | "varia" | "non verificata" | "non tossica";
 
@@ -76,7 +83,7 @@ const paroleImportanti = (t: string, escluse: Set<string>) =>
 export function ancorato(consiglio: string, testoFonti: string, nomiPianta: string[] = []): boolean {
   const escluse = new Set(nomiPianta.flatMap((n) => parole(n)).map(radiceParola));
   const nellaFonte = new Set(parole(testoFonti).map(radiceParola));
-  return paroleImportanti(consiglio, escluse).filter((r) => nellaFonte.has(r)).length >= 2 && numeriConContesto(consiglio, testoFonti, escluse);
+  return paroleImportanti(consiglio, escluse).filter((r) => nellaFonte.has(r)).length >= 2 && numeriConContesto(consiglio, testoFonti, escluse) && significatoOk(consiglio, testoFonti);
 }
 /** Ogni numero del consiglio è in una frase della fonte che parla della STESSA cosa (almeno una parola importante in
  *  comune)? Es.: "pieno sole per 6 ore" NON è confermato da "possono sembrare 6 fiori" (2026-11-19, basilico). */
@@ -95,6 +102,129 @@ export function giaContenuto(a: string, b: string, nomiPianta: string[] = []): b
   const pb = new Set(paroleImportanti(b, escluse));
   if (!pa.length) return true;
   return pa.filter((r) => pb.has(r)).length / pa.length >= 0.8;
+}
+
+// --- Regola 7a: il SIGNIFICATO dei numeri (minima, massima, soglia di danno) ---
+type Significato = "min" | "max" | "danno";
+interface NumeroLetto {
+  n: string;
+  unita: string; // "" se non si capisce
+  significati: Set<Significato>; // vuoto = numero senza un significato particolare (es. "ideale 16-30 °C")
+  dichiarato?: Significato; // "minima" o "massima" scritto chiaro
+}
+const UNITA: [RegExp, string][] = [
+  [/^\s*(°|gradi)/i, "gradi"],
+  [/^\s*(cm|centimetr)/i, "cm"],
+  [/^\s*(mm|millimetr)/i, "mm"],
+  [/^\s*(m|metr[oi])(?![\p{L}])/iu, "m"],
+  [/^\s*or[ae](?![\p{L}])/iu, "ore"],
+  [/^\s*minut/i, "minuti"],
+  [/^\s*giorn/i, "giorni"],
+  [/^\s*settiman/i, "settimane"],
+  [/^\s*mes[ei](?![\p{L}])/iu, "mesi"],
+  [/^\s*ann[oi](?![\p{L}])/iu, "anni"],
+  [/^\s*volt[ae]/i, "volte"],
+  [/^\s*%/, "%"],
+];
+// Parole che uniscono due numeri in un solo intervallo: "10-13", "tra i 10 e i 13 °C", "2 o 3 anni"
+const UNISCE = /^\s*(?:°\s*C?)?\s*(?:[-–‑]|e|o|a|ai|and|to|fino a)\s*(?:i|gli|ai|agli)?\s*$/i;
+const DANNO = /dann|rovin|soffr|muor|uccid|blocc|letal/i;
+const TENERE = /\b(?:tieni\w*|tener\w*|mantien\w*|manten\w*|conserva\w*|preferi\w*|ideal\w*|ottimal\w*|sta(?:nno)? bene|cresc\w* bene)\b/i;
+const NEGA = /\b(?:non|mai|evita\w*|senza)\b/i;
+
+function significatiDi(prima: string, dopo: string): Pick<NumeroLetto, "significati" | "dichiarato"> {
+  const s = new Set<Significato>();
+  let dichiarato: Significato | undefined;
+  const p = prima.toLowerCase();
+  if (/minim|minimum/.test(p)) s.add((dichiarato = "min"));
+  if (/massim|maximum/.test(p)) s.add((dichiarato = "max"));
+  if (/almeno|non meno|at least/.test(p)) s.add("min");
+  if (/al massimo|non più di|at most|fino a(?:i|gli|d)?\s*$|up to\s*$/.test(p)) s.add("max");
+  if (/\bsotto\b|inferior|\bscend|\bbelow\b|\bunder\b|meno di/.test(p)) {
+    const tienilaSotto = TENERE.test(p) && !NEGA.test(p) && !/scend|\bse\b|quando|prima che/.test(p);
+    s.add(tienilaSotto ? "max" : "min");
+  }
+  if (/\bsopra\b|superior|\boltre\b|supera|\babove\b|più di/.test(p)) s.add(NEGA.test(p) || (DANNO.test(dopo) && !TENERE.test(p)) ? "max" : "min");
+  if (/^\W*(?:°\s*c)?\W*(?:o più|in su|al minimo|come minimo|minim)/i.test(dopo)) s.add("min");
+  if (/^\W*(?:°\s*c)?\W*(?:o meno|al massimo|come massimo|massim)/i.test(dopo)) s.add("max");
+  // "possono subire danni tra 4 e 10 °C"; ma "mantieni tra 10 e 13 °C per evitare danni" NON è una soglia di danno
+  if (DANNO.test(p) || (DANNO.test(dopo) && !TENERE.test(p))) s.add("danno");
+  return { significati: s, dichiarato };
+}
+
+function numeriLetti(testoFonte: string): NumeroLetto[] {
+  const letti: NumeroLetto[] = [];
+  for (const pezzo of testoFonte.split(/\n+|(?<=[.!?;])\s+/)) {
+    const trovati = [...pezzo.matchAll(/\d+(?:[.,]\d+)?/g)].map((m) => ({ n: m[0], da: m.index, a: m.index + m[0].length }));
+    for (let i = 0; i < trovati.length; ) {
+      let j = i;
+      while (j + 1 < trovati.length && UNISCE.test(pezzo.slice(trovati[j].a, trovati[j + 1].da))) j++;
+      const prima = pezzo.slice(i ? trovati[i - 1].a : 0, trovati[i].da).split(/[;(]/).pop() as string;
+      const dopo = pezzo.slice(trovati[j].a, trovati[j + 1]?.da ?? pezzo.length);
+      const unita = UNITA.find(([re]) => re.test(dopo))?.[1] ?? "";
+      const senso = significatiDi(prima, dopo);
+      for (let k = i; k <= j; k++) letti.push({ n: trovati[k].n, unita, ...senso });
+      i = j + 1;
+    }
+  }
+  return letti;
+}
+
+/** Ogni numero della frase ha nella fonte la stessa unità e lo stesso significato? Se nella fonte è SOLO una minima
+ *  (o una massima, o una soglia di danno), la frase deve dirlo: "mantieni tra 10 e 13 °C" non vale per "Minima: 10-13 °C". */
+export function significatoOk(frase: string, testoFonti: string): boolean {
+  const fonte = numeriLetti(testoFonti);
+  return numeriLetti(frase).every((g) => {
+    const uguali = fonte.filter((f) => f.n === g.n && (!f.unita || !g.unita || f.unita === g.unita));
+    if (!uguali.length) return false;
+    if (uguali.every((f) => f.significati.size) && !uguali.some((f) => [...f.significati].some((x) => g.significati.has(x)))) return false;
+    return !g.dichiarato || uguali.some((f) => f.significati.has(g.dichiarato as Significato));
+  });
+}
+
+// --- Regola 7b: moltiplicazione nota solo per il tipo di pianta ---
+export const PER_MOLTE = "Per molte piante di questo tipo: ";
+export const NON_DETTO = "Non è detto che valga per questa specie.";
+const PARLA_DI_MOLTIPLICAZIONE = /moltiplic|propag|\btale[ae]\b|riproduc|riproduzion|stolon|pollon/i;
+const minuscola = (t: string) => t.charAt(0).toLowerCase() + t.slice(1);
+
+// --- Regola 7c: promesse (aria, fortuna, salute) e frasi che parlano dell'app o delle schede ---
+export const PROMESSE =
+  /purific|depura(?!t)|(?:pulisc|ripulisc|filtra)\w* l['’]aria|miglior\w* (?:[\wàèéìòù'’]+ ?){0,3}aria|inquinan|formaldeide|fortuna(?!t)|porta(?:no)? (?:bene|soldi|prosperità|ricchezza)|buon auspicio|feng ?shui|energi[ae] positiv|medicin|curativ|terapeutic|fitoterap|antinfiammator|antisettic|lenitiv|cicatrizz|cosmetic|tisan|benefic\w* per (?:la|il|l['’])|fa bene al(?:la|l['’])? ?(?:salute|pelle|umore)|benessere (?:mentale|psicofisico)/i;
+export const PARLA_DELL_APP = /\bsched[ae]\b|mandragola|\bapp\b|quando sarà pront/i;
+
+// --- Regola 7e: un consiglio deve dire cosa FARE ---
+// Imperativi chiari ("metti", "tieni") e imperativi che somigliano alla terza persona ("annaffia", "la pianta evita…")
+const CHIARI =
+  "metti|mantieni|tieni|proteggi|rimuovi|togli|scegli|aggiungi|dividi|immergi|riduci|sospendi|attendi|pulisci|fornisci|garantisci|copri|raccogli|distribuisci|riproduci|esponi|poni|disponi|preferisci|inserisci|diluisci|riempi|ripeti|fai|offri|sostieni";
+const AMBIGUI =
+  "annaffia|innaffia|bagna|irriga|versa|vaporizza|nebulizza|spruzza|sposta|posiziona|colloca|evita|taglia|pota|elimina|controlla|verifica|osserva|concima|fertilizza|travasa|rinvasa|trapianta|semina|pianta|moltiplica|separa|stacca|preleva|lascia|aspetta|usa|utilizza|mescola|svuota|aumenta|somministra|lega|ruota|arieggia|ventila|tratta|ricorda|assicura|avvicina|allontana|appoggia|interra|ombreggia|ripara|spolvera|riporta|porta|applica|coltiva|limita|regola|alterna|prepara|propaga|monitora";
+const ENCLITICI = "(?:la|lo|le|li|ne|ti|gli|vi)";
+const INFINITI =
+  "(?:annaffi|innaffi|bagn|irrig|vers|vaporizz|nebulizz|spruzz|spost|posizion|colloc|evit|tagli|pot|elimin|controll|verific|osserv|concim|fertilizz|travas|rinvas|trapiant|semin|piant|moltiplic|separ|stacc|prelev|lasci|aspett|us|utilizz|mescol|svuot|aument|somministr|leg|ruot|arieggi|ventil|tratt|assicur|avvicin|allontan|appoggi|interr|ombreggi|ripar|riport|port|applic|coltiv|limit|regol|altern|prepar|propag|monitor)ar(?:e|la|lo|le|li|ne)" +
+  "|(?:mett|ten|manten|protegg|rimuov|toglier|scegli|aggiung|divid|immerg|sospend|attend|raccogli|ripet|otten)er(?:e|la|lo|le|li|ne)|(?:pul|forn|garant|copr|distribu|inser|dilu|riemp|offr)ir(?:e|la|lo|le|li|ne)|(?:ridur|espor|por|dispor|riprodur)(?:re|la|lo|le|li|ne)";
+const PARTICIPI =
+  "(?:annaffi|innaffi|bagn|irrig|vaporizz|nebulizz|spost|posizion|colloc|evit|tagli|pot|elimin|controll|concim|fertilizz|travas|rinvas|trapiant|semin|piant|moltiplic|separ|stacc|lasci|us|utilizz|svuot|somministr|tratt|riport|coltiv|limit|propag)at[aoei]|mess[aoei]|(?:man)?tenut[aoei]|protett[aoei]|tolt[aoei]|rimoss[aoei]|scelt[aoei]|divis[aoei]|ridott[aoei]|espost[aoei]|copert[aoei]";
+const L = "(?<![\\p{L}])", F = "(?![\\p{L}])"; // inizio e fine di parola, accenti compresi
+const IMPERATIVO_CHIARO = new RegExp(`${L}(?:(?:${CHIARI})${ENCLITICI}?|(?:${AMBIGUI})${ENCLITICI})${F}`, "iu");
+const IMPERATIVO_INIZIO = new RegExp(`(?:^|[,;:(]\\s*|${L}(?:e|o|poi|quindi|oppure|non|inoltre|infine|sempre)\\s+)(?:${AMBIGUI})${F}`, "iu");
+const COMPLEMENTO_INIZIALE = /^(?:in|da|dal|dalla|d['’]\w+|durante|per|se|quando|dopo|prima|ogni|nel|nei|nella|nelle|con|a|al|all['’]\w+|ad)\s/i;
+const IMPERATIVO_DOPO = new RegExp(`(?<!${L}(?:si|che|la|una|pianta|specie|questa)\\s)${L}(?:${AMBIGUI})${F}`, "iu");
+const INFINITO_INIZIO = new RegExp(`(?:^|[,;:]\\s*)(?:non\\s+)?(?:${INFINITI})${F}`, "iu");
+const MODALE = new RegExp(
+  `${L}(?:puoi|devi|dovresti|potresti|bisogna|occorre|conviene|basta|si (?:può|possono|deve|devono|consiglia(?: di)?)|è (?:meglio|bene|possibile|consigliabile|consigliato|utile|importante|necessario|preferibile|sufficiente)|va|vanno|andrebbe|deve|devono|dovrebbe|può essere|possono essere|consiglia(?:bile|to)?)${F}.*${L}(?:${INFINITI}|${PARTICIPI})${F}`,
+  "iu",
+);
+/** Il consiglio contiene un'azione ("annaffia", "puoi dividerla", "va spostata")? "Ha un portamento lianoso" no. */
+export function diceCosaFare(t: string): boolean {
+  const s = t.trim();
+  return (
+    IMPERATIVO_CHIARO.test(s) ||
+    IMPERATIVO_INIZIO.test(s) ||
+    (COMPLEMENTO_INIZIALE.test(s) && IMPERATIVO_DOPO.test(s)) ||
+    INFINITO_INIZIO.test(s) ||
+    MODALE.test(s)
+  );
 }
 
 const MAX_POLLICE = 3;
@@ -162,7 +292,18 @@ export function applicaRegole(
     // Regole 1 e 2: linee guida solo con fonti A; il resto va nel pollice verde
     const nonA = citate.filter((id) => fonti[id].livello !== "A");
     const soloA = citate.filter((id) => fonti[id].livello === "A");
-    if (riassunto && (nonA.length || !soloA.length || !verificata)) {
+    if ((riassunto || cose.length) && nonA.length && soloA.length) {
+      // Regola 7d: fonte A e Wikipedia insieme → frase per frase: ciò che dice la fonte A resta, il resto va nel pollice
+      const testoA = soloA.map((id) => fonti[id].testo).join("\n");
+      const diceA = (t: string) => ancorato(t, testoA, nomiPianta) && numeriNelleFonti(t, testoA);
+      const pezzi = [...frasi(riassunto), ...cose];
+      const spostate = pezzi.filter((t) => !diceA(t));
+      for (const t of spostate) pollice.push({ consiglio: /[.!?]$/.test(t) ? t : `${t}.`, fonti: nonA });
+      riassunto = frasi(riassunto).filter(diceA).join(" ");
+      cose = cose.filter(diceA);
+      if (!riassunto && cose.length) riassunto = cose.shift() as string;
+      interventi.push(`${k}: citate insieme fonte A e Wikipedia, tenute ${pezzi.length - spostate.length} frasi della fonte A su ${pezzi.length}`);
+    } else if (riassunto && (nonA.length || !soloA.length || !verificata)) {
       if (nonA.length) {
         // Un consiglio per frase, senza doppioni (le "cose da fare" spesso ripetono il riassunto)
         const pezzi: string[] = [];
@@ -180,11 +321,12 @@ export function applicaRegole(
     // Numeri delle linee guida: devono comparire nelle fonti A citate, altrimenti la frase si toglie
     if (riassunto) {
       const testoFonti = soloA.map((id) => fonti[id].testo).join(" ");
-      const ok = (t: string) => numeriNelleFonti(t, testoFonti);
+      const righeFonti = soloA.map((id) => fonti[id].testo).join("\n");
+      const ok = (t: string) => numeriNelleFonti(t, testoFonti) && significatoOk(t, righeFonti);
       const prima = frasi(riassunto).length + cose.length;
       riassunto = frasi(riassunto).filter(ok).join(" ");
       cose = cose.filter(ok);
-      if (frasi(riassunto).length + cose.length < prima) interventi.push(`${k}: tolte frasi con numeri non presenti nelle fonti`);
+      if (frasi(riassunto).length + cose.length < prima) interventi.push(`${k}: tolte frasi con numeri non presenti nelle fonti, o con un altro significato`);
     }
     if (riassunto) {
       const conDati = frasi(riassunto).filter((f) => !/non (è |sono )?indicat/i.test(f));
@@ -245,6 +387,47 @@ export function applicaRegole(
     s.pollice = s.pollice.filter((p) => !PAROLE_TOSSICITA.test(p.consiglio));
   }
 
+  // Regola 7c: promesse e frasi sull'app o sulle schede, ovunque (nel pollice verde per prudenza)
+  const ammessa = (t: string) => !PROMESSE.test(t) && !PARLA_DELL_APP.test(t);
+  const senzaPromesse = (t: string, dove: string) => {
+    const tenute = frasi(t).filter(ammessa);
+    if (tenute.length < frasi(t).length) interventi.push(`${dove}: tolta una promessa o una frase sull'app`);
+    return tenute.join(" ");
+  };
+  scheda.riassunto = senzaPromesse(scheda.riassunto, "riassunto");
+  for (const k of SEZIONI) {
+    const { lineeGuida: lg } = scheda.sezioni[k];
+    const quante = lg.coseDaFare.length + scheda.sezioni[k].pollice.length;
+    if (lg.riassunto !== NON_INDICATA) lg.riassunto = senzaPromesse(lg.riassunto, k);
+    lg.coseDaFare = lg.coseDaFare.filter(ammessa);
+    scheda.sezioni[k].pollice = scheda.sezioni[k].pollice.filter((p) => ammessa(p.consiglio));
+    if (lg.coseDaFare.length + scheda.sezioni[k].pollice.length < quante) interventi.push(`${k}: tolta una promessa o una frase sull'app`);
+    if (!lg.riassunto) lg.riassunto = lg.coseDaFare.shift() ?? NON_INDICATA;
+  }
+
+  // Regola 7b: moltiplicazione nota solo per il tipo di pianta → si dichiara generale, e non va tra le cose da fare in cima
+  const moltiplica = scheda.sezioni.coltivarla.lineeGuida;
+  const coltivarlaGenerale = moltiplica.fonti.length > 0 && moltiplica.fonti.every((id) => fonti[id]?.generale);
+  if (coltivarlaGenerale && moltiplica.riassunto !== NON_INDICATA) {
+    moltiplica.riassunto = `${PER_MOLTE}${minuscola(moltiplica.riassunto)} ${NON_DETTO}`;
+    moltiplica.coseDaFare = moltiplica.coseDaFare.map((c) => `In generale: ${minuscola(c)}`);
+    interventi.push("coltivarla: dichiarata indicazione generale per il tipo di pianta");
+  }
+  if (coltivarlaGenerale) {
+    const tenute = frasi(scheda.riassunto).filter((f) => !PARLA_DI_MOLTIPLICAZIONE.test(f));
+    if (tenute.length < frasi(scheda.riassunto).length) interventi.push("riassunto: tolte le frasi sulla moltiplicazione (note solo per il tipo)");
+    scheda.riassunto = tenute.join(" ");
+  }
+
+  // Regola 7e: un consiglio del pollice verde deve dire cosa fare
+  for (const k of SEZIONI) {
+    const tenuti = scheda.sezioni[k].pollice.filter((p) => diceCosaFare(p.consiglio));
+    const tolti = scheda.sezioni[k].pollice.length - tenuti.length;
+    if (tolti) interventi.push(`${k}: ${tolti} consigli dal pollice verde tolti perché non dicono cosa fare`);
+    consigliTolti += tolti;
+    scheda.sezioni[k].pollice = tenuti;
+  }
+
   // Regola 4b (2026-11-19): la tossicità NON la scrive il modello: si copia dalle nostre fonti A
   scheda.tossicita = verificata && tossicitaNostra ? tossicitaNostra : tossicitaPrudente();
 
@@ -266,7 +449,7 @@ export function applicaRegole(
   // "Cose da fare" in cima: non le scrive il modello. Si prendono dalle linee guida con fonte A (max 7, senza doppioni)
   scheda.coseDaFare = [];
   if (verificata) {
-    const liste = ORDINE_COSE.map((k) => (scheda.sezioni[k].lineeGuida.fonti.length ? [...scheda.sezioni[k].lineeGuida.coseDaFare] : []));
+    const liste = ORDINE_COSE.map((k) => (scheda.sezioni[k].lineeGuida.fonti.length && !(k === "coltivarla" && coltivarlaGenerale) ? [...scheda.sezioni[k].lineeGuida.coseDaFare] : []));
     for (let giro = 0; scheda.coseDaFare.length < MAX_COSE && liste.some((l) => l.length); giro++) {
       for (const l of liste) {
         const c = l.shift();

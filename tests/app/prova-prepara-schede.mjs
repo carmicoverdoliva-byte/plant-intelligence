@@ -11,7 +11,7 @@ import { SEZIONI } from "../../src/lib/schede/genera/regole.ts";
 const redis = new Map();
 let chiamateAi = 0, get = 0, modoAi = "ok", upstashSpento = false;
 const buona = JSON.stringify({
-  riassunto: "Scheda di prova, chiara e breve.",
+  riassunto: "Pianta di prova, facile e robusta.",
   sezioni: Object.fromEntries(SEZIONI.map((k) => [k, { lineeGuida: { riassunto: "Indicazione di prova.", coseDaFare: [`Azione di prova per ${k}.`], fonti: ["S1"] }, pollice: [] }])),
 });
 const finto = createServer((req, res) => {

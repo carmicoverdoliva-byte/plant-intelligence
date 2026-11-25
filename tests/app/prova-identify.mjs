@@ -40,7 +40,7 @@ function eseguiRedis([nome, chiave, ...resto]) {
 let chiamateAi = 0;
 let modoAi = "ok"; // "ok" | "rotto"
 const schedaFinta = JSON.stringify({
-  riassunto: "Scheda di prova, chiara e breve.",
+  riassunto: "Pianta di prova, facile e robusta.",
   sezioni: Object.fromEntries(SEZIONI.map((k) => [k, { lineeGuida: { riassunto: "Indicazione di prova.", coseDaFare: [`Azione di prova per ${k}.`], fonti: ["S1"] }, pollice: [] }])),
 });
 

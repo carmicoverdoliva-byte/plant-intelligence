@@ -2,7 +2,7 @@
 // Uso: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tests/app/prova-regole-r2.mjs
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync, statSync } from "node:fs";
-import { applicaRegole, NON_INDICATA, SEZIONI } from "../../src/lib/schede/genera/regole.ts";
+import { applicaRegole, diceCosaFare, NON_INDICATA, PARLA_DELL_APP, PER_MOLTE, PROMESSE, SEZIONI, significatoOk } from "../../src/lib/schede/genera/regole.ts";
 import { tossicitaPerPianta } from "../../src/lib/schede/tossicita.ts";
 import { leggiJson } from "../../src/lib/schede/genera/json.ts";
 import { testoPerRegistro, valoriSegreti } from "../../src/lib/schede/genera/registro.ts";
@@ -31,7 +31,7 @@ const base = (extra = {}) => ({
 
 // Regola 2: fonte C nelle linee guida → spostata nel pollice verde
 let s = base();
-s.sezioni.luce = sez({ riassunto: "Ama il sole pieno.", coseDaFare: [], fonti: ["S3"] });
+s.sezioni.luce = sez({ riassunto: "Mettilo in sole pieno.", coseDaFare: [], fonti: ["S3"] });
 let e = applicaRegole(s, fontiConA);
 ok(e.scheda.sezioni.luce.lineeGuida.riassunto === NON_INDICATA && e.scheda.sezioni.luce.pollice.some((p) => p.consiglio.includes("sole pieno") && p.fonti.includes("S3")),
   "Regola 2: contenuto con fonte C spostato nei consigli dal pollice verde");
@@ -75,7 +75,7 @@ ok(e.scheda.coseDaFare.length === 0, "Cose da fare: vuote se la scheda è non ve
 // Pollice verde: doppioni e frasi quasi uguali tolti, max 3 per sezione
 s = base();
 s.sezioni.temperatura = sez({ riassunto: NON_INDICATA, coseDaFare: [], fonti: [] }, [
-  { consiglio: "Il basilico cresce bene tra 20 e 25 °C.", fonti: ["S3"] },
+  { consiglio: "Coltivalo al sole: cresce bene tra 20 e 25 °C.", fonti: ["S3"] },
   { consiglio: "Mantieni temperature tra 20 e 25 °C.", fonti: ["S3"] },
   { consiglio: "Teme il freddo: proteggilo d'inverno.", fonti: ["S3"] },
   { consiglio: "Tienilo in un posto riparato dal vento.", fonti: ["S3"] },
@@ -115,7 +115,7 @@ ok(e.scheda.sezioni.temperatura.lineeGuida.riassunto === "La minima è 10 °C.",
 // 1a (2026-11-19): consiglio che ripete una parte di un altro → tolto (Ficus: margotta / talea apicale)
 s = base();
 s.sezioni.coltivarla = sez({ riassunto: NON_INDICATA, coseDaFare: [], fonti: [] }, [
-  { consiglio: "Si riproduce per margotta o talea apicale.", fonti: ["S3"] },
+  { consiglio: "Moltiplicalo per margotta o talea apicale.", fonti: ["S3"] },
   { consiglio: "Moltiplicare con la margotta.", fonti: ["S3"] },
   { consiglio: "Usare la talea apicale per la propagazione.", fonti: ["S3"] },
 ]);
@@ -145,7 +145,7 @@ const fontiFiori = { S1: fontiConA.S1, S3: { livello: "C", titolo: "Wikipedia", 
 s = base();
 s.sezioni.luce = sez({ riassunto: NON_INDICATA, coseDaFare: [], fonti: [] }, [
   { consiglio: "Esponi la pianta a pieno sole per almeno 6 ore al giorno.", fonti: ["S3"] },
-  { consiglio: "Cresce bene a pieno sole, anche diretto.", fonti: ["S3"] },
+  { consiglio: "Mettila a pieno sole, dove cresce bene.", fonti: ["S3"] },
 ]);
 e = applicaRegole(s, fontiFiori);
 const pl = e.scheda.sezioni.luce.pollice.map((p) => p.consiglio);
@@ -158,9 +158,64 @@ ok(e.scheda.sezioni.temperatura.lineeGuida.riassunto === NON_INDICATA, "Numeri: 
 
 // Regola 3: anti-copia (8 parole uguali a Wikipedia)
 s = base();
-s.sezioni.coltivarla = sez({ riassunto: NON_INDICATA, coseDaFare: [], fonti: [] }, [{ consiglio: "È una pianta erbacea annuale della famiglia delle Lamiaceae originaria dell'India.", fonti: ["S3"] }]);
+s.sezioni.coltivarla = sez({ riassunto: NON_INDICATA, coseDaFare: [], fonti: [] }, [{ consiglio: "Coltivalo: è una pianta erbacea annuale della famiglia delle Lamiaceae originaria dell'India.", fonti: ["S3"] }]);
 e = applicaRegole(s, fontiConA);
 ok(e.bloccanti.some((b) => b.startsWith("copia")), "Regola 3: una sequenza di 8 parole uguale a Wikipedia blocca la scheda (si rigenera)");
+
+// --- Versione 2 delle regole (2026-11-25): difetti trovati rileggendo le prime 24 schede ---
+// 7a. Il significato dei numeri, con la fonte VERA della Monstera (scheda del tipo "rampicanti")
+const righeTipo = (f) => {
+  const j = JSON.parse(readFileSync(new URL(`../../src/data/schede/tipi/${f}.json`, import.meta.url), "utf8"));
+  return Object.values(j.sezioni).map((x) => `${x.lineeGuida.riassunto} Cose da fare: ${x.lineeGuida.coseDaFare.join("; ")}.\n${(x.lineeGuida.valori ?? []).map((v) => `  - ${v.etichetta}: ${v.valore}`).join("\n")}`).join("\n");
+};
+const ramp = righeTipo("rampicanti-tropicali"), foglia = righeTipo("foglia-tropicale"), grasse = righeTipo("succulente"), orch = righeTipo("orchidee");
+const MONSTERA = "Mantieni la temperatura tra i 10 e i 13 °C per evitare che la crescita si blocchi o la pianta si rovini.";
+ok(!significatoOk(MONSTERA, ramp), "7a: frase sbagliata della Monstera ('mantieni tra i 10 e i 13 °C') rifiutata: nella fonte è la minima");
+ok(!significatoOk("Tienila tra 10 e 13 °C.", foglia), "7a: rifiutata anche con la fonte delle piante da foglia, dove 10-13 è la minima");
+for (const t of ["La minima è 10-13 °C.", "Non farla scendere sotto i 10 °C.", "Tienila sopra i 10 °C.", "Non lasciarla a temperature inferiori ai 10 °C."])
+  ok(significatoOk(t, ramp), `7a: accettata "${t}"`);
+ok(significatoOk("Tienila tra 16 e 30 °C.", ramp), "7a: l'intervallo ideale non è una minima e resta");
+ok(!significatoOk("La minima è 16 °C.", ramp), "7a: un numero 'ideale' non può diventare una minima");
+ok(significatoOk("Riportala in casa quando di notte si scende verso i 13 °C.", foglia) && significatoOk("I danni possono arrivare già tra i 4 e i 10 °C.", foglia), "7a: soglie di freddo e di danno dette bene restano");
+ok(!significatoOk("Mantieni tra 4 e 10 °C per evitare danni.", foglia), "7a: una soglia di danno non può diventare un consiglio");
+ok(!significatoOk("Dalle 4 ore di sole.", grasse) && significatoOk("Dalle almeno 4 ore di sole.", grasse), "7a: 'almeno 4 ore' deve restare 'almeno'");
+ok(significatoOk("Di notte non deve scendere sotto i 16 °C, di giorno va bene tra 19 e 30 °C.", orch) && significatoOk("La massima è circa 30 °C.", orch), "7a: orchidea, minima e massima giuste");
+ok(!significatoOk("Tienila in un vaso 10 °C più largo.", ramp.replace(/.*10.*°C.*\n?/g, "")), "7a: stesso numero con un'altra unità (cm invece di °C) non vale");
+s = base();
+s.sezioni.temperatura = sez({ riassunto: "Teme il freddo.", coseDaFare: [MONSTERA, "Tienila lontana dagli spifferi."], fonti: ["S1"] });
+e = applicaRegole(s, { S1: { livello: "A", titolo: "tipo", testo: ramp } });
+ok(e.scheda.sezioni.temperatura.lineeGuida.coseDaFare.join() === "Tienila lontana dagli spifferi." && !JSON.stringify(e.scheda).includes("10 e i 13"), "7a: nella scheda la frase della Monstera sparisce, le altre restano");
+
+// 7b. Moltiplicazione nota solo per il tipo di pianta
+const fontiTipo = { S1: { ...fontiConA.S1, generale: true }, S3: fontiConA.S3 };
+s = base({ riassunto: "Pianta da casa. Si moltiplica facilmente per talea." });
+s.sezioni.coltivarla = sez({ riassunto: "La propagazione avviene tramite talea.", coseDaFare: ["Taglia una talea con un nodo."], fonti: ["S1"] });
+e = applicaRegole(s, fontiTipo);
+const colt = e.scheda.sezioni.coltivarla.lineeGuida;
+ok(colt.riassunto.startsWith(PER_MOLTE + "la propagazione") && /Non è detto/.test(colt.riassunto) && colt.coseDaFare[0] === "In generale: taglia una talea con un nodo.", "7b: moltiplicazione del solo tipo → 'Per molte piante di questo tipo: …'");
+ok(!e.scheda.coseDaFare.some((c) => /talea/.test(c)) && e.scheda.riassunto === "Pianta da casa.", "7b: non compare tra le cose da fare in cima né nel riassunto");
+e = applicaRegole(s, fontiConA);
+ok(e.scheda.sezioni.coltivarla.lineeGuida.riassunto === "La propagazione avviene tramite talea.", "7b: con una fonte della specie la frase resta com'è");
+
+// 7c. Promesse e frasi sull'app
+for (const t of ["Può purificare l'aria degli ambienti chiusi.", "Migliora la qualità dell'aria.", "Si dice che porti fortuna.", "Il gel ha proprietà lenitive.", "È usata come pianta medicinale."]) ok(PROMESSE.test(t), `7c: promessa riconosciuta "${t}"`);
+for (const t of ["I problemi dipendono dall'acqua e dalla qualità dell'aria.", "Usa acqua depurata.", "Preferisce la luce filtrata.", "Il sole diretto causa scottature sulle foglie."]) ok(!PROMESSE.test(t), `7c: frase normale lasciata "${t}"`);
+ok(PARLA_DELL_APP.test("Per la moltiplicazione, consulta la scheda specifica della specie quando sarà pronta."), "7c: frase sulle schede riconosciuta (falangio)");
+s = base({ riassunto: "Pianta facile. Può purificare l'aria." });
+s.sezioni.luce = sez({ riassunto: "Luce viva con terriccio asciutto. Porta fortuna in casa.", coseDaFare: ["Consulta la scheda della specie.", "Mettila alla luce."], fonti: ["S1"] });
+e = applicaRegole(s, fontiConA);
+ok(e.scheda.riassunto === "Pianta facile." && e.scheda.sezioni.luce.lineeGuida.riassunto === "Luce viva con terriccio asciutto." && e.scheda.sezioni.luce.lineeGuida.coseDaFare.join() === "Mettila alla luce.", "7c: tolte da riassunto, linee guida e cose da fare");
+
+// 7d. Fonte A e Wikipedia citate insieme
+s = base();
+s.sezioni.acqua = sez({ riassunto: "Annaffia quando il terriccio è asciutto. Riparalo dal vento e dal freddo.", coseDaFare: ["Annaffia con il terriccio asciutto.", "Tienilo a 25 °C in pieno sole."], fonti: ["S1", "S3"] });
+e = applicaRegole(s, fontiConA);
+ok(e.scheda.sezioni.acqua.lineeGuida.riassunto === "Annaffia quando il terriccio è asciutto." && e.scheda.sezioni.acqua.lineeGuida.fonti.join() === "S1" && !/vento|25/.test(JSON.stringify(e.scheda.sezioni.acqua.lineeGuida)), "7d: nelle linee guida resta solo ciò che dice la fonte A");
+ok(e.scheda.sezioni.acqua.pollice.some((p) => /vento/.test(p.consiglio) && p.fonti.join() === "S3"), "7d: il resto va nel pollice verde con la sua fonte");
+
+// 7e. Un consiglio deve dire cosa fare
+for (const t of ["Annaffia ogni settimana.", "In inverno riduci le annaffiature.", "Puoi riprodurla usando gli stoloni.", "Tienila lontana dai vetri.", "Va spostata in casa.", "È possibile propagarla per talea.", "Evitare i ristagni.", "Se l'aria è secca, vaporizza le foglie.", "Con il caldo, esponila di meno."]) ok(diceCosaFare(t), `7e: azione riconosciuta "${t}"`);
+for (const t of ["La pianta ha un portamento lianoso con fusticini lunghi.", "La pianta tollera l'ombra.", "La fioritura avviene tra febbraio e marzo.", "Si propaga facilmente.", "Non indicata dalle fonti.", "Annaffiature frequenti, suolo ben drenato.", "La pianta evita il sole diretto.", "La temperatura ideale è 20 °C."]) ok(!diceCosaFare(t), `7e: descrizione rifiutata "${t}"`);
 
 // Formato non valido
 e = applicaRegole("testo qualsiasi", fontiConA);

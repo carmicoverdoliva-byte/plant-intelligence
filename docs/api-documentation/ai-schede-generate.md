@@ -292,7 +292,7 @@ una scheda del tipo con fonti A, con lo stesso codice dell'app (`servizio.ts`). 
 **Primo lancio:** 24 generate (tutte con gemma, 22 al primo colpo e 2 dopo la riprova per copia), 0 ripieghi, 42 saltate
 senza fonte A, 1 saltata perché solo genere (Phalaenopsis). **1.694 neuron**, circa 71 a scheda.
 
-**Difetti trovati rileggendo le 24 schede (da correggere):**
+**Difetti trovati rileggendo le 24 schede (corretti con la versione 2 delle regole, vedi sotto):**
 - **Monstera (serio):** "Mantieni la temperatura tra i 10 e i 13 °C" nelle linee guida; nella fonte è la *minima*. Il
   controllo dei numeri vede che il numero c'è, non che cosa significa.
 - **Moltiplicazione:** il consiglio generico del tipo ("talea con un nodo") diventa un consiglio della specie anche dove
@@ -302,3 +302,36 @@ senza fonte A, 1 saltata perché solo genere (Phalaenopsis). **1.694 neuron**, c
 - **Zamioculcas:** "può purificare l'aria" nel riassunto, che non cita fonti.
 - **Falangio:** "consulta la scheda specifica della specie quando sarà pronta" dentro la scheda della specie.
 - **Hoya:** un consiglio del pollice verde che non è un consiglio ("portamento lianoso").
+
+## Versione 2 delle regole (2026-11-25)
+
+Nate dai difetti qui sopra, sono in `regole.ts` (regole 7a-7e) e nelle istruzioni al modello; prove in `prova-regole-r2.mjs`.
+- **7a, significato dei numeri:** se nella fonte un numero è solo una minima, una massima, un "almeno" o una soglia di danno,
+  la frase deve dirlo, con la stessa unità; altrimenti si toglie. Vale per linee guida e pollice verde. Sulle 73 frasi con
+  numeri delle prime schede ne toglie una: quella sbagliata della Monstera.
+- **7b, moltiplicazione nota solo per il tipo:** "Per molte piante di questo tipo: … Non è detto che valga per questa specie.";
+  le azioni iniziano con "In generale:"; niente tra le cose da fare in cima né nel riassunto.
+- **7c, vietate** promesse (aria pulita, fortuna, usi medicinali) e frasi sull'app o sulle schede, anche nel pollice verde.
+- **7d, fonte A e Wikipedia citate insieme:** nelle linee guida resta solo ciò che la fonte A dice; il resto va nel pollice verde.
+- **7e, pollice verde:** il consiglio deve contenere un'azione, altrimenti si toglie (anche "Non indicata dalle fonti.").
+
+**Rigenerazione:** 24 schede su 24 (23 gemma; Monstera con la riserva gpt-oss dopo due copie), 0 ripieghi, **1.786 neuron**.
+
+| | Versione 1 | Versione 2 |
+|---|---|---|
+| Sezioni "Non indicata dalle fonti." con fonte A | 9 | 0 |
+| Consigli dal pollice verde | 47 | 27 |
+| Cose da fare nelle sezioni | 573 | 603 |
+
+Rilette per intero Monstera, Strelitzia, Zamioculcas, falangio, le tre Dracaena e Hoya; delle altre 16 riassunto, temperature
+e pollice verde. I difetti segnalati sono spariti.
+
+**Restano da valutare:**
+- **Pollice verde in contrasto con le linee guida** (Dracaena fragrans): Wikipedia dice "due volte a settimana in estate", la
+  fonte A dice di controllare con il dito. La frase è davvero nella fonte, ma non dovrebbe stare accanto alla linea guida.
+- **Azioni forzate:** per dire sempre cosa fare, il modello trasforma descrizioni in consigli (sansevieria: "Usa un terreno
+  sabbioso o roccioso se vuoi replicare l'habitat naturale").
+- **Consigli utili persi:** la talea di foglia della Zamioculcas e il rizoma della sansevieria non compaiono più.
+- **Monstera (gpt-oss):** corretta, ma molte frasi sono uguali alla scheda del tipo, con qualche plurale ("Tienile lontane").
+  Dice "in generale" anche cose che la fonte riferisce proprio alla monstera.
+- **Strelitzia:** "è importante seguire le indicazioni specifiche per la specie", frase senza contenuto.

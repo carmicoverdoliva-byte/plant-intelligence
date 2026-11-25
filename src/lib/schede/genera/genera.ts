@@ -24,6 +24,10 @@ Regole obbligatorie:
 - I consigli sono PRATICI, per chi ha la pianta in casa, sul balcone o nell'orto: cosa fare e come. Niente elenchi di nomi scientifici di parassiti o malattie: usa il nome comune (es. "cocciniglia") e di' come riconoscerla o prevenirla.
 - Non scrivere frasi come "non è indicata la temperatura massima": scrivi solo i dati che le fonti danno.
 - Il "riassunto" generale NON contiene numeri (niente temperature, giorni, dosi): i numeri vanno solo nelle sezioni.
+- Un numero mantiene il SIGNIFICATO della fonte: se la fonte dice "minima 10-13 °C" scrivi "non scendere sotto i 10-13 °C", mai "tieni tra 10 e 13 °C".
+- Ogni sezione di "lineeGuida" cita solo fonti A (S1, S2): le cose dette da Wikipedia vanno in "pollice".
+- Ogni consiglio di "pollice" comincia con un'AZIONE (annaffia, sposta, taglia, controlla…), non con una descrizione della pianta.
+- Vietato: promesse o proprietà (purifica l'aria, porta fortuna, usi medicinali) e frasi sull'app, sulle fonti o sulle schede ("consulta la scheda…").
 Rispondi SOLO con un oggetto JSON valido:
 {"riassunto": "...",
  "sezioni": {"luce": S, "acqua": S, "temperatura": S, "terriccio": S, "concime": S, "travaso": S, "coltivarla": S, "problemi": S}}
