@@ -18,7 +18,7 @@ testi delle schede. Il database è a Francoforte, creato dall'utente il 2026-11-
 | Cosa | Chiave | Contenuto | Scade |
 |---|---|---|---|
 | Quota del telefono | `quota:<data italiana>:<impronta>` | un numero | a **mezzanotte ora italiana** (ora legale compresa) |
-| Scheda generata | `scheda:r<versione>:<specie>\|<genere>\|<famiglia>` | la scheda completa, circa 6 KB | dopo 1 anno |
+| Scheda generata | `scheda:r<versione>:<specie>\|<genere>\|<famiglia>:<impronta delle fonti A>` | la scheda completa, circa 6 KB | dopo 1 anno |
 
 - **Codice del telefono:** un codice casuale creato dall'app e ricordato sul telefono (`src/lib/riconoscimento/telefono.ts`).
   Il server ne conserva solo un'**impronta** (SHA-256 accorciata), mai il codice né l'indirizzo di rete.

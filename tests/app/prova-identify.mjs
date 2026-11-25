@@ -6,8 +6,16 @@
 // Uso: node tests/app/prova-identify.mjs
 import { spawn } from "node:child_process";
 import { createServer } from "node:http";
+import { createRequire } from "node:module";
+import path from "node:path";
 import { SEZIONI } from "../../src/lib/schede/genera/regole.ts";
 import { prossimaMezzanotteItaliana } from "../../src/lib/giorno-italiano.ts";
+
+// Le chiavi delle schede si calcolano con il codice vero dell'app (alias "@/" letto con jiti, già tra le dipendenze)
+const { createJiti } = createRequire(import.meta.url)("jiti");
+const jiti = createJiti(import.meta.url, { alias: { "@": path.resolve("src") } });
+const { chiavePianta, improntaFontiA } = await jiti.import(path.resolve("src/lib/schede/genera/servizio.ts"));
+const { scegliScheda } = await jiti.import(path.resolve("src/lib/schede/scegli.ts"));
 
 const CHIAVE_FINTA = "chiave-finta-di-prova";
 const PORTA_APP = 3100 + Math.floor(Math.random() * 300);
@@ -210,27 +218,42 @@ try {
     return { stato: x.status, testo: t, dati: JSON.parse(t) };
   };
   const MONSTERA = "specie=Monstera%20deliciosa&genere=Monstera&famiglia=Araceae";
-  const chiaveMonstera = "scheda:r1:Monstera deliciosa|Monstera|Araceae";
+  const chiaveMonstera = chiavePianta("Monstera deliciosa", "Monstera", "Araceae");
   comandi = [];
   let g = await generata(MONSTERA);
   ok(g.dati.tipo === "generata" && chiamateAi === 1 && comandi.map((c) => c[0]).join() === "GET,SET", "Scheda: la prima volta si genera e si salva (2 comandi)");
-  ok(comandi[1][1].replace(/r\d+/, "r1") === chiaveMonstera && comandi[1][3] === "EX", "Scheda: chiave con versione delle regole e nome, con scadenza");
+  ok(comandi[1][1] === chiaveMonstera && /:[0-9a-f]{12}$/.test(chiaveMonstera) && comandi[1][3] === "EX", "Scheda: chiave con versione, nome e impronta delle fonti A, con scadenza");
+  ok(g.dati.appenaGenerata === true && !isNaN(Date.parse(g.dati.generataIl)) && !comandi[1][2].includes("appenaGenerata"), "Scheda: appena generata lo dice, e in Upstash resta solo la data");
   comandi = [];
   const g2 = await generata(MONSTERA);
-  ok(g2.testo === g.testo && chiamateAi === 1 && comandi.length === 0, "Scheda: subito dopo arriva dalla memoria del server (0 comandi, 0 AI)");
+  ok(g2.testo === g.testo.replace(',"appenaGenerata":true', "") && chiamateAi === 1 && comandi.length === 0, "Scheda: subito dopo arriva dalla memoria del server (0 comandi, 0 AI)");
   // Una scheda già in Upstash (come dopo un riavvio del server, o generata per un altro telefono)
-  const valore = [...redis].find(([k]) => k.endsWith("Monstera deliciosa|Monstera|Araceae"))[1];
-  const versione = [...redis.keys()].find((k) => k.startsWith("scheda:r")).split(":")[1];
-  redis.set(`scheda:${versione}:Epipremnum aureum|Epipremnum|Araceae`, valore);
+  const valore = redis.get(chiaveMonstera);
+  redis.set(chiavePianta("Epipremnum aureum", "Epipremnum", "Araceae"), valore);
   comandi = [];
   g = await generata("specie=Epipremnum%20aureum&genere=Epipremnum&famiglia=Araceae");
   ok(g.dati.tipo === "generata" && chiamateAi === 1 && comandi.map((c) => c[0]).join() === "GET", "Scheda: già in Upstash → arriva con 1 comando e senza AI");
-  redis.set(`scheda:${versione}:Zamioculcas zamiifolia|Zamioculcas|Araceae`, '{"tipo":"generata","rovinata":');
+  ok(g.dati.appenaGenerata === undefined && g.dati.generataIl === JSON.parse(valore).generataIl, "Scheda: quella salvata porta la sua data e non si dice appena generata");
+  // Fonti A cambiate: una nota o una scheda del tipo diversa danno un'altra impronta
+  const fontiMonstera = scegliScheda("Monstera deliciosa", "Monstera", "Araceae");
+  const improntaPrima = improntaFontiA("Monstera deliciosa", "Monstera", "Araceae"), improntaAltra = improntaFontiA("Phalaenopsis amabilis", "Phalaenopsis", "Orchidaceae");
+  const riassuntoVero = fontiMonstera.scheda.riassunto;
+  fontiMonstera.scheda.riassunto = riassuntoVero + " (cambiato)";
+  ok(improntaFontiA("Monstera deliciosa", "Monstera", "Araceae") !== improntaPrima, "Fonti A: se cambia la scheda del tipo, la scheda salvata non vale più");
+  ok(improntaFontiA("Phalaenopsis amabilis", "Phalaenopsis", "Orchidaceae") === improntaAltra, "Fonti A: le schede degli altri tipi restano valide");
+  fontiMonstera.scheda.riassunto = riassuntoVero;
+  const notaVera = fontiMonstera.notaFamiglia.note[0].testo;
+  fontiMonstera.notaFamiglia.note[0].testo = notaVera + " (cambiata)";
+  ok(improntaFontiA("Monstera deliciosa", "Monstera", "Araceae") !== improntaPrima, "Fonti A: se cambia la nota di famiglia, la scheda salvata non vale più");
+  fontiMonstera.notaFamiglia.note[0].testo = notaVera;
+  ok(improntaFontiA("Monstera deliciosa", "Monstera", "Araceae") === improntaPrima, "Fonti A: rimesse com'erano, la scheda torna valida");
+  redis.set(chiavePianta("Zamioculcas zamiifolia", "Zamioculcas", "Araceae"), '{"tipo":"generata","rovinata":');
   g = await generata("specie=Zamioculcas%20zamiifolia&genere=Zamioculcas&famiglia=Araceae");
   ok(g.dati.tipo === "generata" && chiamateAi === 2, "Scheda: se quella salvata è rovinata si rigenera");
-  redis.set("scheda:r0:Aloe vera|Aloe|Asphodelaceae", valore);
+  redis.set(chiavePianta("Aloe vera", "Aloe", "Asphodelaceae").replace("scheda:r", "scheda:r0"), valore);
+  redis.set(chiavePianta("Aloe vera", "Aloe", "Asphodelaceae").replace(/[0-9a-f]{12}$/, "000000000000"), valore);
   g = await generata("specie=Aloe%20vera&genere=Aloe&famiglia=Asphodelaceae");
-  ok(g.dati.tipo === "generata" && chiamateAi === 3, "Scheda: quella di una versione vecchia delle regole non si usa");
+  ok(g.dati.tipo === "generata" && chiamateAi === 3, "Scheda: quella con regole o fonti vecchie non si usa, si rigenera");
   modoAi = "rotto"; comandi = [];
   g = await generata("specie=Crassula%20ovata&genere=Crassula&famiglia=Crassulaceae");
   ok(g.dati.tipo === "ripiego" && !comandi.some((c) => c[0] === "SET") && !/rotto|formato|Error/.test(g.testo), "Scheda: il ripiego non si salva e non mostra errori tecnici");

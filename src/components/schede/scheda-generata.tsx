@@ -3,6 +3,7 @@
 import { ChevronDown, Droplet, ExternalLink, FlaskConical, Layers, Shovel, Sprout, Sun, Thermometer, TriangleAlert, Bug } from "lucide-react";
 import type { RispostaSchedaGenerata } from "@/app/api/scheda-generata/route";
 import type { SezioneGenerata, Tossicita } from "@/lib/schede/genera/regole";
+import { dataBreve } from "@/lib/vivaio/tipi";
 import type { Bolla as TipoBolla } from "@/content/guida";
 import { Bolla } from "../bolla";
 import { TRATTO } from "../icona";
@@ -71,7 +72,21 @@ function BloccoSezione({ sez }: { sez: SezioneGenerata }) {
   );
 }
 
-export function SchedaGenerata({ dati, nomeTipo }: { dati: RispostaSchedaGenerata; nomeTipo?: string }) {
+/** Quando è stato scritto il testo: "al momento" solo per chi l'ha appena fatta generare, altrimenti la data vera. */
+function quandoGenerata(dati: RispostaSchedaGenerata, dalVivaio: boolean): string {
+  if (dati.appenaGenerata && !dalVivaio) return "al momento";
+  return dati.generataIl ? `il ${dataBreve(dati.generataIl)}` : "automaticamente"; // salvata prima che si tenesse la data
+}
+
+export function SchedaGenerata({
+  dati,
+  nomeTipo,
+  dalVivaio = false,
+}: {
+  dati: RispostaSchedaGenerata;
+  nomeTipo?: string;
+  dalVivaio?: boolean;
+}) {
   const s = dati.scheda;
   const fonti = Object.entries(dati.fonti);
   return (
@@ -159,7 +174,7 @@ export function SchedaGenerata({ dati, nomeTipo }: { dati: RispostaSchedaGenerat
         </ol>
       </details>
       <p className="px-1 text-xs leading-snug text-testo-3">
-        Testo generato al momento e controllato da regole automatiche, non rivisto da una persona.
+        Testo generato {quandoGenerata(dati, dalVivaio)} e controllato da regole automatiche, non rivisto da una persona.
       </p>
     </section>
   );

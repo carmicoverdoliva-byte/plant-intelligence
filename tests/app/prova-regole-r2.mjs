@@ -200,7 +200,7 @@ const improntaOra = impronta.digest("hex").slice(0, 16);
 ok(improntaOra === IMPRONTA_REGOLE,
   `Schede salvate: regole e fonti sono quelle della versione ${VERSIONE_REGOLE}` +
     (improntaOra === IMPRONTA_REGOLE ? "" : ` → CAMBIATE: in versione-regole.ts aumenta VERSIONE_REGOLE e scrivi IMPRONTA_REGOLE = "${improntaOra}"`));
-ok(chiaveScheda("Monstera deliciosa", "Monstera", "Araceae") === `scheda:r${VERSIONE_REGOLE}:Monstera deliciosa|Monstera|Araceae`, "Schede salvate: chiave con versione, nome scientifico, genere e famiglia");
+ok(chiaveScheda("Monstera deliciosa", "Monstera", "Araceae", "abc") === `scheda:r${VERSIONE_REGOLE}:Monstera deliciosa|Monstera|Araceae:abc`, "Schede salvate: chiave con versione, nome scientifico, genere, famiglia e impronta delle fonti");
 ok(chiaveScheda("Monstera deliciosa", "monstera", "Araceae") !== chiaveScheda("Monstera deliciosa", "Monstera", "Araceae"), "Schede salvate: un genere scritto male non finisce sotto la chiave giusta");
 
 // Quota per telefono: il giorno cambia a mezzanotte ITALIANA, ora legale compresa

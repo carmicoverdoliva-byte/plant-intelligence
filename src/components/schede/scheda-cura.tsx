@@ -226,7 +226,7 @@ export function SchedaCura({
 /** Una scheda salvata nel Vivaio: si ridisegna dai dati conservati, senza internet e senza chiamate. */
 export function SchedaSalvata({ scheda, specie, genere }: { scheda: SchedaMostrata; specie: string; genere: string }) {
   return scheda.tipo === "generata" ? (
-    <SchedaGenerata dati={scheda.dati} nomeTipo={scheda.nomeTipo} />
+    <SchedaGenerata dati={scheda.dati} nomeTipo={scheda.nomeTipo} dalVivaio />
   ) : (
     <SchedaTipo dati={scheda.dati} specie={specie} genere={genere} />
   );

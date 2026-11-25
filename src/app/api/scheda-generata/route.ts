@@ -3,12 +3,11 @@
 // È SPENTA in produzione: si accende con R2_SPERIMENTALE=1 (in locale) o nelle anteprime di Vercel (VERCEL_ENV=preview);
 // Se è spenta risponde 404 e l'app resta sulla scheda del tipo, senza messaggi d'errore.
 // Prima si cerca la scheda già pronta: nella memoria del server, poi in Upstash (una per specie, valida per tutti).
-// Solo se non c'è la si genera, e si salva se ha passato i controlli; i ripieghi non si salvano mai.
+// Solo se non c'è la si genera, e si salva se ha passato i controlli; i ripieghi non si salvano mai (servizio.ts).
 import { connection } from "next/server";
 import { UpstashCardStore } from "@/lib/schede/genera/archivio";
-import { generaScheda } from "@/lib/schede/genera/genera";
 import type { SchedaGenerata } from "@/lib/schede/genera/regole";
-import { chiaveScheda } from "@/lib/schede/genera/versione-regole";
+import { chiavePianta, trovaOGenera } from "@/lib/schede/genera/servizio";
 
 export const maxDuration = 300;
 const NOME_VALIDO = /^[\p{L} .×-]{2,100}$/u;
@@ -20,34 +19,14 @@ export interface RispostaSchedaGenerata {
   scheda: SchedaGenerata;
   fonti: Record<string, { livello: "A" | "C"; titolo: string; url?: string }>;
   modello: string;
+  generataIl?: string; // data e ora ISO (dal 2026-11-25; manca nelle piante salvate prima nel Vivaio)
+  appenaGenerata?: boolean; // true solo nella risposta a chi l'ha appena fatta generare; non si salva in Upstash
 }
 
 const archivio = new UpstashCardStore();
 const memoria = new Map<string, RispostaSchedaGenerata>();
-const inPreparazione = new Map<string, Promise<RispostaSchedaGenerata | null>>();
-
-/** La scheda salvata, oppure una appena generata (e salvata); null = ripiego, l'app resta sulla scheda del tipo. */
-async function trovaOGenera(chiave: string, specie: string, genere: string, famiglia?: string): Promise<RispostaSchedaGenerata | null> {
-  const salvata = await archivio.leggi(chiave);
-  if (salvata) return salvata;
-  const r = await generaScheda(specie, genere, famiglia);
-  if (r.tipo !== "generata") {
-    // Nessun dettaglio tecnico al telefono; il motivo resta nel registro del server.
-    console.info(`[scheda-generata] ripiego per ${specie}: ${r.motivo} · ${r.tentativi.map((t) => `${t.modello} ${t.esito}`).join(" · ")}`);
-    return null;
-  }
-  const risposta: RispostaSchedaGenerata = {
-    ok: true,
-    tipo: "generata",
-    verificata: r.esito.verificata,
-    scheda: r.esito.scheda,
-    // Al telefono solo titolo, livello e link delle fonti (non i loro testi)
-    fonti: Object.fromEntries(Object.entries(r.fonti).map(([id, f]) => [id, { livello: f.livello, titolo: f.titolo, url: f.url }])),
-    modello: r.modello,
-  };
-  await archivio.salva(chiave, risposta);
-  return risposta;
-}
+const inPreparazione = new Map<string, ReturnType<typeof trovaOGenera>>();
+const SENZA_CACHE = { headers: { "Cache-Control": "no-store" } };
 
 export async function GET(request: Request) {
   await connection(); // si decide a ogni richiesta, non durante la compilazione
@@ -61,18 +40,18 @@ export async function GET(request: Request) {
   if (!NOME_VALIDO.test(specie) || !NOME_VALIDO.test(genere) || (famiglia && !NOME_VALIDO.test(famiglia))) {
     return Response.json({ ok: false }, { status: 400 });
   }
-  const chiave = chiaveScheda(specie, genere, famiglia);
+  const chiave = chiavePianta(specie, genere, famiglia);
   const giaFatta = memoria.get(chiave);
-  if (giaFatta) return Response.json(giaFatta, { headers: { "Cache-Control": "no-store" } });
+  if (giaFatta) return Response.json(giaFatta, SENZA_CACHE);
 
   // Due richieste uguali nello stesso momento aspettano la STESSA generazione (non si pagano neuron due volte)
   let inCorso = inPreparazione.get(chiave);
   if (!inCorso) {
-    inCorso = trovaOGenera(chiave, specie, genere, famiglia).finally(() => inPreparazione.delete(chiave));
+    inCorso = trovaOGenera(archivio, chiave, specie, genere, famiglia).finally(() => inPreparazione.delete(chiave));
     inPreparazione.set(chiave, inCorso);
   }
-  const risposta = await inCorso;
-  if (!risposta) return Response.json({ ok: true, tipo: "ripiego" }, { headers: { "Cache-Control": "no-store" } });
-  memoria.set(chiave, risposta);
-  return Response.json(risposta, { headers: { "Cache-Control": "no-store" } });
+  const r = await inCorso;
+  if (!r) return Response.json({ ok: true, tipo: "ripiego" }, SENZA_CACHE);
+  memoria.set(chiave, r.risposta);
+  return Response.json(r.appenaGenerata ? { ...r.risposta, appenaGenerata: true } : r.risposta, SENZA_CACHE);
 }

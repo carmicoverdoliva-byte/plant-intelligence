@@ -263,12 +263,42 @@ Consumo: **894 neuron** (tetto 1.490), nessuna specie saltata. Schede ed esempi 
 - **Si salva solo** una scheda che ha passato i controlli, comprese quelle "NON VERIFICATA". **I ripieghi non si salvano:**
   la volta dopo si riprova, quindi una specie che fallisce sempre consuma neuron a ogni tentativo.
 - **Versione delle regole:** `VERSIONE_REGOLE` in `src/lib/schede/genera/versione-regole.ts`, dentro la chiave. Va aumentata
-  di 1 quando cambiano regole, istruzioni al modello o fonti (schede del tipo, note di famiglia, tossicità, tipo per
-  genere): le schede vecchie non si usano più e spariscono dopo un anno. Se qualcuno se ne dimentica,
-  `tests/app/prova-regole-r2.mjs` fallisce e scrive l'impronta nuova.
+  di 1 quando cambiano regole o istruzioni al modello: nessuna scheda vecchia si usa più (spariscono dopo un anno). Se
+  qualcuno se ne dimentica, `tests/app/prova-regole-r2.mjs` fallisce e scrive l'impronta nuova.
+- **Impronta delle fonti A (2026-11-25):** nella chiave c'è anche l'impronta della scheda del tipo e della nota di famiglia
+  (per intero, tossicità compresa). Se una cambia, si rigenerano **da sole** solo le schede che la usano, alla prima
+  richiesta. Wikipedia (fonte C) non è nell'impronta.
+- **Data in fondo alla scheda:** "generato al momento" solo per chi l'ha appena fatta generare; dal salvataggio e dal Vivaio
+  "generato il [data]". Le piante messe nel Vivaio prima di questa modifica non hanno la data: "generato automaticamente".
 - **Cambiare modello non cambia la versione:** le schede già salvate restano quelle del modello precedente.
 - **Scheda rovinata nell'archivio:** si rigenera.
 - **Upstash fermo o quota mensile finita:** si genera senza salvare, come prima.
 - `CLOUDFLARE_API_URL` (facoltativa, non segreta) serve solo alle prove automatiche con un Cloudflare finto.
 
 Chiavi, scadenze e numero di comandi: [scheda Upstash](upstash.md).
+
+## Preparazione anticipata (2026-11-25)
+
+`node scripts/prepara-schede.mjs` genera e salva in Upstash le schede delle specie di `data/elenco-priorita.json` che hanno
+una scheda del tipo con fonti A, con lo stesso codice dell'app (`servizio.ts`). `--elenco` dice solo cosa farebbe.
+- **Tetto per giorno** (`TETTO_NEURON`, predefinito 6.000): si ferma prima di poterlo superare. Conta solo i neuron di questo
+  script: il token non può leggere il consumo dell'account. Se Cloudflare dice che la quota è finita, si ferma.
+- **Ripresa:** le schede già salvate si saltano; i ripieghi di prima si riprovano per ultimi. Il ricordo sta in
+  `~/test-piante/prepara-schede`.
+- Nome e famiglia vengono da GBIF, come quelli che manda il telefono (controllati con le risposte Pl@ntNet del test D9,
+  flora `k-world-flora`: coincidono per le specie viste; 6 specie non erano in quelle risposte).
+- Prova senza neuron: `tests/app/prova-prepara-schede.mjs`.
+
+**Primo lancio:** 24 generate (tutte con gemma, 22 al primo colpo e 2 dopo la riprova per copia), 0 ripieghi, 42 saltate
+senza fonte A, 1 saltata perché solo genere (Phalaenopsis). **1.694 neuron**, circa 71 a scheda.
+
+**Difetti trovati rileggendo le 24 schede (da correggere):**
+- **Monstera (serio):** "Mantieni la temperatura tra i 10 e i 13 °C" nelle linee guida; nella fonte è la *minima*. Il
+  controllo dei numeri vede che il numero c'è, non che cosa significa.
+- **Moltiplicazione:** il consiglio generico del tipo ("talea con un nodo") diventa un consiglio della specie anche dove
+  probabilmente non è il metodo giusto (Strelitzia, spatifillo, sansevieria, zamioculcas: da verificare con fonti).
+- **Dracaena fragrans e Maranta:** parti delle linee guida finite nel pollice verde o "Non indicata dalle fonti", perché il
+  modello ha citato insieme fonti A e Wikipedia.
+- **Zamioculcas:** "può purificare l'aria" nel riassunto, che non cita fonti.
+- **Falangio:** "consulta la scheda specifica della specie quando sarà pronta" dentro la scheda della specie.
+- **Hoya:** un consiglio del pollice verde che non è un consiglio ("portamento lianoso").

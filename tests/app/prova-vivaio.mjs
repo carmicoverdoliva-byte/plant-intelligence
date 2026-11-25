@@ -2,11 +2,12 @@
 // Riconoscimento, descrizione e scheda della specie sono INTERCETTATI in Edge: nessuna chiamata a Pl@ntNet né all'AI.
 // La scheda della specie arriva in ritardo e finisce in ripiego: così si prova il "salvo appena arriva" con la scheda
 // del tipo. Controlla: salva due piante, "Già nel tuo Vivaio", bacheca, scheda salvata SENZA RETE e senza chiamate,
-// soprannome, backup (esporta e importa), elimina con conferma.
+// soprannome, backup (esporta e importa), elimina con conferma, data in fondo alla scheda di specie generata.
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { createRequire } from "node:module";
+import { SEZIONI } from "../../src/lib/schede/genera/regole.ts";
 
 const require = createRequire(import.meta.url);
 
@@ -26,6 +27,7 @@ export async function provaVivaio({ apri, valuta, clicca, perTesto, ok, pausa, f
   writeFileSync(file, await sharp({ create: { width: 900, height: 1200, channels: 3, background: "#2f7a45" } }).jpeg().toBuffer());
 
   let prossima = "pothos";
+  let generata = null; // se c'è, /api/scheda-generata risponde subito con questa
   const chiamateApi = []; // richieste a /api/ partite dalla pagina (per controllare "senza nuove chiamate")
   await cmd("Fetch.enable", { patterns: [{ urlPattern: "*/api/*" }] });
   const intercetta = async (m) => {
@@ -37,10 +39,11 @@ export async function provaVivaio({ apri, valuta, clicca, perTesto, ok, pausa, f
         requestId: m.params.requestId, responseCode: codice,
         responseHeaders: [{ name: "content-type", value: "application/json" }],
         body: Buffer.from(JSON.stringify(corpo)).toString("base64"),
-      });
+      }).catch(() => {}); // la pagina è già cambiata: non c'è più nessuno a cui rispondere
     if (url.includes("/api/identify")) return rispondi(PIANTE[prossima]);
     if (url.includes("/api/descrizione")) return rispondi({ ok: false }, 404);
     if (url.includes("/api/scheda-generata")) {
+      if (generata) return rispondi(generata);
       await pausa(1500); // la scheda della specie "sta arrivando"…
       return rispondi({ ok: true, tipo: "ripiego" }); // …e non arriva: resta quella del tipo
     }
@@ -191,6 +194,42 @@ export async function provaVivaio({ apri, valuta, clicca, perTesto, ok, pausa, f
   writeFileSync(sbagliato, JSON.stringify({ ciao: 1 }));
   await importa(sbagliato);
   ok(await aspettaTesto("Questo file non è un backup del Vivaio di Mandragola."), "Importa: un file sbagliato dà un messaggio chiaro");
+
+  // 11. Data in fondo alla scheda di specie: "al momento" solo se appena generata, altrimenti la data vera
+  const CODA = "e controllato da regole automatiche, non rivisto da una persona.";
+  const schedaGenerata = {
+    ok: true, tipo: "generata", verificata: true, modello: "finto", generataIl: "2026-11-20T10:00:00.000Z",
+    fonti: { S1: { livello: "A", titolo: "Scheda di prova" } },
+    scheda: {
+      riassunto: "Scheda di prova.", coseDaFare: ["Cosa di prova."],
+      sezioni: Object.fromEntries(SEZIONI.map((k) => [k, { lineeGuida: { riassunto: "Indicazione di prova.", coseDaFare: [], fonti: ["S1"] }, pollice: [] }])),
+      tossicita: { persone: "non verificata", animali: "tossica", nota: "Nota di prova.", fonti: ["S1"] },
+    },
+  };
+  generata = { ...schedaGenerata, appenaGenerata: true };
+  prossima = "giada";
+  await apri("/fotocamera");
+  await riconosci();
+  ok(await aspettaTesto(`Testo generato al momento ${CODA}`), "Scheda di specie appena generata: \"generato al momento\"");
+  await clicca(perTesto("button", "È un'altra pianta: salvala comunque"));
+  await aspetta(`!!${perTesto("button", "Salva come pianta diversa")}`);
+  await clicca(perTesto("button", "Salva come pianta diversa"));
+  await aspettaTesto("Salvata nel tuo Vivaio");
+  generata = schedaGenerata;
+  await apri("/fotocamera");
+  await riconosci();
+  ok(await aspettaTesto(`Testo generato il 20 novembre 2026 ${CODA}`), "Scheda di specie dal salvataggio: \"generato il 20 novembre 2026\"");
+  await valuta(`[...document.querySelectorAll("p")].find(p => p.textContent.startsWith("Testo generato"))?.scrollIntoView({ block: "center" })`);
+  await controllaSchermata("/fotocamera (scheda salvata)", "scheda-data");
+  generata = { ...schedaGenerata, generataIl: undefined };
+  await apri("/fotocamera");
+  await riconosci();
+  ok(await aspettaTesto(`Testo generato automaticamente ${CODA}`), "Scheda di specie senza data (salvata prima): \"generato automaticamente\", nessuna data inventata");
+  await apri("/vivaio");
+  await aspetta(`document.querySelectorAll('section[aria-label="Le piante del Vivaio"] li').length === 3`);
+  await valuta(`new Promise(r => { const q = indexedDB.open("mandragola-vivaio"); q.onsuccess = () => { const d = q.result, n = d.objectStoreNames[0], t = d.transaction(n).objectStore(n).getAll(); t.onsuccess = () => { window.__idGenerata = t.result.find(p => p.scheda.tipo === "generata")?.id; d.close(); r(true); }; }; })`);
+  await clicca(`document.querySelector('a[href$="' + window.__idGenerata + '"]')`);
+  ok(await aspettaTesto(`Testo generato il 20 novembre 2026 ${CODA}`), "Scheda di specie riaperta dal Vivaio: la data, non \"al momento\"");
 
   // Pulizia: Vivaio vuoto per le prove successive
   await valuta(`new Promise(r => { const q = indexedDB.deleteDatabase("mandragola-vivaio"); q.onsuccess = q.onerror = q.onblocked = () => r(true); })`);
