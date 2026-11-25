@@ -210,7 +210,8 @@ Script `scripts/gara-modelli.mjs` (codice vero dell'app, tutte le regole, ogni m
 - Le chiamate interrotte per tempo scaduto probabilmente si pagano lo stesso, ma lo script non ne vede i neuron: il
   consumo reale della gara può essere stato fino a circa 9.900 neuron (stima prudente; il token non può leggere le
   statistiche d'uso).
-- **Scelta dell'utente (2026-11-23): principale `gemma-4-26b`, riserva `glm-4.7-flash`.** I modelli si cambiano in un
+- **Scelta dell'utente (2026-11-23): principale `gemma-4-26b`, riserva `glm-4.7-flash`** (riserva cambiata il
+  2026-11-25, vedi sotto). I modelli si cambiano in un
   solo punto: `src/lib/schede/genera/modelli.ts` (il commento in cima spiega come).
 - Lo script della gara ora conta nel tetto il costo pieno previsto delle chiamate interrotte.
 
@@ -222,3 +223,36 @@ Script `scripts/gara-modelli.mjs` (codice vero dell'app, tutte le regole, ogni m
   Wikipedia (servirebbe la riprova, non fatta per restare sotto 300 neuron); Monstera **al primo colpo, 16,1 s e 75 neuron**.
 - Contenuto della Monstera: corretto ma quasi uguale alla nostra scheda del tipo, nessun consiglio dal pollice verde,
   un errore di italiano ("marcare" invece di "marcire"). Due schede sono poche per sceglierlo come principale.
+
+## Gara di gpt-oss-20b riparato e nuova riserva (2026-11-25)
+
+Stesse 10 specie, stesso script e stesso codice di generazione del 2026-11-23, riprova per copia attiva, nessuna riserva.
+Consumo: **894 neuron** (tetto 1.490), nessuna specie saltata. Schede ed esempi in `~/test-piante/prova-r2/gara3`.
+
+| | gemma-4-26b (23/11) | glm-4.7-flash (23/11) | gpt-oss-20b riparato (25/11) |
+|---|---|---|---|
+| Al primo colpo | 7 | 4 | 6 |
+| Riprove per copia (riuscite) | 3 (2) | 5 (3) | 1 (0) |
+| Ripieghi | 1 | 3 | 4 |
+| Secondi medi | 37,3 | 83,4 | 8,9 |
+| Neuron medi | 84 | 93 (senza la chiamata scaduta) | 89 |
+| Schede riuscite (di cui "non verificate") | 9 (2) | 7 (1) | 6 (1) |
+| Neuron per scheda riuscita | 94 | 133 (senza la chiamata scaduta) | 149 |
+| Frasi identiche alla nostra scheda del tipo | 0% | 16% | 65% |
+| Consigli dal pollice verde in tutto | 34 | 16 | 11 (3 sono "Non indicata dalle fonti.") |
+
+- "Frasi identiche": riassunti e cose da fare delle sezioni, parola per parola (senza accenti e punteggiatura), solo specie
+  con una fonte A. L'anti-copia guarda solo Wikipedia: copiare la nostra scheda del tipo non è vietato, ma aggiunge poco.
+- Ripieghi di gpt-oss: albero di giada e Kalanchoe "formato non valido" (causa non accertata: il testo grezzo non si
+  salvava), spatifillo "riassunto vuoto" (linee guida senza fonti A valide), Ficus copia → copia.
+- I secondi sono di giorni diversi: il 23/11 lo stesso gpt-oss impiegava 20,7 s di media.
+- Difetti visti leggendo le schede di gpt-oss: Zamioculcas, "ideale 16-29 °C" (nella fonte vale per la monstera) e
+  "guarda la scheda della specie quando sarà pronta"; Aloe, un consiglio che riguarda l'albero di giada.
+- **Da correggere (non ancora fatto):** nei consigli dal pollice verde le regole lasciano passare "Non indicata dalle
+  fonti." (visto sul basilico).
+- **Scelta dell'utente (2026-11-25): principale `gemma-4-26b`, riserva `gpt-oss-20b`** al posto di `glm-4.7-flash`, troppo
+  lento come riserva. Si applica in `src/lib/schede/genera/modelli.ts`.
+- **Testo grezzo nel registro (2026-11-25):** quando una risposta è scartata per "formato non valido", il server scrive
+  `[scheda-generata] formato non valido · modello · specie · … · testo grezzo: …`, anche se poi la riserva riesce. Il testo
+  è su una riga, al massimo circa 20.000 caratteri, con le chiavi oscurate (`src/lib/schede/genera/registro.ts`). Non
+  arriva mai al telefono. Sui piani gratuiti di Vercel il registro dura poco **(da verificare)**: va copiato presto.

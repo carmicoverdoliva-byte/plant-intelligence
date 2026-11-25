@@ -9,6 +9,7 @@ import { raccogliFonti } from "./fonti";
 import { leggiJson } from "./json";
 import { applicaRegole, type EsitoRegole, type FonteData } from "./regole";
 import { MODELLI_SCHEDE } from "./modelli";
+import { testoPerRegistro, valoriSegreti } from "./registro";
 import { WorkersAiCardWriter, type CardWriter } from "./scrittore";
 import type { SceltaScheda } from "../scegli";
 
@@ -77,6 +78,10 @@ export async function generaScheda(
     const json = leggiJson(r.testo);
     const esito = applicaRegole(json, fonti, tossicita, [specie, genere]);
     const copia = esito.bloccanti.some((b) => b.startsWith("copia"));
+    // Scartata per il formato: il testo grezzo va nel registro del server (anche se poi la riserva riesce)
+    if (esito.bloccanti.includes("formato non valido")) {
+      console.warn(`[scheda-generata] formato non valido · ${s.nome} · ${specie} · ${r.testo.length} caratteri · testo grezzo: ${testoPerRegistro(r.testo, valoriSegreti(process.env))}`);
+    }
     tentativi.push({
       modello: s.nome,
       ms: r.ms,

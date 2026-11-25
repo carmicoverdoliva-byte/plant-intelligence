@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import { applicaRegole, NON_INDICATA, SEZIONI } from "../../src/lib/schede/genera/regole.ts";
 import { tossicitaPerPianta } from "../../src/lib/schede/tossicita.ts";
 import { leggiJson } from "../../src/lib/schede/genera/json.ts";
+import { testoPerRegistro, valoriSegreti } from "../../src/lib/schede/genera/registro.ts";
 
 let fatti = 0, errori = 0;
 const ok = (c, d) => { fatti++; if (!c) errori++; console.log(`${c ? "✓" : "✗"} ${d}`); };
@@ -175,6 +176,14 @@ ok(tossicitaPerPianta(t("orchidee"), "Phalaenopsis amabilis", "Phalaenopsis").an
 ok(JSON.stringify(leggiJson('{"a":{"b":[1,2]}')) === '{"a":{"b":[1,2]}}', "JSON: aggiunta la graffa finale mancante (caso gpt-oss)");
 ok(JSON.stringify(leggiJson('Ecco: {"a":"testo con } e ]"}')) === '{"a":"testo con } e ]"}', "JSON: le parentesi dentro i testi non si contano");
 ok(leggiJson('{"a":[1}, "b":2}') === null, "JSON: rotto in mezzo → non si ripara (formato non valido)");
+
+// Testo grezzo nel registro del server (2026-11-25): una riga sola, senza chiavi, completo se non è lunghissimo
+const segreti = valoriSegreti({ FINTA_TOKEN: "valore-finto-1234", FINTO_ACCOUNT_ID: "conto-finto-5678", NODE_ENV: "production", VUOTA_KEY: "" });
+ok(segreti.length === 2 && !segreti.includes("production"), "Registro: si oscurano solo le variabili segrete non vuote");
+const riga = testoPerRegistro('{"a":\n"valore-finto-1234 e conto-finto-5678"', segreti);
+ok(!/valore-finto|conto-finto/.test(riga) && riga.includes("[oscurato]") && !riga.includes("\n"), "Registro: chiavi oscurate e testo su una riga sola");
+ok(JSON.parse(testoPerRegistro('{"a":1', [])) === '{"a":1', "Registro: il testo grezzo si recupera identico");
+ok(testoPerRegistro("x".repeat(30000), []).length < 20100, "Registro: un testo lunghissimo si accorcia tenendo inizio e fine");
 
 console.log(`\n${fatti - errori}/${fatti} controlli superati.`);
 process.exit(errori ? 1 : 0);

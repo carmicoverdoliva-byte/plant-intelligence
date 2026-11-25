@@ -15,6 +15,8 @@
 //         2026-11-20 Cloudflare ritira qwen3-30b (errore 410).
 //         2026-11-23 dopo la gara (test-piante/prova-r2/gara2) l'utente sceglie gemma-4-26b principale
 //         (7 schede su 10 al primo colpo, 37 s e 84 neuron di media) e glm-4.7-flash riserva.
+//         2026-11-25 dopo la gara di gpt-oss-20b riparato (test-piante/prova-r2/gara3) l'utente sceglie gpt-oss-20b
+//         come riserva al posto di glm-4.7-flash, troppo lento (9 s di media contro 83 s). Principale: resta gemma-4-26b.
 
 export interface ModelloScheda {
   nome: string;
@@ -23,5 +25,5 @@ export interface ModelloScheda {
 
 export const MODELLI_SCHEDE: { principale: ModelloScheda; riserva: ModelloScheda } = {
   principale: { nome: "gemma-4-26b", id: "@cf/google/gemma-4-26b-a4b-it" },
-  riserva: { nome: "glm-4.7-flash", id: "@cf/zai-org/glm-4.7-flash" },
+  riserva: { nome: "gpt-oss-20b", id: "@cf/openai/gpt-oss-20b" },
 };
