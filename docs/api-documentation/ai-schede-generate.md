@@ -335,3 +335,29 @@ e pollice verde. I difetti segnalati sono spariti.
 - **Monstera (gpt-oss):** corretta, ma molte frasi sono uguali alla scheda del tipo, con qualche plurale ("Tienile lontane").
   Dice "in generale" anche cose che la fonte riferisce proprio alla monstera.
 - **Strelitzia:** "è importante seguire le indicazioni specifiche per la specie", frase senza contenuto.
+
+## Versione 3 delle regole (2026-11-25)
+
+- **8a, pollice verde in contrasto:** si toglie un consiglio con frequenza, quantità o temperatura diversa dalle linee guida
+  della stessa sezione. In "acqua", se la linea guida dice di controllare il terriccio, si toglie ogni frequenza fissa.
+  Se la linea guida non dà il dato, non c'è contrasto. Effetto da sapere: cade anche una minima più prudente di Wikipedia
+  (15 °C contro i 10 °C della scheda del tipo: spatifillo, filodendro, scindapsus, Dracaena fragrans).
+- **8b, frasi senza contenuto pratico** tolte da riassunto e linee guida ("segui le indicazioni specifiche", "richiede
+  un'attenzione particolare", "esistono diversi metodi"); se il resto della frase è utile, si taglia solo il pezzo vuoto.
+- **Moltiplicazione della specie:** le istruzioni chiedono di riportare nel pollice verde il metodo che Wikipedia cita, con le
+  parole della fonte; se non ne cita, non inventarlo (Strelitzia).
+- **8c, scheda quasi vuota (aggiunta durante la prova):** con la scheda del tipo disponibile, 3 o più sezioni su 8 senza linee
+  guida → non passa (riserva, poi ripiego). Il testo grezzo va nel registro, come per "formato non valido".
+
+**Cosa è successo nella prova.** Il primo lancio (24 schede, 1.872 neuron) ha dato **10 schede quasi vuote** che passavano i
+controlli: non sono mai state usate dall'app e sono state tolte da Upstash. Causa probabile: gemma a volte lascia vuoto il
+campo "fonti" delle linee guida (visto in una sezione della Strelitzia) e le regole le cancellano. Nelle 10 schede non si può
+dimostrare, perché il testo grezzo non era salvato. Tre chiamate di diagnosi (201 neuron) sono uscite buone e sono state
+salvate, poi due rigenerate (153 neuron). In tutto **2.226 neuron** su 2.500.
+
+**Stato in Upstash: 17 schede su 24.** Mancano pothos, spatifillo, Aloe, anturio, Maranta, Peperomia e Curio: si generano alla
+prima richiesta o rilanciando `prepara-schede.mjs`. La Zamioculcas è quella del primo lancio con la regola 8b riapplicata a
+mano (la rigenerata aveva due sezioni vuote).
+
+**Restano:** le fonti dimenticate (qualche sezione "Non indicata dalle fonti": falangio e Strelitzia in "Coltivarla da zero");
+la Monstera di gpt-oss che parla del pothos in "Coltivarla da zero"; nel falangio restano solo gli stoloni del pollice verde.

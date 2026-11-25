@@ -16,6 +16,11 @@
 //     c. niente promesse (aria pulita, fortuna, salute) e niente frasi che parlano dell'app o delle schede;
 //     d. fonte A citata insieme a Wikipedia: nelle linee guida resta solo ciò che la fonte A dice davvero;
 //     e. un consiglio del pollice verde deve dire cosa FARE.
+//  8. (2026-11-25, versione 3 delle regole)
+//     a. il pollice verde non dà frequenze, quantità o temperature diverse dalle linee guida della stessa sezione;
+//     b. niente frasi senza contenuto pratico nel riassunto e nelle linee guida ("segui le indicazioni specifiche");
+//     c. una scheda quasi vuota non passa: se la scheda del tipo copre tutte le sezioni ma qui ne restano vuote troppe
+//        (per esempio il modello ha dimenticato le fonti), sul telefono resta la scheda del tipo, che è completa.
 
 export type LivelloFonte = "A" | "C";
 export interface FonteData {
@@ -23,6 +28,7 @@ export interface FonteData {
   titolo: string;
   url?: string;
   testo: string;
+  copreTutto?: boolean; // ha tutte le sezioni (scheda del tipo): una scheda generata quasi vuota non è accettabile (8c)
   generale?: boolean; // vale per il tipo di pianta o la famiglia, non per la singola specie (regola 7b)
 }
 export type Tossicita = "tossica" | "varia" | "non verificata" | "non tossica";
@@ -39,6 +45,7 @@ export interface SchedaGenerata {
 }
 
 export const SEZIONI = ["luce", "acqua", "temperatura", "terriccio", "concime", "travaso", "coltivarla", "problemi"] as const;
+export const QUASI_VUOTA = "scheda quasi vuota";
 export const NON_INDICATA = "Non indicata dalle fonti.";
 export const RIASSUNTO_NON_VERIFICATA =
   "Per questa pianta non abbiamo ancora fonti verificate: qui sotto trovi solo consigli non ufficiali, presi da Wikipedia. Usali con prudenza.";
@@ -227,6 +234,91 @@ export function diceCosaFare(t: string): boolean {
   );
 }
 
+// --- Regola 8a: il pollice verde non dà frequenze, quantità o temperature diverse dalle linee guida della sua sezione ---
+const PAROLE_NUMERO: Record<string, number> = { un: 1, "un'": 1, uno: 1, una: 1, due: 2, tre: 3, quattro: 4, cinque: 5, sei: 6, sette: 7, otto: 8, nove: 9, dieci: 10, quindici: 15, venti: 20, trenta: 30 };
+const N_FREQ = `(?:\\d+(?:[.,]\\d+)?|${Object.keys(PAROLE_NUMERO).filter((n) => n !== "un'").join("|")})`;
+const INTERVALLO = `(${N_FREQ})(?:\\s*(?:-|–|‑|o|a|e)\\s*(${N_FREQ}))?`;
+const PERIODO = "(giorn[oi]|d[iì]|settiman[ae]|mes[ei]|ann[oi])";
+const VOLTE = new RegExp(`(?<![\\p{L}\\d])${INTERVALLO}\\s+volt[ae]\\s+(?:a|al|alla|all['’]|ogni|per|l['’]|il|la)\\s*${PERIODO}(?![\\p{L}])`, "giu");
+const OGNI = new RegExp(`(?<![\\p{L}])ogni\\s+(?:${INTERVALLO}\\s+)?${PERIODO}(?![\\p{L}])`, "giu");
+const AVVERBI: [RegExp, number][] = [[/quotidian|giornalier|ogni d[iì](?![\p{L}])/iu, 1], [/settimanal/i, 7], [/quindicinal/i, 15], [/mensil/i, 30], [/annual/i, 365]];
+const inNumero = (t: string) => PAROLE_NUMERO[t.toLowerCase()] ?? Number(t.replace(",", "."));
+const giorniDi = (p: string) => (/^(giorn|d)/i.test(p) ? 1 : /^settim/i.test(p) ? 7 : /^mes/i.test(p) ? 30 : 365);
+
+/** Ogni quanti giorni, come intervallo: "due volte a settimana" → [3.5, 3.5]; "ogni 2-3 anni" → [730, 1095]. */
+export function frequenze(t: string): [number, number][] {
+  const trovate: [number, number][] = [];
+  for (const m of t.matchAll(VOLTE)) {
+    const a = inNumero(m[1]), b = m[2] ? inNumero(m[2]) : a, g = giorniDi(m[3]);
+    trovate.push([g / Math.max(a, b), g / Math.min(a, b)]);
+  }
+  for (const m of t.matchAll(OGNI)) {
+    const a = m[1] ? inNumero(m[1]) : 1, b = m[2] ? inNumero(m[2]) : a, g = giorniDi(m[3]);
+    trovate.push([g * Math.min(a, b), g * Math.max(a, b)]);
+  }
+  for (const [re, g] of AVVERBI) if (re.test(t)) trovate.push([g, g]);
+  return trovate;
+}
+const SI_CONTROLLA = /\bdito\b|asciutt|solleva/i; // "annaffia quando i primi 2-3 cm sono asciutti": niente calendario
+
+/** Il consiglio contrasta con le linee guida della stessa sezione? Se quelle non danno il dato, non c'è contrasto. */
+export function contrasta(consiglio: string, lineeGuida: string[], sezione: string): boolean {
+  const lg = lineeGuida.join("\n");
+  // Frequenze
+  const mie = frequenze(consiglio), loro = frequenze(lg);
+  if (mie.length) {
+    if (loro.length) {
+      const min = Math.min(...loro.map((x) => x[0])), max = Math.max(...loro.map((x) => x[1]));
+      if (mie.some(([a, b]) => a < min * 0.95 || b > max * 1.05)) return true;
+    } else if (sezione === "acqua" && SI_CONTROLLA.test(lg)) return true;
+  }
+  const valori = numeriLetti(lg);
+  for (const g of numeriLetti(consiglio)) {
+    const v = Number(g.n.replace(",", "."));
+    const stessi = valori.filter((x) => x.unita === g.unita).map((x) => ({ v: Number(x.n.replace(",", ".")), s: x.significati }));
+    if (!stessi.length) continue;
+    const con = (s: Significato) => stessi.filter((x) => x.s.has(s)).map((x) => x.v);
+    const liberi = stessi.filter((x) => !x.s.size).map((x) => x.v);
+    if (g.unita === "gradi") {
+      const minime = con("min"), massime = con("max");
+      if (g.significati.has("min")) {
+        if (minime.length ? !minime.includes(v) : liberi.length > 0 && v > Math.max(...liberi)) return true;
+      } else if (g.significati.has("max")) {
+        if (massime.length ? !massime.includes(v) : liberi.length > 0 && v < Math.min(...liberi)) return true;
+      } else if (liberi.length) {
+        if (v < Math.min(...liberi) || v > Math.max(...liberi)) return true;
+      } else if ((minime.length && v < Math.min(...minime)) || (massime.length && v > Math.max(...massime))) return true;
+    } else if (["cm", "mm", "m", "ore", "minuti", "%"].includes(g.unita)) {
+      // Quantità: dentro i valori delle linee guida per la stessa unità (i tempi "ogni N" sono già guardati sopra)
+      const tutti = stessi.map((x) => x.v);
+      if (v < Math.min(...tutti) || v > Math.max(...tutti)) return true;
+    }
+  }
+  // Quantità in parole: "metà dose" contro "dose intera"
+  const dose = (t: string) => (/met[àa] (?:della )?dose|dose dimezzata/i.test(t) ? "metà" : /dose (?:intera|piena|dell['’]etichetta)|doppi[ao] (?:della )?dose/i.test(t) ? "piena" : "");
+  return Boolean(dose(consiglio) && dose(lg) && dose(consiglio) !== dose(lg));
+}
+
+// --- Regola 8b: frasi senza contenuto pratico (nel riassunto e nelle linee guida) ---
+const NUCLEO_VUOTO =
+  "(?:seguire|segui|rispettare|rispetta)\\s+(?:sempre\\s+)?le\\s+(?:indicazioni|istruzioni|esigenze|necessità|regole)(?!\\s+(?:dell['’]etichetta|sull['’]etichetta|riportate|del\\s+prodotto|del\\s+produttore))" +
+  "|(?:indicazioni|esigenze|cure)\\s+specifiche" +
+  "|attenzione\\s+(?:particolare|costante|specifica)|particolare\\s+attenzione" +
+  "|cure\\s+(?:attente|adeguate|appropriate|moderate|costanti|particolari|corrette|mirate)" +
+  "|con\\s+(?:divers[ei]|vari[ei]?|differenti)\\s+(?:tecniche|metodi|modi)|in\\s+(?:diversi|vari)\\s+modi|tramite\\s+(?:diversi|vari)\\s+metodi" +
+  "|esiston[oa]\\s+(?:divers[ei]|vari[ei]?|più)\\s+(?:tecniche|metodi|modi)|tecniche\\s+specifiche";
+const VUOTA = new RegExp(NUCLEO_VUOTO, "i");
+// Il pezzo vuoto in coda o in mezzo alla frase, dal connettivo che lo introduce fino alla virgola o al punto
+const PEZZO_VUOTO = new RegExp(`(?:,?\\s+(?:e|ma|mentre|però)\\s+|,\\s+)(?:(?!,|\\s(?:e|ma|mentre|però)\\s)[^.;])*?(?:${NUCLEO_VUOTO})[^,.;]*`, "i");
+/** La frase senza il pezzo vuoto; "" se senza quello non resta niente di utile. */
+export function senzaVuoto(frase: string): string {
+  if (!VUOTA.test(frase)) return frase;
+  const resto = frase.replace(PEZZO_VUOTO, "").trim();
+  return VUOTA.test(resto) || resto.split(/\s+/).length < 4 ? "" : /[.!?]$/.test(resto) ? resto : `${resto}.`;
+}
+
+/** Sezioni senza linee guida da cui una scheda è "quasi vuota" (8c). */
+const TROPPE_VUOTE = 3;
 const MAX_POLLICE = 3;
 const MAX_COSE = 7;
 const ORDINE_COSE = ["acqua", "luce", "temperatura", "concime", "terriccio", "travaso", "problemi", "coltivarla"] as const;
@@ -405,6 +497,20 @@ export function applicaRegole(
     if (!lg.riassunto) lg.riassunto = lg.coseDaFare.shift() ?? NON_INDICATA;
   }
 
+  // Regola 8b: frasi (o pezzi di frase) senza contenuto pratico
+  const senzaVuote = (t: string, dove: string) => {
+    const dopo = frasi(t).map(senzaVuoto).filter(Boolean).join(" ");
+    if (dopo !== frasi(t).join(" ")) interventi.push(`${dove}: tolto un pezzo senza contenuto pratico`);
+    return dopo;
+  };
+  scheda.riassunto = senzaVuote(scheda.riassunto, "riassunto");
+  for (const k of SEZIONI) {
+    const { lineeGuida: lg } = scheda.sezioni[k];
+    if (lg.riassunto !== NON_INDICATA) lg.riassunto = senzaVuote(lg.riassunto, k);
+    lg.coseDaFare = lg.coseDaFare.map(senzaVuoto).filter(Boolean);
+    if (!lg.riassunto) lg.riassunto = lg.coseDaFare.shift() ?? NON_INDICATA;
+  }
+
   // Regola 7b: moltiplicazione nota solo per il tipo di pianta → si dichiara generale, e non va tra le cose da fare in cima
   const moltiplica = scheda.sezioni.coltivarla.lineeGuida;
   const coltivarlaGenerale = moltiplica.fonti.length > 0 && moltiplica.fonti.every((id) => fonti[id]?.generale);
@@ -424,6 +530,17 @@ export function applicaRegole(
     const tenuti = scheda.sezioni[k].pollice.filter((p) => diceCosaFare(p.consiglio));
     const tolti = scheda.sezioni[k].pollice.length - tenuti.length;
     if (tolti) interventi.push(`${k}: ${tolti} consigli dal pollice verde tolti perché non dicono cosa fare`);
+    consigliTolti += tolti;
+    scheda.sezioni[k].pollice = tenuti;
+  }
+
+  // Regola 8a: pollice verde in contrasto con le linee guida della stessa sezione
+  for (const k of SEZIONI) {
+    const { lineeGuida: lg, pollice } = scheda.sezioni[k];
+    if (lg.riassunto === NON_INDICATA) continue;
+    const tenuti = pollice.filter((p) => !contrasta(p.consiglio, [lg.riassunto, ...lg.coseDaFare], k));
+    const tolti = pollice.length - tenuti.length;
+    if (tolti) interventi.push(`${k}: ${tolti} consigli dal pollice verde tolti perché in contrasto con le linee guida`);
     consigliTolti += tolti;
     scheda.sezioni[k].pollice = tenuti;
   }
@@ -465,6 +582,9 @@ export function applicaRegole(
 
   // Completezza minima
   if (!scheda.riassunto) bloccanti.push("riassunto vuoto");
+  // Regola 8c: scheda quasi vuota
+  const vuote = SEZIONI.filter((k) => scheda.sezioni[k].lineeGuida.riassunto === NON_INDICATA).length;
+  if (vuote >= TROPPE_VUOTE && Object.values(fonti).some((f) => f.copreTutto)) bloccanti.push(`${QUASI_VUOTA}: ${vuote} sezioni su ${SEZIONI.length} senza linee guida`);
 
   // Regola 3: anti-copia rispetto alle fonti C (Wikipedia)
   const nostri = ottetti(parole(JSON.stringify(scheda)));

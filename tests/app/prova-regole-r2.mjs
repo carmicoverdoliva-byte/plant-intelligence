@@ -2,7 +2,7 @@
 // Uso: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tests/app/prova-regole-r2.mjs
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync, statSync } from "node:fs";
-import { applicaRegole, diceCosaFare, NON_INDICATA, PARLA_DELL_APP, PER_MOLTE, PROMESSE, SEZIONI, significatoOk } from "../../src/lib/schede/genera/regole.ts";
+import { applicaRegole, contrasta, diceCosaFare, frequenze, senzaVuoto, NON_INDICATA, PARLA_DELL_APP, PER_MOLTE, PROMESSE, SEZIONI, significatoOk } from "../../src/lib/schede/genera/regole.ts";
 import { tossicitaPerPianta } from "../../src/lib/schede/tossicita.ts";
 import { leggiJson } from "../../src/lib/schede/genera/json.ts";
 import { testoPerRegistro, valoriSegreti } from "../../src/lib/schede/genera/registro.ts";
@@ -216,6 +216,66 @@ ok(e.scheda.sezioni.acqua.pollice.some((p) => /vento/.test(p.consiglio) && p.fon
 // 7e. Un consiglio deve dire cosa fare
 for (const t of ["Annaffia ogni settimana.", "In inverno riduci le annaffiature.", "Puoi riprodurla usando gli stoloni.", "Tienila lontana dai vetri.", "Va spostata in casa.", "È possibile propagarla per talea.", "Evitare i ristagni.", "Se l'aria è secca, vaporizza le foglie.", "Con il caldo, esponila di meno."]) ok(diceCosaFare(t), `7e: azione riconosciuta "${t}"`);
 for (const t of ["La pianta ha un portamento lianoso con fusticini lunghi.", "La pianta tollera l'ombra.", "La fioritura avviene tra febbraio e marzo.", "Si propaga facilmente.", "Non indicata dalle fonti.", "Annaffiature frequenti, suolo ben drenato.", "La pianta evita il sole diretto.", "La temperatura ideale è 20 °C."]) ok(!diceCosaFare(t), `7e: descrizione rifiutata "${t}"`);
+
+// --- Versione 3 delle regole (2026-11-25) ---
+// 8a. Pollice verde in contrasto con le linee guida della stessa sezione
+const DITO = ["L'irrigazione va fatta quando il terreno è asciutto in superficie.", "Controlla con un dito: annaffia se i primi 2-3 cm di terriccio sono asciutti."];
+ok(JSON.stringify(frequenze("Annaffia due volte a settimana, concima ogni 2-3 mesi.")) === "[[3.5,3.5],[60,90]]", "8a: frequenze lette (volte a settimana, ogni N mesi)");
+ok(frequenze("Lasciala riposare un giorno e aspetta due settimane.").length === 0, "8a: una durata non è una frequenza");
+ok(contrasta("Annaffia due volte a settimana in estate.", DITO, "acqua"), "8a: Dracaena, 'due volte a settimana' contro 'controlla con il dito' → tolto");
+ok(contrasta("Annaffia una volta a settimana in inverno.", DITO, "acqua") && contrasta("Annaffia settimanalmente.", DITO, "acqua"), "8a: tolte anche 'una volta a settimana' e 'settimanalmente'");
+ok(!contrasta("Evita la presenza di acqua stagnante.", DITO, "acqua"), "8a: un consiglio senza numeri resta");
+const CONCIME = ["Usa un concime liquido una o due volte al mese."];
+ok(!contrasta("Usa un concime circa ogni 3 settimane.", CONCIME, "concime") && contrasta("Concima ogni 2-3 mesi.", CONCIME, "concime"), "8a: ogni 3 settimane sta in '1-2 volte al mese', ogni 2-3 mesi no");
+ok(contrasta("Rinvasa ogni 1-2 anni.", ["Travasa ogni 2-3 anni."], "travaso") && !contrasta("Rinvasa ogni 2 anni.", ["Travasa ogni 2-3 anni."], "travaso"), "8a: travaso ogni 1-2 anni contro 2-3 → tolto; ogni 2 anni resta");
+ok(!contrasta("Concima ogni 2 mesi.", ["Concima dalla primavera all'autunno."], "concime"), "8a: se la linea guida non dà il dato, non c'è contrasto");
+const TEMP = ["Non scendere sotto i 10 °C."];
+ok(contrasta("Mantieni una temperatura minima di 15 °C.", TEMP, "temperatura") && !contrasta("Non scendere mai sotto i 10 °C in casa.", TEMP, "temperatura"), "8a: minima 15 contro minima 10 → tolto; la stessa minima resta");
+ok(contrasta("Tienila tra 5 e 8 °C.", TEMP, "temperatura") && !contrasta("Tienila intorno ai 20 °C.", TEMP, "temperatura"), "8a: sotto la minima → tolto; 20 °C resta");
+ok(contrasta("Tienila tra 20 e 35 °C.", ["Sta bene tra 16 e 30 °C."], "temperatura"), "8a: fuori dall'intervallo ideale → tolto");
+ok(contrasta("Scegli un vaso 15 cm più largo.", ["Scegli un vaso 5-10 cm più largo."], "travaso"), "8a: quantità diversa (15 cm contro 5-10) → tolto");
+s = base();
+s.sezioni.temperatura = sez({ riassunto: "La minima è 10 °C.", coseDaFare: [], fonti: ["S1"] }, [
+  { consiglio: "Tienilo al sole: cresce bene tra 20 e 25 °C.", fonti: ["S3"] },
+  { consiglio: "Riparalo dal freddo e dal vento.", fonti: ["S3"] },
+]);
+s.sezioni.acqua = sez({ riassunto: "Annaffia quando il terriccio è asciutto.", coseDaFare: [], fonti: ["S1"] }, [{ consiglio: "Annaffialo ogni giorno in pieno sole d'estate.", fonti: ["S3"] }]);
+e = applicaRegole(s, fontiConA);
+ok(e.scheda.sezioni.acqua.pollice.length === 0 && e.scheda.sezioni.temperatura.pollice.length === 2 && e.interventi.some((i) => /in contrasto/.test(i)), "8a: nella scheda sparisce solo il consiglio in contrasto");
+
+// 8b. Frasi senza contenuto pratico
+for (const [prima, dopo] of [
+  ["La moltiplicazione può avvenire tramite talea, ma è importante seguire le indicazioni specifiche per la specie.", "La moltiplicazione può avvenire tramite talea."],
+  ["Predilige la luce filtrata e richiede un'attenzione particolare alla gestione dell'acqua per evitare danni.", "Predilige la luce filtrata."],
+  ["Predilige la luce indiretta e richiede cure moderate per l'acqua e il nutrimento.", "Predilige la luce indiretta."],
+  ["La propagazione può avvenire con diverse tecniche.", ""],
+  ["Segui le indicazioni specifiche per la specie.", ""],
+  ["Usa la dose giusta seguendo l'etichetta.", "Usa la dose giusta seguendo l'etichetta."],
+  ["Annaffia quando il terriccio è asciutto.", "Annaffia quando il terriccio è asciutto."],
+]) ok(senzaVuoto(prima) === dopo, `8b: "${prima.slice(0, 60)}…" → "${dopo || "tolta"}"${senzaVuoto(prima) === dopo ? "" : " MA: " + senzaVuoto(prima)}`);
+s = base({ riassunto: "Pianta da casa. Richiede un'attenzione particolare." });
+s.sezioni.coltivarla = sez({ riassunto: "La moltiplicazione avviene con diverse tecniche.", coseDaFare: ["Taglia una talea con un nodo.", "Segui le indicazioni specifiche per la specie."], fonti: ["S1"] });
+e = applicaRegole(s, fontiTipo);
+ok(e.scheda.riassunto === "Pianta da casa." && e.scheda.sezioni.coltivarla.lineeGuida.riassunto === PER_MOLTE + "taglia una talea con un nodo. Non è detto che valga per questa specie." && !JSON.stringify(e.scheda).includes("specifiche"), "8b: tolte da riassunto e linee guida; resta ciò che si può fare");
+
+for (const t of ["Esistono diversi metodi per riprodurre la pianta.", "La pianta può essere riprodotta con tecniche specifiche."]) ok(senzaVuoto(t) === "", `8b: "${t}" tolta`);
+
+// 8c. Scheda quasi vuota (gemma a volte dimentica le fonti delle linee guida)
+const fontiPiene = { S1: { ...fontiConA.S1, copreTutto: true }, S3: fontiConA.S3 };
+const senzaFonti = (n) => { const x = base(); for (const k of SEZIONI.slice(0, n)) x.sezioni[k] = sez({ riassunto: "Annaffia quando il terriccio è asciutto.", coseDaFare: [], fonti: [] }); return x; };
+ok(applicaRegole(senzaFonti(8), fontiPiene).bloccanti.some((b) => /quasi vuota: 8/.test(b)), "8c: scheda tutta senza fonti → non passa");
+ok(applicaRegole(senzaFonti(3), fontiPiene).bloccanti.length === 1 && applicaRegole(senzaFonti(2), fontiPiene).bloccanti.length === 0, "8c: si blocca da 3 sezioni vuote su 8");
+ok(applicaRegole(senzaFonti(8), fontiConA).bloccanti.length === 0 && applicaRegole(base(), fontiSoloC).bloccanti.length === 0, "8c: senza scheda del tipo le sezioni vuote sono normali");
+
+// Moltiplicazione specifica da Wikipedia (fonti vere di zamioculcas e sansevieria): l'azione passa le regole
+const moltiplicazione = (wikiVera, consiglio, nomi) => {
+  const x = base();
+  x.sezioni.coltivarla = sez({ riassunto: "La propagazione avviene tramite talea.", coseDaFare: [], fonti: ["S1"] }, [{ consiglio, fonti: ["S3"] }]);
+  return applicaRegole(x, { S1: { ...fontiConA.S1, generale: true }, S3: { livello: "C", titolo: "Wikipedia", testo: wikiVera } }, undefined, nomi).scheda.sezioni.coltivarla.pollice.length === 1;
+};
+ok(moltiplicazione("La propagazione avviene sia per seme che per talea di foglia (molto facile in acqua).", "Preleva una talea di foglia e mettila in acqua.", ["Zamioculcas zamiifolia", "Zamioculcas"]), "Moltiplicazione: talea di foglia della zamioculcas tenuta nel pollice verde");
+ok(moltiplicazione("Il rizoma funziona come mezzo di propagazione vegetativa, producendo nuove rosette lateralmente.", "Separa le nuove rosette laterali che nascono dal rizoma.", ["Dracaena trifasciata", "Dracaena"]), "Moltiplicazione: rosette dal rizoma della sansevieria tenute nel pollice verde");
+ok(!moltiplicazione("La pianta è costituita da rizomi, le foglie sono ispide.", "Dividi i cespi in primavera e ripianta subito.", ["Strelitzia reginae", "Strelitzia"]), "Moltiplicazione: un metodo che Wikipedia non cita viene tolto (Strelitzia)");
 
 // Formato non valido
 e = applicaRegole("testo qualsiasi", fontiConA);

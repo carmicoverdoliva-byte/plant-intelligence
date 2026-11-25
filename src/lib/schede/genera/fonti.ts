@@ -44,7 +44,7 @@ export interface FontiRaccolte {
 export async function raccogliFonti(specie: string, genere: string, famiglia?: string): Promise<FontiRaccolte> {
   const scelta = scegliScheda(specie, genere, famiglia);
   const fonti: Record<string, FonteData> = {};
-  if (scelta.scheda) fonti.S1 = { livello: "A", titolo: `Scheda Mandragola del tipo "${scelta.nomeTipo}"`, generale: true, testo: testoScheda(scelta.scheda) };
+  if (scelta.scheda) fonti.S1 = { livello: "A", titolo: `Scheda Mandragola del tipo "${scelta.nomeTipo}"`, generale: true, copreTutto: true, testo: testoScheda(scelta.scheda) };
   if (scelta.notaFamiglia) {
     fonti.S2 = {
       livello: "A",

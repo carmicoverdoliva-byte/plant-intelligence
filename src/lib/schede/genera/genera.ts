@@ -7,7 +7,7 @@
 // Regola 1: senza nessuna fonte A, se esiste una scheda di genere o di tipo si mostra quella al posto della generata.
 import { raccogliFonti } from "./fonti";
 import { leggiJson } from "./json";
-import { applicaRegole, type EsitoRegole, type FonteData } from "./regole";
+import { applicaRegole, QUASI_VUOTA, type EsitoRegole, type FonteData } from "./regole";
 import { MODELLI_SCHEDE } from "./modelli";
 import { testoPerRegistro, valoriSegreti } from "./registro";
 import { WorkersAiCardWriter, type CardWriter } from "./scrittore";
@@ -25,8 +25,11 @@ Regole obbligatorie:
 - Non scrivere frasi come "non è indicata la temperatura massima": scrivi solo i dati che le fonti danno.
 - Il "riassunto" generale NON contiene numeri (niente temperature, giorni, dosi): i numeri vanno solo nelle sezioni.
 - Un numero mantiene il SIGNIFICATO della fonte: se la fonte dice "minima 10-13 °C" scrivi "non scendere sotto i 10-13 °C", mai "tieni tra 10 e 13 °C".
-- Ogni sezione di "lineeGuida" cita solo fonti A (S1, S2): le cose dette da Wikipedia vanno in "pollice".
+- In OGNI sezione di "lineeGuida" scrivi sempre "fonti" con almeno S1 o S2: senza fonte la sezione viene cancellata. Cita solo fonti A (S1, S2): le cose dette da Wikipedia vanno in "pollice".
 - Ogni consiglio di "pollice" comincia con un'AZIONE (annaffia, sposta, taglia, controlla…), non con una descrizione della pianta.
+- Moltiplicazione: se Wikipedia cita un metodo preciso per QUESTA specie (es. talea di foglia, rizoma, stoloni, polloni, germogli), riportalo nel "pollice" di "coltivarla" come azione, con le parole della fonte (es. "Preleva una talea di foglia e mettila in acqua", "Separa le nuove rosette che nascono dal rizoma"). Se Wikipedia non cita nessun metodo, non inventarlo.
+- Non trasformare in consigli le descrizioni dell'habitat naturale. Nel "pollice" niente frequenze o temperature diverse dalle linee guida.
+- Niente frasi vuote ("segui le indicazioni specifiche", "richiede attenzione particolare", "con diverse tecniche"): di' che cosa fare.
 - Vietato: promesse o proprietà (purifica l'aria, porta fortuna, usi medicinali) e frasi sull'app, sulle fonti o sulle schede ("consulta la scheda…").
 Rispondi SOLO con un oggetto JSON valido:
 {"riassunto": "...",
@@ -82,9 +85,10 @@ export async function generaScheda(
     const json = leggiJson(r.testo);
     const esito = applicaRegole(json, fonti, tossicita, [specie, genere]);
     const copia = esito.bloccanti.some((b) => b.startsWith("copia"));
-    // Scartata per il formato: il testo grezzo va nel registro del server (anche se poi la riserva riesce)
-    if (esito.bloccanti.includes("formato non valido")) {
-      console.warn(`[scheda-generata] formato non valido · ${s.nome} · ${specie} · ${r.testo.length} caratteri · testo grezzo: ${testoPerRegistro(r.testo, valoriSegreti(process.env))}`);
+    // Scartata per il formato o perché quasi vuota: il testo grezzo va nel registro del server (anche se poi la riserva riesce)
+    const daCapire = esito.bloccanti.find((b) => b === "formato non valido" || b.startsWith(QUASI_VUOTA));
+    if (daCapire) {
+      console.warn(`[scheda-generata] ${daCapire} · ${s.nome} · ${specie} · ${r.testo.length} caratteri · testo grezzo: ${testoPerRegistro(r.testo, valoriSegreti(process.env))}`);
     }
     tentativi.push({
       modello: s.nome,

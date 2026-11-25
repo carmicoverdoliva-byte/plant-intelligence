@@ -37,6 +37,7 @@ const usatiOggi = () => stato.neuron[oggi] ?? 0;
 const ricorda = () => writeFileSync(FILE_STATO, JSON.stringify(stato, null, 2));
 
 const esiti = { generate: [], giaPresenti: [], ripieghi: [], senzaFonteA: [], soloGenere: [], nonProvate: [], problemi: [] };
+const TETTO_RAGGIUNTO = "tetto di neuron";
 let fermo = ""; // perché ci si è fermati prima della fine
 
 /** Nome accettato e famiglia secondo GBIF: gli stessi nomi che usa il telefono dopo il riconoscimento. */
@@ -75,12 +76,12 @@ const archivio = new UpstashCardStore();
 let costoMassimo = 0;
 console.log(`Neuron già contati oggi da questo script: ${usatiOggi()} · tetto ${TETTO} · specie da controllare: ${daFare.length}\n`);
 for (const p of daFare) {
-  if (fermo) { esiti.nonProvate.push(p.specie); continue; }
+  if (fermo && fermo !== TETTO_RAGGIUNTO) { esiti.nonProvate.push(p.specie); continue; } // col tetto si contano ancora le già presenti
   const { disponibile, scheda } = await archivio.cerca(p.chiave);
   if (!disponibile) { fermo = "Upstash non risponde"; esiti.nonProvate.push(p.specie); continue; }
   if (scheda) { esiti.giaPresenti.push(p.specie); continue; }
-  if (SOLO_ELENCO) { esiti.nonProvate.push(p.specie); continue; }
-  if (usatiOggi() + CHIAMATE_PEGGIORI * (costoMassimo || STIMA) > TETTO) { fermo = "tetto di neuron"; esiti.nonProvate.push(p.specie); continue; }
+  if (SOLO_ELENCO || fermo) { esiti.nonProvate.push(p.specie); continue; }
+  if (usatiOggi() + CHIAMATE_PEGGIORI * (costoMassimo || STIMA) > TETTO) { fermo = TETTO_RAGGIUNTO; esiti.nonProvate.push(p.specie); continue; }
 
   const r = await generaRisposta(p.specie, p.genere, p.famiglia);
   // Le chiamate interrotte Cloudflare le fa pagare ma non dice quanto: si contano al costo previsto
