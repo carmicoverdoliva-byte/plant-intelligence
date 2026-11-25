@@ -65,7 +65,7 @@ export async function provaVivaio({ apri, valuta, clicca, perTesto, ok, pausa, f
     await clicca(`[...document.querySelectorAll("button")].find(b => b.textContent.startsWith("Riconosci"))`);
   };
   const quante = () => valuta(`document.querySelectorAll('section[aria-label="Le piante del Vivaio"] li').length`);
-  const oggi = `"mandragola:riconoscimenti:" + new Date().toISOString().slice(0,10)`;
+  const oggi = `"mandragola:riconoscimenti:" + new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Rome" }).format(new Date())`;
 
   // 1. Vivaio vuoto
   await valuta(`localStorage.setItem("mandragola:spiegazione:vivaio", "letta"), localStorage.removeItem(${oggi}), true`);

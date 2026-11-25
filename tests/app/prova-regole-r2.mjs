@@ -1,10 +1,13 @@
 // Prova delle regole delle schede generate (R2) su casi costruiti: nessuna rete, nessun consumo.
 // Uso: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tests/app/prova-regole-r2.mjs
-import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { readdirSync, readFileSync, statSync } from "node:fs";
 import { applicaRegole, NON_INDICATA, SEZIONI } from "../../src/lib/schede/genera/regole.ts";
 import { tossicitaPerPianta } from "../../src/lib/schede/tossicita.ts";
 import { leggiJson } from "../../src/lib/schede/genera/json.ts";
 import { testoPerRegistro, valoriSegreti } from "../../src/lib/schede/genera/registro.ts";
+import { chiaveScheda, FILE_REGOLE, IMPRONTA_REGOLE, VERSIONE_REGOLE } from "../../src/lib/schede/genera/versione-regole.ts";
+import { giornoItaliano, prossimaMezzanotteItaliana } from "../../src/lib/giorno-italiano.ts";
 
 let fatti = 0, errori = 0;
 const ok = (c, d) => { fatti++; if (!c) errori++; console.log(`${c ? "✓" : "✗"} ${d}`); };
@@ -184,6 +187,28 @@ const riga = testoPerRegistro('{"a":\n"valore-finto-1234 e conto-finto-5678"', s
 ok(!/valore-finto|conto-finto/.test(riga) && riga.includes("[oscurato]") && !riga.includes("\n"), "Registro: chiavi oscurate e testo su una riga sola");
 ok(JSON.parse(testoPerRegistro('{"a":1', [])) === '{"a":1', "Registro: il testo grezzo si recupera identico");
 ok(testoPerRegistro("x".repeat(30000), []).length < 20100, "Registro: un testo lunghissimo si accorcia tenendo inizio e fine");
+
+// Versione delle regole nella chiave delle schede salvate (2026-11-25): se cambiano regole o fonti, deve cambiare
+const radice = new URL("../../", import.meta.url);
+const elencoFile = FILE_REGOLE.flatMap((f) => {
+  const u = new URL(f, radice);
+  return statSync(u).isDirectory() ? readdirSync(u).sort().map((n) => `${f}/${n}`) : [f];
+});
+const impronta = createHash("sha256");
+for (const f of elencoFile) impronta.update(f).update(readFileSync(new URL(f, radice), "utf8").replace(/\r\n/g, "\n"));
+const improntaOra = impronta.digest("hex").slice(0, 16);
+ok(improntaOra === IMPRONTA_REGOLE,
+  `Schede salvate: regole e fonti sono quelle della versione ${VERSIONE_REGOLE}` +
+    (improntaOra === IMPRONTA_REGOLE ? "" : ` → CAMBIATE: in versione-regole.ts aumenta VERSIONE_REGOLE e scrivi IMPRONTA_REGOLE = "${improntaOra}"`));
+ok(chiaveScheda("Monstera deliciosa", "Monstera", "Araceae") === `scheda:r${VERSIONE_REGOLE}:Monstera deliciosa|Monstera|Araceae`, "Schede salvate: chiave con versione, nome scientifico, genere e famiglia");
+ok(chiaveScheda("Monstera deliciosa", "monstera", "Araceae") !== chiaveScheda("Monstera deliciosa", "Monstera", "Araceae"), "Schede salvate: un genere scritto male non finisce sotto la chiave giusta");
+
+// Quota per telefono: il giorno cambia a mezzanotte ITALIANA, ora legale compresa
+const mezzanotte = (d) => prossimaMezzanotteItaliana(new Date(d)).toISOString();
+ok(mezzanotte("2026-11-25T14:00:00Z") === "2026-11-25T23:00:00.000Z", "Quota: d'inverno riparte alle 23:00 UTC (mezzanotte italiana)");
+ok(mezzanotte("2026-07-10T21:59:00Z") === "2026-07-10T22:00:00.000Z" && mezzanotte("2026-07-10T22:00:00Z") === "2026-07-11T22:00:00.000Z", "Quota: d'estate riparte alle 22:00 UTC");
+ok(mezzanotte("2026-10-25T10:00:00Z") === "2026-10-25T23:00:00.000Z" && mezzanotte("2026-03-29T10:00:00Z") === "2026-03-29T22:00:00.000Z", "Quota: giusta anche nei giorni del cambio d'ora");
+ok(giornoItaliano(new Date("2026-11-25T23:30:00Z")) === "2026-11-26" && giornoItaliano(new Date("2026-12-31T23:30:00Z")) === "2027-01-01", "Quota: dopo mezzanotte italiana è già domani, anche a Capodanno");
 
 console.log(`\n${fatti - errori}/${fatti} controlli superati.`);
 process.exit(errori ? 1 : 0);

@@ -2,9 +2,12 @@
 // nessun consumo della quota. Avvia da sola l'app (serve prima `npm run build`) con una chiave finta.
 // Controlla: risposta normale, "nessuna pianta", servizio spento, tempo scaduto, limite giornaliero, riserva,
 // tetto per indirizzo, foto non valida, sinonimi uniti con GBIF, nessun punteggio e nessuna chiave nelle risposte.
+// Dal 2026-11-25 anche Upstash e Cloudflare sono FINTI: quota per telefono, schede salvate e riusate, Upstash spento.
 // Uso: node tests/app/prova-identify.mjs
 import { spawn } from "node:child_process";
 import { createServer } from "node:http";
+import { SEZIONI } from "../../src/lib/schede/genera/regole.ts";
+import { prossimaMezzanotteItaliana } from "../../src/lib/giorno-italiano.ts";
 
 const CHIAVE_FINTA = "chiave-finta-di-prova";
 const PORTA_APP = 3100 + Math.floor(Math.random() * 300);
@@ -12,6 +15,26 @@ let modo = "ok";
 let richiestePlantNet = 0;
 let ultimaQuery = null;
 let wikiUserAgent = "";
+
+// Upstash finto: un piccolo Redis in memoria che conta i comandi ricevuti
+const TOKEN_FINTO = "token-upstash-finto";
+const redis = new Map();
+let comandi = [];
+let modoUpstash = "ok"; // "ok" | "quota-mese" | "lento"
+function eseguiRedis([nome, chiave, ...resto]) {
+  comandi.push([nome, chiave, ...resto]);
+  if (nome === "GET") return redis.get(chiave) ?? null;
+  if (nome === "SET") { redis.set(chiave, resto[0]); return "OK"; }
+  if (nome === "INCR" || nome === "DECR") { const n = Number(redis.get(chiave) ?? 0) + (nome === "INCR" ? 1 : -1); redis.set(chiave, n); return n; }
+  if (nome === "EXPIREAT") return 1;
+}
+// Cloudflare finto: una scheda valida (o rotta), scritta con parole che non vengono da nessuna fonte
+let chiamateAi = 0;
+let modoAi = "ok"; // "ok" | "rotto"
+const schedaFinta = JSON.stringify({
+  riassunto: "Scheda di prova, chiara e breve.",
+  sezioni: Object.fromEntries(SEZIONI.map((k) => [k, { lineeGuida: { riassunto: "Indicazione di prova.", coseDaFare: [`Azione di prova per ${k}.`], fonti: ["S1"] }, pollice: [] }])),
+});
 
 // Risposta di Pl@ntNet come quella vera (struttura del test D9), con foto di esempio
 const rispostaOk = (rimaste) => ({
@@ -28,6 +51,23 @@ const rispostaOk = (rimaste) => ({
 const finto = createServer((req, res) => {
   const url = new URL(req.url, "http://x");
   const json = (stato, corpo) => { res.writeHead(stato, { "content-type": "application/json" }); res.end(JSON.stringify(corpo)); };
+  if (url.pathname === "/upstash") {
+    let corpo = "";
+    req.on("data", (d) => (corpo += d));
+    req.on("end", () => {
+      if (modoUpstash === "lento") { comandi.push(["(senza risposta)"]); return; }
+      if (req.headers.authorization !== `Bearer ${TOKEN_FINTO}`) return json(401, { error: "Unauthorized" });
+      if (modoUpstash === "quota-mese") { comandi.push(["(rifiutato)"]); return json(400, { error: "ERR max requests limit exceeded. Limit: 500000" }); }
+      json(200, { result: eseguiRedis(JSON.parse(corpo)) });
+    });
+    return;
+  }
+  if (url.pathname.startsWith("/cloudflare/")) {
+    chiamateAi++;
+    req.resume();
+    req.on("end", () => json(200, { success: true, result: { choices: [{ message: { content: modoAi === "ok" ? schedaFinta : "{rotto" } }], usage: { neurons: 1 } } }));
+    return;
+  }
   // Wikipedia finta: voce italiana su Aloe vera; per "Planta ignota" nessuna voce, ma voce inglese sul genere "Planta"
   if (url.pathname.includes("/api/rest_v1/page/summary/")) {
     wikiUserAgent = req.headers["user-agent"] ?? "";
@@ -74,6 +114,14 @@ const app = spawn(process.execPath, ["node_modules/next/dist/bin/next", "start",
     WIKIPEDIA_BASE_URL: `http://127.0.0.1:${PORTA_FINTO}/wiki-{lingua}`,
     PLANTNET_TIMEOUT_MS: "1500",
     IDENTIFY_PER_IP_PER_DAY: "3",
+    UPSTASH_REDIS_REST_URL: `http://127.0.0.1:${PORTA_FINTO}/upstash`, // hanno la precedenza su .env.local: il database vero non si tocca
+    UPSTASH_REDIS_REST_TOKEN: TOKEN_FINTO,
+    UPSTASH_TIMEOUT_MS: "500",
+    UPSTASH_PAUSA_MS: "1500",
+    R2_SPERIMENTALE: "1",
+    CLOUDFLARE_API_URL: `http://127.0.0.1:${PORTA_FINTO}/cloudflare`,
+    CLOUDFLARE_ACCOUNT_ID: "conto-finto",
+    CLOUDFLARE_AI_TOKEN: "token-ai-finto",
     NEXT_TELEMETRY_DISABLED: "1",
   },
   stdio: "ignore",
@@ -86,9 +134,10 @@ for (let i = 0; i < 60; i++) {
 let fatti = 0, errori = 0;
 const ok = (cond, d) => { fatti++; if (!cond) errori++; console.log(`${cond ? "✓" : "✗"} ${d}`); };
 const foto = () => new Blob([new Uint8Array(2000).fill(7)], { type: "image/jpeg" });
-async function invia(indirizzo, { senzaFoto = false } = {}) {
+async function invia(indirizzo, { senzaFoto = false, telefono } = {}) {
   const m = new FormData();
   if (!senzaFoto) { m.append("foto", foto(), "a.jpg"); m.append("organo", "leaf"); }
+  if (telefono) m.append("telefono", telefono);
   const r = await fetch(BASE + "/api/identify", { method: "POST", body: m, headers: { "x-forwarded-for": indirizzo } });
   const testo = await r.text();
   return { stato: r.status, testo, dati: JSON.parse(testo) };
@@ -125,6 +174,86 @@ try {
   await invia("10.0.0.6"); await invia("10.0.0.6"); await invia("10.0.0.6");
   r = await invia("10.0.0.6");
   ok(r.stato === 429 && r.dati.codice === "limite-server", "tetto per indirizzo (3 in prova) → messaggio dedicato");
+
+  // --- Quota per telefono su Upstash (D4, D5) ---
+  const TEL = "3f2b8c1e-5a6d-4c7b-9e0f-112233445566";
+  comandi = [];
+  r = await invia("10.1.0.1", { telefono: TEL });
+  ok(r.dati.ok && r.dati.rimasti === 9, "Quota: primo riconoscimento, ne restano 9");
+  const chiaveQuota = comandi[0]?.[1] ?? "";
+  ok(comandi.length === 2 && comandi[0][0] === "INCR" && comandi[1][0] === "EXPIREAT" &&
+    comandi[1][2] === Math.floor(prossimaMezzanotteItaliana().getTime() / 1000), "Quota: 2 comandi al primo della giornata, scadenza a mezzanotte italiana");
+  ok(/^quota:\d{4}-\d\d-\d\d:[0-9a-f]{32}$/.test(chiaveQuota) && !JSON.stringify(comandi).includes(TEL) && !JSON.stringify(comandi).includes("10.1.0.1"),
+    "Quota: in Upstash solo un'impronta, mai il codice del telefono né l'indirizzo di rete");
+  comandi = [];
+  r = await invia("10.1.0.2", { telefono: TEL });
+  ok(r.dati.rimasti === 8 && comandi.length === 1, "Quota: dal secondo in poi 1 solo comando");
+  modo = "500"; comandi = [];
+  await invia("10.1.0.3", { telefono: TEL });
+  ok(comandi.map((c) => c[0]).join() === "INCR,DECR" && redis.get(chiaveQuota) === 2, "Quota: se Pl@ntNet non risponde il riconoscimento viene restituito");
+  modo = "ok";
+  for (let i = 0; i < 8; i++) r = await invia(`10.1.1.${i}`, { telefono: TEL });
+  ok(r.dati.ok && r.dati.rimasti === 0, "Quota: il decimo riconoscimento passa, ne restano 0");
+  let primaPn = richiestePlantNet;
+  r = await invia("10.1.2.1", { telefono: TEL });
+  ok(r.stato === 429 && r.dati.codice === "quota-telefono" && r.dati.rimasti === 0 && richiestePlantNet === primaPn, "Quota: l'undicesimo è fermato senza chiamare Pl@ntNet, anche da un'altra rete");
+  r = await invia("10.1.2.2", { telefono: "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee" });
+  ok(r.dati.ok && r.dati.rimasti === 9, "Quota: un altro telefono ha la sua");
+  comandi = [];
+  r = await invia("10.1.2.3", { telefono: "codice; non valido" });
+  ok(r.dati.ok && r.dati.rimasti === undefined && comandi.length === 0, "Quota: codice non valido → nessun comando, valgono i limiti di prima");
+
+  // --- Schede generate salvate e riusate (D6) ---
+  const generata = async (q) => {
+    const x = await fetch(BASE + "/api/scheda-generata?" + q);
+    const t = await x.text();
+    return { stato: x.status, testo: t, dati: JSON.parse(t) };
+  };
+  const MONSTERA = "specie=Monstera%20deliciosa&genere=Monstera&famiglia=Araceae";
+  const chiaveMonstera = "scheda:r1:Monstera deliciosa|Monstera|Araceae";
+  comandi = [];
+  let g = await generata(MONSTERA);
+  ok(g.dati.tipo === "generata" && chiamateAi === 1 && comandi.map((c) => c[0]).join() === "GET,SET", "Scheda: la prima volta si genera e si salva (2 comandi)");
+  ok(comandi[1][1].replace(/r\d+/, "r1") === chiaveMonstera && comandi[1][3] === "EX", "Scheda: chiave con versione delle regole e nome, con scadenza");
+  comandi = [];
+  const g2 = await generata(MONSTERA);
+  ok(g2.testo === g.testo && chiamateAi === 1 && comandi.length === 0, "Scheda: subito dopo arriva dalla memoria del server (0 comandi, 0 AI)");
+  // Una scheda già in Upstash (come dopo un riavvio del server, o generata per un altro telefono)
+  const valore = [...redis].find(([k]) => k.endsWith("Monstera deliciosa|Monstera|Araceae"))[1];
+  const versione = [...redis.keys()].find((k) => k.startsWith("scheda:r")).split(":")[1];
+  redis.set(`scheda:${versione}:Epipremnum aureum|Epipremnum|Araceae`, valore);
+  comandi = [];
+  g = await generata("specie=Epipremnum%20aureum&genere=Epipremnum&famiglia=Araceae");
+  ok(g.dati.tipo === "generata" && chiamateAi === 1 && comandi.map((c) => c[0]).join() === "GET", "Scheda: già in Upstash → arriva con 1 comando e senza AI");
+  redis.set(`scheda:${versione}:Zamioculcas zamiifolia|Zamioculcas|Araceae`, '{"tipo":"generata","rovinata":');
+  g = await generata("specie=Zamioculcas%20zamiifolia&genere=Zamioculcas&famiglia=Araceae");
+  ok(g.dati.tipo === "generata" && chiamateAi === 2, "Scheda: se quella salvata è rovinata si rigenera");
+  redis.set("scheda:r0:Aloe vera|Aloe|Asphodelaceae", valore);
+  g = await generata("specie=Aloe%20vera&genere=Aloe&famiglia=Asphodelaceae");
+  ok(g.dati.tipo === "generata" && chiamateAi === 3, "Scheda: quella di una versione vecchia delle regole non si usa");
+  modoAi = "rotto"; comandi = [];
+  g = await generata("specie=Crassula%20ovata&genere=Crassula&famiglia=Crassulaceae");
+  ok(g.dati.tipo === "ripiego" && !comandi.some((c) => c[0] === "SET") && !/rotto|formato|Error/.test(g.testo), "Scheda: il ripiego non si salva e non mostra errori tecnici");
+  modoAi = "ok";
+
+  // --- Upstash fermo o quota mensile finita: tutto continua come prima ---
+  modoUpstash = "quota-mese"; comandi = [];
+  r = await invia("10.2.0.1", { telefono: TEL });
+  ok(r.stato === 200 && r.dati.ok && r.dati.rimasti === undefined && comandi.length === 1, "Quota mensile di Upstash finita → il riconoscimento funziona lo stesso");
+  g = await generata("specie=Ficus%20lyrata&genere=Philodendron&famiglia=Araceae");
+  ok(g.dati.tipo === "generata" && comandi.length === 1, "Quota mensile finita → la scheda si genera senza salvare, e Upstash non viene richiamato subito");
+  ok(!/limit exceeded|upstash|token/i.test(r.testo + g.testo), "Quota mensile finita → nessun dettaglio tecnico al telefono");
+  await new Promise((x) => setTimeout(x, 1700));
+  modoUpstash = "lento"; comandi = [];
+  const t0 = Date.now();
+  r = await invia("10.2.0.2", { telefono: TEL });
+  ok(r.dati.ok && comandi.length === 1 && Date.now() - t0 < 4000, "Upstash non risponde → si prosegue dopo una breve attesa");
+  await invia("10.2.0.3", { telefono: TEL });
+  ok(comandi.length === 1, "Upstash non risponde → per un po' non lo si richiama");
+  await new Promise((x) => setTimeout(x, 1700));
+  modoUpstash = "ok";
+  r = await invia("10.2.0.4", { telefono: TEL });
+  ok(r.dati.codice === "quota-telefono", "Upstash torna → la quota torna a valere");
 
   modo = "ok-riserva";
   await invia("10.0.0.7");

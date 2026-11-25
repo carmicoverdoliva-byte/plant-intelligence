@@ -1,12 +1,13 @@
-// Tetti prudenti sul server, IN ATTESA DI UPSTASH (passo 2.4, decisione D5). SOLO SERVER.
+// Tetti prudenti sul server, oltre alla quota per telefono di Upstash (quota-server.ts). SOLO SERVER.
+// Se Upstash non risponde restano questi, insieme al conteggio del telefono.
 // Sono "al meglio delle possibilità": su Vercel il server può avere più copie in parallelo e ripartire da zero,
-// quindi questi contatori non sono precisi. La quota vera per dispositivo arriverà con Upstash.
+// quindi questi contatori non sono precisi.
 // Valori configurabili con le variabili d'ambiente (non segrete), con questi predefiniti.
 
 const oggiUtc = () => new Date().toISOString().slice(0, 10); // Pl@ntNet azzera il contatore a mezzanotte UTC
 
 export const CONFIG = {
-  /** Quota per dispositivo (D5): il telefono la conta da solo e la mostra. */
+  /** Quota per dispositivo (D5): la conta Upstash; il telefono la mostra. */
   quotaPerDispositivo: Number(process.env.QUOTA_PER_DEVICE_PER_DAY) || 10,
   /** Tetto per indirizzo di rete, per copia del server: un po' sopra la quota, per la foto aggiunta (F05). */
   tettoPerIndirizzo: Number(process.env.IDENTIFY_PER_IP_PER_DAY) || 15,

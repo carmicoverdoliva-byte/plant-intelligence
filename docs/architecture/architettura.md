@@ -202,7 +202,7 @@ Decisione [D6](decisioni-da-prendere.md).
 | **IndexedDB sul telefono** | Piante, foto ridotte, identificazioni, finestre, promemoria, impostazioni | Gratis, veloce, funziona offline, privacy massima |
 | **File di backup** (esporta/importa) | Copia completa della collezione | Protegge da cancellazioni e cambio telefono (F14) |
 | **Cache del service worker** | Modello dell'anteprima live (§1b), se l'utente lo scarica | Funziona offline; se Safari lo cancella si riscarica. Non va nel backup |
-| **Server (Upstash Redis)** | **Solo contatori** anonimi delle identificazioni, cancellati dopo 48 ore | Necessari per il limite di 500 al giorno (§4) |
+| **Server (Upstash Redis)** | Contatori anonimi delle identificazioni, cancellati a mezzanotte italiana; schede di cura generate, uguali per tutti | Quota per telefono (§4); non rigenerare le schede (D6) |
 
 **Come iPhone conserva i dati.** Safari cancella i dati salvati dai siti dopo **7 giorni senza visite**, ma le web app
 **installate sulla schermata Home** sono esentate da questa regola [6]. Per questo:
@@ -233,6 +233,10 @@ archivio esterno. Deciso (D4): **Upstash Redis** (piano gratuito: 500.000 comand
 Ogni identificazione usa circa 4 comandi: 500 al giorno × 30 giorni × 4 = **60.000 comandi al mese**, ben dentro il limite.
 
 > **Redis**: un archivio molto veloce di coppie "nome → valore", ideale per i contatori.
+
+**Stato al 2026-11-25:** su Upstash c'è solo il contatore **per dispositivo**, che scade a mezzanotte ora italiana; totale e
+rete restano come tetti in memoria (`limiti-server.ts`). Dettagli e comandi: [scheda Upstash](../api-documentation/upstash.md).
+La tabella qui sotto è il progetto iniziale.
 
 **Tre contatori.** I limiti **non sono scritti nel codice**: si leggono da variabili d'ambiente del server (in locale in
 `.env.local`, online nelle impostazioni dell'hosting), con un valore predefinito se mancano. Così si possono cambiare
@@ -584,7 +588,7 @@ interface AppSettings {
 }
 ```
 
-**Sul server (Upstash Redis)** ci sono solo i contatori del §4, senza dati personali e con scadenza di 48 ore.
+**Sul server (Upstash Redis)** ci sono i contatori del §4 (senza dati personali, cancellati a mezzanotte italiana) e le schede generate.
 
 ## 6. Adattatori (servizi sostituibili)
 | Adattatore | Implementazione v1 | Dove gira | Alternativa gratuita / ripiego |

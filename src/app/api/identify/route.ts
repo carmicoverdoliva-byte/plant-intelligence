@@ -5,6 +5,7 @@ import { classifica } from "@/lib/riconoscimento/classifica";
 import { GbifTaxonomy } from "@/lib/riconoscimento/gbif";
 import { CONFIG, puoChiedere, registra, segnaEsaurito } from "@/lib/riconoscimento/limiti-server";
 import { ORGANI, PlantNetProvider, type Organo } from "@/lib/riconoscimento/plantnet";
+import { UpstashQuotaStore } from "@/lib/riconoscimento/quota-server";
 
 export const maxDuration = 30; // secondi (Pl@ntNet risponde di solito in pochi secondi)
 
@@ -12,7 +13,10 @@ const MAX_FOTO = 5;
 const MAX_BYTE_FOTO = 1_500_000; // il telefono le riduce a ~200-600 KB
 const MAX_BYTE_TOTALI = 4_400_000; // Vercel accetta al massimo 4,5 MB per richiesta
 
+const quota = new UpstashQuotaStore();
+
 export type CodiceErrore =
+  | "quota-telefono" // finiti i riconoscimenti di oggi per questo telefono (D5)
   | "limite-giornaliero" // finite le identificazioni gratuite di oggi (Pl@ntNet)
   | "limite-server" // tetto prudente del server raggiunto
   | "non-risponde" // Pl@ntNet non risponde
@@ -20,7 +24,10 @@ export type CodiceErrore =
   | "configurazione"; // problema nostro (es. chiave mancante): messaggio generico
 
 const errore = (codice: CodiceErrore, stato: number) =>
-  Response.json({ ok: false, codice, quotaPerDispositivo: CONFIG.quotaPerDispositivo }, { status: stato });
+  Response.json(
+    { ok: false, codice, quotaPerDispositivo: CONFIG.quotaPerDispositivo, ...(codice === "quota-telefono" ? { rimasti: 0 } : {}) },
+    { status: stato },
+  );
 
 export async function POST(request: Request) {
   const indirizzo = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "sconosciuto";
@@ -47,16 +54,24 @@ export async function POST(request: Request) {
   if (permesso === "riserva") return errore("limite-giornaliero", 429);
   if (permesso === "tetto-indirizzo") return errore("limite-server", 429);
 
+  // Quota del telefono (D4, D5): null = Upstash non disponibile o codice mancante, valgono i limiti di prima
+  const prenotazione = await quota.prenota(String(modulo.get("telefono") ?? ""), CONFIG.quotaPerDispositivo);
+  if (prenotazione === "finita") return errore("quota-telefono", 429);
+  const rimasti = prenotazione ? { rimasti: prenotazione.rimasti } : {};
+
   const foto = files.map((dati, i) => ({
     dati,
     organo: (ORGANI as string[]).includes(organi[i]) ? (organi[i] as Organo) : "auto",
   }));
   const esito = await new PlantNetProvider().identify(foto);
 
+  // Riconoscimento non fatto (Pl@ntNet fermo o esaurito, foto illeggibile, problema nostro): al telefono non si conta
+  if (esito.tipo !== "ok" && esito.tipo !== "nessuna-pianta") await prenotazione?.restituisci();
+
   switch (esito.tipo) {
     case "nessuna-pianta":
       registra(indirizzo);
-      return Response.json({ ok: true, risultato: classifica(null), quotaPerDispositivo: CONFIG.quotaPerDispositivo });
+      return Response.json({ ok: true, risultato: classifica(null), quotaPerDispositivo: CONFIG.quotaPerDispositivo, ...rimasti });
     case "limite-giornaliero":
       segnaEsaurito();
       return errore("limite-giornaliero", 429);
@@ -75,5 +90,6 @@ export async function POST(request: Request) {
     ok: true,
     risultato: classifica(esito.risposta, nomi),
     quotaPerDispositivo: CONFIG.quotaPerDispositivo,
+    ...rimasti,
   });
 }

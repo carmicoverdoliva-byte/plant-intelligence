@@ -2,10 +2,13 @@
 // il riconoscimento resta veloce, la scheda arriva qualche secondo dopo e sostituisce quella del tipo.
 // È SPENTA in produzione: si accende con R2_SPERIMENTALE=1 (in locale) o nelle anteprime di Vercel (VERCEL_ENV=preview);
 // Se è spenta risponde 404 e l'app resta sulla scheda del tipo, senza messaggi d'errore.
-// Le schede generate si ricordano in memoria finché il server resta acceso; l'archivio vero (Upstash) arriverà dopo.
+// Prima si cerca la scheda già pronta: nella memoria del server, poi in Upstash (una per specie, valida per tutti).
+// Solo se non c'è la si genera, e si salva se ha passato i controlli; i ripieghi non si salvano mai.
 import { connection } from "next/server";
+import { UpstashCardStore } from "@/lib/schede/genera/archivio";
 import { generaScheda } from "@/lib/schede/genera/genera";
 import type { SchedaGenerata } from "@/lib/schede/genera/regole";
+import { chiaveScheda } from "@/lib/schede/genera/versione-regole";
 
 export const maxDuration = 300;
 const NOME_VALIDO = /^[\p{L} .×-]{2,100}$/u;
@@ -19,8 +22,32 @@ export interface RispostaSchedaGenerata {
   modello: string;
 }
 
+const archivio = new UpstashCardStore();
 const memoria = new Map<string, RispostaSchedaGenerata>();
-const inPreparazione = new Map<string, ReturnType<typeof generaScheda>>();
+const inPreparazione = new Map<string, Promise<RispostaSchedaGenerata | null>>();
+
+/** La scheda salvata, oppure una appena generata (e salvata); null = ripiego, l'app resta sulla scheda del tipo. */
+async function trovaOGenera(chiave: string, specie: string, genere: string, famiglia?: string): Promise<RispostaSchedaGenerata | null> {
+  const salvata = await archivio.leggi(chiave);
+  if (salvata) return salvata;
+  const r = await generaScheda(specie, genere, famiglia);
+  if (r.tipo !== "generata") {
+    // Nessun dettaglio tecnico al telefono; il motivo resta nel registro del server.
+    console.info(`[scheda-generata] ripiego per ${specie}: ${r.motivo} · ${r.tentativi.map((t) => `${t.modello} ${t.esito}`).join(" · ")}`);
+    return null;
+  }
+  const risposta: RispostaSchedaGenerata = {
+    ok: true,
+    tipo: "generata",
+    verificata: r.esito.verificata,
+    scheda: r.esito.scheda,
+    // Al telefono solo titolo, livello e link delle fonti (non i loro testi)
+    fonti: Object.fromEntries(Object.entries(r.fonti).map(([id, f]) => [id, { livello: f.livello, titolo: f.titolo, url: f.url }])),
+    modello: r.modello,
+  };
+  await archivio.salva(chiave, risposta);
+  return risposta;
+}
 
 export async function GET(request: Request) {
   await connection(); // si decide a ogni richiesta, non durante la compilazione
@@ -34,31 +61,18 @@ export async function GET(request: Request) {
   if (!NOME_VALIDO.test(specie) || !NOME_VALIDO.test(genere) || (famiglia && !NOME_VALIDO.test(famiglia))) {
     return Response.json({ ok: false }, { status: 400 });
   }
-  const chiave = `${specie}|${genere}|${famiglia ?? ""}`;
+  const chiave = chiaveScheda(specie, genere, famiglia);
   const giaFatta = memoria.get(chiave);
   if (giaFatta) return Response.json(giaFatta, { headers: { "Cache-Control": "no-store" } });
 
   // Due richieste uguali nello stesso momento aspettano la STESSA generazione (non si pagano neuron due volte)
   let inCorso = inPreparazione.get(chiave);
   if (!inCorso) {
-    inCorso = generaScheda(specie, genere, famiglia).finally(() => inPreparazione.delete(chiave));
+    inCorso = trovaOGenera(chiave, specie, genere, famiglia).finally(() => inPreparazione.delete(chiave));
     inPreparazione.set(chiave, inCorso);
   }
-  const r = await inCorso;
-  if (r.tipo !== "generata") {
-    // Ripiego: l'app resta sulla scheda del tipo. Nessun dettaglio tecnico al telefono; il motivo resta nel registro del server.
-    console.info(`[scheda-generata] ripiego per ${specie}: ${r.motivo} · ${r.tentativi.map((t) => `${t.modello} ${t.esito}`).join(" · ")}`);
-    return Response.json({ ok: true, tipo: "ripiego" }, { headers: { "Cache-Control": "no-store" } });
-  }
-  const risposta: RispostaSchedaGenerata = {
-    ok: true,
-    tipo: "generata",
-    verificata: r.esito.verificata,
-    scheda: r.esito.scheda,
-    // Al telefono solo titolo, livello e link delle fonti (non i loro testi)
-    fonti: Object.fromEntries(Object.entries(r.fonti).map(([id, f]) => [id, { livello: f.livello, titolo: f.titolo, url: f.url }])),
-    modello: r.modello,
-  };
+  const risposta = await inCorso;
+  if (!risposta) return Response.json({ ok: true, tipo: "ripiego" }, { headers: { "Cache-Control": "no-store" } });
   memoria.set(chiave, risposta);
   return Response.json(risposta, { headers: { "Cache-Control": "no-store" } });
 }

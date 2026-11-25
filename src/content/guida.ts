@@ -76,7 +76,7 @@ export const tutorial: Tutorial[] = [
       "Tocca \"Riconosci\". In pochi secondi vedi il nome, quanto è sicura l'app (detto a parole) e le piante simili da confrontare.",
       "Sotto il nome c'è il riquadro \"Cos'è\": una breve descrizione presa da Wikipedia, con il link alla voce. È una descrizione della pianta, non una scheda di cura.",
       "Se l'affidabilità è bassa, aggiungi una foto di un'altra parte, per esempio il fiore: aiuta molto.",
-      "Ogni giorno hai 10 riconoscimenti su questo telefono: i riconoscimenti gratuiti sono divisi tra tutti.",
+      "Ogni giorno hai 10 riconoscimenti su questo telefono: i riconoscimenti gratuiti sono divisi tra tutti. Il conteggio riparte a mezzanotte (ora italiana).",
     ],
   },
   {
@@ -158,7 +158,7 @@ export const domande: Domanda[] = [
   {
     domanda: "Dove finiscono i miei dati?",
     risposta:
-      "Restano sul tuo telefono. Non c'è un archivio online con i tuoi dati. Nel Vivaio puoi salvarne una copia in un file con \"Esporta backup\", per esempio su iCloud Drive.",
+      "Piante, foto salvate e soprannomi restano sul tuo telefono: non c'è un archivio online con i tuoi dati. Online teniamo solo un conteggio anonimo: quanti riconoscimenti ha fatto oggi questo telefono, legato a un codice casuale (non al tuo nome), che si cancella a mezzanotte. Salviamo anche le schede di cura generate, uguali per tutti, senza sapere chi le ha chieste. Nel Vivaio puoi salvare una copia delle tue piante in un file con \"Esporta backup\", per esempio su iCloud Drive.",
   },
   {
     domanda: "Come funziona il Vivaio?",

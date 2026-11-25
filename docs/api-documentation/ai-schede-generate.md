@@ -256,3 +256,19 @@ Consumo: **894 neuron** (tetto 1.490), nessuna specie saltata. Schede ed esempi 
   `[scheda-generata] formato non valido · modello · specie · … · testo grezzo: …`, anche se poi la riserva riesce. Il testo
   è su una riga, al massimo circa 20.000 caratteri, con le chiavi oscurate (`src/lib/schede/genera/registro.ts`). Non
   arriva mai al telefono. Sui piani gratuiti di Vercel il registro dura poco **(da verificare)**: va copiato presto.
+
+## Schede salvate e riusate in Upstash (2026-11-25)
+
+- **Ordine:** memoria del server → Upstash → generazione. Se la scheda c'è, Cloudflare non viene chiamato (0 neuron).
+- **Si salva solo** una scheda che ha passato i controlli, comprese quelle "NON VERIFICATA". **I ripieghi non si salvano:**
+  la volta dopo si riprova, quindi una specie che fallisce sempre consuma neuron a ogni tentativo.
+- **Versione delle regole:** `VERSIONE_REGOLE` in `src/lib/schede/genera/versione-regole.ts`, dentro la chiave. Va aumentata
+  di 1 quando cambiano regole, istruzioni al modello o fonti (schede del tipo, note di famiglia, tossicità, tipo per
+  genere): le schede vecchie non si usano più e spariscono dopo un anno. Se qualcuno se ne dimentica,
+  `tests/app/prova-regole-r2.mjs` fallisce e scrive l'impronta nuova.
+- **Cambiare modello non cambia la versione:** le schede già salvate restano quelle del modello precedente.
+- **Scheda rovinata nell'archivio:** si rigenera.
+- **Upstash fermo o quota mensile finita:** si genera senza salvare, come prima.
+- `CLOUDFLARE_API_URL` (facoltativa, non segreta) serve solo alle prove automatiche con un Cloudflare finto.
+
+Chiavi, scadenze e numero di comandi: [scheda Upstash](upstash.md).

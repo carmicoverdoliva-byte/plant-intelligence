@@ -1,5 +1,6 @@
 // Adattatore CardWriter (D6 rivista, D13): Cloudflare Workers AI, piano gratuito. SOLO SERVER.
 // Chiavi: CLOUDFLARE_ACCOUNT_ID e CLOUDFLARE_AI_TOKEN, solo nelle variabili d'ambiente (mai nel codice, mai nei log).
+// CLOUDFLARE_API_URL (facoltativa, non segreta) serve solo alle prove con un Cloudflare finto.
 // Quali modelli usare si decide in UN SOLO posto: ./modelli.ts (MODELLI_SCHEDE).
 
 export interface CardWriter {
@@ -20,7 +21,8 @@ export class WorkersAiCardWriter implements CardWriter {
     const token = process.env.CLOUDFLARE_AI_TOKEN;
     if (!account || !token) return { testo: "", neuron: 0, ms: 0, errore: "configurazione" };
     try {
-      const r = await fetch(`https://api.cloudflare.com/client/v4/accounts/${account}/ai/run/${this.modello}`, {
+      const base = process.env.CLOUDFLARE_API_URL || "https://api.cloudflare.com/client/v4";
+      const r = await fetch(`${base}/accounts/${account}/ai/run/${this.modello}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
         body: JSON.stringify({

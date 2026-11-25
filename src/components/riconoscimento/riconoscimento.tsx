@@ -7,7 +7,16 @@ import type { Risultato } from "@/lib/riconoscimento/classifica";
 import { riduciFoto } from "@/lib/riconoscimento/foto";
 import { ascolta } from "@/lib/memoria-locale";
 import { ascoltaNuovaFoto, segnaRisultatoAperto } from "@/lib/risultato-aperto";
-import { oraRipartenza, quotaGiornaliera, registraUso, rimastiOggi, salvaQuota } from "@/lib/riconoscimento/quota-telefono";
+import {
+  allineaRimasti,
+  oraRipartenza,
+  oraRipartenzaTelefono,
+  quotaGiornaliera,
+  registraUso,
+  rimastiOggi,
+  salvaQuota,
+} from "@/lib/riconoscimento/quota-telefono";
+import { codiceTelefono } from "@/lib/riconoscimento/telefono";
 import { TRATTO } from "../icona";
 import { ConsigliScatto, RisultatoRiconoscimento } from "./risultato-riconoscimento";
 
@@ -47,7 +56,7 @@ function messaggio(codice: CodiceProblema): { titolo: string; testo: string } {
     case "quota-telefono":
       return {
         titolo: "Per oggi hai finito i riconoscimenti",
-        testo: `Su questo telefono hai usato i ${quotaGiornaliera()} riconoscimenti di oggi. Si riparte alle ${ora}. I riconoscimenti gratuiti sono divisi tra tutti, così bastano per ognuno.`,
+        testo: `Su questo telefono hai usato i ${quotaGiornaliera()} riconoscimenti di oggi. Si riparte alle ${oraRipartenzaTelefono()}. I riconoscimenti gratuiti sono divisi tra tutti, così bastano per ognuno.`,
       };
     case "limite-giornaliero":
       return {
@@ -135,12 +144,16 @@ export function Riconoscimento() {
       modulo.append("foto", f.dati, `foto-${i + 1}.jpg`);
       modulo.append("organo", f.organo);
     });
+    const telefono = codiceTelefono();
+    if (telefono) modulo.append("telefono", telefono);
     try {
       const r = await fetch("/api/identify", { method: "POST", body: modulo });
       const dati = await r.json().catch(() => null);
       if (dati?.quotaPerDispositivo) salvaQuota(dati.quotaPerDispositivo);
-      if (dati?.ok && dati.risultato) {
-        registraUso();
+      const riuscito = Boolean(dati?.ok && dati.risultato);
+      if (riuscito) registraUso();
+      if (typeof dati?.rimasti === "number") allineaRimasti(dati.rimasti); // manca se Upstash non risponde: conta il telefono
+      if (riuscito) {
         setRisultato(dati.risultato as Risultato);
         setFase("risultato");
         requestAnimationFrame(() => titolo.current?.focus());

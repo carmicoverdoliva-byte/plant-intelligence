@@ -159,11 +159,11 @@ export async function provaFotocamera({ apri, valuta, clicca, perTesto, ok, paus
   await foto("fotocamera-errore");
 
   // 5. Quota del telefono finita
-  await valuta(`localStorage.setItem("mandragola:riconoscimenti:" + new Date().toISOString().slice(0,10), "10"), true`);
+  await valuta(`localStorage.setItem("mandragola:riconoscimenti:" + new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Rome" }).format(new Date()), "10"), true`);
   const prima = intercettate;
   await clicca(`[...document.querySelectorAll("button")].find(b => b.textContent.startsWith("Riconosci"))`);
   ok(await aspettaTesto("Per oggi hai finito i riconoscimenti") && intercettate === prima, "Quota finita sul telefono: messaggio chiaro, nessuna richiesta inviata");
-  await valuta(`localStorage.removeItem("mandragola:riconoscimenti:" + new Date().toISOString().slice(0,10)), true`);
+  await valuta(`localStorage.removeItem("mandragola:riconoscimenti:" + new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Rome" }).format(new Date())), true`);
 
   ascoltatori.splice(ascoltatori.indexOf(intercetta), 1);
   await cmd("Fetch.disable");

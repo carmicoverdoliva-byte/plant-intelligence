@@ -1,10 +1,11 @@
-// Quota per dispositivo contata SUL TELEFONO (decisione D5: 10 al giorno), in attesa di Upstash.
-// È un limite semplice: chi cancella i dati del browser lo azzera. Il server ha i suoi tetti prudenti.
-// Il giorno segue Pl@ntNet: si azzera a mezzanotte UTC (01:00 in Italia d'inverno, 02:00 d'estate).
+// Quota per dispositivo (decisione D5: 10 al giorno) ricordata SUL TELEFONO: per mostrarla e non fare richieste inutili.
+// Il conteggio vero è sul server (Upstash, quota-server.ts), che a ogni riconoscimento dice quanti ne restano; se Upstash
+// non risponde vale questo conteggio, come prima. Il giorno cambia a mezzanotte ora italiana.
+import { giornoItaliano, prossimaMezzanotteItaliana } from "@/lib/giorno-italiano";
 import { leggi, scrivi } from "@/lib/memoria-locale";
 
 const CHIAVE_QUOTA = "mandragola:quota-predefinita";
-const chiaveGiorno = () => `mandragola:riconoscimenti:${new Date().toISOString().slice(0, 10)}`;
+const chiaveGiorno = () => `mandragola:riconoscimenti:${giornoItaliano()}`;
 
 export function quotaGiornaliera(): number {
   return Number(leggi(CHIAVE_QUOTA)) || 10;
@@ -27,9 +28,21 @@ export function registraUso() {
   scrivi(chiaveGiorno(), String(usatiOggi() + 1));
 }
 
-/** Ora locale (es. "01:00") in cui si azzerano quota e limite di Pl@ntNet. */
+/** Il server ha detto quanti ne restano: vale il conteggio più alto (senza Upstash il telefono ne ha contati alcuni da solo). */
+export function allineaRimasti(rimasti: number) {
+  scrivi(chiaveGiorno(), String(Math.max(usatiOggi(), quotaGiornaliera() - rimasti)));
+}
+
+const ora = (d: Date) => d.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" });
+
+/** Ora locale in cui riparte la quota di questo telefono: mezzanotte italiana. */
+export function oraRipartenzaTelefono(): string {
+  return ora(prossimaMezzanotteItaliana());
+}
+
+/** Ora locale (es. "01:00") in cui si azzera il limite di Pl@ntNet: mezzanotte UTC. */
 export function oraRipartenza(): string {
   const domani = new Date();
   domani.setUTCHours(24, 0, 0, 0);
-  return domani.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" });
+  return ora(domani);
 }
