@@ -97,7 +97,7 @@ Ti chiede "Vuoi riconoscere un'altra pianta?". Con "Sì, nuova foto" il risultat
 
 ### Cosa vogliono dire i valori della tossicità?
 
-Le schede dicono per persone e per animali: "Tossica" (due fonti autorevoli d'accordo), "Tossica (una fonte)" (una sola fonte autorevole segnala un pericolo: per prudenza te lo diciamo subito), "Non tossica" (solo se due fonti autorevoli sono d'accordo), "Dipende dalla specie" oppure "Non verificata" (non abbiamo dati sicuri: tienila comunque lontana da bambini e animali). La nota sotto spiega il perché, con le fonti. Sotto le piante tossiche trovi sempre cosa fare se un bambino o un animale ne ha mangiata una parte, con i link al Ministero della Salute e all'ASPCA.
+Le schede dicono per persone e per animali: "Tossica" (due fonti autorevoli d'accordo), "Tossica (una fonte)" (una sola fonte autorevole segnala un pericolo: per prudenza te lo diciamo subito), "Non tossica" (solo se due fonti autorevoli sono d'accordo), "Dipende dalla specie" oppure "Non verificata" (non abbiamo dati sicuri: tienila comunque lontana da bambini e animali). La nota sotto spiega il perché, con le fonti. Sotto le piante tossiche trovi sempre cosa fare se un bambino o un animale ne ha mangiata una parte, con il link alla pagina del Ministero della Salute sui Centri Antiveleni.
 
 ### Perché l'app non mi dà la percentuale?
 
