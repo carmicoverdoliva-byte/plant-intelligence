@@ -406,9 +406,19 @@ ok(tossicitaPerPianta(orto, "Lactuca sativa", "Lactuca", "Asteraceae").nota === 
 // Gruppo 3 (2026-11-26): alberi e arbusti tropicali da appartamento
 ok(tipoDi("Heptapleurum arboricola") === "alberi-arbusti-tropicali" && tipoDi("Schefflera arboricola") === "alberi-arbusti-tropicali" && tipoDi("Yucca gigantea") === "alberi-arbusti-tropicali" && tipoDi("Cycas revoluta") === "alberi-arbusti-tropicali" && tipoDi("Musa acuminata") === "alberi-arbusti-tropicali", "Gruppo 3: schefflera (anche col nome nuovo), yucca d'appartamento, Cycas e banano → alberi e arbusti tropicali");
 ok(tipoDi("Beaucarnea recurvata") === "succulente" && tipoDi("Brugmansia suaveolens") === "arbusti" && tipoDi("Ficus pumila") === "rampicanti-tropicali" && tipoDi("Ficus carica") === "alberi" && tipoDi("Yucca filamentosa") === "alberi", "Gruppo 3: beaucarnea, brugmansia, ficus rampicante, fico e altre yucche fuori dal tipo");
+// Gruppo 4 (2026-11-26): arbusti divisi in tre tipi
+ok(["Nerium oleander", "Bougainvillea glabra", "Pelargonium zonale", "Hibiscus rosa-sinensis", "Pittosporum tobira", "Callistemon citrinus"].every((sp) => tipoDi(sp) === "arbusti-mediterranei") && ["Hydrangea macrophylla", "Camellia japonica", "Rhododendron simsii", "Gardenia jasminoides", "Erica carnea"].every((sp) => tipoDi(sp) === "arbusti-acidofili") && tipoDi("Hibiscus syriacus") === "arbusti" && tipoDi("Rosa canina") === "arbusti" && tipoDi("Trachelospermum jasminoides") === "rampicanti", "Gruppo 4: arbusti mediterranei da sole, da mezz'ombra e terreno acido, da giardino; falso gelsomino resta nei rampicanti");
+{
+  const med = t("arbusti-mediterranei"), acid = t("arbusti-acidofili");
+  const x = (tt, sp, fam) => tossicitaPerPianta(tt, sp, sp.split(" ")[0], fam);
+  const ole = x(med, "Nerium oleander", "Apocynaceae");
+  ok(ole.persone === "tossica" && ole.animali === "tossica" && /fumo/.test(ole.nota) && !/vaso/.test(ole.nota), "Gruppo 4: oleandro tossico per persone e animali, con il fumo (due fonti A), niente acqua del vaso (nessuna fonte A)");
+  ok(x(med, "Pelargonium zonale", "Geraniaceae").animali === "tossica (una fonte)" && x(med, "Pittosporum tobira").animali === "non tossica" && x(med, "Bougainvillea glabra", "Nyctaginaceae").nota === NOTA_PRUDENTE, "Gruppo 4: geranio 'Tossica (una fonte)', pittosporo non tossico, buganvillea senza dati → nota prudente");
+  ok(x(acid, "Rhododendron simsii", "Ericaceae").animali === "tossica" && x(acid, "Hydrangea macrophylla", "Hydrangeaceae").persone === "tossica (una fonte)" && x(acid, "Camellia japonica", "Theaceae").animali === "non tossica" && x(acid, "Kalmia latifolia", "Ericaceae").animali === "tossica (una fonte)" && /azalee/.test(x(acid, "Erica carnea", "Ericaceae").nota), "Gruppo 4: azalea e ortensia tossiche, camelia non tossica, kalmia 'Tossica (una fonte)', erica → frase sulle ericacee");
+}
 // Correzione dell'indice del 2026-11-26 (sera): generi da giardino o da balcone finiti per errore tra le piante tropicali
 {
-  const atteso = { "Buxus sempervirens": "arbusti", "Ilex aquifolium": "arbusti", "Lagerstroemia indica": "alberi", "Acca sellowiana": "alberi", "Plumbago auriculata": "arbusti", "Fuchsia magellanica": "arbusti", "Petunia hybrida": "annuali", "Cuphea hyssopifolia": "annuali", "Mandevilla sanderi": "rampicanti" };
+  const atteso = { "Buxus sempervirens": "arbusti", "Ilex aquifolium": "arbusti", "Lagerstroemia indica": "alberi", "Acca sellowiana": "alberi", "Plumbago auriculata": "arbusti-mediterranei", "Fuchsia magellanica": "arbusti", "Petunia hybrida": "annuali", "Cuphea hyssopifolia": "annuali", "Mandevilla sanderi": "rampicanti" };
   const sbagliati = Object.entries(atteso).filter(([sp, tipo]) => tipoDi(sp) !== tipo);
   ok(!sbagliati.length, "Indice corretto: bosso, agrifoglio, lagerstroemia, feijoa, plumbago, fucsia, petunia, cuphea e mandevilla nel tipo giusto" + (sbagliati.length ? " — sbagliati: " + sbagliati.map(([s]) => s).join(", ") : ""));
 }

@@ -1,0 +1,905 @@
+{
+  "id": "tipo/arbusti-acidofili",
+  "livello": "tipo",
+  "nome": "arbusti da mezz'ombra e terreno acido",
+  "siApplicaA": "Gli arbusti che vogliono mezz'ombra, terreno sempre fresco e acido e acqua non calcarea: ortensia, camelia, azalea e rododendro, gardenia, pieris, skimmia, kalmia, erica, brugo (Calluna) e loropetalum.",
+  "eccezioni": [
+    "L'ortensia non è strettamente acidofila: cresce anche in terreno neutro o calcareo, ma il pH cambia il colore dei fiori (blu in terreno acido, rosa in terreno calcareo).",
+    "La gardenia vuole umidità e notti fresche (10-13 °C) per formare i boccioli; l'aria secca, la poca luce e il caldo fanno cadere i boccioli.",
+    "Le eriche e il brugo amano il sole; alcune eriche (per esempio Erica carnea) reggono anche il terreno calcareo."
+  ],
+  "riassunto": "Piante da luce filtrata o mezz'ombra, che temono il sole caldo e il vento secco. Vogliono un terreno acido, ricco e fresco, mai secco d'estate e mai fradicio. Nelle zone con acqua calcarea si annaffiano con acqua piovana e, se il terreno è calcareo, si coltivano in vaso con terriccio per acidofile.",
+  "coseDaFare": [
+    "Mettila in mezz'ombra, riparata dal sole del pomeriggio.",
+    "Usa terriccio per acidofile (piante da terreno acido) se il tuo terreno è calcareo.",
+    "Non far mai seccare il terreno d'estate: è quando si formano i fiori dell'anno dopo.",
+    "Annaffia con acqua piovana se l'acqua di casa è calcarea.",
+    "Copri il terreno con uno strato di pacciame, cioè di materiale organico.",
+    "Concima poco, solo in primavera, con un concime per acidofile."
+  ],
+  "sezioni": {
+    "luce": {
+      "lineeGuida": {
+        "riassunto": "Vogliono luce filtrata o mezz'ombra, come sotto alberi alti, o il sole del mattino e l'ombra al pomeriggio. Il sole caldo e il vento secco le rovinano; l'ombra profonda le fa fiorire poco. L'ortensia regge anche il sole se il terreno resta umido; eriche e brugo hanno i colori migliori al sole.",
+        "coseDaFare": [
+          "Scegli un posto con sole al mattino e ombra al pomeriggio.",
+          "Evita i posti esposti al vento secco.",
+          "Non metterla nell'ombra profonda."
+        ],
+        "valori": [
+          {
+            "etichetta": "Luce",
+            "valore": "mezz'ombra o luce filtrata; sole al mattino, ombra al pomeriggio",
+            "fonti": [
+              1,
+              2,
+              3,
+              5,
+              7,
+              8
+            ]
+          },
+          {
+            "etichetta": "Da evitare",
+            "valore": "sole caldo per molte ore, vento secco, ombra profonda",
+            "fonti": [
+              1,
+              3,
+              5
+            ]
+          },
+          {
+            "etichetta": "Eriche e brugo",
+            "valore": "sole, per i colori migliori",
+            "fonti": [
+              4
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8
+        ]
+      },
+      "pollice": []
+    },
+    "acqua": {
+      "lineeGuida": {
+        "riassunto": "Il terreno deve restare fresco: d'estate non deve mai seccarsi, perché è il periodo in cui si formano i boccioli dell'anno dopo. Le azalee hanno radici superficiali: nei periodi secchi vanno annaffiate. L'acqua calcarea del rubinetto non va bene a lungo: meglio l'acqua piovana. Anche il ristagno è dannoso: fa marcire le radici.",
+        "coseDaFare": [
+          "Controlla il terreno sotto il pacciame: se i primi centimetri sono asciutti, annaffia a fondo.",
+          "D'estate annaffia almeno una volta a settimana, di più con il caldo.",
+          "Usa acqua piovana; quella del rubinetto solo per brevi periodi se è calcarea.",
+          "In vaso controlla spesso: si asciuga in fretta."
+        ],
+        "valori": [
+          {
+            "etichetta": "Quando",
+            "valore": "quando il terreno a qualche centimetro di profondità è asciutto (camelia: a 10 cm)",
+            "fonti": [
+              3,
+              5
+            ]
+          },
+          {
+            "etichetta": "Ortensia d'estate",
+            "valore": "a fondo una volta a settimana, di più con caldo e siccità",
+            "fonti": [
+              7
+            ]
+          },
+          {
+            "etichetta": "Acqua",
+            "valore": "piovana; il rubinetto calcareo solo per poco tempo",
+            "fonti": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "etichetta": "Estate",
+            "valore": "mai terreno secco: si formano i boccioli dell'anno dopo",
+            "fonti": [
+              1,
+              3,
+              6
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "pollice": []
+    },
+    "temperatura": {
+      "lineeGuida": {
+        "riassunto": "Quasi tutte reggono bene il freddo dei nostri inverni, ma le gelate tardive rovinano boccioli e germogli. La gardenia è più delicata: con freddi forti può seccare fino a terra, e per formare i boccioli vuole notti fresche. In vaso, nelle gelate forti, conviene spostarle in un angolo riparato.",
+        "coseDaFare": [
+          "Nelle gelate forti sposta i vasi vicino alla casa o in un angolo riparato.",
+          "Se una gelata rovina i germogli dell'ortensia, taglia sopra la prima coppia di gemme sane.",
+          "Evita i punti dove il gelo ristagna e il sole del mattino dopo le gelate."
+        ],
+        "valori": [
+          {
+            "etichetta": "Gelate tardive",
+            "valore": "rovinano boccioli e germogli nuovi",
+            "fonti": [
+              1,
+              2
+            ]
+          },
+          {
+            "etichetta": "Gardenia",
+            "valore": "con inverni molto rigidi può seccare fino a terra; i getti teneri muoiono sotto i -9 °C; notti di 10-13 °C per formare i boccioli",
+            "fonti": [
+              8
+            ]
+          },
+          {
+            "etichetta": "Tessuto non tessuto",
+            "valore": "protegge di circa 2 °C",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Massima",
+            "valore": "non indicata dalle fonti",
+            "fonti": []
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          5,
+          8
+        ]
+      },
+      "pollice": []
+    },
+    "terriccio": {
+      "lineeGuida": {
+        "riassunto": "Vogliono un terreno acido, ricco di sostanza organica e che scoli bene. Le fonti indicano un pH tra 4,5 e 6: per i rododendri tra 5 e 6, per le eriche 5,5 o meno. Se il terreno è calcareo, con calcare libero, non si riesce a renderlo davvero acido: meglio il vaso con terriccio per acidofile senza torba. Il pacciame acido, come la corteccia di pino, aiuta a mantenere il terreno acido e fresco.",
+        "coseDaFare": [
+          "Prima di piantare, misura il pH del terreno con un kit.",
+          "Se il terreno è calcareo, coltivala in vaso con terriccio per acidofile.",
+          "Copri il terreno con 5-8 cm di pacciame acido, come la corteccia di pino.",
+          "Pianta in superficie: le radici sono poco profonde."
+        ],
+        "valori": [
+          {
+            "etichetta": "pH",
+            "valore": "4,5-6 (rododendri 5-6; eriche 5,5 o meno)",
+            "fonti": [
+              1,
+              4,
+              5,
+              8
+            ]
+          },
+          {
+            "etichetta": "Ortensia e colore",
+            "valore": "fiori blu con pH circa 4,5-5,5, rosa con pH da 6 in su",
+            "fonti": [
+              2,
+              7
+            ]
+          },
+          {
+            "etichetta": "In vaso",
+            "valore": "terriccio per acidofile senza torba (per i rododendri va bene anche a base di terra)",
+            "fonti": [
+              1,
+              3,
+              4
+            ]
+          },
+          {
+            "etichetta": "Pacciame",
+            "valore": "5-8 cm di materiale organico acido (per i rododendri almeno 7,5 cm)",
+            "fonti": [
+              1,
+              4,
+              5,
+              8
+            ]
+          },
+          {
+            "etichetta": "Terreno con calcare libero",
+            "valore": "non si può rendere acido davvero",
+            "fonti": [
+              9
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ]
+      },
+      "pollice": []
+    },
+    "concime": {
+      "lineeGuida": {
+        "riassunto": "Chiedono poco concime. In terreno acido rododendri, eriche e ortensie già radicate spesso non ne hanno bisogno. Quando serve, si usa un concime per acidofile in primavera, alla dose dell'etichetta; mai a fine estate o in autunno. Il troppo concime brucia i bordi delle foglie e fa cadere i boccioli.",
+        "coseDaFare": [
+          "Se la pianta cresce bene, non concimarla.",
+          "Se serve, usa un concime per acidofile in primavera, alla dose dell'etichetta.",
+          "Non concimare da fine estate in poi."
+        ],
+        "valori": [
+          {
+            "etichetta": "Quando",
+            "valore": "primavera, al massimo fino a inizio estate",
+            "fonti": [
+              3,
+              5,
+              8
+            ]
+          },
+          {
+            "etichetta": "Tipo",
+            "valore": "concime per acidofile",
+            "fonti": [
+              1,
+              3,
+              5,
+              8
+            ]
+          },
+          {
+            "etichetta": "Da evitare",
+            "valore": "concime in autunno o a fine estate; dosi sopra l'etichetta",
+            "fonti": [
+              1,
+              3,
+              5,
+              6,
+              8
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8
+        ],
+        "disaccordi": [
+          {
+            "tema": "Concimare l'ortensia",
+            "posizioni": [
+              {
+                "dice": "le ortensie già radicate in genere non vanno concimate",
+                "fonti": [
+                  2
+                ]
+              },
+              {
+                "dice": "concime equilibrato leggero a marzo, maggio e luglio",
+                "fonti": [
+                  7
+                ]
+              }
+            ],
+            "sceltaPrudente": "Se fiorisce bene, non concimarla; nei terreni poveri basta un concime leggero in primavera. Troppo concime riduce i fiori."
+          }
+        ]
+      },
+      "pollice": []
+    },
+    "travaso": {
+      "lineeGuida": {
+        "riassunto": "Si piantano in autunno o in primavera, poco in profondità. In vaso i rododendri si rinvasano ogni due anni a inizio primavera; negli altri anni si sostituiscono i primi 5 cm di terriccio.",
+        "coseDaFare": [
+          "Pianta o rinvasa in autunno o a inizio primavera.",
+          "In vaso rinvasa ogni due anni; negli altri anni cambia i primi 5 cm di terriccio."
+        ],
+        "valori": [
+          {
+            "etichetta": "Quando piantare",
+            "valore": "autunno o primavera",
+            "fonti": [
+              1,
+              2,
+              3,
+              6
+            ]
+          },
+          {
+            "etichetta": "Rinvaso",
+            "valore": "ogni due anni a inizio primavera; negli altri anni sostituisci i primi 5 cm di terriccio",
+            "fonti": [
+              1
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          6
+        ]
+      },
+      "pollice": []
+    },
+    "coltivarla": {
+      "lineeGuida": {
+        "riassunto": "Si moltiplicano per talea o per propaggine. Le ortensie radicano facilmente da talea, ma fioriscono dopo 2-3 anni; i rododendri da propaggine impiegano da 15 mesi a 2 anni. La potatura va fatta subito dopo la fioritura, per non togliere i fiori dell'anno dopo. L'ortensia comune fiorisce sui rami dell'anno prima: si pota poco, a metà primavera.",
+        "coseDaFare": [
+          "Pota azalee, camelie, gardenie ed eriche subito dopo la fioritura.",
+          "Per l'ortensia comune, a metà primavera togli i fiori secchi, tagliando appena sopra due gemme grosse e sane.",
+          "Non potare l'ortensia dopo l'inizio di agosto."
+        ],
+        "valori": [
+          {
+            "etichetta": "Talee di ortensia",
+            "valore": "di ramo giovane da aprile a giugno, semilegnose a metà estate; fioriscono dopo 2-3 anni",
+            "fonti": [
+              2
+            ]
+          },
+          {
+            "etichetta": "Propaggine",
+            "valore": "rododendri: da 15 mesi a 2 anni; eriche: in primavera",
+            "fonti": [
+              1,
+              4
+            ]
+          },
+          {
+            "etichetta": "Potatura",
+            "valore": "subito dopo la fioritura",
+            "fonti": [
+              3,
+              4,
+              5,
+              8
+            ]
+          },
+          {
+            "etichetta": "Ortensia comune",
+            "valore": "a metà primavera; mai dopo l'inizio di agosto",
+            "fonti": [
+              2,
+              7
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8
+        ]
+      },
+      "pollice": []
+    },
+    "problemi": {
+      "lineeGuida": {
+        "riassunto": "In terreno calcareo le foglie giovani ingialliscono con le venature verdi: è la clorosi, per mancanza di ferro. Se il terreno si secca d'estate, i boccioli cadono. Il ristagno fa marcire le radici. Tra gli insetti si vedono la mosca bianca sulla gardenia, la tingide e il ragnetto rosso sull'azalea, l'oziorrinco nei vasi e la cocciniglia dell'ortensia.",
+        "coseDaFare": [
+          "Se le foglie giovani ingialliscono con le venature verdi, controlla il pH del terreno.",
+          "D'estate non far seccare il terreno.",
+          "Controlla il retro delle foglie della gardenia."
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "pollice": [],
+      "elenco": [
+        {
+          "nome": "Clorosi (foglie gialle per mancanza di ferro)",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie giovani gialle con le venature verdi"
+          ],
+          "prevenzione": [
+            "terreno acido",
+            "acqua non calcarea",
+            "misura il pH prima di intervenire"
+          ],
+          "fonti": [
+            1,
+            5,
+            9,
+            8
+          ]
+        },
+        {
+          "nome": "Caduta dei boccioli",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "boccioli che seccano e cadono prima di aprirsi"
+          ],
+          "prevenzione": [
+            "terreno mai secco d'estate",
+            "niente concime a fine estate"
+          ],
+          "fonti": [
+            1,
+            3,
+            6,
+            8
+          ]
+        },
+        {
+          "nome": "Marciume delle radici",
+          "tipo": "malattia",
+          "frequenza": "non indicata",
+          "segni": [
+            "pianta che appassisce con il terreno bagnato"
+          ],
+          "prevenzione": [
+            "terreno che scola",
+            "niente ristagni"
+          ],
+          "fonti": [
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "nome": "Mosca bianca della gardenia",
+          "tipo": "parassita",
+          "frequenza": "frequente",
+          "segni": [
+            "melata appiccicosa",
+            "fumaggine nera sulle foglie"
+          ],
+          "prevenzione": [
+            "controlla il retro delle foglie"
+          ],
+          "fonti": [
+            8
+          ]
+        },
+        {
+          "nome": "Tingide e ragnetto rosso dell'azalea",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie punteggiate di chiaro"
+          ],
+          "prevenzione": [
+            "niente sole pieno per molte ore"
+          ],
+          "fonti": [
+            5
+          ]
+        },
+        {
+          "nome": "Oziorrinco",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "pianta in vaso che appassisce senza motivo"
+          ],
+          "prevenzione": [
+            "controlla le piante in vaso"
+          ],
+          "fonti": [
+            1
+          ]
+        },
+        {
+          "nome": "Cocciniglia dell'ortensia",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "macchie bianche cerose e piatte su rami e foglie a inizio estate"
+          ],
+          "prevenzione": [
+            "controlla rami e foglie a inizio estate"
+          ],
+          "fonti": [
+            2
+          ]
+        }
+      ]
+    }
+  },
+  "falsiMiti": [
+    {
+      "mito": "L'ortensia va potata a fondo ogni autunno per fiorire meglio.",
+      "verdetto": "falso",
+      "cosaDiconoLeFonti": "L'ortensia comune fiorisce sui rami dell'anno prima: una potatura forte toglie i fiori. Le fonti consigliano di potare poco, a metà primavera, di lasciare i fiori secchi d'inverno per proteggere le gemme dal gelo e di non potare dopo l'inizio di agosto. Quando non fiorisce, la causa più comune è il freddo dell'inverno.",
+      "inPratica": "In autunno non potarla: a metà primavera togli solo i fiori secchi e qualche ramo vecchio.",
+      "fonti": [
+        2,
+        7
+      ]
+    }
+  ],
+  "approfondimenti": [],
+  "tossicita": {
+    "persone": "varia",
+    "animali": "varia",
+    "nota": "Dipende dalla pianta. Azalee, rododendri, pieris e ortensie sono tossiche per cani e gatti; la gardenia dà disturbi lievi. La camelia è indicata non tossica per cani e gatti (due fonti). Per eriche, brugo e loropetalum non abbiamo dati verificati: tienile lontane da bambini e animali.",
+    "fonti": [
+      2,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "casi": [
+      {
+        "taxa": [
+          "Rhododendron"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica",
+        "nota": "Azalee e rododendri sono tossici per cani e gatti: possono dare vomito, diarrea, debolezza e problemi al cuore (due fonti). Per le persone una fonte sola li indica tossici, con gravità bassa.",
+        "fonti": [
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "taxa": [
+          "Hydrangea"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica",
+        "nota": "L'ortensia è tossica per cani e gatti: vomito, diarrea, abbattimento (due fonti). Per le persone una fonte sola la indica tossica, con gravità bassa (disturbi allo stomaco se mangiata in quantità), anche per i bambini; un'altra avverte che toccarla può peggiorare le allergie della pelle: usa i guanti.",
+        "fonti": [
+          2,
+          13,
+          14
+        ]
+      },
+      {
+        "taxa": [
+          "Camellia"
+        ],
+        "persone": "non verificata",
+        "animali": "non tossica",
+        "nota": "La camelia non è tossica per cani e gatti: lo indicano due fonti concordi. Per le persone non abbiamo dati verificati.",
+        "fonti": [
+          15,
+          16
+        ]
+      },
+      {
+        "taxa": [
+          "Gardenia"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica",
+        "nota": "La gardenia è tossica per cani e gatti, con disturbi lievi: vomito o diarrea, a volte orticaria (due fonti). Per le persone non abbiamo dati verificati.",
+        "fonti": [
+          17,
+          18
+        ]
+      },
+      {
+        "taxa": [
+          "Pieris"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica",
+        "nota": "La pieris è tossica per cani e gatti: anche poche foglie possono causare problemi gravi (due fonti). Per le persone una fonte sola la indica molto tossica, anche per i bambini: foglie e nettare sono velenosi.",
+        "fonti": [
+          19,
+          20
+        ]
+      },
+      {
+        "taxa": [
+          "Kalmia"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica (una fonte)",
+        "nota": "Per cani e gatti una fonte sola indica la kalmia tossica (un'altra la segnala per i cavalli). Per le persone una fonte sola la indica molto tossica, anche il miele delle sue fioriture. Tienila lontana da bambini e animali.",
+        "fonti": [
+          21,
+          22
+        ]
+      },
+      {
+        "taxa": [
+          "Skimmia"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "non verificata",
+        "nota": "Una fonte sola indica velenose le bacche rosse della skimmia, in particolare per i bambini. Per cani e gatti non abbiamo dati verificati: tienila comunque lontana.",
+        "fonti": [
+          23
+        ]
+      }
+    ],
+    "frasi": [
+      {
+        "per": [
+          "Ericaceae"
+        ],
+        "fonti": [
+          10,
+          12,
+          19,
+          20
+        ],
+        "testo": "È della stessa famiglia di azalee, rododendri e pieris, che sono tossici per cani e gatti."
+      },
+      {
+        "per": [
+          "Ericaceae",
+          "Hydrangeaceae",
+          "Rubiaceae",
+          "Theaceae",
+          "Hamamelidaceae",
+          "Rutaceae"
+        ],
+        "fonti": [
+          10,
+          13,
+          15
+        ],
+        "testo": "Per questa pianta non abbiamo dati verificati: tienila lontana da bambini e animali."
+      }
+    ]
+  },
+  "fonti": [
+    {
+      "id": 1,
+      "titolo": "Rhododendrons: growing guide",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/rhododendron/growing-guide",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Site selection, Planting, Containers, Watering, Feeding, Pruning, Propagation, Problems"
+    },
+    {
+      "id": 2,
+      "titolo": "Shrubby hydrangeas: growing guide",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/hydrangea/shrubby/growing-guide",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Where to plant, Flower colour, Watering, Feeding, Pruning, Propagating, Problems, Toxicity"
+    },
+    {
+      "id": 3,
+      "titolo": "Camellias: growing guide",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/advice/profile?PID=327",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Where to plant, Watering, Feeding, Pruning, Propagation, Problems"
+    },
+    {
+      "id": 4,
+      "titolo": "Hardy heathers: growing guide",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/types/heathers/growing-guide",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Soil, Watering, Feeding, Mulching, Pruning, Propagating, Problems"
+    },
+    {
+      "id": 5,
+      "titolo": "Azalea Care (HGIC 1059)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/azalea-care/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Site, Soil, Watering, Fertilizing, Pruning, Problems"
+    },
+    {
+      "id": 6,
+      "titolo": "Camellia (HGIC 1062)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/camellia/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Culture, Fertilization, Problems"
+    },
+    {
+      "id": 7,
+      "titolo": "Hydrangea Care in South Carolina (HGIC 1067)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/hydrangea-care-in-south-carolina/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Bigleaf Hydrangea, Soil pH, Fertilizing, Watering, Pruning, Problems"
+    },
+    {
+      "id": 8,
+      "titolo": "Gardenia (HGIC 1065)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/gardenia/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Culture, Fertilizing, Pruning, Problems"
+    },
+    {
+      "id": 9,
+      "titolo": "Acidifying soil",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/soil-composts-mulches/acidifying-soil",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "When, Products, Rates"
+    },
+    {
+      "id": 10,
+      "titolo": "Azalea",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/azalea",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 11,
+      "titolo": "Rhododendron",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rhododendron",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 12,
+      "titolo": "Rhododendron",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/rhododendron/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Tags"
+    },
+    {
+      "id": 13,
+      "titolo": "Hydrangea",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/hydrangea",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 14,
+      "titolo": "Hydrangea macrophylla (Bigleaf Hydrangea)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/hydrangea-macrophylla/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Tags"
+    },
+    {
+      "id": 15,
+      "titolo": "Camellia",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/camellia",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity"
+    },
+    {
+      "id": 16,
+      "titolo": "Camellia japonica",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/camellia-japonica/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Tags"
+    },
+    {
+      "id": 17,
+      "titolo": "Gardenia",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/gardenia",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 18,
+      "titolo": "Gardenia jasminoides",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/gardenia-jasminoides/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Tags"
+    },
+    {
+      "id": 19,
+      "titolo": "Pieris",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/pieris",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 20,
+      "titolo": "Pieris japonica",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/pieris-japonica/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Tags"
+    },
+    {
+      "id": 21,
+      "titolo": "Kalmia latifolia (Mountain Laurel)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/kalmia-latifolia/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Tags"
+    },
+    {
+      "id": 22,
+      "titolo": "Mountain Laurel",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/mountain-laurel",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity"
+    },
+    {
+      "id": 23,
+      "titolo": "Skimmia japonica",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/skimmia-japonica/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
+    }
+  ],
+  "verifica": {
+    "controlliAutomatici": "2026-11-26",
+    "verificaIndipendente": "2026-11-26"
+  },
+  "versione": 1,
+  "aggiornata": "2026-11-26"
+}

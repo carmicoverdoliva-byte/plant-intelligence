@@ -15,6 +15,8 @@ export type IdTipo =
   | "alberi"
   | "conifere"
   | "arbusti"
+  | "arbusti-mediterranei"
+  | "arbusti-acidofili"
   | "rampicanti"
   | "erbacee-perenni"
   | "annuali"
@@ -38,6 +40,8 @@ export const TIPI: Record<IdTipo, { nome: string; dove: "casa" | "esterno" | "en
   alberi: { nome: "alberi di clima temperato e mediterraneo", dove: "esterno" },
   conifere: { nome: "conifere", dove: "esterno" },
   arbusti: { nome: "arbusti da giardino e da balcone", dove: "esterno" },
+  "arbusti-mediterranei": { nome: "arbusti mediterranei da sole", dove: "esterno" },
+  "arbusti-acidofili": { nome: "arbusti da mezz'ombra e terreno acido", dove: "esterno" },
   rampicanti: { nome: "rampicanti da esterno", dove: "esterno" },
   "erbacee-perenni": { nome: "erbacee perenni", dove: "esterno" },
   annuali: { nome: "piante annuali e biennali", dove: "esterno" },

@@ -1,0 +1,807 @@
+{
+  "id": "tipo/arbusti-mediterranei",
+  "livello": "tipo",
+  "nome": "arbusti mediterranei da sole",
+  "siApplicaA": "Gli arbusti da sole pieno e clima caldo e asciutto, in giardino o in vaso sul balcone: oleandro, buganvillea, lantana, pittosporo, mirto, cisto, teucrio, westringia, polygala, leptospermum, callistemon (Melaleuca), plumbago, geranio e ibisco cinese.",
+  "eccezioni": [
+    "Geranio, buganvillea, plumbago, lantana e ibisco cinese non reggono il gelo: d'inverno vanno al riparo.",
+    "L'ibisco cinese vuole il terreno sempre un po' umido e ricco: annaffialo più spesso degli altri, senza ristagni.",
+    "Geranio e buganvillea in vaso fioriscono meglio con un concime liquido regolare dalla primavera all'estate.",
+    "La buganvillea è un arbusto rampicante: ha bisogno di un sostegno a cui legarla."
+  ],
+  "riassunto": "Piante da sole pieno che, una volta radicate, sopportano bene la siccità. Vogliono un terreno che scoli bene: il ristagno d'acqua le fa marcire. In piena terra chiedono poco concime; molte non reggono il gelo e d'inverno vanno riparate.",
+  "coseDaFare": [
+    "Mettila nel posto più soleggiato che hai.",
+    "Usa un terreno o un terriccio che scoli molto bene.",
+    "Annaffia con regolarità il primo anno; poi solo nei periodi secchi, in vaso quando il terriccio è asciutto.",
+    "Non concimare troppo: fa più foglie e meno fiori.",
+    "Prima del gelo porta al riparo le piante delicate."
+  ],
+  "sezioni": {
+    "luce": {
+      "lineeGuida": {
+        "riassunto": "Vogliono sole pieno: con poca luce crescono deboli e fioriscono meno. L'oleandro sopporta un po' d'ombra ma si allunga. Il pittosporo è il più adattabile e regge anche l'ombra. In serra o dietro un vetro, buganvillea e geranio vanno protetti dal sole più forte di mezzogiorno.",
+        "coseDaFare": [
+          "Scegli il punto più soleggiato del giardino o del balcone.",
+          "Se la tieni dietro un vetro, riparala dal sole di mezzogiorno."
+        ],
+        "valori": [
+          {
+            "etichetta": "Luce",
+            "valore": "sole pieno",
+            "fonti": [
+              2,
+              3,
+              5,
+              6,
+              7
+            ]
+          },
+          {
+            "etichetta": "Pittosporo",
+            "valore": "dal sole all'ombra (varietà variegate meglio con ombra al pomeriggio)",
+            "fonti": [
+              4
+            ]
+          },
+          {
+            "etichetta": "Dietro un vetro",
+            "valore": "molta luce, ma riparata dal sole diretto più forte",
+            "fonti": [
+              1,
+              5
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "pollice": []
+    },
+    "acqua": {
+      "lineeGuida": {
+        "riassunto": "Il primo anno vanno annaffiate con regolarità, finché non mettono radici. Poi, in piena terra, sopportano bene la siccità e basta un'annaffiatura abbondante ogni tanto nei periodi secchi. In vaso si annaffia quando il terriccio è asciutto. D'inverno serve pochissima acqua. Il ristagno fa marcire le radici.",
+        "coseDaFare": [
+          "Il primo anno annaffia con regolarità.",
+          "Poi annaffia a fondo solo nei periodi secchi.",
+          "In vaso lascia asciugare il terriccio tra un'annaffiatura e l'altra.",
+          "D'inverno annaffia poco."
+        ],
+        "valori": [
+          {
+            "etichetta": "Piante nuove",
+            "valore": "regolari le prime settimane (lantana) o circa il primo anno (cisto)",
+            "fonti": [
+              3,
+              6
+            ]
+          },
+          {
+            "etichetta": "Piante radicate",
+            "valore": "resistono alla siccità; acqua abbondante solo ogni tanto",
+            "fonti": [
+              2,
+              3,
+              4,
+              6
+            ]
+          },
+          {
+            "etichetta": "Lantana in fiore",
+            "valore": "una volta a settimana se piove meno di 2,5 cm",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "In vaso",
+            "valore": "quando il terriccio è asciutto",
+            "fonti": [
+              6
+            ]
+          },
+          {
+            "etichetta": "Inverno",
+            "valore": "poca acqua",
+            "fonti": [
+              1,
+              5,
+              8
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8
+        ]
+      },
+      "pollice": []
+    },
+    "temperatura": {
+      "lineeGuida": {
+        "riassunto": "Molte di queste piante non reggono il gelo: geranio, buganvillea, plumbago, lantana e ibisco cinese d'inverno vanno al riparo. La buganvillea vuole almeno 10 °C di notte per non perdere le foglie; tenuta quasi asciutta, sopravvive sopra lo zero ma resta spoglia. Il cisto è quasi sempre rustico.",
+        "coseDaFare": [
+          "Prima delle gelate porta al riparo geranio, buganvillea, plumbago e ibisco cinese.",
+          "Riportali fuori solo quando non c'è più rischio di gelate.",
+          "In un luogo freddo tienili quasi asciutti."
+        ],
+        "valori": [
+          {
+            "etichetta": "Buganvillea",
+            "valore": "almeno 10 °C di notte; sopra lo zero sopravvive se tenuta quasi asciutta, ma perde le foglie",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Geranio",
+            "valore": "teme il gelo; molti continuano a fiorire a 7-10 °C",
+            "fonti": [
+              5
+            ]
+          },
+          {
+            "etichetta": "Plumbago",
+            "valore": "d'inverno in casa, in una stanza luminosa",
+            "fonti": [
+              8
+            ]
+          },
+          {
+            "etichetta": "Ibisco cinese",
+            "valore": "da proteggere dal gelo e dal vento",
+            "fonti": [
+              9
+            ]
+          },
+          {
+            "etichetta": "Massima",
+            "valore": "non indicata dalle fonti",
+            "fonti": []
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "disaccordi": [
+          {
+            "tema": "Quanto freddo regge l'oleandro",
+            "posizioni": [
+              {
+                "dice": "non regge temperature di 0 °C o meno",
+                "fonti": [
+                  7
+                ]
+              },
+              {
+                "dice": "molte varietà sopravvivono a -9/-7 °C, ma con le foglie danneggiate",
+                "fonti": [
+                  2
+                ]
+              }
+            ],
+            "sceltaPrudente": "Proteggilo dal gelo: in vaso portalo al riparo quando si scende sotto zero."
+          }
+        ]
+      },
+      "pollice": []
+    },
+    "terriccio": {
+      "lineeGuida": {
+        "riassunto": "Il terreno deve scolare bene: è la cosa più importante. Vanno bene terreni diversi, poveri o sassosi, da poco acidi a poco calcarei. In vaso si usa un terriccio a base di terra, con aggiunta di graniglia per il cisto; per il geranio va bene anche un terriccio universale senza torba.",
+        "coseDaFare": [
+          "Scegli un terreno che non resti mai fradicio.",
+          "In vaso usa terriccio a base di terra (per il geranio va bene anche universale senza torba); per il cisto aggiungi graniglia.",
+          "Usa vasi con i fori."
+        ],
+        "valori": [
+          {
+            "etichetta": "Drenaggio",
+            "valore": "indispensabile",
+            "fonti": [
+              2,
+              4,
+              6,
+              7
+            ]
+          },
+          {
+            "etichetta": "pH",
+            "valore": "va bene da poco acido a poco calcareo",
+            "fonti": [
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "etichetta": "In vaso",
+            "valore": "terriccio a base di terra; per il cisto con graniglia; per il geranio va bene anche un terriccio universale senza torba",
+            "fonti": [
+              1,
+              5,
+              6
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "pollice": []
+    },
+    "concime": {
+      "lineeGuida": {
+        "riassunto": "In piena terra serve poco concime, o nessuno: il troppo concime fa crescere foglie molli, meno fiori e piante che vivono meno. Fanno eccezione le piante da fiore in vaso, come geranio e buganvillea, che in primavera e in estate vogliono un concime liquido regolare. In autunno si smette (buganvillea) o si riduce a una volta al mese (geranio).",
+        "coseDaFare": [
+          "In piena terra basta, se serve, un po' di concime in primavera.",
+          "Geranio e buganvillea in vaso: concime liquido regolare da primavera a fine estate, alla dose dell'etichetta.",
+          "In autunno smetti di concimare la buganvillea; il geranio una volta al mese."
+        ],
+        "valori": [
+          {
+            "etichetta": "Piena terra",
+            "valore": "poco o niente (lantana: una leggera concimazione in primavera)",
+            "fonti": [
+              3,
+              6
+            ]
+          },
+          {
+            "etichetta": "Geranio in vaso",
+            "valore": "concime liquido ogni 10-14 giorni in primavera, poi per piante da fiore ogni due settimane in estate",
+            "fonti": [
+              5
+            ]
+          },
+          {
+            "etichetta": "Autunno",
+            "valore": "smetti (buganvillea) o riduci a una volta al mese (geranio)",
+            "fonti": [
+              1,
+              5
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          3,
+          5,
+          6
+        ]
+      },
+      "pollice": []
+    },
+    "travaso": {
+      "lineeGuida": {
+        "riassunto": "Le piante in vaso si rinvasano in primavera, se serve. Il vaso deve avere i fori e il terriccio deve essere drenante.",
+        "coseDaFare": [
+          "Rinvasa in primavera, solo se il vaso è troppo piccolo.",
+          "Usa terriccio a base di terra (per il geranio va bene anche universale senza torba)."
+        ],
+        "valori": [
+          {
+            "etichetta": "Quando",
+            "valore": "in primavera, se serve",
+            "fonti": [
+              1,
+              5
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          5
+        ]
+      },
+      "pollice": []
+    },
+    "coltivarla": {
+      "lineeGuida": {
+        "riassunto": "Si moltiplicano facilmente per talea: di ramo giovane in primavera e inizio estate, semilegnosa in estate. Le talee di buganvillea e cisto radicano in circa 4-6 settimane. La potatura cambia da pianta a pianta: l'oleandro fiorisce sui rami nuovi e si pota a inizio primavera, il pittosporo solo subito dopo la fioritura, il cisto solo per togliere i rami secchi.",
+        "coseDaFare": [
+          "Fai le talee tra la primavera e l'estate.",
+          "Pota oleandro e buganvillea a fine inverno o a inizio primavera.",
+          "Pota il pittosporo solo subito dopo la fioritura.",
+          "Il cisto non si pota a fondo: dai rami vecchi non ricaccia."
+        ],
+        "valori": [
+          {
+            "etichetta": "Talee",
+            "valore": "di ramo giovane in primavera, semilegnose in estate",
+            "fonti": [
+              1,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "etichetta": "Tempo per radicare",
+            "valore": "circa 4-6 settimane (buganvillea, cisto)",
+            "fonti": [
+              1,
+              6
+            ]
+          },
+          {
+            "etichetta": "Potatura oleandro",
+            "valore": "inizio primavera; leggera dopo la fioritura, non dopo l'inizio dell'autunno",
+            "fonti": [
+              2,
+              7
+            ]
+          },
+          {
+            "etichetta": "Potatura buganvillea",
+            "valore": "fine inverno o inizio primavera",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Potatura pittosporo",
+            "valore": "solo subito dopo la fioritura",
+            "fonti": [
+              4
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "pollice": []
+    },
+    "problemi": {
+      "lineeGuida": {
+        "riassunto": "Il problema più grave è il ristagno d'acqua, che fa marcire le radici. In vaso e al riparo arrivano cocciniglie, afidi, mosca bianca e ragnetto rosso. Con l'umidità e poca aria il geranio prende muffa grigia e ruggine; la lantana all'ombra prende il mal bianco. L'oleandro può avere rami che seccano e anneriscono.",
+        "coseDaFare": [
+          "Evita i ristagni.",
+          "Lascia circolare l'aria tra le piante.",
+          "Taglia i rami dell'oleandro che anneriscono, fino al legno sano."
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "pollice": [],
+      "elenco": [
+        {
+          "nome": "Marciume delle radici",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "pianta che appassisce con il terreno bagnato"
+          ],
+          "prevenzione": [
+            "terreno drenante",
+            "niente ristagni"
+          ],
+          "fonti": [
+            3,
+            4,
+            6
+          ]
+        },
+        {
+          "nome": "Cocciniglie e cocciniglia farinosa",
+          "tipo": "parassita",
+          "frequenza": "occasionale",
+          "segni": [
+            "fumaggine nera sulle foglie"
+          ],
+          "prevenzione": [
+            "controlla rami e foglie"
+          ],
+          "fonti": [
+            2,
+            4,
+            7
+          ]
+        },
+        {
+          "nome": "Afidi e mosca bianca",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "fumaggine nera sulle foglie"
+          ],
+          "prevenzione": [
+            "controlla il retro delle foglie"
+          ],
+          "fonti": [
+            1,
+            3,
+            4
+          ]
+        },
+        {
+          "nome": "Muffa grigia e ruggine del geranio",
+          "tipo": "malattia",
+          "frequenza": "non indicata",
+          "segni": [
+            "muffa grigia",
+            "macchie color ruggine"
+          ],
+          "prevenzione": [
+            "aria che circola",
+            "niente umidità ferma"
+          ],
+          "fonti": [
+            5
+          ]
+        },
+        {
+          "nome": "Mal bianco della lantana",
+          "tipo": "malattia",
+          "frequenza": "non indicata",
+          "segni": [
+            "patina bianca sulle foglie"
+          ],
+          "prevenzione": [
+            "posto al sole"
+          ],
+          "fonti": [
+            3
+          ]
+        },
+        {
+          "nome": "Disseccamento dei rami dell'oleandro",
+          "tipo": "malattia",
+          "frequenza": "non indicata",
+          "segni": [
+            "germogli che anneriscono e seccano"
+          ],
+          "prevenzione": [
+            "taglia i rami colpiti fino al legno sano"
+          ],
+          "fonti": [
+            2
+          ]
+        }
+      ]
+    }
+  },
+  "falsiMiti": [
+    {
+      "mito": "Più concime dai a questi arbusti, più fiori fanno.",
+      "verdetto": "falso",
+      "cosaDiconoLeFonti": "Le fonti dicono il contrario per le piante in piena terra: per la lantana il concime in eccesso riduce la fioritura; per il cisto fa crescere piante molli, che temono di più il gelo e vivono meno. Solo le piante da fiore in vaso, come geranio e buganvillea, vogliono un concime regolare.",
+      "inPratica": "In piena terra concima poco o niente; in vaso segui l'etichetta.",
+      "fonti": [
+        1,
+        3,
+        5,
+        6
+      ]
+    }
+  ],
+  "approfondimenti": [],
+  "tossicita": {
+    "persone": "varia",
+    "animali": "varia",
+    "nota": "Dipende dalla pianta. L'oleandro è molto tossico per persone e animali, anche il fumo dei rami bruciati. La lantana è tossica per cani e gatti; il geranio lo è secondo una fonte. Pittosporo e callistemon sono indicati non tossici per cani e gatti (due fonti). Per le altre non abbiamo dati verificati: tienile lontane da bambini e animali.",
+    "fonti": [
+      2,
+      7,
+      8,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "casi": [
+      {
+        "taxa": [
+          "Nerium"
+        ],
+        "persone": "tossica",
+        "animali": "tossica",
+        "nota": "L'oleandro è molto tossico per persone e animali: ogni parte, se mangiata, può essere mortale (tre fonti); una fonte precisa che è velenoso anche secco e può dare vomito e battito irregolare. Il fumo dei rami bruciati è dannoso: non bruciare mai le potature (due fonti). La linfa può irritare la pelle: usa i guanti (due fonti).",
+        "fonti": [
+          2,
+          7,
+          10
+        ]
+      },
+      {
+        "taxa": [
+          "Lantana"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica",
+        "nota": "La lantana è tossica per cani e gatti: vomito, diarrea, debolezza (due fonti). Per le persone una fonte sola la indica tossica, in particolare per i bambini; un'altra dice che i frutti possono essere velenosi, soprattutto se mangiati in quantità. Le foglie possono irritare la pelle sensibile.",
+        "fonti": [
+          3,
+          11,
+          12
+        ]
+      },
+      {
+        "taxa": [
+          "Pelargonium"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica (una fonte)",
+        "nota": "Per cani e gatti una fonte sola indica il geranio tossico: vomito, poco appetito, abbattimento e irritazione della pelle. Non è ancora confermato da una seconda fonte. Per le persone non abbiamo dati verificati.",
+        "fonti": [
+          13
+        ]
+      },
+      {
+        "taxa": [
+          "Pittosporum"
+        ],
+        "persone": "non verificata",
+        "animali": "non tossica",
+        "nota": "Il pittosporo non è tossico per cani e gatti: lo indicano due fonti concordi. Per le persone non abbiamo dati verificati.",
+        "fonti": [
+          14,
+          15
+        ]
+      },
+      {
+        "taxa": [
+          "Melaleuca",
+          "Callistemon"
+        ],
+        "persone": "non verificata",
+        "animali": "non tossica",
+        "nota": "Il callistemon non è tossico per cani e gatti: lo indicano due fonti concordi. Per le persone non abbiamo dati verificati.",
+        "fonti": [
+          16,
+          17
+        ]
+      },
+      {
+        "taxa": [
+          "Plumbago"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "non verificata",
+        "nota": "Una fonte sola dice che la linfa del plumbago può irritare molto la pelle, con arrossamenti e vesciche: usa i guanti. Per cani e gatti non abbiamo dati verificati: tienilo comunque lontano.",
+        "fonti": [
+          8
+        ]
+      }
+    ],
+    "frasi": [
+      {
+        "per": [
+          "Apocynaceae"
+        ],
+        "fonti": [
+          2,
+          7,
+          10
+        ],
+        "testo": "È della stessa famiglia dell'oleandro, che è molto tossico."
+      },
+      {
+        "per": [
+          "Verbenaceae"
+        ],
+        "fonti": [
+          11,
+          12
+        ],
+        "testo": "È della stessa famiglia della lantana, che è tossica per cani e gatti."
+      },
+      {
+        "per": [
+          "Apocynaceae",
+          "Verbenaceae",
+          "Geraniaceae"
+        ],
+        "fonti": [
+          2,
+          11,
+          13
+        ],
+        "testo": "Per questa pianta non abbiamo dati verificati: tienila lontana da bambini e animali."
+      }
+    ]
+  },
+  "fonti": [
+    {
+      "id": 1,
+      "titolo": "Bougainvillea: care tips",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/bougainvillea/growing-guide",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Cultivation notes, Spring and Summer, Autumn and Winter, Pruning, Propagation, Problems"
+    },
+    {
+      "id": 2,
+      "titolo": "Oleander (HGIC 1079)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/oleander/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Landscape Use, Problems, Warning"
+    },
+    {
+      "id": 3,
+      "titolo": "Lantana (HGIC 1177)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/lantana/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Landscape Use, Maintenance, Problems"
+    },
+    {
+      "id": 4,
+      "titolo": "Pittosporum (HGIC 1082)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/pittosporum/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "How to Grow, Watering, Soil, Pruning, Propagating, Insect and Disease Issues"
+    },
+    {
+      "id": 5,
+      "titolo": "Pelargoniums: growing guide",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/pelargonium/growing-guide",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Planting, Watering and feeding, Overwintering, Pruning, Propagating, Problems"
+    },
+    {
+      "id": 6,
+      "titolo": "Cistus: growing guide",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/cistus/growing-guide",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Where to plant, Ongoing Care, Feeding, Pruning, Propagating, Problems"
+    },
+    {
+      "id": 7,
+      "titolo": "Nerium oleander (Oleander)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/nerium-oleander/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Description, Cultural Conditions, Insects and Diseases, Poisonous to Humans"
+    },
+    {
+      "id": 8,
+      "titolo": "Plumbago auriculata (Cape Plumbago)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/plumbago-auriculata/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Description, Poisonous to Humans"
+    },
+    {
+      "id": 9,
+      "titolo": "Hibiscus rosa-sinensis (Chinese Hibiscus)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/hibiscus-rosa-sinensis/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Description, Cultural Conditions"
+    },
+    {
+      "id": 10,
+      "titolo": "Oleander",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/oleander",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 11,
+      "titolo": "Lantana",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lantana",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 12,
+      "titolo": "Lantana camara (Lantana)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/lantana-camara/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Tags"
+    },
+    {
+      "id": 13,
+      "titolo": "Geranium (Pelargonium)",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/geranium",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 14,
+      "titolo": "Japanese Pittosporum",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/japanese-pittosporum",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity"
+    },
+    {
+      "id": 15,
+      "titolo": "Pittosporum tobira (Japanese Pittosporum)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/pittosporum-tobira/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Tags"
+    },
+    {
+      "id": 16,
+      "titolo": "Bottlebrush (Callistemon)",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/bottlebrush",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity"
+    },
+    {
+      "id": 17,
+      "titolo": "Melaleuca citrina (Callistemon citrinus)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/callistemon-citrinus/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Tags"
+    }
+  ],
+  "verifica": {
+    "controlliAutomatici": "2026-11-26",
+    "verificaIndipendente": "2026-11-26"
+  },
+  "versione": 1,
+  "aggiornata": "2026-11-26"
+}

@@ -1004,5 +1004,225 @@
       "tabellaTossicita": "2026-11-26"
     },
     "aggiornata": "2026-11-26"
+  },
+  {
+    "famiglia": "Apocynaceae",
+    "nomeComune": "apocinacee (oleandro e parenti)",
+    "note": [
+      {
+        "tema": "tossicità",
+        "testo": "Dipende dalla pianta. L'oleandro è molto tossico per persone e animali: ogni parte può essere mortale se mangiata (tre fonti), anche secca (una fonte), e il fumo dei rami bruciati è dannoso (due fonti). Per altre piante della famiglia, come hoya, falso gelsomino e mandevilla, non abbiamo dati verificati.",
+        "fonti": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Oleander",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/oleander",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 2,
+        "titolo": "Nerium oleander (Oleander)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/nerium-oleander/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Poisonous to Humans, Description"
+      },
+      {
+        "id": 3,
+        "titolo": "Oleander (HGIC 1079)",
+        "sito": "Clemson Cooperative Extension (HGIC)",
+        "url": "https://hgic.clemson.edu/factsheet/oleander/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Warning"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-26",
+      "verificaIndipendente": "2026-11-26"
+    },
+    "aggiornata": "2026-11-26"
+  },
+  {
+    "famiglia": "Ericaceae",
+    "nomeComune": "ericacee (azalee, rododendri, eriche e parenti)",
+    "note": [
+      {
+        "tema": "tossicità",
+        "testo": "Dipende dalla pianta. Azalee, rododendri e pieris contengono grayanotossine e sono tossici per cani e gatti (due fonti); per la pieris anche poche foglie possono causare problemi seri (una fonte). Per eriche e brugo non abbiamo dati verificati.",
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "tema": "parassiti",
+        "testo": "Nei vasi l'oziorrinco attacca spesso i rododendri; all'aperto azalee e rododendri prendono tingide, ragnetto rosso e cocciniglie. Con il terreno fradicio le azalee soffrono di marciume delle radici; le eriche possono prendere il marciume da Phytophthora.",
+        "fonti": [
+          6,
+          7,
+          8
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Azalea",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/azalea",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 2,
+        "titolo": "Rhododendron",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rhododendron",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 3,
+        "titolo": "Rhododendron",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/rhododendron/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 4,
+        "titolo": "Pieris",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/pieris",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 5,
+        "titolo": "Pieris japonica",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/pieris-japonica/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 6,
+        "titolo": "Rhododendrons: growing guide",
+        "sito": "Royal Horticultural Society",
+        "url": "https://www.rhs.org.uk/plants/rhododendron/growing-guide",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Problems"
+      },
+      {
+        "id": 7,
+        "titolo": "Azalea Care (HGIC 1059)",
+        "sito": "Clemson Cooperative Extension (HGIC)",
+        "url": "https://hgic.clemson.edu/factsheet/azalea-care/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Problems"
+      },
+      {
+        "id": 8,
+        "titolo": "Hardy heathers: growing guide",
+        "sito": "Royal Horticultural Society",
+        "url": "https://www.rhs.org.uk/plants/types/heathers/growing-guide",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Problems"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-26",
+      "verificaIndipendente": "2026-11-26"
+    },
+    "aggiornata": "2026-11-26"
+  },
+  {
+    "famiglia": "Hydrangeaceae",
+    "nomeComune": "idrangeacee (ortensie e parenti)",
+    "note": [
+      {
+        "tema": "tossicità",
+        "testo": "Le ortensie sono tossiche per cani e gatti (due fonti). Per le persone una fonte sola le indica tossiche, con gravità bassa (disturbi allo stomaco se mangiate in quantità), anche per i bambini; un'altra avverte che toccarle può peggiorare le allergie della pelle.",
+        "fonti": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "tema": "parassiti",
+        "testo": "Sulle ortensie si vedono afidi e, a inizio estate, la cocciniglia dell'ortensia: macchie bianche cerose su rami e foglie. Possono arrivare macchie fogliari e mal bianco.",
+        "fonti": [
+          3,
+          4
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Hydrangea",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/hydrangea",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 2,
+        "titolo": "Hydrangea macrophylla (Bigleaf Hydrangea)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/hydrangea-macrophylla/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Poisonous to Humans, Tags"
+      },
+      {
+        "id": 3,
+        "titolo": "Shrubby hydrangeas: growing guide",
+        "sito": "Royal Horticultural Society",
+        "url": "https://www.rhs.org.uk/plants/hydrangea/shrubby/growing-guide",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Problems, Toxicity"
+      },
+      {
+        "id": 4,
+        "titolo": "Hydrangea Care in South Carolina (HGIC 1067)",
+        "sito": "Clemson Cooperative Extension (HGIC)",
+        "url": "https://hgic.clemson.edu/factsheet/hydrangea-care-in-south-carolina/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Diseases, Insects"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-26",
+      "verificaIndipendente": "2026-11-26"
+    },
+    "aggiornata": "2026-11-26"
   }
 ]
