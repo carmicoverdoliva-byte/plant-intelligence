@@ -411,7 +411,7 @@ ok(tipoDi("Beaucarnea recurvata") === "succulente" && tipoDi("Brugmansia suaveol
   const x = (sp, fam) => tossicitaPerPianta(alb, sp, sp.split(" ")[0], fam);
   ok(x("Cycas revoluta").animali === "tossica" && x("Cycas revoluta").persone === "tossica" && /semi/.test(x("Cycas revoluta").nota), "Gruppo 3: Cycas tossica per persone e animali, semi compresi");
   ok(x("Musa acuminata").animali === "non tossica" && x("Ficus benjamina", "Moraceae").animali === "tossica" && x("Ficus elastica", "Moraceae").persone === "tossica (una fonte)" && x("Ficus benjamina", "Moraceae").persone === "non verificata", "Gruppo 3: banano non tossico; ficus tossici per gli animali; albero della gomma 'Tossica (una fonte)' per le persone");
-  ok(x("Pachira aquatica").animali === "tossica (una fonte)" && /non sono d'accordo/.test(x("Pachira aquatica").nota) && x("Radermachera sinica").nota === NOTA_PRUDENTE, "Gruppo 3: pachira con fonti in disaccordo → 'Tossica (una fonte)'; Radermachera senza dati → nota prudente");
+  ok(x("Pachira aquatica").animali === "tossica (una fonte)" && /semi/.test(x("Pachira aquatica").nota) && /ASPCA/.test(x("Pachira aquatica").nota) && x("Pachira aquatica").persone === "tossica (una fonte)" && x("Radermachera sinica").nota === NOTA_PRUDENTE, "Gruppo 3: pachira 'Tossica (una fonte)' per persone e animali, nota sui semi e su ASPCA; Radermachera senza dati → nota prudente");
 }
 
 // Lettura del JSON del modello (gpt-oss-20b chiudeva con una graffa in meno)

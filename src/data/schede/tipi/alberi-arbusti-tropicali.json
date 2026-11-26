@@ -722,7 +722,7 @@
         ],
         "persone": "tossica (una fonte)",
         "animali": "tossica (una fonte)",
-        "nota": "Le fonti non sono d'accordo. Una la indica non tossica per cani e gatti; un'altra, una fonte sola, dice che i suoi semi possono dare ai gatti disturbi allo stomaco da lievi a moderati e forse fare male alle persone se mangiati. La stessa fonte dice che le piante tenute in casa non fanno semi. Per prudenza tienila lontana da bambini e animali.",
+        "nota": "Il rischio riguarda i semi: una fonte sola dice che possono dare ai gatti disturbi allo stomaco da lievi a moderati e forse fare male alle persone se mangiati. In casa la pachira raramente fa semi (la stessa fonte dice che le piante d'appartamento non ne producono), e l'ASPCA la indica non tossica per cani e gatti. Per prudenza tienila comunque lontana da bambini e animali.",
         "fonti": [
           22,
           23
@@ -1157,7 +1157,8 @@
   ],
   "verifica": {
     "controlliAutomatici": "2026-11-27",
-    "verificaIndipendente": "2026-11-27"
+    "verificaIndipendente": "2026-11-27",
+    "tabellaTossicita": "2026-11-27"
   },
   "versione": 1,
   "aggiornata": "2026-11-27"

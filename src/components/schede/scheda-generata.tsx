@@ -7,6 +7,7 @@ import { dataBreve } from "@/lib/vivaio/tipi";
 import type { Bolla as TipoBolla } from "@/content/guida";
 import { Bolla } from "../bolla";
 import { TRATTO } from "../icona";
+import { AvvisoAntiveleni } from "./avviso-antiveleni";
 
 // Scheda di SPECIE generata (R2, D13): arriva qualche secondo dopo il risultato e prende il posto della scheda del tipo.
 // Stesso aspetto della scheda del tipo (riferimento scheda.html); in cima il livello, sempre visibile (CLAUDE.md §8):
@@ -150,6 +151,7 @@ export function SchedaGenerata({
           {s.tossicita.nota}
           <Rimandi ids={s.tossicita.fonti} />
         </p>
+        <AvvisoAntiveleni persone={s.tossicita.persone} animali={s.tossicita.animali} />
       </section>
 
       <details className="group vetro rounded-riquadro">

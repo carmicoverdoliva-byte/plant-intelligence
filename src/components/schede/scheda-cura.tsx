@@ -10,6 +10,7 @@ import type { Bolla as TipoBolla } from "@/content/guida";
 import { Bolla } from "../bolla";
 import { TRATTO } from "../icona";
 import { SchedaGenerata } from "./scheda-generata";
+import { AvvisoAntiveleni } from "./avviso-antiveleni";
 import type { RispostaSchedaGenerata } from "@/app/api/scheda-generata/route";
 
 // Scheda di cura sotto il risultato del riconoscimento (rilascio R1, D13). Dal riferimento scheda.html:
@@ -346,6 +347,7 @@ function SchedaTipo({
             {tossicita.nota}
             <Rimandi ids={tossicita.fonti} />
           </p>
+          <AvvisoAntiveleni persone={tossicita.persone} animali={tossicita.animali} />
         </section>
       )}
 

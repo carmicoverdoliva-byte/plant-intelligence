@@ -427,7 +427,8 @@
     ],
     "verifica": {
       "controlliAutomatici": "2026-11-26",
-      "verificaIndipendente": "2026-11-26"
+      "verificaIndipendente": "2026-11-26",
+      "tabellaTossicita": "2026-11-27"
     },
     "aggiornata": "2026-11-27"
   },
@@ -763,7 +764,8 @@
     ],
     "verifica": {
       "controlliAutomatici": "2026-11-27",
-      "verificaIndipendente": "2026-11-27"
+      "verificaIndipendente": "2026-11-27",
+      "tabellaTossicita": "2026-11-27"
     },
     "aggiornata": "2026-11-27"
   },
@@ -888,7 +890,8 @@
     ],
     "verifica": {
       "controlliAutomatici": "2026-11-27",
-      "verificaIndipendente": "2026-11-27"
+      "verificaIndipendente": "2026-11-27",
+      "tabellaTossicita": "2026-11-27"
     },
     "aggiornata": "2026-11-27"
   },
@@ -997,7 +1000,8 @@
     ],
     "verifica": {
       "controlliAutomatici": "2026-11-27",
-      "verificaIndipendente": "2026-11-27"
+      "verificaIndipendente": "2026-11-27",
+      "tabellaTossicita": "2026-11-27"
     },
     "aggiornata": "2026-11-27"
   }

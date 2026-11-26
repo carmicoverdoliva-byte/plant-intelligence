@@ -128,6 +128,13 @@ export async function provaVivaio({ apri, valuta, clicca, perTesto, ok, pausa, f
   ok(await aspettaTesto("Scheda del tipo: rampicanti"), "Senza rete: la scheda salvata del pothos si apre");
   const s = await testoPagina();
   ok(s.includes("Tossicità") && s.includes("Persone: Tossica") && s.includes("Fonti della scheda"), "Scheda salvata: tossicità e fonti comprese");
+  // Riga di sicurezza sotto la tossicità (2026-11-27): per le piante tossiche, con i link ufficiali e senza numeri di telefono
+  const avviso = await valuta(`(() => { const p = document.querySelector("[data-avviso-antiveleni]"); if (!p) return null;
+    p.scrollIntoView({ block: "center" }); return { testo: p.textContent, link: [...p.querySelectorAll("a")].map((a) => a.href) }; })()`);
+  ok(!!avviso && avviso.testo.includes("contatta subito il medico, il veterinario o un Centro Antiveleni") && avviso.link.some((u) => u.includes("salute.gov.it")) && avviso.link.some((u) => u.includes("aspca.org")) && !/\d{3}[\s.-]?\d{3}/.test(avviso.testo),
+    "Scheda di una pianta tossica: riga 'contatta subito…' con i link a Ministero della Salute e ASPCA, nessun numero di telefono");
+  await pausa(300);
+  await foto("scheda-avviso-antiveleni");
   ok(s.includes("Salvata il") && s.includes("probabilmente"), "Scheda salvata: data e nome scientifico con \"probabilmente\"");
   ok(await aspetta(`[...document.querySelectorAll("main img")].some(i => i.complete && i.naturalWidth > 0)`), "Scheda salvata: la tua foto si vede");
   // /api/versione è il controllo dell'avviso "Nuova versione disponibile" (vale per tutta l'app e senza rete fallisce
