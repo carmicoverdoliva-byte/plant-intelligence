@@ -21,6 +21,14 @@
 //     b. niente frasi senza contenuto pratico nel riassunto e nelle linee guida ("segui le indicazioni specifiche");
 //     c. una scheda quasi vuota non passa: se la scheda del tipo copre tutte le sezioni ma qui ne restano vuote troppe
 //        (per esempio il modello ha dimenticato le fonti), sul telefono resta la scheda del tipo, che è completa.
+//  9. (2026-11-26, versione 4 delle regole)
+//     a. fonte dimenticata: linee guida senza fonti → ogni frase che la fonte A dice davvero (parole e numeri, come
+//        in 7d) si attribuisce a lei; le altre vanno nel pollice verde (e restano solo se Wikipedia le dice);
+//     b. la regola 8a non toglie un consiglio PIÙ prudente della linea guida (minima più alta, massima più bassa,
+//        annaffiature o concimazioni meno frequenti, meno concime): toglie solo ciò che è meno prudente o contraddice;
+//     c. niente frasi che nominano un'altra pianta (es. il pothos nella scheda della Monstera), salvo i confronti
+//        presenti in una fonte su QUESTA pianta (non nella scheda del tipo o nella nota di famiglia, che valgono per molte);
+//     d. sezione con le "cose da fare" ma senza riassunto: la prima cosa da fare diventa il riassunto (prima si perdeva).
 
 export type LivelloFonte = "A" | "C";
 export interface FonteData {
@@ -269,8 +277,10 @@ export function contrasta(consiglio: string, lineeGuida: string[], sezione: stri
   if (mie.length) {
     if (loro.length) {
       const min = Math.min(...loro.map((x) => x[0])), max = Math.max(...loro.map((x) => x[1]));
-      if (mie.some(([a, b]) => a < min * 0.95 || b > max * 1.05)) return true;
-    } else if (sezione === "acqua" && SI_CONTROLLA.test(lg)) return true;
+      if (mie.some(([a]) => a < min * 0.95)) return true; // più spesso della linea guida
+      // Meno spesso: per acqua e concime è più prudente e resta (9b); per il resto (es. travaso) è un contrasto
+      if (mie.some(([, b]) => b > max * 1.05) && !MENO_SPESSO_PRUDENTE.has(sezione)) return true;
+    } else if (sezione === "acqua" && SI_CONTROLLA.test(lg)) return true; // un calendario contro "controlla col dito"
   }
   const valori = numeriLetti(lg);
   for (const g of numeriLetti(consiglio)) {
@@ -281,10 +291,11 @@ export function contrasta(consiglio: string, lineeGuida: string[], sezione: stri
     const liberi = stessi.filter((x) => !x.s.size).map((x) => x.v);
     if (g.unita === "gradi") {
       const minime = con("min"), massime = con("max");
+      // 9b: una minima più alta o una massima più bassa sono più prudenti e restano; fuori dall'intervallo ideale no
       if (g.significati.has("min")) {
-        if (minime.length ? !minime.includes(v) : liberi.length > 0 && v > Math.max(...liberi)) return true;
+        if (minime.length ? v < Math.min(...minime) : liberi.length > 0 && v > Math.max(...liberi)) return true;
       } else if (g.significati.has("max")) {
-        if (massime.length ? !massime.includes(v) : liberi.length > 0 && v < Math.min(...liberi)) return true;
+        if (massime.length ? v > Math.max(...massime) : liberi.length > 0 && v < Math.min(...liberi)) return true;
       } else if (liberi.length) {
         if (v < Math.min(...liberi) || v > Math.max(...liberi)) return true;
       } else if ((minime.length && v < Math.min(...minime)) || (massime.length && v > Math.max(...massime))) return true;
@@ -294,9 +305,28 @@ export function contrasta(consiglio: string, lineeGuida: string[], sezione: stri
       if (v < Math.min(...tutti) || v > Math.max(...tutti)) return true;
     }
   }
-  // Quantità in parole: "metà dose" contro "dose intera"
+  // Quantità in parole: "dose intera" contro "metà dose" sì; "metà dose" contro "dose intera" è più prudente e resta (9b)
   const dose = (t: string) => (/met[àa] (?:della )?dose|dose dimezzata/i.test(t) ? "metà" : /dose (?:intera|piena|dell['’]etichetta)|doppi[ao] (?:della )?dose/i.test(t) ? "piena" : "");
-  return Boolean(dose(consiglio) && dose(lg) && dose(consiglio) !== dose(lg));
+  return dose(consiglio) === "piena" && dose(lg) === "metà";
+}
+const MENO_SPESSO_PRUDENTE = new Set(["acqua", "concime"]);
+
+// --- Regola 9c: frasi che nominano un'altra pianta ---
+const normale = (t: string) => t.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+/** Il nome come parola intera, anche al plurale ("filodendro" → "filodendri"; "pothos" resta uguale). I nomi corti
+ *  solo così come sono: il plurale di "menta" sarebbe "mente", che è anche una parola comune. */
+const cercaNome = (nome: string) => {
+  const n = normale(nome).replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");
+  return new RegExp(`(?<![a-z])${n.length > 5 ? n.replace(/[aeio]$/, "[aeio]") : n}(?![a-z])`);
+};
+// "Un concime come quello per i pomodori", "terriccio per agrumi": è un prodotto, non un'altra pianta
+const PRODOTTO = /concim|fertilizz|terricci|substrat|prodott/;
+const PER_PRODOTTO = /(?:^|[^a-z])per\s+(?:(?:i|le|gli|la|il|lo|l')\s*)?$/;
+/** Il primo nome di un'altra pianta che compare nella frase; "" se nessuno. */
+export function altraPianta(frase: string, altrePiante: string[]): string {
+  const f = normale(frase);
+  const prodotto = PRODOTTO.test(f);
+  return altrePiante.find((n) => [...f.matchAll(new RegExp(cercaNome(n), "g"))].some((m) => !(prodotto && PER_PRODOTTO.test(f.slice(0, m.index))))) ?? "";
 }
 
 // --- Regola 8b: frasi senza contenuto pratico (nel riassunto e nelle linee guida) ---
@@ -306,7 +336,9 @@ const NUCLEO_VUOTO =
   "|attenzione\\s+(?:particolare|costante|specifica)|particolare\\s+attenzione" +
   "|cure\\s+(?:attente|adeguate|appropriate|moderate|costanti|particolari|corrette|mirate)" +
   "|con\\s+(?:divers[ei]|vari[ei]?|differenti)\\s+(?:tecniche|metodi|modi)|in\\s+(?:diversi|vari)\\s+modi|tramite\\s+(?:diversi|vari)\\s+metodi" +
-  "|esiston[oa]\\s+(?:divers[ei]|vari[ei]?|più)\\s+(?:tecniche|metodi|modi)|tecniche\\s+specifiche";
+  "|esiston[oa]\\s+(?:divers[ei]|vari[ei]?|più)\\s+(?:tecniche|metodi|modi)|tecniche\\s+specifiche" +
+  // 2026-11-26 (falangio, Strelitzia): "tramite strutture specifiche della pianta", "dipende dalla specie specifica"
+  "|(?:strutture|parti|organi|metodi)\\s+specific[ihe]|dipend\\w*\\s+dalla\\s+(?:singola\\s+)?specie";
 const VUOTA = new RegExp(NUCLEO_VUOTO, "i");
 // Il pezzo vuoto in coda o in mezzo alla frase, dal connettivo che lo introduce fino alla virgola o al punto
 const PEZZO_VUOTO = new RegExp(`(?:,?\\s+(?:e|ma|mentre|però)\\s+|,\\s+)(?:(?!,|\\s(?:e|ma|mentre|però)\\s)[^.;])*?(?:${NUCLEO_VUOTO})[^,.;]*`, "i");
@@ -352,6 +384,7 @@ export function applicaRegole(
   fonti: Record<string, FonteData>,
   tossicitaNostra?: SchedaGenerata["tossicita"], // copiata dalle nostre fonti A (scheda del tipo, nota di famiglia)
   nomiPianta: string[] = [], // es. ["Ficus elastica", "Ficus"]: non contano come parole "importanti"
+  altrePiante: string[] = [], // nomi delle altre piante (regola 9c), es. "Pothos" per la Monstera
 ): EsitoRegole {
   const interventi: string[] = [];
   const bloccanti: string[] = [];
@@ -376,10 +409,45 @@ export function applicaRegole(
     const lg = (s.lineeGuida ?? {}) as Partial<SezioneGenerata["lineeGuida"]>;
     let riassunto = testo(lg.riassunto);
     let cose = elenco(lg.coseDaFare);
-    const citate = elenco(lg.fonti).filter((id) => fonti[id]);
+    // Regola 9d: il modello a volte scrive solo le "cose da fare", senza riassunto della sezione (visto il 2026-11-26 nel
+    // testo grezzo: falangio, Dracaena marginata, Aloe, 8 sezioni su 8). La prima cosa da fare fa da riassunto.
+    if (!riassunto && cose.length) {
+      riassunto = cose.shift() as string;
+      interventi.push(`${k}: riassunto della sezione mancante, usata la prima cosa da fare`);
+    }
+    let citate = elenco(lg.fonti).filter((id) => fonti[id]);
     const pollice = (Array.isArray(s.pollice) ? s.pollice : [])
       .map((p) => ({ consiglio: testo(p?.consiglio), fonti: elenco(p?.fonti).filter((id) => fonti[id]) }))
       .filter((p) => p.consiglio && p.fonti.length);
+
+    // Regola 9a: il modello ha dimenticato le fonti → ogni frase si attribuisce alla fonte A che la dice davvero
+    // (stesso controllo di 7d); le altre vanno nel pollice verde con Wikipedia, che poi deve confermarle (regola 6a)
+    if (verificata && !citate.length && (riassunto || cose.length)) {
+      // Anche le frequenze ("ogni settimana", "due volte al mese") devono essere quelle della fonte
+      const stesseFrequenze = (t: string, f: string) => frequenze(t).every(([a, b]) => frequenze(f).some(([x, y]) => Math.abs(a - x) <= x * 0.05 && Math.abs(b - y) <= y * 0.05));
+      const daChi = (t: string) => idA.filter((id) => ancorato(t, fonti[id].testo, nomiPianta) && numeriNelleFonti(t, fonti[id].testo) && stesseFrequenze(t, fonti[id].testo));
+      const senzaDati = (t: string) => /non (è |sono )?indicat/i.test(t); // "Non indicata dalle fonti.": niente da attribuire
+      riassunto = frasi(riassunto).filter((f) => !senzaDati(f)).join(" ");
+      cose = cose.filter((c) => !senzaDati(c));
+      const idC = Object.keys(fonti).filter((id) => fonti[id].livello === "C");
+      const attribuite = new Set<string>();
+      let spostate = 0;
+      const tieni = (t: string) => {
+        const chi = daChi(t);
+        chi.forEach((id) => attribuite.add(id));
+        if (!chi.length) {
+          spostate++;
+          if (idC.length) pollice.push({ consiglio: /[.!?]$/.test(t) ? t : `${t}.`, fonti: idC });
+        }
+        return chi.length > 0;
+      };
+      const tutte = frasi(riassunto).length + cose.length;
+      riassunto = frasi(riassunto).filter(tieni).join(" ");
+      cose = cose.filter(tieni);
+      if (!riassunto && cose.length) riassunto = cose.shift() as string;
+      citate = [...attribuite];
+      if (tutte) interventi.push(`${k}: fonte dimenticata dal modello, ${tutte - spostate} frasi su ${tutte} attribuite alla fonte A, le altre nel pollice verde`);
+    }
 
     // Regole 1 e 2: linee guida solo con fonti A; il resto va nel pollice verde
     const nonA = citate.filter((id) => fonti[id].livello !== "A");
@@ -494,6 +562,34 @@ export function applicaRegole(
     lg.coseDaFare = lg.coseDaFare.filter(ammessa);
     scheda.sezioni[k].pollice = scheda.sezioni[k].pollice.filter((p) => ammessa(p.consiglio));
     if (lg.coseDaFare.length + scheda.sezioni[k].pollice.length < quante) interventi.push(`${k}: tolta una promessa o una frase sull'app`);
+    if (!lg.riassunto) lg.riassunto = lg.coseDaFare.shift() ?? NON_INDICATA;
+  }
+
+  // Regola 9c: frasi che nominano un'altra pianta, salvo che una fonte su QUESTA pianta (non generale) la nomini
+  const testoSpecifico = normale(Object.values(fonti).filter((f) => !f.generale).map((f) => f.testo).join("\n"));
+  const nominaAltra = (t: string) => {
+    const n = altraPianta(t, altrePiante);
+    return Boolean(n) && !cercaNome(n).test(testoSpecifico);
+  };
+  // Si toglie solo il pezzo di frase (tra virgole) che parla dell'altra pianta; se non resta niente di utile, tutta la frase
+  const togliAltra = (t: string): string => {
+    if (!nominaAltra(t)) return t;
+    const resto = t.replace(/[.!?]$/, "").split(/,\s+|;\s*/).filter((x) => !nominaAltra(x)).join(", ").replace(/^(?:e|ma|mentre|però)\s+/i, "").trim();
+    return resto.split(/\s+/).length >= 4 && !nominaAltra(resto) ? `${resto.charAt(0).toUpperCase()}${resto.slice(1)}.` : "";
+  };
+  const senzaAltre = (t: string, dove: string) => {
+    const dopo = frasi(t).map(togliAltra).filter(Boolean).join(" ");
+    if (dopo !== frasi(t).join(" ")) interventi.push(`${dove}: tolta una frase che parla di un'altra pianta`);
+    return dopo;
+  };
+  scheda.riassunto = senzaAltre(scheda.riassunto, "riassunto");
+  for (const k of SEZIONI) {
+    const { lineeGuida: lg } = scheda.sezioni[k];
+    if (lg.riassunto !== NON_INDICATA) lg.riassunto = senzaAltre(lg.riassunto, k);
+    const prima = JSON.stringify([lg.coseDaFare, scheda.sezioni[k].pollice]);
+    lg.coseDaFare = lg.coseDaFare.map(togliAltra).filter(Boolean);
+    scheda.sezioni[k].pollice = scheda.sezioni[k].pollice.map((p) => ({ ...p, consiglio: togliAltra(p.consiglio) })).filter((p) => p.consiglio);
+    if (JSON.stringify([lg.coseDaFare, scheda.sezioni[k].pollice]) !== prima) interventi.push(`${k}: tolto un pezzo che parla di un'altra pianta`);
     if (!lg.riassunto) lg.riassunto = lg.coseDaFare.shift() ?? NON_INDICATA;
   }
 

@@ -361,3 +361,31 @@ mano (la rigenerata aveva due sezioni vuote).
 
 **Restano:** le fonti dimenticate (qualche sezione "Non indicata dalle fonti": falangio e Strelitzia in "Coltivarla da zero");
 la Monstera di gpt-oss che parla del pothos in "Coltivarla da zero"; nel falangio restano solo gli stoloni del pollice verde.
+
+## Versione 4 delle regole (2026-11-26)
+
+Regole 9a-9d in `regole.ts`, nomi delle altre piante in `altre-piante.ts`, prove in `prova-regole-r2.mjs` (143 controlli).
+- **9a, fonte dimenticata:** se una sezione delle linee guida non cita fonti, ogni frase che la fonte A dice davvero (parole,
+  numeri e frequenze, come in 7d) si attribuisce a lei; le altre vanno nel pollice verde e restano solo se Wikipedia le dice.
+- **9b, consigli più prudenti:** la regola 8a non toglie più dal pollice verde una minima più alta, una massima più bassa,
+  annaffiature o concimazioni meno frequenti, metà dose. Toglie solo ciò che è meno prudente o contraddice (per il travaso
+  "meno spesso" resta un contrasto). Lo spatifillo ha di nuovo "sempre sopra i 15 °C" nel pollice verde.
+- **9c, altre piante:** si toglie il pezzo di frase (tra virgole) che nomina un'altra pianta dell'elenco
+  (`data/elenco-priorita.json`, nomi scientifici e comuni, "rosa" esclusa perché è anche un colore). Restano i confronti che
+  una fonte su QUESTA pianta fa (Wikipedia, non la scheda del tipo) e i prodotti ("concime per i pomodori").
+- **9d, riassunto della sezione mancante (trovata durante la prova):** il modello a volte scrive solo le "cose da fare", con
+  la fonte giusta, ma senza riassunto: la sezione veniva buttata. Ora la prima cosa da fare fa da riassunto.
+- **8b ampliata:** "tramite strutture specifiche della pianta", "dipende dalla specie".
+- **Testo grezzo delle schede scartate:** ogni tentativo scartato (copia, formato, quasi vuota, controlli) va nel registro del
+  server e nel tentativo; `prepara-schede.mjs` lo salva in `~/test-piante/prepara-schede/scartate` (fuori dal repository).
+
+**Cosa ha mostrato il testo grezzo.** Le schede quasi vuote del 25 novembre NON erano fonti dimenticate: in tutte le 8 sezioni
+gemma aveva scritto le cose da fare con la fonte "S1", ma senza "riassunto" (falangio, Dracaena marginata, Aloe). Da qui la 9d.
+
+**Generazione:** **24 schede su 24 in Upstash** (23 gemma, Aloe con la riserva gpt-oss), **2.417 neuron** su un tetto di 4.000,
+compresi i tentativi scartati (9) e la rigenerazione di falangio e Strelitzia dopo l'ampliamento della 8b. Schede quasi vuote
+salvate: **0**. Sezioni "Non indicata dalle fonti": 3 su 192, tutte "Coltivarla da zero" (falangio, Maranta, Strelitzia),
+perché la scheda del tipo "foglia tropicale" dice solo "talea di fusto" in generale.
+
+**Restano:** il pollice verde è scarno (in 10 schede su 24 nessun consiglio); la nota sulla tossicità della scheda del tipo "foglia
+tropicale" parla di aracee anche per falangio e Strelitzia (è un nostro testo copiato apposta, regola 4b, non lo tocca la 9c).

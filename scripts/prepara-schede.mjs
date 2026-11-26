@@ -8,6 +8,7 @@
 // - Se si ferma, rilanciandolo riprende: le schede salvate si saltano; i ripieghi dei giorni prima si riprovano per ultimi.
 // - Il ricordo di neuron e ripieghi sta fuori dal repository: ~/test-piante/prepara-schede (CARTELLA_PREPARA per cambiarla).
 // - Le chiavi si leggono da .env.local e NON si stampano mai.
+// - Il testo grezzo dei tentativi SCARTATI (con le chiavi oscurate) si salva in <cartella>/scartate, per capire il perché.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import path from "node:path";
@@ -31,6 +32,8 @@ const STIMA = 120; // neuron di UNA chiamata, finché non se ne misura una
 const CHIAMATE_PEGGIORI = 3;
 mkdirSync(CARTELLA, { recursive: true });
 const FILE_STATO = path.join(CARTELLA, "stato.json");
+const CARTELLA_SCARTATE = path.join(CARTELLA, "scartate");
+let scartate = 0;
 const stato = existsSync(FILE_STATO) ? JSON.parse(readFileSync(FILE_STATO, "utf8")) : { neuron: {}, ripieghi: {} };
 const oggi = new Date().toISOString().slice(0, 10); // giorno UTC, come la quota di Cloudflare
 const usatiOggi = () => stato.neuron[oggi] ?? 0;
@@ -90,6 +93,13 @@ for (const p of daFare) {
   const neuron = Math.round(r.tentativi.reduce((s, t) => s + t.neuron, 0) + interrotte * (costoMassimo || STIMA));
   stato.neuron[oggi] = usatiOggi() + neuron;
   const percorso = r.tentativi.map((t) => `${t.modello} ${t.esito}`).join(" → ");
+  r.tentativi.forEach((t, i) => {
+    if (!t.grezzo) return;
+    mkdirSync(CARTELLA_SCARTATE, { recursive: true });
+    const nome = `${new Date().toISOString().slice(0, 19).replace(/:/g, "-")}-${p.specie.replace(/\W+/g, "_")}-${i + 1}-${t.modello.replace(/\W+/g, "_")}.json`;
+    writeFileSync(path.join(CARTELLA_SCARTATE, nome), JSON.stringify({ specie: p.specie, modello: t.modello, esito: t.esito, interventi: t.interventi, grezzo: JSON.parse(t.grezzo) }, null, 2));
+    scartate++;
+  });
   const secondi = (r.tentativi.reduce((s, t) => s + t.ms, 0) / 1000).toFixed(1);
 
   if (r.tipo === "generata") {
@@ -130,5 +140,6 @@ const righe = [
 console.log("\n=== RIEPILOGO ===");
 for (const [titolo, l] of righe) console.log(`${titolo}: ${l.length}${l.length ? ` (${nomi(l)})` : ""}`);
 console.log(`Neuron di questo lancio e dei precedenti di oggi: ${usatiOggi()} (tetto ${TETTO})`);
+if (scartate) console.log(`Tentativi scartati: ${scartate}, testo grezzo in ${CARTELLA_SCARTATE}`);
 if (fermo) console.log(`FERMATO PRIMA DELLA FINE: ${fermo}. Rilancialo per riprendere da qui.`);
 if (!SOLO_ELENCO) writeFileSync(path.join(CARTELLA, `riepilogo-${new Date().toISOString().slice(0, 19).replace(/:/g, "-")}.json`), JSON.stringify({ ...esiti, neuronOggi: usatiOggi(), tetto: TETTO, fermo }, null, 2));

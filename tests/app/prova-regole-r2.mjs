@@ -2,7 +2,8 @@
 // Uso: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tests/app/prova-regole-r2.mjs
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync, statSync } from "node:fs";
-import { applicaRegole, contrasta, diceCosaFare, frequenze, senzaVuoto, NON_INDICATA, PARLA_DELL_APP, PER_MOLTE, PROMESSE, SEZIONI, significatoOk } from "../../src/lib/schede/genera/regole.ts";
+import { altraPianta, applicaRegole, contrasta, diceCosaFare, frequenze, senzaVuoto, NON_INDICATA, PARLA_DELL_APP, PER_MOLTE, PROMESSE, SEZIONI, significatoOk } from "../../src/lib/schede/genera/regole.ts";
+import { altrePiante } from "../../src/lib/schede/genera/altre-piante.ts";
 import { tossicitaPerPianta } from "../../src/lib/schede/tossicita.ts";
 import { leggiJson } from "../../src/lib/schede/genera/json.ts";
 import { testoPerRegistro, valoriSegreti } from "../../src/lib/schede/genera/registro.ts";
@@ -226,11 +227,17 @@ ok(contrasta("Annaffia due volte a settimana in estate.", DITO, "acqua"), "8a: D
 ok(contrasta("Annaffia una volta a settimana in inverno.", DITO, "acqua") && contrasta("Annaffia settimanalmente.", DITO, "acqua"), "8a: tolte anche 'una volta a settimana' e 'settimanalmente'");
 ok(!contrasta("Evita la presenza di acqua stagnante.", DITO, "acqua"), "8a: un consiglio senza numeri resta");
 const CONCIME = ["Usa un concime liquido una o due volte al mese."];
-ok(!contrasta("Usa un concime circa ogni 3 settimane.", CONCIME, "concime") && contrasta("Concima ogni 2-3 mesi.", CONCIME, "concime"), "8a: ogni 3 settimane sta in '1-2 volte al mese', ogni 2-3 mesi no");
+ok(!contrasta("Usa un concime circa ogni 3 settimane.", CONCIME, "concime") && contrasta("Concima ogni settimana.", CONCIME, "concime"), "8a: ogni 3 settimane sta in '1-2 volte al mese', ogni settimana no");
+ok(!contrasta("Concima ogni 2-3 mesi.", CONCIME, "concime"), "9b: concimare meno spesso (ogni 2-3 mesi contro 1-2 volte al mese) è più prudente → resta");
 ok(contrasta("Rinvasa ogni 1-2 anni.", ["Travasa ogni 2-3 anni."], "travaso") && !contrasta("Rinvasa ogni 2 anni.", ["Travasa ogni 2-3 anni."], "travaso"), "8a: travaso ogni 1-2 anni contro 2-3 → tolto; ogni 2 anni resta");
 ok(!contrasta("Concima ogni 2 mesi.", ["Concima dalla primavera all'autunno."], "concime"), "8a: se la linea guida non dà il dato, non c'è contrasto");
 const TEMP = ["Non scendere sotto i 10 °C."];
-ok(contrasta("Mantieni una temperatura minima di 15 °C.", TEMP, "temperatura") && !contrasta("Non scendere mai sotto i 10 °C in casa.", TEMP, "temperatura"), "8a: minima 15 contro minima 10 → tolto; la stessa minima resta");
+ok(!contrasta("Mantieni una temperatura minima di 15 °C.", TEMP, "temperatura") && !contrasta("Non scendere mai sotto i 10 °C in casa.", TEMP, "temperatura"), "9b: minima 15 contro minima 10 è più prudente → resta; la stessa minima resta");
+ok(contrasta("Mantieni una temperatura minima di 5 °C.", TEMP, "temperatura"), "9b: minima 5 contro minima 10 è meno prudente → tolto");
+ok(!contrasta("Non superare i 28 °C.", ["Non superare i 32 °C."], "temperatura") && contrasta("Non superare i 35 °C.", ["Non superare i 32 °C."], "temperatura"), "9b: massima più bassa resta, massima più alta tolta");
+ok(!contrasta("Annaffia una volta ogni due settimane.", ["Annaffia una volta a settimana."], "acqua") && contrasta("Annaffia ogni giorno.", ["Annaffia una volta a settimana."], "acqua"), "9b: annaffiare meno spesso resta, più spesso no");
+ok(!contrasta("Usa metà dose di concime.", ["Usa la dose intera dell'etichetta."], "concime") && contrasta("Usa la dose intera.", ["Usa metà dose di concime."], "concime"), "9b: metà dose contro dose intera resta; dose intera contro metà dose no");
+ok(contrasta("Rinvasa ogni 4-5 anni.", ["Travasa ogni 2-3 anni."], "travaso"), "9b: nel travaso 'meno spesso' resta un contrasto");
 ok(contrasta("Tienila tra 5 e 8 °C.", TEMP, "temperatura") && !contrasta("Tienila intorno ai 20 °C.", TEMP, "temperatura"), "8a: sotto la minima → tolto; 20 °C resta");
 ok(contrasta("Tienila tra 20 e 35 °C.", ["Sta bene tra 16 e 30 °C."], "temperatura"), "8a: fuori dall'intervallo ideale → tolto");
 ok(contrasta("Scegli un vaso 15 cm più largo.", ["Scegli un vaso 5-10 cm più largo."], "travaso"), "8a: quantità diversa (15 cm contro 5-10) → tolto");
@@ -250,6 +257,8 @@ for (const [prima, dopo] of [
   ["Predilige la luce indiretta e richiede cure moderate per l'acqua e il nutrimento.", "Predilige la luce indiretta."],
   ["La propagazione può avvenire con diverse tecniche.", ""],
   ["Segui le indicazioni specifiche per la specie.", ""],
+  ["La riproduzione avviene tramite strutture specifiche della pianta.", ""],
+  ["Il metodo di moltiplicazione dipende dalla specie specifica.", ""],
   ["Usa la dose giusta seguendo l'etichetta.", "Usa la dose giusta seguendo l'etichetta."],
   ["Annaffia quando il terriccio è asciutto.", "Annaffia quando il terriccio è asciutto."],
 ]) ok(senzaVuoto(prima) === dopo, `8b: "${prima.slice(0, 60)}…" → "${dopo || "tolta"}"${senzaVuoto(prima) === dopo ? "" : " MA: " + senzaVuoto(prima)}`);
@@ -262,7 +271,7 @@ for (const t of ["Esistono diversi metodi per riprodurre la pianta.", "La pianta
 
 // 8c. Scheda quasi vuota (gemma a volte dimentica le fonti delle linee guida)
 const fontiPiene = { S1: { ...fontiConA.S1, copreTutto: true }, S3: fontiConA.S3 };
-const senzaFonti = (n) => { const x = base(); for (const k of SEZIONI.slice(0, n)) x.sezioni[k] = sez({ riassunto: "Annaffia quando il terriccio è asciutto.", coseDaFare: [], fonti: [] }); return x; };
+const senzaFonti = (n) => { const x = base(); for (const k of SEZIONI.slice(0, n)) x.sezioni[k] = sez({ riassunto: "Pulisci le foglie con un panno umido.", coseDaFare: [], fonti: [] }); return x; };
 ok(applicaRegole(senzaFonti(8), fontiPiene).bloccanti.some((b) => /quasi vuota: 8/.test(b)), "8c: scheda tutta senza fonti → non passa");
 ok(applicaRegole(senzaFonti(3), fontiPiene).bloccanti.length === 1 && applicaRegole(senzaFonti(2), fontiPiene).bloccanti.length === 0, "8c: si blocca da 3 sezioni vuote su 8");
 ok(applicaRegole(senzaFonti(8), fontiConA).bloccanti.length === 0 && applicaRegole(base(), fontiSoloC).bloccanti.length === 0, "8c: senza scheda del tipo le sezioni vuote sono normali");
@@ -277,6 +286,44 @@ ok(moltiplicazione("La propagazione avviene sia per seme che per talea di foglia
 ok(moltiplicazione("Il rizoma funziona come mezzo di propagazione vegetativa, producendo nuove rosette lateralmente.", "Separa le nuove rosette laterali che nascono dal rizoma.", ["Dracaena trifasciata", "Dracaena"]), "Moltiplicazione: rosette dal rizoma della sansevieria tenute nel pollice verde");
 ok(!moltiplicazione("La pianta è costituita da rizomi, le foglie sono ispide.", "Dividi i cespi in primavera e ripianta subito.", ["Strelitzia reginae", "Strelitzia"]), "Moltiplicazione: un metodo che Wikipedia non cita viene tolto (Strelitzia)");
 
+// --- Versione 4 delle regole (2026-11-26) ---
+// 9a. Fonte dimenticata: si attribuisce alla fonte A solo ciò che lei dice davvero
+s = base();
+s.sezioni.acqua = sez({ riassunto: "Annaffia quando il terriccio è asciutto. Pulisci le foglie con un panno umido.", coseDaFare: ["Concima ogni 2 mesi.", "Concima ogni settimana."], fonti: [] });
+s.sezioni.luce = sez({ riassunto: "Ama il sole pieno: riparalo dal vento.", coseDaFare: [], fonti: [] });
+e = applicaRegole(s, fontiConA);
+ok(e.scheda.sezioni.acqua.lineeGuida.riassunto === "Annaffia quando il terriccio è asciutto." && e.scheda.sezioni.acqua.lineeGuida.fonti.join() === "S1", "9a: la frase che la fonte A dice resta nelle linee guida, attribuita a S1");
+ok(JSON.stringify(e.scheda.sezioni.acqua.lineeGuida.coseDaFare) === JSON.stringify(["Concima ogni 2 mesi."]), "9a: 'ogni 2 mesi' (nella fonte) resta, 'ogni settimana' (non nella fonte) no");
+ok(!JSON.stringify(e.scheda).includes("panno umido"), "9a: una frase che non dice né la fonte A né Wikipedia sparisce");
+ok(e.scheda.sezioni.luce.lineeGuida.riassunto === NON_INDICATA && e.scheda.sezioni.luce.pollice.some((p) => /sole pieno/.test(p.consiglio) && p.fonti.join() === "S3"), "9a: una frase che dice solo Wikipedia va nel pollice verde");
+ok(e.interventi.some((i) => /fonte dimenticata/.test(i)), "9a: l'intervento è registrato");
+const fontiPieneA = { S1: { ...fontiConA.S1, copreTutto: true, testo: fontiConA.S1.testo + " Tienila in piena luce, ma non al sole diretto. Usa terriccio universale drenante. Travasa ogni 2-3 anni. Moltiplica per talea. Controlla la cocciniglia." } };
+const dimenticate = base();
+for (const k of SEZIONI) dimenticate.sezioni[k].lineeGuida.fonti = [];
+ok(applicaRegole(dimenticate, fontiPieneA).bloccanti.length === 0 && SEZIONI.every((k) => applicaRegole(dimenticate, fontiPieneA).scheda.sezioni[k].lineeGuida.riassunto !== NON_INDICATA), "9a: con tutte le fonti dimenticate la scheda non si svuota più (8c non scatta)");
+ok(applicaRegole(dimenticate, fontiSoloC).scheda.sezioni.acqua.lineeGuida.riassunto === NON_INDICATA, "9a: senza fonti A non si attribuisce nulla");
+
+// 9c. Frasi che nominano un'altra pianta
+const altreM = altrePiante("Monstera deliciosa", "Monstera");
+ok(altreM.includes("Pothos") && altreM.includes("Filodendro") && !altreM.includes("Monstera") && !altreM.includes("Rosa"), "9c: nomi delle altre piante per la Monstera (pothos sì, monstera e 'rosa' no)");
+ok(!altrePiante("Dracaena trifasciata", "Dracaena").some((n) => /sansevieria|dracena/i.test(n)), "9c: per la sansevieria 'sansevieria' e 'dracena' non sono altre piante");
+ok(altraPianta("Le talee del pothos radicano anche in acqua.", altreM) === "Pothos" && altraPianta("Come i filodendri, ama l'umidità.", altreM) === "Filodendro", "9c: nome trovato anche al plurale");
+ok(altraPianta("Tienilo a mente: una pianta rosa.", altrePiante("Monstera deliciosa", "Monstera")) === "", "9c: 'mente' e 'rosa' non sono piante");
+const tipoMonstera = { S1: { livello: "A", titolo: "tipo", generale: true, testo: "Le talee di fusto radicano facilmente, e quelle del pothos anche in acqua. Per la monstera si taglia la punta sotto una radice aerea." },
+  S3: { livello: "C", titolo: "Wikipedia", testo: "La monstera è spesso confusa con il Philodendron, da cui si distingue per le foglie bucate. Le radici aeree vanno lasciate crescere." } };
+s = base();
+s.sezioni.coltivarla = sez({ riassunto: "Le talee di fusto radicano facilmente, e quelle del pothos anche in acqua. Per la monstera taglia la punta sotto una radice aerea.", coseDaFare: [], fonti: ["S1"] },
+  [{ consiglio: "Controlla le foglie: se sono bucate è una monstera, non un Philodendron.", fonti: ["S3"] }]);
+e = applicaRegole(s, tipoMonstera, undefined, ["Monstera deliciosa", "Monstera"], altreM);
+ok(!/pothos/i.test(JSON.stringify(e.scheda)) && e.scheda.sezioni.coltivarla.lineeGuida.riassunto.includes("le talee di fusto radicano facilmente. Per la monstera taglia la punta sotto una radice aerea."), "9c: Monstera, tolto solo il pezzo sul pothos (la scheda del tipo lo cita come esempio); restano talee di fusto e monstera");
+ok(altraPianta("Usa un concime ricco di potassio, come quello per i pomodori, diluito.", altrePiante("Crassula ovata", "Crassula")) === "" && altraPianta("Annaffiala come il pomodoro.", altrePiante("Crassula ovata", "Crassula")) === "Pomodoro", "9c: 'concime come quello per i pomodori' è un prodotto e resta; 'come il pomodoro' no");
+ok(e.scheda.sezioni.coltivarla.pollice.some((p) => /Philodendron/.test(p.consiglio)), "9c: resta il confronto con il Philodendron, che Wikipedia fa proprio sulla monstera");
+
+// 9d. Sezioni con le cose da fare ma senza riassunto (falangio, 2026-11-26): non si perdono più
+const soloCose = base();
+for (const k of SEZIONI) soloCose.sezioni[k].lineeGuida = { coseDaFare: ["Annaffia quando il terriccio è asciutto.", "Concime ogni 2 mesi."], fonti: ["S1"] };
+e = applicaRegole(soloCose, fontiPieneA);
+ok(e.bloccanti.length === 0 && SEZIONI.every((k) => e.scheda.sezioni[k].lineeGuida.riassunto === "Annaffia quando il terriccio è asciutto." && e.scheda.sezioni[k].lineeGuida.coseDaFare.length === 1), "9d: senza riassunto la prima cosa da fare fa da riassunto, la scheda non è quasi vuota");
 // Formato non valido
 e = applicaRegole("testo qualsiasi", fontiConA);
 ok(e.bloccanti.includes("formato non valido"), "Formato non valido → bloccante");
