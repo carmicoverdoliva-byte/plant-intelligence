@@ -14,6 +14,10 @@ La visione completa del prodotto è in `docs/requirements/visione-prodotto.md`.
 - Prima di iniziare un passo, dichiara cosa farai. Dopo, riassumi cosa è cambiato.
 - Non fare modifiche non richieste o fuori dallo scopo del passo corrente.
 - Commit frequenti, con messaggi in italiano chiari e descrittivi.
+- **Risposte salvate su file** (regola dell'utente del 2026-11-26): ogni volta che ti fermi per una decisione
+  dell'utente o finisci un lavoro, scrivi la risposta completa (proposte, tabelle, risultati, domande) anche in
+  `~/test-piante/risposte/ULTIMA.md` (sovrascrivendolo) e una copia nella stessa cartella con data e ora nel nome
+  (es. `2026-11-26_18-30.md`). Così l'assistente della chat la legge da solo. La cartella è fuori dal repository.
 
 ## 3. Verificare prima di dichiarare "fatto"
 - Nessun passaggio è "fatto" finché non è stato **verificato** (build, test, lint, avvio dell'app o controllo manuale, a seconda del caso).

@@ -406,6 +406,12 @@ ok(tossicitaPerPianta(orto, "Lactuca sativa", "Lactuca", "Asteraceae").nota === 
 // Gruppo 3 (2026-11-26): alberi e arbusti tropicali da appartamento
 ok(tipoDi("Heptapleurum arboricola") === "alberi-arbusti-tropicali" && tipoDi("Schefflera arboricola") === "alberi-arbusti-tropicali" && tipoDi("Yucca gigantea") === "alberi-arbusti-tropicali" && tipoDi("Cycas revoluta") === "alberi-arbusti-tropicali" && tipoDi("Musa acuminata") === "alberi-arbusti-tropicali", "Gruppo 3: schefflera (anche col nome nuovo), yucca d'appartamento, Cycas e banano → alberi e arbusti tropicali");
 ok(tipoDi("Beaucarnea recurvata") === "succulente" && tipoDi("Brugmansia suaveolens") === "arbusti" && tipoDi("Ficus pumila") === "rampicanti-tropicali" && tipoDi("Ficus carica") === "alberi" && tipoDi("Yucca filamentosa") === "alberi", "Gruppo 3: beaucarnea, brugmansia, ficus rampicante, fico e altre yucche fuori dal tipo");
+// Correzione dell'indice del 2026-11-26 (sera): generi da giardino o da balcone finiti per errore tra le piante tropicali
+{
+  const atteso = { "Buxus sempervirens": "arbusti", "Ilex aquifolium": "arbusti", "Lagerstroemia indica": "alberi", "Acca sellowiana": "alberi", "Plumbago auriculata": "arbusti", "Fuchsia magellanica": "arbusti", "Petunia hybrida": "annuali", "Cuphea hyssopifolia": "annuali", "Mandevilla sanderi": "rampicanti" };
+  const sbagliati = Object.entries(atteso).filter(([sp, tipo]) => tipoDi(sp) !== tipo);
+  ok(!sbagliati.length, "Indice corretto: bosso, agrifoglio, lagerstroemia, feijoa, plumbago, fucsia, petunia, cuphea e mandevilla nel tipo giusto" + (sbagliati.length ? " — sbagliati: " + sbagliati.map(([s]) => s).join(", ") : ""));
+}
 {
   const alb = t("alberi-arbusti-tropicali");
   const x = (sp, fam) => tossicitaPerPianta(alb, sp, sp.split(" ")[0], fam);
