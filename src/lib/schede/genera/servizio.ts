@@ -12,7 +12,8 @@ import { chiaveScheda } from "./versione-regole";
  *  Senza la tossicità della scheda del tipo (2026-11-26): non la scrive il modello e si ricalcola a ogni lettura
  *  (trovaOGenera), quindi cambiarla non obbliga a rigenerare le schede.
  *  Dal 2026-11-26 (sera) anche senza: le note di famiglia sulla tossicità (la regola 4 toglie comunque la tossicità dal
- *  testo generato) e i dati che non sono contenuto (versione, data di aggiornamento, date delle verifiche). */
+ *  testo generato) e i dati che non sono contenuto (versione, data di aggiornamento, date delle verifiche).
+ *  Dal 2026-11-27 della nota di famiglia contano solo il nome e i testi (non tossicità) che il modello legge. */
 export function improntaFontiA(specie: string, genere: string, famiglia?: string): string {
   const { tipo, nomeTipo, scheda, notaFamiglia } = scegliScheda(specie, genere, famiglia);
   return createHash("sha256").update(JSON.stringify(contenutoPerImpronta(tipo, nomeTipo, scheda, notaFamiglia))).digest("hex").slice(0, 12);
@@ -26,7 +27,8 @@ export function contenutoPerImpronta(
   notaFamiglia: ReturnType<typeof scegliScheda>["notaFamiglia"],
 ) {
   const s = scheda && { ...scheda, tossicita: undefined, versione: undefined, aggiornata: undefined, verifica: undefined };
-  const n = notaFamiglia && { ...notaFamiglia, note: notaFamiglia.note.filter((x) => x.tema !== "tossicità"), verifica: undefined, aggiornata: undefined };
+  // Della nota di famiglia il modello legge solo i testi (fonti.ts): l'elenco delle fonti non entra nell'impronta (2026-11-27)
+  const n = notaFamiglia && { famiglia: notaFamiglia.famiglia, note: notaFamiglia.note.filter((x) => x.tema !== "tossicità").map((x) => `${x.tema}: ${x.testo}`) };
   return { tipo, nomeTipo, scheda: s, notaFamiglia: n };
 }
 

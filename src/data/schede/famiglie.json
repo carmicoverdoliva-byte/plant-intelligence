@@ -260,7 +260,7 @@
     "note": [
       {
         "tema": "tossicità",
-        "testo": "Dipende dalla pianta. Rosmarino, salvia e timo sono indicati non tossici per cani e gatti (il basilico da una sola fonte); lavanda, origano, maggiorana e menta possono dare vomito o diarrea (per origano e maggiorana lo dice una fonte sola), la menta soprattutto se ne mangiano molta.",
+        "testo": "Dipende dalla pianta. Rosmarino, salvia e timo sono indicati non tossici per cani e gatti (due fonti). Per il basilico abbiamo una sola fonte, che lo dice non tossico: non basta, quindi non è verificato. Lavanda, origano, maggiorana e menta possono dare vomito o diarrea (per origano e maggiorana lo dice una fonte sola), la menta soprattutto se ne mangiano molta.",
         "fonti": [
           1,
           2,
@@ -270,7 +270,10 @@
           6,
           7,
           8,
-          9
+          9,
+          14,
+          15,
+          16
         ]
       },
       {
@@ -393,14 +396,40 @@
         "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Common Problems"
+      },
+      {
+        "id": 14,
+        "titolo": "Salvia rosmarinus (Rosemary)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/salvia-rosmarinus/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Tags"
+      },
+      {
+        "id": 15,
+        "titolo": "Salvia officinalis (Common Sage)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/salvia-officinalis/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Tags"
+      },
+      {
+        "id": 16,
+        "titolo": "Thymus vulgaris (Common Thyme)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/thymus-vulgaris/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Tags"
       }
     ],
     "verifica": {
       "controlliAutomatici": "2026-11-26",
-      "verificaIndipendente": "2026-11-26",
-      "tabellaTossicita": "2026-11-26"
+      "verificaIndipendente": "2026-11-26"
     },
-    "aggiornata": "2026-11-26"
+    "aggiornata": "2026-11-27"
   },
   {
     "famiglia": "Solanaceae",

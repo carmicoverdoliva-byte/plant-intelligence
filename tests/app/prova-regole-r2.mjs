@@ -394,6 +394,14 @@ for (const [sch, specie, genere, fam, chi] of [[orto, "Allium schoenoprasum", "A
   ok(x[chi] === "tossica (una fonte)" && /fonte sola|una fonte/.test(x.nota), `Una fonte: ${specie} → ${chi} "Tossica (una fonte)" e la nota lo spiega`);
 }
 ok(tossicitaPerPianta(orto, "Ocimum basilicum", "Ocimum", "Lamiaceae").animali === "non verificata", "Una fonte che dice 'non tossica' non basta: basilico 'Non verificata'");
+{
+  const lam = JSON.parse(readFileSync(new URL("../../src/data/schede/famiglie.json", import.meta.url), "utf8")).find((n) => n.famiglia === "Lamiaceae");
+  const nota = lam.note.find((n) => n.tema === "tossicità");
+  const nonTossici = nota.testo.match(/[^.]*non tossic[^.]*./g) ?? [];
+  const nc = (slug) => lam.fonti.some((f) => nota.fonti.includes(f.id) && f.url.includes("ncsu.edu/plants/" + slug));
+  ok(nonTossici.every((f) => !/basilico/i.test(f) || /non basta|non è verificato/.test(f)) && /basilico[^.]*non è verificato/i.test(nota.testo), "Lamiacee: il basilico non è tra i non tossici (una fonte sola)");
+  ok(["salvia-rosmarinus", "salvia-officinalis", "thymus-vulgaris"].every(nc), "Lamiacee: rosmarino, salvia e timo 'non tossici' con due fonti A citate nella nota");
+}
 ok(tossicitaPerPianta(orto, "Lactuca sativa", "Lactuca", "Asteraceae").nota === NOTA_PRUDENTE && tossicitaPerPianta(orto, "Capsicum annuum", "Capsicum", "Solanaceae").nota.includes("pomodoro, patata e melanzana"), "Gruppo 2: lattuga → nota prudente; peperone → solo le frasi sulle solanacee");
 
 // Lettura del JSON del modello (gpt-oss-20b chiudeva con una graffa in meno)
