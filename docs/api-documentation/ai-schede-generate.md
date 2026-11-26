@@ -174,8 +174,8 @@ per richiesta.
   gemma circa 37 secondi e 72 neuron (1 su 8). Con 10.000 neuron al giorno: circa 150 schede al giorno.
 - **Quota finita:** l'adattatore (`src/lib/schede/genera/scrittore.ts`) riconosce l'errore di quota e l'app mostra
   subito la scheda del tipo, senza riprovare e senza passare alla riserva (che userebbe la stessa quota).
-- **Dove è accesa:** in locale con `R2_SPERIMENTALE=1` e nelle anteprime di Vercel; **spenta in produzione** finché
-  l'utente non dà l'ok.
+- **Dove è accesa:** in locale con `R2_SPERIMENTALE=1` e nelle anteprime di Vercel; in produzione **dal 2026-11-26**
+  (vedi "Pubblicazione" in fondo).
 - Le regole che rendono sicura la scheda sono in `src/lib/schede/genera/regole.ts` e si provano con
   `tests/app/prova-regole-r2.mjs` (nessuna rete, nessun consumo).
 
@@ -420,3 +420,18 @@ data originale. Le chiavi r4 restano e scadono da sole. Risultato: 24 su 24 in U
 - aracee senza caso (spatifillo, anturio, aglaonema, dieffenbachia, zamioculcas, scindapsus, singonio): "Non verificata"
   con le sole frasi sulle aracee;
 - pothos, monstera, filodendro, Crassula e Kalanchoe: invariati ("Tossica").
+
+## Pubblicazione in produzione (2026-11-26)
+
+Dopo la prova finale sull'iPhone (versione 5 delle regole, 24 schede pronte in Upstash) il ramo `anteprima-r2` è stato
+portato su `main`. Etichetta git **`prima-di-r2`** sul main di prima (62bbf33), per tornare indietro.
+- **Accesa su Vercel** (anteprime e produzione) da `route.ts`; in locale solo con `R2_SPERIMENTALE=1`, così le prove
+  automatiche non consumano neuron.
+- **Spegnerla in emergenza, senza toccare il codice:** su Vercel, Settings → Environment Variables, aggiungere
+  `R2_SPENTA` = `1` (Production), poi Deployments → Redeploy. L'app torna alla scheda del tipo, senza messaggi d'errore.
+- **Tornare del tutto a prima:** su Vercel, Deployments → l'ultima pubblicazione di `62bbf33` → "Promote to Production";
+  oppure un nuovo commit su `main` con i file
+  dell'etichetta (`git checkout prima-di-r2 -- .`), senza riscrivere la storia. Le schede in Upstash non danno fastidio.
+- **Rischio noto:** `/api/scheda-generata` non ha un limite per telefono. Chi la chiamasse di continuo con nomi diversi
+  esaurirebbe i 10.000 neuron del giorno (gratuiti: nessun costo); l'app ripiegherebbe sulla scheda del tipo fino a
+  mezzanotte UTC. Da legare alla quota del telefono in un passo successivo.

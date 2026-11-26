@@ -1,6 +1,7 @@
 // Scheda di SPECIE generata con l'AI gratuita (R2, D13). Chiamata dal telefono DOPO il risultato del riconoscimento:
 // il riconoscimento resta veloce, la scheda arriva qualche secondo dopo e sostituisce quella del tipo.
-// È SPENTA in produzione: si accende con R2_SPERIMENTALE=1 (in locale) o nelle anteprime di Vercel (VERCEL_ENV=preview);
+// Accesa su Vercel (anteprime e, dal 2026-11-26, produzione); in locale solo con R2_SPERIMENTALE=1, così le prove non
+// consumano neuron. Interruttore di emergenza: R2_SPENTA=1 nelle variabili di Vercel (poi "Redeploy") la spegne.
 // Se è spenta risponde 404 e l'app resta sulla scheda del tipo, senza messaggi d'errore.
 // Prima si cerca la scheda già pronta: nella memoria del server, poi in Upstash (una per specie, valida per tutti).
 // Solo se non c'è la si genera, e si salva se ha passato i controlli; i ripieghi non si salvano mai (servizio.ts).
@@ -30,8 +31,10 @@ const SENZA_CACHE = { headers: { "Cache-Control": "no-store" } };
 
 export async function GET(request: Request) {
   await connection(); // si decide a ogni richiesta, non durante la compilazione
-  // Accesa in locale con R2_SPERIMENTALE=1 e nelle ANTEPRIME di Vercel (rami diversi da main); spenta in produzione
-  const accesa = process.env.R2_SPERIMENTALE === "1" || process.env.VERCEL_ENV === "preview";
+  // Accesa su Vercel (anteprime e produzione, decisione dell'utente del 2026-11-26) e in locale con R2_SPERIMENTALE=1;
+  // R2_SPENTA=1 la spegne ovunque (emergenza, senza toccare il codice)
+  const suVercel = process.env.VERCEL_ENV === "preview" || process.env.VERCEL_ENV === "production";
+  const accesa = process.env.R2_SPENTA !== "1" && (process.env.R2_SPERIMENTALE === "1" || suVercel);
   if (!accesa) return Response.json({ ok: false }, { status: 404 });
   const url = new URL(request.url);
   const specie = url.searchParams.get("specie")?.trim() ?? "";
