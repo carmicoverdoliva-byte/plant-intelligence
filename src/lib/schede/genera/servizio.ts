@@ -28,7 +28,9 @@ export function contenutoPerImpronta(
 ) {
   const s = scheda && { ...scheda, tossicita: undefined, versione: undefined, aggiornata: undefined, verifica: undefined };
   // Della nota di famiglia il modello legge solo i testi (fonti.ts): l'elenco delle fonti non entra nell'impronta (2026-11-27)
-  const n = notaFamiglia && { famiglia: notaFamiglia.famiglia, note: notaFamiglia.note.filter((x) => x.tema !== "tossicità").map((x) => `${x.tema}: ${x.testo}`) };
+  // Una nota con sola tossicità vale come nessuna nota (la regola 4 la toglie comunque dal testo generato)
+  const testi = notaFamiglia?.note.filter((x) => x.tema !== "tossicità").map((x) => `${x.tema}: ${x.testo}`) ?? [];
+  const n = notaFamiglia && testi.length ? { famiglia: notaFamiglia.famiglia, note: testi } : null;
   return { tipo, nomeTipo, scheda: s, notaFamiglia: n };
 }
 

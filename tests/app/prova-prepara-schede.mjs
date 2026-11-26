@@ -43,7 +43,7 @@ const lancia = (tetto, ...args) =>
   new Promise((r) => {
     const p = spawn(process.execPath, ["scripts/prepara-schede.mjs", ...args], {
       env: { ...process.env, UPSTASH_REDIS_REST_URL: `${F}/upstash`, UPSTASH_REDIS_REST_TOKEN: "finto", CLOUDFLARE_API_URL: `${F}/cloudflare`, CLOUDFLARE_ACCOUNT_ID: "conto-finto", CLOUDFLARE_AI_TOKEN: "token-finto", GBIF_API_URL: F,
-        CARTELLA_PREPARA: CARTELLA, TETTO_NEURON: String(tetto), SPECIE: "Epipremnum aureum,Monstera deliciosa,Zamioculcas zamiifolia,Phalaenopsis,Ficus elastica" },
+        CARTELLA_PREPARA: CARTELLA, TETTO_NEURON: String(tetto), SPECIE: "Epipremnum aureum,Monstera deliciosa,Zamioculcas zamiifolia,Phalaenopsis,Hedera helix" },
     });
     let t = "";
     p.stdout.on("data", (d) => (t += d));
@@ -55,8 +55,8 @@ const ok = (c, d, t) => { fatti++; if (!c) { errori++; if (t) console.log(t); } 
 try {
   let t = await lancia(6000, "--elenco");
   ok(/Da generare: 3 /.test(t) && chiamateAi === 0 && redis.size === 0, "--elenco: dice cosa farebbe, senza AI e senza salvare", t);
-  // Dal 2026-11-26 il pomodoro ha la scheda del tipo "ortaggi e aromatiche dell'orto": l'esempio senza fonti A è il Ficus elastica
-  ok(/senza scheda del tipo con fonti A: 1 \(Ficus elastica\)/.test(t) && /solo genere: 1 \(Phalaenopsis\)/.test(t), "Saltate: Ficus elastica senza fonti A, Phalaenopsis solo genere", t);
+  // Dal 2026-11-26 il pomodoro e dal 2026-11-27 il Ficus elastica hanno la scheda del tipo: l'esempio senza fonti A è l'edera
+  ok(/senza scheda del tipo con fonti A: 1 \(Hedera helix\)/.test(t) && /solo genere: 1 \(Phalaenopsis\)/.test(t), "Saltate: Hedera helix senza fonti A, Phalaenopsis solo genere", t);
   t = await lancia(450); // la prima costa 100; per la seconda servono al peggio 100 + 300 = 400; per la terza 500: fermo
   ok(/Generate e salvate: 2 /.test(t) && /FERMATO PRIMA DELLA FINE: tetto di neuron/.test(t) && chiamateAi === 2, "Tetto: si ferma prima di poterlo superare", t);
   t = await lancia(450);

@@ -403,6 +403,16 @@ ok(tossicitaPerPianta(orto, "Ocimum basilicum", "Ocimum", "Lamiaceae").animali =
   ok(["salvia-rosmarinus", "salvia-officinalis", "thymus-vulgaris"].every(nc), "Lamiacee: rosmarino, salvia e timo 'non tossici' con due fonti A citate nella nota");
 }
 ok(tossicitaPerPianta(orto, "Lactuca sativa", "Lactuca", "Asteraceae").nota === NOTA_PRUDENTE && tossicitaPerPianta(orto, "Capsicum annuum", "Capsicum", "Solanaceae").nota.includes("pomodoro, patata e melanzana"), "Gruppo 2: lattuga → nota prudente; peperone → solo le frasi sulle solanacee");
+// Gruppo 3 (2026-11-27): alberi e arbusti tropicali da appartamento
+ok(tipoDi("Heptapleurum arboricola") === "alberi-arbusti-tropicali" && tipoDi("Schefflera arboricola") === "alberi-arbusti-tropicali" && tipoDi("Yucca gigantea") === "alberi-arbusti-tropicali" && tipoDi("Cycas revoluta") === "alberi-arbusti-tropicali" && tipoDi("Musa acuminata") === "alberi-arbusti-tropicali", "Gruppo 3: schefflera (anche col nome nuovo), yucca d'appartamento, Cycas e banano → alberi e arbusti tropicali");
+ok(tipoDi("Beaucarnea recurvata") === "succulente" && tipoDi("Brugmansia suaveolens") === "arbusti" && tipoDi("Ficus pumila") === "rampicanti-tropicali" && tipoDi("Ficus carica") === "alberi" && tipoDi("Yucca filamentosa") === "alberi", "Gruppo 3: beaucarnea, brugmansia, ficus rampicante, fico e altre yucche fuori dal tipo");
+{
+  const alb = t("alberi-arbusti-tropicali");
+  const x = (sp, fam) => tossicitaPerPianta(alb, sp, sp.split(" ")[0], fam);
+  ok(x("Cycas revoluta").animali === "tossica" && x("Cycas revoluta").persone === "tossica" && /semi/.test(x("Cycas revoluta").nota), "Gruppo 3: Cycas tossica per persone e animali, semi compresi");
+  ok(x("Musa acuminata").animali === "non tossica" && x("Ficus benjamina", "Moraceae").animali === "tossica" && x("Ficus elastica", "Moraceae").persone === "tossica (una fonte)" && x("Ficus benjamina", "Moraceae").persone === "non verificata", "Gruppo 3: banano non tossico; ficus tossici per gli animali; albero della gomma 'Tossica (una fonte)' per le persone");
+  ok(x("Pachira aquatica").animali === "tossica (una fonte)" && /non sono d'accordo/.test(x("Pachira aquatica").nota) && x("Radermachera sinica").nota === NOTA_PRUDENTE, "Gruppo 3: pachira con fonti in disaccordo → 'Tossica (una fonte)'; Radermachera senza dati → nota prudente");
+}
 
 // Lettura del JSON del modello (gpt-oss-20b chiudeva con una graffa in meno)
 ok(JSON.stringify(leggiJson('{"a":{"b":[1,2]}')) === '{"a":{"b":[1,2]}}', "JSON: aggiunta la graffa finale mancante (caso gpt-oss)");

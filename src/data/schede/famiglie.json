@@ -662,5 +662,343 @@
       "tabellaTossicita": "2026-11-26"
     },
     "aggiornata": "2026-11-26"
+  },
+  {
+    "famiglia": "Moraceae",
+    "nomeComune": "moracee (ficus e parenti)",
+    "note": [
+      {
+        "tema": "tossicità",
+        "testo": "I ficus d'appartamento sono tossici per cani e gatti (due fonti). Il loro lattice bianco può irritare la pelle e, se mangiato, lo stomaco: per le persone lo dicono una fonte per l'albero della gomma e una per il ficus lyrata.",
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "tema": "maneggiare",
+        "testo": "Quando tagli un ficus esce un lattice bianco e appiccicoso: usa i guanti e non metterlo in bocca.",
+        "fonti": [
+          3,
+          4
+        ]
+      },
+      {
+        "tema": "parassiti",
+        "testo": "In casa i ficus prendono spesso cocciniglie e ragnetto rosso; a volte anche la cocciniglia farinosa.",
+        "fonti": [
+          6,
+          3,
+          7
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Weeping Fig (Ficus sp.)",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/weeping-fig",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 2,
+        "titolo": "Ficus benjamina (Weeping Fig)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/ficus-benjamina/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Tags"
+      },
+      {
+        "id": 3,
+        "titolo": "Rubber Plant (HGIC 1510)",
+        "sito": "Clemson Cooperative Extension (HGIC)",
+        "url": "https://hgic.clemson.edu/factsheet/rubber-plant/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Problems"
+      },
+      {
+        "id": 4,
+        "titolo": "Ficus lyrata (Fiddle-leaf Fig)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/ficus-lyrata/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Poisonous to Humans, Description"
+      },
+      {
+        "id": 5,
+        "titolo": "Ficus elastica (Rubber Plant)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/ficus-elastica/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Tags"
+      },
+      {
+        "id": 6,
+        "titolo": "Weeping Ficus (HGIC 1514)",
+        "sito": "Clemson Cooperative Extension (HGIC)",
+        "url": "https://hgic.clemson.edu/factsheet/weeping-ficus/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Problems"
+      },
+      {
+        "id": 7,
+        "titolo": "Overwintering Tropical Plants",
+        "sito": "University of Maryland Extension",
+        "url": "https://extension.umd.edu/resource/overwintering-tropical-plants",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Ficus"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-27",
+      "verificaIndipendente": "2026-11-27"
+    },
+    "aggiornata": "2026-11-27"
+  },
+  {
+    "famiglia": "Araliaceae",
+    "nomeComune": "araliacee (schefflera, edera e parenti)",
+    "note": [
+      {
+        "tema": "tossicità",
+        "testo": "Dipende dalla pianta. Schefflera ed edera sono tossiche per cani e gatti (due fonti), e così le Polyscias. La linfa di schefflera ed edera può irritare la pelle. La Fatsia japonica è indicata non tossica per cani e gatti (due fonti).",
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "tema": "parassiti",
+        "testo": "In casa schefflera e parenti prendono soprattutto ragnetto rosso, cocciniglie e cocciniglia farinosa.",
+        "fonti": [
+          9,
+          10
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Schefflera",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/schefflera",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 2,
+        "titolo": "Heptapleurum arboricola (Dwarf Schefflera)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/heptapleurum-arboricola/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 3,
+        "titolo": "English Ivy",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/english-ivy",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 4,
+        "titolo": "Hedera helix (English Ivy)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/hedera-helix/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 5,
+        "titolo": "Coffee Tree (Polyscias guilfoylei)",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/coffee-tree",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 6,
+        "titolo": "Polyscias fruticosa (Ming Aralia)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/polyscias-fruticosa/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Landscape problems"
+      },
+      {
+        "id": 7,
+        "titolo": "Japanese Aralia",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/japanese-aralia",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 8,
+        "titolo": "Fatsia japonica (Japanese Aralia)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/fatsia-japonica/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Tags"
+      },
+      {
+        "id": 9,
+        "titolo": "Schefflera (HGIC 1511)",
+        "sito": "Clemson Cooperative Extension (HGIC)",
+        "url": "https://hgic.clemson.edu/factsheet/schefflera-2/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Problems"
+      },
+      {
+        "id": 10,
+        "titolo": "Overwintering Tropical Plants",
+        "sito": "University of Maryland Extension",
+        "url": "https://extension.umd.edu/resource/overwintering-tropical-plants",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Schefflera"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-27",
+      "verificaIndipendente": "2026-11-27"
+    },
+    "aggiornata": "2026-11-27"
+  },
+  {
+    "famiglia": "Asparagaceae",
+    "nomeComune": "asparagacee (dracena, yucca, cordyline e parenti)",
+    "note": [
+      {
+        "tema": "tossicità",
+        "testo": "Dipende dalla pianta. Dracena, yucca e cordyline contengono saponine e sono tossiche per cani e gatti: possono farli vomitare (due fonti per ciascuna); per dracena e cordyline il vomito a volte contiene sangue. Una fonte indica tossica anche la sansevieria. Per falangio e beaucarnea abbiamo una sola fonte ciascuno, che li dice non tossici: non basta, quindi non sono verificati.",
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Corn Plant (Dracaena fragrans)",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/corn-plant",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 2,
+        "titolo": "Dracaena fragrans (Corn Plant)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/dracaena-fragrans/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 3,
+        "titolo": "Yucca",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/yucca",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 4,
+        "titolo": "Yucca gigantea (Spineless Yucca)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/yucca-gigantea/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 5,
+        "titolo": "Ti-Plant (Cordyline)",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/ti-plant",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 6,
+        "titolo": "Cordyline fruticosa (Ti Plant)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/cordyline-fruticosa/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 7,
+        "titolo": "Snake Plant",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/snake-plant",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 8,
+        "titolo": "Spider Plant",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/spider-plant",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Toxicity"
+      },
+      {
+        "id": 9,
+        "titolo": "Beaucarnea recurvata (Ponytail Palm)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/beaucarnea-recurvata/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Tags"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-27",
+      "verificaIndipendente": "2026-11-27"
+    },
+    "aggiornata": "2026-11-27"
   }
 ]

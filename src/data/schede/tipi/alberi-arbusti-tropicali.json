@@ -1,0 +1,1164 @@
+{
+  "id": "tipo/alberi-arbusti-tropicali",
+  "livello": "tipo",
+  "nome": "alberi e arbusti tropicali da appartamento",
+  "siApplicaA": "Gli alberi e gli arbusti dei climi caldi che in Italia si tengono in casa, almeno d'inverno: ficus (benjamin, albero della gomma, ficus lyrata), schefflera, pachira, croton, yucca d'appartamento, cordyline, Polyscias, Cycas e banano.",
+  "eccezioni": [
+    "Il banano in primavera e in estate va annaffiato con regolarità, soprattutto quando fa caldo, e concimato alla dose dell'etichetta; d'inverno lascia asciugare il terriccio tra un'annaffiatura e l'altra.",
+    "Yucca e Cycas sopportano la siccità e temono l'acqua in eccesso: annaffiale meno degli altri e usa un terriccio molto drenante.",
+    "La Cycas sopporta qualche grado sotto zero e nelle zone miti può stare fuori tutto l'anno.",
+    "Il fico da frutto, il ficus rampicante (Ficus pumila) e la beaucarnea hanno altre schede."
+  ],
+  "riassunto": "Piante da luce abbondante ma filtrata, che vogliono caldo costante e temono il freddo e gli spifferi. Si annaffiano quando lo strato superficiale del terriccio è asciutto, d'inverno meno. Reagiscono ai cambiamenti perdendo le foglie: un ficus appena spostato spesso le perde, poi si abitua.",
+  "coseDaFare": [
+    "Mettila vicino a una finestra luminosa, riparata dal sole più forte.",
+    "Annaffia quando i primi 1-2 cm di terriccio sono asciutti e svuota sempre il sottovaso.",
+    "Tienila lontana da termosifoni, condizionatori e spifferi, e sopra i 10 °C.",
+    "Concima solo in primavera e in estate; d'inverno no.",
+    "Spolvera le foglie con un panno umido.",
+    "Evita di spostarla spesso: cambiare posto le fa perdere foglie."
+  ],
+  "sezioni": {
+    "luce": {
+      "lineeGuida": {
+        "riassunto": "Quasi tutte vogliono molta luce, ma non il sole cocente diretto. Con poca luce le foglie ingialliscono o cadono e i fusti si allungano deboli; il croton perde i colori. Yucca e banano reggono anche il sole diretto; per la Cycas una fonte consiglia 4-6 ore di luce filtrata.",
+        "coseDaFare": [
+          "Scegli il punto più luminoso della stanza, con una tenda leggera se il sole è forte.",
+          "Gira il vaso ogni tanto, perché cresca dritta.",
+          "Spolvera le foglie: la polvere toglie luce."
+        ],
+        "valori": [
+          {
+            "etichetta": "Luce",
+            "valore": "abbondante e filtrata, senza sole cocente",
+            "fonti": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "etichetta": "Yucca",
+            "valore": "finestra soleggiata; d'estate un po' d'ombra dal sole diretto",
+            "fonti": [
+              7
+            ]
+          },
+          {
+            "etichetta": "Banano",
+            "valore": "sole per tutto o quasi il giorno",
+            "fonti": [
+              12
+            ]
+          },
+          {
+            "etichetta": "Cycas",
+            "valore": "4-6 ore di luce filtrata al giorno",
+            "fonti": [
+              10
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          10,
+          12,
+          14
+        ]
+      },
+      "pollice": []
+    },
+    "acqua": {
+      "lineeGuida": {
+        "riassunto": "Annaffia bene e poi aspetta che si asciughi lo strato superficiale del terriccio: per ficus, schefflera e croton le fonti indicano i primi 1-2 cm. D'inverno serve meno acqua. L'acqua ferma nel sottovaso e le annaffiature troppo frequenti fanno marcire le radici; anche troppo poca acqua fa cadere le foglie.",
+        "coseDaFare": [
+          "Infila un dito nel terriccio: annaffia solo se i primi 1-2 cm sono asciutti.",
+          "Annaffia a fondo e svuota il sottovaso dopo pochi minuti.",
+          "D'inverno annaffia meno spesso."
+        ],
+        "valori": [
+          {
+            "etichetta": "Quando annaffiare",
+            "valore": "quando i primi 1-2 cm di terriccio sono asciutti",
+            "fonti": [
+              1,
+              5,
+              6
+            ]
+          },
+          {
+            "etichetta": "Sottovaso",
+            "valore": "sempre vuoto",
+            "fonti": [
+              2,
+              3,
+              5
+            ]
+          },
+          {
+            "etichetta": "Inverno",
+            "valore": "meno spesso",
+            "fonti": [
+              2,
+              6,
+              7,
+              13
+            ]
+          },
+          {
+            "etichetta": "Yucca d'inverno",
+            "valore": "quando i primi 5 cm di terriccio sono asciutti",
+            "fonti": [
+              7
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          13
+        ],
+        "disaccordi": [
+          {
+            "tema": "Ficus benjamin in primavera ed estate",
+            "posizioni": [
+              {
+                "dice": "terriccio sempre leggermente umido (una fonte: mentre cresce; l'altra: tutto l'anno)",
+                "fonti": [
+                  2,
+                  4
+                ]
+              },
+              {
+                "dice": "annaffia quando i primi 2 cm sono asciutti",
+                "fonti": [
+                  1
+                ]
+              }
+            ],
+            "sceltaPrudente": "Annaffia quando i primi 2 cm sono asciutti: l'eccesso d'acqua fa più danni."
+          }
+        ]
+      },
+      "pollice": []
+    },
+    "temperatura": {
+      "lineeGuida": {
+        "riassunto": "Vogliono caldo costante e temono gli sbalzi, gli spifferi e l'aria dei termosifoni e dei condizionatori. Per la maggior parte la minima è intorno ai 10-13 °C: sotto i 10 °C il croton perde le foglie e la schefflera si rovina. Yucca e Cycas sopportano un po' più di freddo.",
+        "coseDaFare": [
+          "Tienila sopra i 10 °C, lontano da porte e finestre aperte d'inverno.",
+          "Non metterla vicino a termosifoni o condizionatori.",
+          "Se d'estate sta fuori, riportala dentro prima che di notte si scenda sotto i 10 °C."
+        ],
+        "valori": [
+          {
+            "etichetta": "Minima",
+            "valore": "10 °C per ficus, schefflera e croton; il ficus elastica meglio sopra i 13 °C",
+            "fonti": [
+              1,
+              3,
+              5,
+              6
+            ]
+          },
+          {
+            "etichetta": "Ideale",
+            "valore": "tra 16 e 29 °C circa, secondo la pianta",
+            "fonti": [
+              2,
+              5,
+              6
+            ]
+          },
+          {
+            "etichetta": "Yucca",
+            "valore": "regge fino a 7-10 °C",
+            "fonti": [
+              7
+            ]
+          },
+          {
+            "etichetta": "Cycas",
+            "valore": "regge brevi freddi; il gelo rovina le foglie",
+            "fonti": [
+              10,
+              11
+            ]
+          },
+          {
+            "etichetta": "Massima",
+            "valore": "non indicata dalle fonti",
+            "fonti": []
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11,
+          13
+        ]
+      },
+      "pollice": []
+    },
+    "terriccio": {
+      "lineeGuida": {
+        "riassunto": "Va bene un buon terriccio per piante d'appartamento, che trattenga un po' d'umidità ma scoli bene; una fonte consiglia un terriccio a base di terra e senza torba per i ficus. Per yucca, Cycas e banano serve un terriccio più drenante, con sabbia, graniglia o perlite. Il vaso deve avere i fori sul fondo.",
+        "coseDaFare": [
+          "Usa terriccio per piante d'appartamento che dreni bene.",
+          "Per yucca e Cycas aggiungi molta sabbia, graniglia o perlite.",
+          "Scegli vasi con i fori di drenaggio."
+        ],
+        "valori": [
+          {
+            "etichetta": "Ficus, schefflera, croton",
+            "valore": "terriccio per piante d'appartamento, drenante",
+            "fonti": [
+              1,
+              2,
+              3,
+              5,
+              6
+            ]
+          },
+          {
+            "etichetta": "Yucca",
+            "valore": "molto drenante: con graniglia o perlite",
+            "fonti": [
+              7,
+              8
+            ]
+          },
+          {
+            "etichetta": "Banano",
+            "valore": "a base di terra con circa il 30% di graniglia",
+            "fonti": [
+              12
+            ]
+          },
+          {
+            "etichetta": "Vaso",
+            "valore": "con fori di drenaggio",
+            "fonti": [
+              14
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          14
+        ],
+        "disaccordi": [
+          {
+            "tema": "Quanta parte drenante per la yucca",
+            "posizioni": [
+              {
+                "dice": "terriccio con il 20-30% di graniglia",
+                "fonti": [
+                  7
+                ]
+              },
+              {
+                "dice": "una parte di terriccio e tre di perlite o sabbia",
+                "fonti": [
+                  8
+                ]
+              }
+            ],
+            "sceltaPrudente": "Abbonda con la parte drenante: la yucca teme più l'acqua ferma della siccità."
+          }
+        ]
+      },
+      "pollice": []
+    },
+    "concime": {
+      "lineeGuida": {
+        "riassunto": "Si concimano solo mentre crescono, in primavera e in estate, con un concime liquido per piante d'appartamento alla dose dell'etichetta. Le fonti danno frequenze diverse, da ogni due settimane a ogni due-tre mesi; con poca luce ne serve meno. D'inverno niente concime. Una crosta bianca sul bordo del vaso o vicino al foro indica troppo concime o troppa acqua.",
+        "coseDaFare": [
+          "Concima in primavera e in estate, alla dose dell'etichetta.",
+          "Se la pianta sta in un posto poco luminoso, concima meno spesso.",
+          "D'inverno non concimare.",
+          "Se vedi una crosta bianca sul bordo del vaso, concima meno spesso."
+        ],
+        "valori": [
+          {
+            "etichetta": "Quando",
+            "valore": "primavera ed estate",
+            "fonti": [
+              2,
+              3,
+              7,
+              14
+            ]
+          },
+          {
+            "etichetta": "Inverno",
+            "valore": "niente concime",
+            "fonti": [
+              7,
+              13,
+              14
+            ]
+          },
+          {
+            "etichetta": "Con poca luce",
+            "valore": "meno spesso",
+            "fonti": [
+              3,
+              5
+            ]
+          }
+        ],
+        "fonti": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          13,
+          14
+        ],
+        "disaccordi": [
+          {
+            "tema": "Ogni quanto concimare",
+            "posizioni": [
+              {
+                "dice": "ogni due settimane in primavera ed estate (albero della gomma, yucca)",
+                "fonti": [
+                  3,
+                  7
+                ]
+              },
+              {
+                "dice": "ogni uno-due mesi (ficus benjamin) o ogni due-tre mesi (piante d'appartamento)",
+                "fonti": [
+                  2,
+                  14
+                ]
+              }
+            ],
+            "sceltaPrudente": "Comincia ogni due mesi e segui l'etichetta: in casa le piante crescono piano e troppo concime brucia le radici."
+          }
+        ]
+      },
+      "pollice": []
+    },
+    "travaso": {
+      "lineeGuida": {
+        "riassunto": "Si rinvasano a fine inverno o a inizio primavera, se serve; la schefflera si può rinvasare in qualsiasi stagione, quando il vaso è troppo stretto. Il vaso nuovo deve essere solo un po' più grande. I ficus stanno bene con le radici un po' strette, quindi non hanno fretta di essere rinvasati.",
+        "coseDaFare": [
+          "Rinvasa quando il vaso è diventato troppo stretto.",
+          "Scegli un vaso nuovo largo solo 2-5 cm in più.",
+          "Fallo preferibilmente a fine inverno o a inizio primavera."
+        ],
+        "valori": [
+          {
+            "etichetta": "Quando",
+            "valore": "fine inverno o inizio primavera, se serve (la schefflera in qualsiasi stagione, quando è troppo stretta)",
+            "fonti": [
+              2,
+              3,
+              5
+            ]
+          },
+          {
+            "etichetta": "Vaso nuovo",
+            "valore": "solo 2,5-5 cm più largo",
+            "fonti": [
+              6
+            ]
+          },
+          {
+            "etichetta": "Ficus",
+            "valore": "sopporta le radici un po' strette",
+            "fonti": [
+              2,
+              4
+            ]
+          },
+          {
+            "etichetta": "Banano",
+            "valore": "ogni primavera o ogni due",
+            "fonti": [
+              12
+            ]
+          }
+        ],
+        "fonti": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          12
+        ]
+      },
+      "pollice": []
+    },
+    "coltivarla": {
+      "lineeGuida": {
+        "riassunto": "Si moltiplicano soprattutto per talea e per margotta, cioè facendo radicare un ramo mentre è ancora attaccato alla pianta: le radici compaiono dopo circa 3-4 mesi. Yucca, Cycas e banano fanno anche polloni alla base; quelli di yucca e banano si staccano in primavera. Il croton da seme non viene uguale alla pianta madre.",
+        "coseDaFare": [
+          "D'estate taglia una talea da un ramo giovane.",
+          "Per le piante alte e spoglie prova la margotta.",
+          "In primavera stacca i polloni di yucca e banano."
+        ],
+        "valori": [
+          {
+            "etichetta": "Metodi",
+            "valore": "talea, margotta, polloni (yucca, Cycas, banano), seme",
+            "fonti": [
+              2,
+              3,
+              5,
+              6,
+              7,
+              9,
+              10,
+              12
+            ]
+          },
+          {
+            "etichetta": "Margotta",
+            "valore": "radici dopo circa 3-4 mesi",
+            "fonti": [
+              15
+            ]
+          },
+          {
+            "etichetta": "Talee",
+            "valore": "in estate (ficus benjamin, croton)",
+            "fonti": [
+              2,
+              6
+            ]
+          },
+          {
+            "etichetta": "Yucca",
+            "valore": "talee di fusto di 20-25 cm in primavera, con il fondo caldo ad almeno 18 °C",
+            "fonti": [
+              7
+            ]
+          }
+        ],
+        "fonti": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          9,
+          10,
+          12,
+          15
+        ]
+      },
+      "pollice": []
+    },
+    "problemi": {
+      "lineeGuida": {
+        "riassunto": "Il problema più comune è la caduta delle foglie: la causano troppa o troppo poca acqua, spifferi, freddo, poca luce o uno spostamento. L'albero della gomma e il ficus lyrata non rimettono le foglie perse. In casa arrivano spesso ragnetto rosso e cocciniglie. Le annaffiature troppo frequenti fanno marcire le radici.",
+        "coseDaFare": [
+          "Se cadono foglie, controlla acqua, luce e spifferi prima di cambiare altro.",
+          "Controlla spesso le foglie: ragnatele sottili e puntini chiari indicano il ragnetto rosso.",
+          "Controlla le piante quando annaffi: foglie appiccicose o batuffoli bianchi indicano le cocciniglie."
+        ],
+        "fonti": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          13,
+          14
+        ]
+      },
+      "pollice": [],
+      "elenco": [
+        {
+          "nome": "Caduta delle foglie",
+          "tipo": "cura",
+          "frequenza": "frequente",
+          "segni": [
+            "foglie che ingialliscono e cadono",
+            "rami che si spogliano dopo uno spostamento"
+          ],
+          "prevenzione": [
+            "luce stabile",
+            "niente spifferi",
+            "acqua solo quando serve"
+          ],
+          "fonti": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            13
+          ]
+        },
+        {
+          "nome": "Ragnetto rosso",
+          "tipo": "parassita",
+          "frequenza": "frequente",
+          "segni": [
+            "foglie punteggiate di chiaro",
+            "ragnatele sottili"
+          ],
+          "prevenzione": [
+            "controlla spesso le foglie",
+            "spolverale con un panno umido"
+          ],
+          "fonti": [
+            2,
+            5,
+            6,
+            13
+          ]
+        },
+        {
+          "nome": "Cocciniglie",
+          "tipo": "parassita",
+          "frequenza": "frequente",
+          "segni": [
+            "melata appiccicosa sulle foglie"
+          ],
+          "prevenzione": [
+            "controlla le piante quando annaffi"
+          ],
+          "fonti": [
+            2,
+            5,
+            6,
+            13
+          ]
+        },
+        {
+          "nome": "Cocciniglia farinosa",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "sostanza bianca e cerosa"
+          ],
+          "prevenzione": [
+            "controlla le ascelle delle foglie"
+          ],
+          "fonti": [
+            2,
+            3,
+            5,
+            6,
+            13
+          ]
+        },
+        {
+          "nome": "Marciume delle radici",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie basse gialle e molli",
+            "terriccio sempre bagnato"
+          ],
+          "prevenzione": [
+            "terriccio drenante",
+            "sottovaso vuoto",
+            "acqua solo con il terriccio asciutto in superficie"
+          ],
+          "fonti": [
+            2,
+            3,
+            5,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "nome": "Troppi sali del concime",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "crosta bianca sul bordo del vaso o vicino al foro di drenaggio",
+            "punte delle foglie marroni",
+            "foglie basse che cadono"
+          ],
+          "prevenzione": [
+            "concime alla dose dell'etichetta, solo in primavera ed estate",
+            "acqua che scola dal foro, poi sottovaso vuoto"
+          ],
+          "fonti": [
+            14
+          ]
+        }
+      ]
+    }
+  },
+  "falsiMiti": [
+    {
+      "mito": "Se il ficus perde le foglie dopo uno spostamento, sta morendo e va annaffiato di più.",
+      "verdetto": "falso",
+      "cosaDiconoLeFonti": "Le fonti dicono che il ficus benjamin perde spesso foglie quando cambia posto o viene rinvasato, e che smette quando si abitua, se luce e cure vanno bene. Nel periodo di adattamento conviene metterlo nel punto più luminoso e tenere il terriccio un po' più asciutto, non più bagnato.",
+      "inPratica": "Dopo uno spostamento dagli luce e pazienza, e non annaffiarlo di più.",
+      "fonti": [
+        2,
+        4,
+        13
+      ]
+    }
+  ],
+  "approfondimenti": [],
+  "tossicita": {
+    "persone": "varia",
+    "animali": "varia",
+    "nota": "Dipende dalla pianta. Ficus, schefflera, yucca, cordyline e Polyscias sono tossici per cani e gatti (due fonti). La Cycas è molto pericolosa: tutte le parti, soprattutto i semi. Il banano è indicato non tossico per cani e gatti (due fonti). La linfa di ficus, schefflera e croton può irritare la pelle. Per le altre non abbiamo dati verificati: tienile lontane da bambini e animali.",
+    "fonti": [
+      3,
+      6,
+      10,
+      11,
+      16,
+      17,
+      19,
+      20,
+      21,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "casi": [
+      {
+        "taxa": [
+          "Ficus elastica"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica",
+        "nota": "L'albero della gomma è tossico per cani e gatti (due fonti). Per le persone una fonte sola dice che il suo lattice bianco può irritare la pelle e, se mangiato, lo stomaco: tienilo lontano dai bambini piccoli e usa i guanti quando lo poti.",
+        "fonti": [
+          3,
+          16,
+          18
+        ]
+      },
+      {
+        "taxa": [
+          "Ficus lyrata"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica",
+        "nota": "Il ficus lyrata è tossico per cani e gatti (due fonti): masticato irrita bocca e gola. Per le persone una fonte sola lo indica tossico se mangiato e dice che la linfa irrita la pelle: tienilo lontano dai bambini e usa i guanti quando lo poti.",
+        "fonti": [
+          16,
+          19
+        ]
+      },
+      {
+        "taxa": [
+          "Ficus"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica",
+        "nota": "I ficus sono tossici per cani e gatti (due fonti). Per le persone non abbiamo dati verificati su questo ficus; per l'albero della gomma e il ficus lyrata una fonte ciascuno dice che il lattice può irritare pelle e stomaco: tienilo lontano dai bambini piccoli.",
+        "fonti": [
+          3,
+          16,
+          17,
+          19
+        ]
+      },
+      {
+        "taxa": [
+          "Schefflera",
+          "Heptapleurum"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica",
+        "nota": "La schefflera è tossica per cani e gatti (due fonti): masticata irrita bocca e gola e può far vomitare. Per le persone una fonte sola la indica tossica e dice che la linfa può irritare la pelle: tienila lontana dai bambini e usa i guanti quando la poti.",
+        "fonti": [
+          20,
+          21
+        ]
+      },
+      {
+        "taxa": [
+          "Pachira"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica (una fonte)",
+        "nota": "Le fonti non sono d'accordo. Una la indica non tossica per cani e gatti; un'altra, una fonte sola, dice che i suoi semi possono dare ai gatti disturbi allo stomaco da lievi a moderati e forse fare male alle persone se mangiati. La stessa fonte dice che le piante tenute in casa non fanno semi. Per prudenza tienila lontana da bambini e animali.",
+        "fonti": [
+          22,
+          23
+        ]
+      },
+      {
+        "taxa": [
+          "Codiaeum"
+        ],
+        "persone": "tossica",
+        "animali": "non verificata",
+        "nota": "La linfa del croton può irritare la pelle delle persone sensibili (due fonti); mangiato in grande quantità dà disturbi allo stomaco. Usa i guanti quando lo tagli. Per cani e gatti non abbiamo dati verificati: tienilo comunque lontano.",
+        "fonti": [
+          6,
+          24
+        ]
+      },
+      {
+        "taxa": [
+          "Yucca"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica",
+        "nota": "La yucca è tossica per cani e gatti: può farli vomitare (due fonti). Per le persone una fonte sola indica tossiche foglie e radici se mangiate: tienila lontana dai bambini.",
+        "fonti": [
+          8,
+          25
+        ]
+      },
+      {
+        "taxa": [
+          "Cycas"
+        ],
+        "persone": "tossica",
+        "animali": "tossica",
+        "nota": "La Cycas è molto tossica per cani e gatti: tutte le parti, e soprattutto i semi, possono danneggiare gravemente il fegato e portare alla morte (tre fonti). È pericolosa anche per le persone se mangiata, in particolare per i bambini (due fonti). Una fonte sola dice che può irritare la pelle. Tienila dove bambini e animali non possono arrivare e usa i guanti per maneggiarla.",
+        "fonti": [
+          10,
+          11,
+          26
+        ]
+      },
+      {
+        "taxa": [
+          "Musa"
+        ],
+        "persone": "non verificata",
+        "animali": "non tossica",
+        "nota": "Il banano non è tossico per cani e gatti: lo indicano due fonti concordi. Per le persone (a parte il frutto) non abbiamo dati verificati.",
+        "fonti": [
+          27,
+          28
+        ]
+      },
+      {
+        "taxa": [
+          "Cordyline"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica",
+        "nota": "La cordyline è tossica per cani e gatti: può dare vomito, anche con sangue, e abbattimento (due fonti). Per le persone una fonte sola la indica poco tossica e dice che la linfa può irritare la pelle: tienila lontana dai bambini e usa i guanti.",
+        "fonti": [
+          29,
+          30
+        ]
+      },
+      {
+        "taxa": [
+          "Polyscias"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica",
+        "nota": "Le Polyscias sono indicate tossiche per cani e gatti (due fonti, su due specie diverse). Per le persone non abbiamo dati verificati: tienila comunque lontana dai bambini.",
+        "fonti": [
+          31,
+          32
+        ]
+      }
+    ],
+    "frasi": [
+      {
+        "per": [
+          "Moraceae"
+        ],
+        "fonti": [
+          3,
+          16,
+          17,
+          19
+        ],
+        "testo": "È parente dei ficus, che sono tossici per cani e gatti e hanno un lattice che può irritare la pelle."
+      },
+      {
+        "per": [
+          "Araliaceae"
+        ],
+        "fonti": [
+          20,
+          21,
+          31,
+          32
+        ],
+        "testo": "Nella sua famiglia schefflera e Polyscias sono tossiche per cani e gatti."
+      },
+      {
+        "per": [
+          "Asparagaceae"
+        ],
+        "fonti": [
+          8,
+          25,
+          29,
+          30
+        ],
+        "testo": "Nella sua famiglia yucca e cordyline sono tossiche per cani e gatti."
+      },
+      {
+        "per": [
+          "Euphorbiaceae"
+        ],
+        "fonti": [
+          6,
+          24
+        ],
+        "testo": "È della stessa famiglia del croton, la cui linfa può irritare la pelle."
+      },
+      {
+        "per": [
+          "Moraceae",
+          "Araliaceae",
+          "Asparagaceae",
+          "Euphorbiaceae"
+        ],
+        "fonti": [
+          16,
+          20,
+          25
+        ],
+        "testo": "Per questa pianta non abbiamo dati verificati: tienila lontana da bambini e animali."
+      }
+    ]
+  },
+  "fonti": [
+    {
+      "id": 1,
+      "titolo": "Ornamental figs (Ficus)",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/ornamental-figs",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Preferences, Dislikes"
+    },
+    {
+      "id": 2,
+      "titolo": "Weeping Ficus (HGIC 1514)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/weeping-ficus/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Culture, Problems"
+    },
+    {
+      "id": 3,
+      "titolo": "Rubber Plant (HGIC 1510)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/rubber-plant/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Culture, Problems"
+    },
+    {
+      "id": 4,
+      "titolo": "Weeping Fig",
+      "sito": "University of Illinois Extension",
+      "url": "https://extension.illinois.edu/houseplants/weeping-fig",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Care, Special Requirements"
+    },
+    {
+      "id": 5,
+      "titolo": "Schefflera (HGIC 1511)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/schefflera-2/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Culture, Problems"
+    },
+    {
+      "id": 6,
+      "titolo": "Croton, Codiaeum variegatum",
+      "sito": "University of Wisconsin–Madison Extension",
+      "url": "https://hort.extension.wisc.edu/articles/croton-codiaeum-variegatum/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Overview, General Care"
+    },
+    {
+      "id": 7,
+      "titolo": "Yucca: care and growing tips",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/yucca/growing-guide",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Indoor cultivation, Container cultivation, Pruning, Propagation, Problems"
+    },
+    {
+      "id": 8,
+      "titolo": "Yucca gigantea (Spineless Yucca)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/yucca-gigantea/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Description, Insects and Diseases, Poisonous to Humans"
+    },
+    {
+      "id": 9,
+      "titolo": "Pachira aquatica",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/12078/pachira-aquatica/details",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Cultivation, Pruning, Propagation, Pests"
+    },
+    {
+      "id": 10,
+      "titolo": "Cycas revoluta (Sago Palm)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/cycas-revoluta/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Description, Insects and Diseases, Poisonous to Humans"
+    },
+    {
+      "id": 11,
+      "titolo": "Cycas revoluta",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/5127/cycas-revoluta/details",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Cultivation, Hardiness, Toxicity"
+    },
+    {
+      "id": 12,
+      "titolo": "How to grow banana plants",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/advice/profile?pid=311",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Planting, Ongoing Care, Propagating, Problems"
+    },
+    {
+      "id": 13,
+      "titolo": "Overwintering Tropical Plants",
+      "sito": "University of Maryland Extension",
+      "url": "https://extension.umd.edu/resource/overwintering-tropical-plants",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Overwintering, Ficus, Schefflera, Banana"
+    },
+    {
+      "id": 14,
+      "titolo": "Indoor Plants: Cleaning, Fertilizing, Containers & Light Requirements (HGIC 1450)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/indoor-plants-cleaning-fertilizing-containers-light-requirements/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Fertilizing, Containers, Cleaning"
+    },
+    {
+      "id": 15,
+      "titolo": "Air Layering",
+      "sito": "University of Illinois Extension",
+      "url": "https://extension.illinois.edu/houseplants/air-layering",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Steps"
+    },
+    {
+      "id": 16,
+      "titolo": "Weeping Fig (Ficus sp.)",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/weeping-fig",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity"
+    },
+    {
+      "id": 17,
+      "titolo": "Ficus benjamina (Weeping Fig)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/ficus-benjamina/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Tags"
+    },
+    {
+      "id": 18,
+      "titolo": "Ficus elastica (Rubber Plant)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/ficus-elastica/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Tags"
+    },
+    {
+      "id": 19,
+      "titolo": "Ficus lyrata (Fiddle-leaf Fig)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/ficus-lyrata/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Tags"
+    },
+    {
+      "id": 20,
+      "titolo": "Schefflera",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/schefflera",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 21,
+      "titolo": "Heptapleurum arboricola (Dwarf Schefflera)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/heptapleurum-arboricola/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Tags"
+    },
+    {
+      "id": 22,
+      "titolo": "Money Tree (Pachira aquatica)",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/money-tree",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity"
+    },
+    {
+      "id": 23,
+      "titolo": "Pachira aquatica (Money Tree)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/pachira-aquatica/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
+    },
+    {
+      "id": 24,
+      "titolo": "Codiaeum variegatum (Croton)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/codiaeum-variegatum/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Tags"
+    },
+    {
+      "id": 25,
+      "titolo": "Yucca",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/yucca",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 26,
+      "titolo": "Sago Palm (Cycas revoluta)",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sago-palm",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 27,
+      "titolo": "Banana",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/banana",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity"
+    },
+    {
+      "id": 28,
+      "titolo": "Musa x paradisiaca (Banana)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/musa-x-paradisiaca/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Tags"
+    },
+    {
+      "id": 29,
+      "titolo": "Ti-Plant (Cordyline)",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/ti-plant",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 30,
+      "titolo": "Cordyline fruticosa (Ti Plant)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/cordyline-fruticosa/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Tags"
+    },
+    {
+      "id": 31,
+      "titolo": "Coffee Tree (Polyscias guilfoylei)",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/coffee-tree",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 32,
+      "titolo": "Polyscias fruticosa (Ming Aralia)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/polyscias-fruticosa/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Landscape problems"
+    }
+  ],
+  "verifica": {
+    "controlliAutomatici": "2026-11-27",
+    "verificaIndipendente": "2026-11-27"
+  },
+  "versione": 1,
+  "aggiornata": "2026-11-27"
+}
