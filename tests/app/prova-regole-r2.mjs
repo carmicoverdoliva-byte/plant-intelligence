@@ -403,7 +403,7 @@ ok(tossicitaPerPianta(orto, "Ocimum basilicum", "Ocimum", "Lamiaceae").animali =
   ok(["salvia-rosmarinus", "salvia-officinalis", "thymus-vulgaris"].every(nc), "Lamiacee: rosmarino, salvia e timo 'non tossici' con due fonti A citate nella nota");
 }
 ok(tossicitaPerPianta(orto, "Lactuca sativa", "Lactuca", "Asteraceae").nota === NOTA_PRUDENTE && tossicitaPerPianta(orto, "Capsicum annuum", "Capsicum", "Solanaceae").nota.includes("pomodoro, patata e melanzana"), "Gruppo 2: lattuga → nota prudente; peperone → solo le frasi sulle solanacee");
-// Gruppo 3 (2026-11-27): alberi e arbusti tropicali da appartamento
+// Gruppo 3 (2026-11-26): alberi e arbusti tropicali da appartamento
 ok(tipoDi("Heptapleurum arboricola") === "alberi-arbusti-tropicali" && tipoDi("Schefflera arboricola") === "alberi-arbusti-tropicali" && tipoDi("Yucca gigantea") === "alberi-arbusti-tropicali" && tipoDi("Cycas revoluta") === "alberi-arbusti-tropicali" && tipoDi("Musa acuminata") === "alberi-arbusti-tropicali", "Gruppo 3: schefflera (anche col nome nuovo), yucca d'appartamento, Cycas e banano → alberi e arbusti tropicali");
 ok(tipoDi("Beaucarnea recurvata") === "succulente" && tipoDi("Brugmansia suaveolens") === "arbusti" && tipoDi("Ficus pumila") === "rampicanti-tropicali" && tipoDi("Ficus carica") === "alberi" && tipoDi("Yucca filamentosa") === "alberi", "Gruppo 3: beaucarnea, brugmansia, ficus rampicante, fico e altre yucche fuori dal tipo");
 {

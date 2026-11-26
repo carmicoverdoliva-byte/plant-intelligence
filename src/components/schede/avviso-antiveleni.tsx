@@ -1,4 +1,4 @@
-// Riga fissa di sicurezza sotto la tossicità (decisione dell'utente del 2026-11-27): compare per ogni pianta con valore
+// Riga fissa di sicurezza sotto la tossicità (decisione dell'utente del 2026-11-26): compare per ogni pianta con valore
 // "tossica" o "tossica (una fonte)", nelle schede del tipo e in quelle generate. Niente numeri di telefono scritti da
 // noi: solo i link alle fonti ufficiali generali.
 import type { Tossicita } from "@/lib/schede/tipi";

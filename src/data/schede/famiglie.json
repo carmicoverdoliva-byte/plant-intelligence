@@ -402,7 +402,7 @@
         "titolo": "Salvia rosmarinus (Rosemary)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/salvia-rosmarinus/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Tags"
       },
@@ -411,7 +411,7 @@
         "titolo": "Salvia officinalis (Common Sage)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/salvia-officinalis/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Tags"
       },
@@ -420,7 +420,7 @@
         "titolo": "Thymus vulgaris (Common Thyme)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/thymus-vulgaris/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Tags"
       }
@@ -428,9 +428,9 @@
     "verifica": {
       "controlliAutomatici": "2026-11-26",
       "verificaIndipendente": "2026-11-26",
-      "tabellaTossicita": "2026-11-27"
+      "tabellaTossicita": "2026-11-26"
     },
-    "aggiornata": "2026-11-27"
+    "aggiornata": "2026-11-26"
   },
   {
     "famiglia": "Solanaceae",
@@ -703,7 +703,7 @@
         "titolo": "Weeping Fig (Ficus sp.)",
         "sito": "ASPCA Animal Poison Control Center",
         "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/weeping-fig",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Toxicity"
       },
@@ -712,7 +712,7 @@
         "titolo": "Ficus benjamina (Weeping Fig)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/ficus-benjamina/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Tags"
       },
@@ -721,7 +721,7 @@
         "titolo": "Rubber Plant (HGIC 1510)",
         "sito": "Clemson Cooperative Extension (HGIC)",
         "url": "https://hgic.clemson.edu/factsheet/rubber-plant/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Problems"
       },
@@ -730,7 +730,7 @@
         "titolo": "Ficus lyrata (Fiddle-leaf Fig)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/ficus-lyrata/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Poisonous to Humans, Description"
       },
@@ -739,7 +739,7 @@
         "titolo": "Ficus elastica (Rubber Plant)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/ficus-elastica/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Tags"
       },
@@ -748,7 +748,7 @@
         "titolo": "Weeping Ficus (HGIC 1514)",
         "sito": "Clemson Cooperative Extension (HGIC)",
         "url": "https://hgic.clemson.edu/factsheet/weeping-ficus/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Problems"
       },
@@ -757,17 +757,17 @@
         "titolo": "Overwintering Tropical Plants",
         "sito": "University of Maryland Extension",
         "url": "https://extension.umd.edu/resource/overwintering-tropical-plants",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Ficus"
       }
     ],
     "verifica": {
-      "controlliAutomatici": "2026-11-27",
-      "verificaIndipendente": "2026-11-27",
-      "tabellaTossicita": "2026-11-27"
+      "controlliAutomatici": "2026-11-26",
+      "verificaIndipendente": "2026-11-26",
+      "tabellaTossicita": "2026-11-26"
     },
-    "aggiornata": "2026-11-27"
+    "aggiornata": "2026-11-26"
   },
   {
     "famiglia": "Araliaceae",
@@ -802,7 +802,7 @@
         "titolo": "Schefflera",
         "sito": "ASPCA Animal Poison Control Center",
         "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/schefflera",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Toxicity"
       },
@@ -811,7 +811,7 @@
         "titolo": "Heptapleurum arboricola (Dwarf Schefflera)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/heptapleurum-arboricola/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Poisonous to Humans"
       },
@@ -820,7 +820,7 @@
         "titolo": "English Ivy",
         "sito": "ASPCA Animal Poison Control Center",
         "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/english-ivy",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Toxicity"
       },
@@ -829,7 +829,7 @@
         "titolo": "Hedera helix (English Ivy)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/hedera-helix/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Poisonous to Humans"
       },
@@ -838,7 +838,7 @@
         "titolo": "Coffee Tree (Polyscias guilfoylei)",
         "sito": "ASPCA Animal Poison Control Center",
         "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/coffee-tree",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Toxicity"
       },
@@ -847,7 +847,7 @@
         "titolo": "Polyscias fruticosa (Ming Aralia)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/polyscias-fruticosa/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Landscape problems"
       },
@@ -856,7 +856,7 @@
         "titolo": "Japanese Aralia",
         "sito": "ASPCA Animal Poison Control Center",
         "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/japanese-aralia",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Toxicity"
       },
@@ -865,7 +865,7 @@
         "titolo": "Fatsia japonica (Japanese Aralia)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/fatsia-japonica/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Tags"
       },
@@ -874,7 +874,7 @@
         "titolo": "Schefflera (HGIC 1511)",
         "sito": "Clemson Cooperative Extension (HGIC)",
         "url": "https://hgic.clemson.edu/factsheet/schefflera-2/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Problems"
       },
@@ -883,17 +883,17 @@
         "titolo": "Overwintering Tropical Plants",
         "sito": "University of Maryland Extension",
         "url": "https://extension.umd.edu/resource/overwintering-tropical-plants",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Schefflera"
       }
     ],
     "verifica": {
-      "controlliAutomatici": "2026-11-27",
-      "verificaIndipendente": "2026-11-27",
-      "tabellaTossicita": "2026-11-27"
+      "controlliAutomatici": "2026-11-26",
+      "verificaIndipendente": "2026-11-26",
+      "tabellaTossicita": "2026-11-26"
     },
-    "aggiornata": "2026-11-27"
+    "aggiornata": "2026-11-26"
   },
   {
     "famiglia": "Asparagaceae",
@@ -921,7 +921,7 @@
         "titolo": "Corn Plant (Dracaena fragrans)",
         "sito": "ASPCA Animal Poison Control Center",
         "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/corn-plant",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Toxicity"
       },
@@ -930,7 +930,7 @@
         "titolo": "Dracaena fragrans (Corn Plant)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/dracaena-fragrans/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Poisonous to Humans"
       },
@@ -939,7 +939,7 @@
         "titolo": "Yucca",
         "sito": "ASPCA Animal Poison Control Center",
         "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/yucca",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Toxicity"
       },
@@ -948,7 +948,7 @@
         "titolo": "Yucca gigantea (Spineless Yucca)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/yucca-gigantea/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Poisonous to Humans"
       },
@@ -957,7 +957,7 @@
         "titolo": "Ti-Plant (Cordyline)",
         "sito": "ASPCA Animal Poison Control Center",
         "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/ti-plant",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Toxicity"
       },
@@ -966,7 +966,7 @@
         "titolo": "Cordyline fruticosa (Ti Plant)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/cordyline-fruticosa/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Poisonous to Humans"
       },
@@ -975,7 +975,7 @@
         "titolo": "Snake Plant",
         "sito": "ASPCA Animal Poison Control Center",
         "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/snake-plant",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Toxicity"
       },
@@ -984,7 +984,7 @@
         "titolo": "Spider Plant",
         "sito": "ASPCA Animal Poison Control Center",
         "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/spider-plant",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Toxicity"
       },
@@ -993,16 +993,16 @@
         "titolo": "Beaucarnea recurvata (Ponytail Palm)",
         "sito": "NC State Extension Gardener Plant Toolbox",
         "url": "https://plants.ces.ncsu.edu/plants/beaucarnea-recurvata/",
-        "consultato": "2026-11-27",
+        "consultato": "2026-11-26",
         "livello": "A",
         "punto": "Tags"
       }
     ],
     "verifica": {
-      "controlliAutomatici": "2026-11-27",
-      "verificaIndipendente": "2026-11-27",
-      "tabellaTossicita": "2026-11-27"
+      "controlliAutomatici": "2026-11-26",
+      "verificaIndipendente": "2026-11-26",
+      "tabellaTossicita": "2026-11-26"
     },
-    "aggiornata": "2026-11-27"
+    "aggiornata": "2026-11-26"
   }
 ]
