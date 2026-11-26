@@ -25,6 +25,7 @@ const SEZIONI: { chiave: string; titolo: string; bolla: TipoBolla; icona: typeof
 
 const testoTossicita: Record<Tossicita, string> = {
   tossica: "Tossica",
+  "tossica (una fonte)": "Tossica (una fonte)",
   "non tossica": "Non tossica",
   varia: "Dipende dalla specie",
   "non verificata": "Non verificata",

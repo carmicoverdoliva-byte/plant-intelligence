@@ -8,7 +8,9 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RETE = process.argv.includes("--rete");
 const SEZIONI = ["luce", "acqua", "temperatura", "terriccio", "concime", "travaso", "coltivarla", "problemi"];
-const TOSSICITA = ["tossica", "non tossica", "varia", "non verificata"];
+const TOSSICITA = ["tossica", "tossica (una fonte)", "non tossica", "varia", "non verificata"];
+// "tossica (una fonte)" (decisione dell'utente del 2026-11-26): una fonte A basta per segnalare un pericolo, ma la nota lo dice
+const unaFonteSpiegata = (x, nota) => ![x.persone, x.animali].includes("tossica (una fonte)") || /una (sola )?fonte|fonte sola/i.test(nota ?? "");
 const FREQUENZE = ["frequente", "occasionale", "raro", "non indicata"];
 const VERDETTI = ["falso", "esagerato", "vero in parte", "fonti in disaccordo"];
 // Siti che non vogliono strumenti di AI: non si scaricano (regola della skill plant-schede)
@@ -96,10 +98,12 @@ function controllaScheda(file) {
     if ([t.persone, t.animali].includes("non tossica") && t.fonti.filter((id) => fonti.get(id)?.livello === "A").length < 2)
       errore(`${dove} › tossicità`, "\"non tossica\" solo con almeno due fonti A");
     if (!t.nota) errore(`${dove} › tossicità`, "manca la nota (consiglio prudente)");
+    if (!unaFonteSpiegata(t, t.nota)) errore(`${dove} › tossicità`, "\"tossica (una fonte)\": la nota deve dire che la fonte è una sola");
     for (const c of t.casi ?? []) {
       if (!c.taxa?.length || !TOSSICITA.includes(c.persone) || !TOSSICITA.includes(c.animali) || !c.nota) errore(`${dove} › tossicità › casi`, "caso incompleto");
       if ([c.persone, c.animali].includes("non tossica") && c.fonti.filter((id) => fonti.get(id)?.livello === "A").length < 2)
         errore(`${dove} › tossicità › ${c.taxa.join(",")}`, "'non tossica' solo con almeno due fonti A");
+      if (!unaFonteSpiegata(c, c.nota)) errore(`${dove} › tossicità › ${c.taxa.join(",")}`, "'tossica (una fonte)': la nota deve dire che la fonte è una sola");
       usa(c.fonti);
     }
     // Frasi per genere o famiglia (2026-11-26): ognuna con testo e fonti A; "per", se c'è, non vuoto

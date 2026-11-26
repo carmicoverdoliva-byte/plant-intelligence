@@ -55,7 +55,9 @@ export interface FalsoMito {
   fonti: number[]; // solo fonti A
 }
 
-export type Tossicita = "tossica" | "non tossica" | "varia" | "non verificata";
+// "tossica (una fonte)": una sola fonte A segnala un pericolo (decisione dell'utente del 2026-11-26: per dire che una pianta
+// NON è tossica servono due fonti A concordi; per segnalare un pericolo ne basta una, detto chiaramente nella nota).
+export type Tossicita = "tossica" | "tossica (una fonte)" | "non tossica" | "varia" | "non verificata";
 
 export interface SchedaCura {
   id: string; // "tipo/orchidee"

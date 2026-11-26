@@ -486,7 +486,7 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
 | Safari cancella i dati di chi non installa l'app | Media | Guida all'installazione sulla Home (1.2) e backup (3.4) |
 | La quota di Pl@ntNet finisce durante le prove | Bassa | Test sulle risposte salvate; prove vere solo quando servono |
 | Le schede complete per qualsiasi pianta richiedono molto lavoro di ricerca (D13) | Alta | Tre livelli: il tipo di pianta copre il 100% da subito; produzione a blocchi **in parallelo** allo sviluppo dalla fase 2; stime ricalcolate dopo il blocco 1; si riducono i generi all'aperto del T1, mai i controlli; i valori senza fonte restano "non indicati" |
-| Un errore in una scheda prodotta in serie (es. tossicità) | Media | Verifica indipendente frase per frase, 2 fonti concordi per la tossicità, tua tabella della tossicità per ogni blocco |
+| Un errore in una scheda prodotta in serie (es. tossicità) | Media | Verifica indipendente frase per frase, 2 fonti concordi per dire "non tossica" (una fonte A basta per segnalare un pericolo: "Tossica (una fonte)"), tua tabella della tossicità per ogni blocco |
 | Una scheda generata dall'AI contiene un errore | Media | Solo dati reali in ingresso, controlli automatici, etichetta "generata automaticamente", tossicità mai "innocua" senza fonte verificata, sostituzione con schede verificate ogni settimana |
 | Le fonti non indicano alcuni valori (es. temperatura minima del pothos, prima concimazione) | Alta | La scheda lo dice; nessun promemoria senza fonte; si cercano fonti migliori prima della pubblicazione |
 | Il consiglio del posto sembra preciso ma si basa su una stima | Media | Parola "stima" sempre visibile, motivo spiegato, correzione manuale (F10) |

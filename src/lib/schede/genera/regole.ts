@@ -39,7 +39,7 @@ export interface FonteData {
   copreTutto?: boolean; // ha tutte le sezioni (scheda del tipo): una scheda generata quasi vuota non è accettabile (8c)
   generale?: boolean; // vale per il tipo di pianta o la famiglia, non per la singola specie (regola 7b)
 }
-export type Tossicita = "tossica" | "varia" | "non verificata" | "non tossica";
+export type Tossicita = "tossica" | "tossica (una fonte)" | "varia" | "non verificata" | "non tossica"; // vedi src/lib/schede/tipi.ts
 
 export interface SezioneGenerata {
   lineeGuida: { riassunto: string; coseDaFare: string[]; fonti: string[] };
@@ -60,6 +60,7 @@ export const RIASSUNTO_NON_VERIFICATA =
 
 const NOTE_STANDARD: Record<Tossicita, string> = {
   tossica: "Le nostre fonti la indicano tossica: tienila lontana da bambini e animali.",
+  "tossica (una fonte)": "Una delle nostre fonti la indica tossica: tienila lontana da bambini e animali.",
   varia: "Dipende dalla specie: finché non è verificato, tienila lontana da bambini e animali.",
   "non verificata": "Non abbiamo dati verificati sulla tossicità: per prudenza tienila lontana da bambini e animali.",
   "non tossica": "Non abbiamo dati verificati sulla tossicità: per prudenza tienila lontana da bambini e animali.",

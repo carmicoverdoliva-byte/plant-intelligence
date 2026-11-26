@@ -38,6 +38,7 @@ const BASE: Record<SceltaScheda["base"], string> = {
 
 const testoTossicita: Record<Tossicita, string> = {
   tossica: "Tossica",
+  "tossica (una fonte)": "Tossica (una fonte)",
   "non tossica": "Non tossica",
   varia: "Dipende dalla specie",
   "non verificata": "Non verificata",

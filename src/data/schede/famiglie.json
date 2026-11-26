@@ -73,7 +73,7 @@
     "note": [
       {
         "tema": "tossicità",
-        "testo": "L'albero di giada (Crassula) e la kalanchoe sono tossici per cani e gatti: possono dare vomito, abbattimento e scarsa coordinazione; la kalanchoe contiene sostanze che, raramente, alterano il ritmo del cuore. Per le persone non abbiamo ancora due fonti: tienile comunque lontane dai bambini.",
+        "testo": "L'albero di giada (Crassula) e la kalanchoe sono tossici per cani e gatti: possono dare vomito, abbattimento e scarsa coordinazione; la kalanchoe contiene sostanze che, raramente, alterano il ritmo del cuore. Per le persone una fonte sola indica la kalanchoe pericolosa anche per i bambini: tienile comunque lontane dai bambini.",
         "fonti": [
           1,
           2,
@@ -148,7 +148,7 @@
       "controlliAutomatici": "2026-11-18",
       "verificaIndipendente": "2026-11-18"
     },
-    "aggiornata": "2026-11-18"
+    "aggiornata": "2026-11-26"
   },
   {
     "famiglia": "Euphorbiaceae",
@@ -260,7 +260,7 @@
     "note": [
       {
         "tema": "tossicità",
-        "testo": "Dipende dalla pianta. Rosmarino, salvia e timo sono indicati non tossici per cani e gatti (il basilico da una sola fonte); lavanda, origano, maggiorana e menta possono dare vomito o diarrea, la menta soprattutto se ne mangiano molta.",
+        "testo": "Dipende dalla pianta. Rosmarino, salvia e timo sono indicati non tossici per cani e gatti (il basilico da una sola fonte); lavanda, origano, maggiorana e menta possono dare vomito o diarrea (per origano e maggiorana lo dice una fonte sola), la menta soprattutto se ne mangiano molta.",
         "fonti": [
           1,
           2,
@@ -397,7 +397,8 @@
     ],
     "verifica": {
       "controlliAutomatici": "2026-11-26",
-      "verificaIndipendente": "2026-11-26"
+      "verificaIndipendente": "2026-11-26",
+      "tabellaTossicita": "2026-11-26"
     },
     "aggiornata": "2026-11-26"
   },
@@ -407,7 +408,7 @@
     "note": [
       {
         "tema": "tossicità",
-        "testo": "Foglie e fusti di pomodoro, patata e melanzana contengono solanina e sostanze simili: se mangiati possono dare disturbi allo stomaco e, in grande quantità, effetti più gravi. Il pomodoro maturo non è tossico per cani e gatti. Tieni le parti verdi lontane da bambini e animali.",
+        "testo": "Foglie e fusti di pomodoro, patata e melanzana contengono solanina e sostanze simili: se mangiati possono dare disturbi allo stomaco e, in grande quantità, effetti più gravi (per patata e melanzana lo dice una fonte sola, anche per le persone). Il pomodoro maturo non è tossico per cani e gatti. Tieni le parti verdi lontane da bambini e animali.",
         "fonti": [
           1,
           2,
@@ -481,7 +482,8 @@
     ],
     "verifica": {
       "controlliAutomatici": "2026-11-26",
-      "verificaIndipendente": "2026-11-26"
+      "verificaIndipendente": "2026-11-26",
+      "tabellaTossicita": "2026-11-26"
     },
     "aggiornata": "2026-11-26"
   },
@@ -535,7 +537,8 @@
     ],
     "verifica": {
       "controlliAutomatici": "2026-11-26",
-      "verificaIndipendente": "2026-11-26"
+      "verificaIndipendente": "2026-11-26",
+      "tabellaTossicita": "2026-11-26"
     },
     "aggiornata": "2026-11-26"
   },
@@ -545,7 +548,7 @@
     "note": [
       {
         "tema": "tossicità",
-        "testo": "Cipolla, aglio, porro ed erba cipollina sono tossici per cani e gatti: possono rovinare i globuli rossi e dare vomito, sangue nelle urine e debolezza. Tienili lontani da cani e gatti.",
+        "testo": "Cipolla e aglio sono tossici per cani e gatti (due fonti), e una fonte indica lo stesso per porro ed erba cipollina: possono rovinare i globuli rossi e dare vomito, sangue nelle urine e debolezza. Tienili lontani da cani e gatti.",
         "fonti": [
           1,
           2,
@@ -626,7 +629,8 @@
     ],
     "verifica": {
       "controlliAutomatici": "2026-11-26",
-      "verificaIndipendente": "2026-11-26"
+      "verificaIndipendente": "2026-11-26",
+      "tabellaTossicita": "2026-11-26"
     },
     "aggiornata": "2026-11-26"
   }

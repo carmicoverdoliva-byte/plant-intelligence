@@ -75,7 +75,18 @@ fonte).
 2. **Verifica indipendente:** un secondo agente, senza la bozza del ragionamento, rilegge le fonti e controlla ogni
    affermazione; quelle non trovate si tolgono o si correggono. Controlla anche che i consigli dal pollice verde non
    contraddicano le linee guida.
-3. Tossicità: **2 fonti concordi** (almeno una A), altrimenti `unknown` con consiglio prudente.
+3. Tossicità (decisione dell'utente del 2026-11-26): la prudenza vale in una sola direzione.
+   - **"non tossica"**: solo con **2 fonti A concordi**. Una fonte sola che dice "non tossica" non basta: resta
+     "non verificata" (es. basilico, fragola, cetriolo).
+   - **"tossica"**: con **2 fonti concordi** (almeno una A).
+   - **"tossica (una fonte)"**: basta **una fonte A** che segnala un pericolo. La nota deve dirlo ("una fonte sola…, non
+     ancora confermato da una seconda"): `npm run schede:controlla` lo controlla. Es. porro, erba cipollina, origano.
+   - Per le **persone** una fonte conta solo se nomina esplicitamente persone o bambini (per esempio NC State: etichette
+     "Problem for Children" o "Poisonous to Humans", oppure il testo). La sezione "Poisonous to Humans" di NC State da sola
+     non basta: riporta anche sintomi degli animali (per la cipolla, l'anemia del cane).
+   - Altrimenti "non verificata" con il consiglio prudente.
+   Vale per i casi, per i valori generali delle schede del tipo e per il testo delle note di famiglia (dove la fonte
+   è una sola, si dice).
 
 ## Fase 6 — Revisione dell'utente (5 minuti per blocco)
 Decisione dell'utente del 2026-11-18: la revisione è **solo** questa tabella. Tutto il resto lo verificano i test
@@ -83,7 +94,7 @@ automatici e l'agente indipendente.
 
 | Pianta | Tossica per le persone | Tossica per gli animali | Fonte (con link) |
 |---|---|---|---|
-| … | sì / no / varia / non verificata | sì / no / varia / non verificata | [titolo](url) |
+| … | sì / sì (una fonte) / no / varia / non verificata | sì / sì (una fonte) / no / varia / non verificata | [titolo](url) |
 
 Sotto la tabella, in poche righe: fonti da leggere all'utente (siti che vietano l'AI), eventuali nuove voci di
 "Falsi miti". Le letture complete sono facoltative. Dopo l'approvazione: commit e push (regola dei push).

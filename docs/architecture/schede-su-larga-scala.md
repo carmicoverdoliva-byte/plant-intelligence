@@ -153,6 +153,10 @@ di casa per i primi blocchi settimanali (dopo R2). È **da approvare dall'utente
 test automatici e l'agente indipendente. Le letture complete sono facoltative: la scheda le registra
 (`humanReview`), se ci sono.
 
+**Regola della tossicità (decisione del 2026-11-26):** per dire che una pianta **non** è tossica servono due fonti A
+concordi; per segnalare un pericolo basta una fonte A. Con una fonte sola il valore è **"Tossica (una fonte)"** e la nota
+lo dice. Una sola fonte che dice "non tossica" lascia la pianta "non verificata". Dettagli nella skill `plant-schede`.
+
 **Test automatici su ogni scheda** (`npm run schede:controlla`):
 1. **completezza:** tutte le sezioni; ogni sezione ha le linee guida; ogni numero ha una fonte;
 2. **livello delle fonti:** nelle linee guida solo fonti A, oppure due B concordi; nel pollice verde solo B e C,

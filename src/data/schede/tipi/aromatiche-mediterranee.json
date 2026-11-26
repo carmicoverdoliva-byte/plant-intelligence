@@ -531,7 +531,7 @@
   "tossicita": {
     "persone": "non verificata",
     "animali": "varia",
-    "nota": "Dipende dalla pianta. Rosmarino, salvia e timo non sono tossici per cani e gatti (due fonti). La lavanda lo è: può dare nausea e vomito. Per origano e maggiorana abbiamo una sola fonte, che indica vomito e diarrea lievi. Per le persone non abbiamo dati verificati: tienile comunque lontane dai bambini piccoli.",
+    "nota": "Dipende dalla pianta. Rosmarino, salvia e timo non sono tossici per cani e gatti (due fonti). La lavanda lo è: può dare nausea e vomito. Origano e maggiorana sono indicati tossici da una fonte sola: vomito e diarrea lievi. Per le persone non abbiamo dati verificati: tienile comunque lontane dai bambini piccoli.",
     "fonti": [
       6,
       7,
@@ -550,7 +550,7 @@
         ],
         "persone": "non verificata",
         "animali": "tossica",
-        "nota": "La lavanda è tossica per cani e gatti: può dare nausea, vomito e poco appetito (due fonti). Per le persone abbiamo una sola fonte, che la indica poco tossica: tienila comunque lontana dai bambini piccoli.",
+        "nota": "La lavanda è tossica per cani e gatti: può dare nausea, vomito e poco appetito (due fonti). Per le persone non abbiamo dati verificati: tienila comunque lontana dai bambini piccoli.",
         "fonti": [
           7,
           11
@@ -579,8 +579,8 @@
           "Origanum"
         ],
         "persone": "non verificata",
-        "animali": "non verificata",
-        "nota": "Per cani e gatti abbiamo una fonte sola, con due pagine (una sull'origano, una sulla maggiorana): indicano vomito e diarrea lievi. Non è ancora verificato con una seconda fonte: tienila lontana da bambini e animali.",
+        "animali": "tossica (una fonte)",
+        "nota": "Per cani e gatti una fonte (con due pagine, una sull'origano e una sulla maggiorana) la indica tossica: può dare vomito e diarrea lievi. È una fonte sola, non ancora confermata da una seconda: per prudenza tienila lontana dagli animali. Per le persone non abbiamo dati verificati.",
         "fonti": [
           15,
           16
@@ -762,8 +762,9 @@
   ],
   "verifica": {
     "controlliAutomatici": "2026-11-26",
-    "verificaIndipendente": "2026-11-26"
+    "verificaIndipendente": "2026-11-26",
+    "tabellaTossicita": "2026-11-26"
   },
-  "versione": 1,
+  "versione": 2,
   "aggiornata": "2026-11-26"
 }

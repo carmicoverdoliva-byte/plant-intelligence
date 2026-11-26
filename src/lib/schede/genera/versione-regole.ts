@@ -9,7 +9,7 @@
 export const VERSIONE_REGOLE = 5; // 2 e 3 dal 2026-11-25 (regole 7a-7e e 8a-8c), 4 dal 2026-11-26 (regole 9a-9d), 5 dal 2026-11-26 (tossicità solo per la pianta riconosciuta, niente tossicità nel testo dato al modello)
 
 /** Impronta dei file qui sotto: serve solo alla prova, per accorgersi che sono cambiati. */
-export const IMPRONTA_REGOLE = "fb1f105d8a0dc086";
+export const IMPRONTA_REGOLE = "6a11b34d14c23c1a"; // 2026-11-26: aggiunto solo il valore "tossica (una fonte)" (la tossicità non è nel testo generato e si ricalcola a ogni lettura): stessa versione, nessuna scheda da rigenerare
 export const FILE_REGOLE = [
   "src/lib/schede/genera/regole.ts",
   "src/lib/schede/genera/genera.ts",

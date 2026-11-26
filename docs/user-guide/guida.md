@@ -95,6 +95,10 @@ Appena riconosciuta la pianta vedi la scheda del suo tipo (per esempio "rampican
 
 Ti chiede "Vuoi riconoscere un'altra pianta?". Con "Sì, nuova foto" il risultato si chiude e la fotocamera è pronta per una nuova foto; con "No, resto qui" continui a leggere il risultato. Se non hai un risultato aperto, il tasto porta subito alla fotocamera. In fondo al risultato c'è anche il pulsante "Riconosci un'altra pianta".
 
+### Cosa vogliono dire i valori della tossicità?
+
+Le schede dicono per persone e per animali: "Tossica" (due fonti autorevoli d'accordo), "Tossica (una fonte)" (una sola fonte autorevole segnala un pericolo: per prudenza te lo diciamo subito), "Non tossica" (solo se due fonti autorevoli sono d'accordo), "Dipende dalla specie" oppure "Non verificata" (non abbiamo dati sicuri: tienila comunque lontana da bambini e animali). La nota sotto spiega il perché, con le fonti.
+
 ### Perché l'app non mi dà la percentuale?
 
 Perché una percentuale sembra più precisa di quanto sia. L'app dice a parole quanto è sicura (alta, buona, bassa) e, se non è sicura, ti mostra le piante simili invece di inventare un nome.

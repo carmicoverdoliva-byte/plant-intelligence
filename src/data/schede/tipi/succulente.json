@@ -408,9 +408,9 @@
   ],
   "approfondimenti": [],
   "tossicita": {
-    "persone": "non verificata",
+    "persone": "varia",
     "animali": "varia",
-    "nota": "Dipende dalla pianta. Albero di giada (Crassula) e kalanchoe sono tossici per cani e gatti; la kalanchoe può dare anche problemi al cuore. Per le persone abbiamo una sola fonte (che indica la kalanchoe come pericolosa anche per i bambini): non è ancora verificato. Per le altre succulente non abbiamo dati verificati: tienile lontane da bambini e animali.",
+    "nota": "Dipende dalla pianta. Albero di giada (Crassula) e kalanchoe sono tossici per cani e gatti; la kalanchoe può dare anche problemi al cuore. Per le persone una fonte sola indica la kalanchoe pericolosa anche per i bambini: non è ancora confermato da una seconda fonte. Per le altre succulente non abbiamo dati verificati: tienile lontane da bambini e animali.",
     "fonti": [
       7,
       4,
@@ -434,9 +434,9 @@
         "taxa": [
           "Kalanchoe"
         ],
-        "persone": "non verificata",
+        "persone": "tossica (una fonte)",
         "animali": "tossica",
-        "nota": "La kalanchoe è tossica per cani e gatti e può dare anche problemi al cuore. Per le persone abbiamo una sola fonte, che la indica come pericolosa anche per i bambini: non è ancora verificato, ma tienila lontana dai bambini.",
+        "nota": "La kalanchoe è tossica per cani e gatti e può dare anche problemi al cuore (due fonti). Per le persone una fonte sola la indica pericolosa anche per i bambini: non è ancora confermato da una seconda fonte, ma tienila lontana dai bambini.",
         "fonti": [
           5,
           8
@@ -547,6 +547,6 @@
     "controlliAutomatici": "2026-11-18",
     "verificaIndipendente": "2026-11-18"
   },
-  "versione": 3,
+  "versione": 4,
   "aggiornata": "2026-11-26"
 }

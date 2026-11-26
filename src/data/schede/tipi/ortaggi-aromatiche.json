@@ -578,9 +578,9 @@
   ],
   "approfondimenti": [],
   "tossicita": {
-    "persone": "non verificata",
+    "persone": "varia",
     "animali": "varia",
-    "nota": "Dipende dalla pianta. Cipolla e aglio sono tossici per cani e gatti; per porro ed erba cipollina abbiamo una fonte sola che dice lo stesso. Le parti verdi del pomodoro sono tossiche per gli animali (il frutto maturo no). Prezzemolo e menta danno disturbi solo se mangiati in grande quantità. Per le persone abbiamo una sola fonte: non è verificato. Tieni le piante lontane da bambini e animali.",
+    "nota": "Dipende dalla pianta. Cipolla e aglio sono tossici per cani e gatti (due fonti); porro ed erba cipollina anche, secondo una fonte sola. Le parti verdi del pomodoro sono tossiche per gli animali (il frutto maturo no); per foglie e fusti di pomodoro, patata e melanzana una fonte sola segnala un pericolo anche per le persone. Prezzemolo e menta danno disturbi agli animali solo se mangiati in grande quantità. Tieni le piante lontane da bambini e animali.",
     "fonti": [
       15,
       16,
@@ -603,7 +603,7 @@
         ],
         "persone": "non verificata",
         "animali": "tossica",
-        "nota": "Cipolla e aglio sono tossici per cani e gatti (due fonti): possono rovinare i globuli rossi e dare vomito e debolezza. Per le persone le fonti non indicano rischi verificati.",
+        "nota": "Cipolla e aglio sono tossici per cani e gatti (due fonti): possono rovinare i globuli rossi e dare vomito e debolezza. Per le persone le fonti non indicano rischi se mangiati; una fonte dice che l'aglio può irritare la pelle di alcune persone: usa i guanti se lo maneggi a lungo.",
         "fonti": [
           19,
           20,
@@ -618,8 +618,8 @@
           "Allium schoenoprasum"
         ],
         "persone": "non verificata",
-        "animali": "non verificata",
-        "nota": "Una fonte indica porro ed erba cipollina tossici per cani e gatti, come cipolla e aglio (per cui le fonti sono due). Non è ancora verificato con una seconda fonte: tienili lontani dagli animali.",
+        "animali": "tossica (una fonte)",
+        "nota": "Una fonte indica porro ed erba cipollina tossici per cani e gatti, come cipolla e aglio: possono rovinare i globuli rossi. È una fonte sola, non ancora confermata da una seconda: tienili lontani dagli animali. Per le persone non abbiamo dati verificati.",
         "fonti": [
           21,
           22
@@ -629,9 +629,9 @@
         "taxa": [
           "Solanum lycopersicum"
         ],
-        "persone": "non verificata",
+        "persone": "tossica (una fonte)",
         "animali": "tossica",
-        "nota": "Foglie e fusti del pomodoro sono tossici per cani e gatti (il frutto maturo no). Per le persone abbiamo una sola fonte, che indica foglie e fusti tossici se mangiati: tienili lontani dai bambini.",
+        "nota": "Foglie e fusti del pomodoro sono tossici per cani e gatti (due fonti; il frutto maturo no). Per le persone una fonte sola indica foglie e fusti tossici se mangiati in grande quantità: tienili lontani dai bambini.",
         "fonti": [
           15,
           16
@@ -642,9 +642,9 @@
           "Solanum tuberosum",
           "Solanum melongena"
         ],
-        "persone": "non verificata",
-        "animali": "non verificata",
-        "nota": "Una sola fonte indica tossiche foglie, fusti, fiori e radici di patata e melanzana (per la patata anche le bacche). Non è ancora verificato: tienile lontane da bambini e animali.",
+        "persone": "tossica (una fonte)",
+        "animali": "tossica (una fonte)",
+        "nota": "Una fonte sola indica tossiche, per persone e animali, foglie, fusti e radici di patata e melanzana (per la melanzana anche i fiori; per la patata anche le bacche e i tuberi diventati verdi), con effetti che possono essere gravi. Non è ancora confermato da una seconda fonte: tienile lontane da bambini e animali.",
         "fonti": [
           17,
           18
@@ -656,7 +656,7 @@
         ],
         "persone": "non verificata",
         "animali": "tossica",
-        "nota": "Il prezzemolo, mangiato in grande quantità, rende la pelle degli animali sensibile al sole. Per le persone non abbiamo due fonti.",
+        "nota": "Il prezzemolo, mangiato in grande quantità, rende la pelle degli animali sensibile al sole (due fonti). Per le persone non abbiamo dati verificati.",
         "fonti": [
           25,
           26
@@ -668,7 +668,7 @@
         ],
         "persone": "non verificata",
         "animali": "tossica",
-        "nota": "La menta, mangiata in grande quantità, può dare vomito e diarrea a cani e gatti. Per le persone non abbiamo due fonti.",
+        "nota": "La menta, mangiata in grande quantità, può dare vomito e diarrea a cani e gatti (due fonti). Per le persone non abbiamo dati verificati.",
         "fonti": [
           27,
           28
@@ -731,7 +731,7 @@
           21,
           22
         ],
-        "testo": "Nella sua famiglia, cipolla, aglio, porro ed erba cipollina sono tossici per cani e gatti."
+        "testo": "Nella sua famiglia, cipolla e aglio sono tossici per cani e gatti (due fonti); per porro ed erba cipollina lo indica una fonte sola."
       },
       {
         "per": [
@@ -1033,8 +1033,9 @@
   ],
   "verifica": {
     "controlliAutomatici": "2026-11-26",
-    "verificaIndipendente": "2026-11-26"
+    "verificaIndipendente": "2026-11-26",
+    "tabellaTossicita": "2026-11-26"
   },
-  "versione": 1,
+  "versione": 2,
   "aggiornata": "2026-11-26"
 }

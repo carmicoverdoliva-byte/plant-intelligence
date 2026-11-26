@@ -376,8 +376,14 @@ ok(["Ocimum basilicum", "Solanum lycopersicum", "Mentha spicata", "Brassica oler
 ok(tipoDi("Salvia nemorosa") === "arbusti" && tipoDi("Allium giganteum") === "bulbose" && tipoDi("Solanum pseudocapsicum") === "universale", "Gruppo 2: salvie ornamentali, Allium ornamentali e altri Solanum restano dov'erano");
 ok(scegliScheda("Ocimum basilicum", "Ocimum").scheda !== null && scegliScheda("Lavandula angustifolia", "Lavandula").scheda !== null, "Gruppo 2: le due schede del tipo esistono (non più 'in preparazione')");
 const med = t("aromatiche-mediterranee"), orto = t("ortaggi-aromatiche");
-ok(tossicitaPerPianta(med, "Lavandula angustifolia", "Lavandula", "Lamiaceae").animali === "tossica" && tossicitaPerPianta(med, "Salvia rosmarinus", "Salvia", "Lamiaceae").animali === "non tossica" && tossicitaPerPianta(med, "Origanum vulgare", "Origanum", "Lamiaceae").animali === "non verificata", "Gruppo 2: lavanda tossica, rosmarino non tossico, origano non verificato (animali)");
-ok(tossicitaPerPianta(orto, "Allium cepa", "Allium", "Amaryllidaceae").animali === "tossica" && tossicitaPerPianta(orto, "Allium porrum", "Allium", "Amaryllidaceae").animali === "non verificata" && tossicitaPerPianta(orto, "Solanum lycopersicum", "Solanum", "Solanaceae").animali === "tossica", "Gruppo 2: cipolla e pomodoro tossici, porro non verificato (animali)");
+ok(tossicitaPerPianta(med, "Lavandula angustifolia", "Lavandula", "Lamiaceae").animali === "tossica" && tossicitaPerPianta(med, "Salvia rosmarinus", "Salvia", "Lamiaceae").animali === "non tossica" && tossicitaPerPianta(med, "Origanum vulgare", "Origanum", "Lamiaceae").animali === "tossica (una fonte)", "Gruppo 2: lavanda tossica, rosmarino non tossico, origano tossico secondo una fonte (animali)");
+ok(tossicitaPerPianta(orto, "Allium cepa", "Allium", "Amaryllidaceae").animali === "tossica" && tossicitaPerPianta(orto, "Allium porrum", "Allium", "Amaryllidaceae").animali === "tossica (una fonte)" && tossicitaPerPianta(orto, "Solanum lycopersicum", "Solanum", "Solanaceae").animali === "tossica", "Gruppo 2: cipolla e pomodoro tossici, porro tossico secondo una fonte (animali)");
+// Regola del 2026-11-26: per segnalare un pericolo basta una fonte A, e la nota lo dice; per "non tossica" ne servono due
+for (const [sch, specie, genere, fam, chi] of [[orto, "Allium schoenoprasum", "Allium", "Amaryllidaceae", "animali"], [orto, "Solanum tuberosum", "Solanum", "Solanaceae", "persone"], [orto, "Solanum lycopersicum", "Solanum", "Solanaceae", "persone"], [t("succulente"), "Kalanchoe blossfeldiana", "Kalanchoe", "Crassulaceae", "persone"]]) {
+  const x = tossicitaPerPianta(sch, specie, genere, fam);
+  ok(x[chi] === "tossica (una fonte)" && /fonte sola|una fonte/.test(x.nota), `Una fonte: ${specie} → ${chi} "Tossica (una fonte)" e la nota lo spiega`);
+}
+ok(tossicitaPerPianta(orto, "Ocimum basilicum", "Ocimum", "Lamiaceae").animali === "non verificata", "Una fonte che dice 'non tossica' non basta: basilico 'Non verificata'");
 ok(tossicitaPerPianta(orto, "Lactuca sativa", "Lactuca", "Asteraceae").nota === NOTA_PRUDENTE && tossicitaPerPianta(orto, "Capsicum annuum", "Capsicum", "Solanaceae").nota.includes("pomodoro, patata e melanzana"), "Gruppo 2: lattuga → nota prudente; peperone → solo le frasi sulle solanacee");
 
 // Lettura del JSON del modello (gpt-oss-20b chiudeva con una graffa in meno)
