@@ -220,15 +220,15 @@ export function SchedaCura({
       </p>
     );
   }
-  return <SchedaTipo dati={d} specie={specie} genere={genere} inPreparazione={inPreparazione} />;
+  return <SchedaTipo dati={d} specie={specie} genere={genere} famiglia={famiglia} inPreparazione={inPreparazione} />;
 }
 
 /** Una scheda salvata nel Vivaio: si ridisegna dai dati conservati, senza internet e senza chiamate. */
-export function SchedaSalvata({ scheda, specie, genere }: { scheda: SchedaMostrata; specie: string; genere: string }) {
+export function SchedaSalvata({ scheda, specie, genere, famiglia }: { scheda: SchedaMostrata; specie: string; genere: string; famiglia?: string }) {
   return scheda.tipo === "generata" ? (
     <SchedaGenerata dati={scheda.dati} nomeTipo={scheda.nomeTipo} dalVivaio />
   ) : (
-    <SchedaTipo dati={scheda.dati} specie={specie} genere={genere} />
+    <SchedaTipo dati={scheda.dati} specie={specie} genere={genere} famiglia={famiglia} />
   );
 }
 
@@ -237,16 +237,18 @@ function SchedaTipo({
   dati: d,
   specie,
   genere,
+  famiglia,
   inPreparazione = false,
 }: {
   dati: DatiSchedaTipo;
   specie: string;
   genere: string;
+  famiglia?: string;
   inPreparazione?: boolean;
 }) {
   const s = d.scheda;
-  // Tossicità per QUESTA pianta: se le nostre fonti nominano il suo genere vale quel caso, non "Dipende dalla specie"
-  const tossicita = s ? tossicitaPerPianta(s.tossicita, specie, genere) : null;
+  // Tossicità per QUESTA pianta: il caso del suo genere, o solo le frasi del suo genere o della sua famiglia
+  const tossicita = s ? tossicitaPerPianta(s.tossicita, specie, genere, famiglia) : null;
 
   return (
     <section aria-label="Scheda di cura" className="flex flex-col gap-3">

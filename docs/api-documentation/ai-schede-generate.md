@@ -389,3 +389,34 @@ perché la scheda del tipo "foglia tropicale" dice solo "talea di fusto" in gene
 
 **Restano:** il pollice verde è scarno (in 10 schede su 24 nessun consiglio); la nota sulla tossicità della scheda del tipo "foglia
 tropicale" parla di aracee anche per falangio e Strelitzia (è un nostro testo copiato apposta, regola 4b, non lo tocca la 9c).
+
+## Versione 5: tossicità solo per la pianta riconosciuta (2026-11-26)
+
+**Problema:** la nota di tossicità della scheda del tipo "foglia tropicale" parlava delle aracee anche per falangio e
+Strelitzia, e il valore in grande ("Dipende dalla specie") non aveva senso per una specie già riconosciuta.
+
+**Soluzione** (`src/lib/schede/tossicita.ts`, usata sia dalla scheda del tipo sia dalle schede generate):
+1. **Caso verificato** per genere o specie (pothos, monstera, filodendro, Crassula, Kalanchoe, Phalaenopsis): come prima.
+2. Altrimenti le **frasi** della nota (`tossicita.frasi` nelle 4 schede del tipo) che riguardano il **genere o la famiglia**
+   della pianta, più quelle valide per tutte (senza `per`), con il valore **"Non verificata"**, coerente con frasi come
+   "non abbiamo ancora due fonti".
+3. Se non ne resta nessuna: **"Non verificata" con la nota prudente** ("Non abbiamo dati verificati sulla tossicità: per
+   prudenza tienila lontana da bambini e animali."), senza fonti.
+
+Le frasi riprendono le parole già verificate delle note, divise per gruppo (Araceae, Crassulaceae, Orchidaceae): nessun
+fatto nuovo. `npm run schede:controlla` controlla anche le frasi (testo, solo fonti A). Il Vivaio passa la famiglia salvata;
+per le piante salvate senza famiglia restano solo le frasi del genere o valide per tutte.
+
+**Schede generate:**
+- la tossicità **non si dà più al modello** nel testo della scheda del tipo (non la scrive lui: regola 4);
+- **si ricalcola a ogni lettura** dalle nostre fonti di oggi (`trovaOGenera`), quindi non resta mai vecchia in Upstash;
+- per questo l'**impronta delle fonti A non comprende più la tossicità**: cambiarla non obbliga a rigenerare.
+
+**Migrazione, 0 neuron:** le chiavi sono cambiate tutte (versione 5 e impronta nuova). Rigenerare le 24 schede sarebbe
+costato circa 1.700 neuron, oltre il tetto di 1.000. Il testo scritto dal modello non dipende dalla tossicità (la regola 4
+la toglie sempre), quindi le **24 schede r4 sono state copiate sotto le chiavi r5** con la tossicità ricalcolata e la loro
+data originale. Le chiavi r4 restano e scadono da sole. Risultato: 24 su 24 in Upstash; 19 con la tossicità cambiata, 5 invariate.
+- falangio, Strelitzia, Maranta, Dracaena, Aloe, Hoya e le altre non aracee: "Non verificata" con la nota prudente;
+- aracee senza caso (spatifillo, anturio, aglaonema, dieffenbachia, zamioculcas, scindapsus, singonio): "Non verificata"
+  con le sole frasi sulle aracee;
+- pothos, monstera, filodendro, Crassula e Kalanchoe: invariati ("Tossica").

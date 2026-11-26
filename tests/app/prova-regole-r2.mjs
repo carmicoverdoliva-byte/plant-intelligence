@@ -4,7 +4,13 @@ import { createHash } from "node:crypto";
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { altraPianta, applicaRegole, contrasta, diceCosaFare, frequenze, senzaVuoto, NON_INDICATA, PARLA_DELL_APP, PER_MOLTE, PROMESSE, SEZIONI, significatoOk } from "../../src/lib/schede/genera/regole.ts";
 import { altrePiante } from "../../src/lib/schede/genera/altre-piante.ts";
-import { tossicitaPerPianta } from "../../src/lib/schede/tossicita.ts";
+import { NOTA_PRUDENTE, tossicitaPerPianta } from "../../src/lib/schede/tossicita.ts";
+import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
+// fonti.ts e servizio.ts usano l'alias "@/" e import senza estensione: si caricano con jiti, come in prova-identify.mjs
+const jiti = createRequire(import.meta.url)("jiti").createJiti(import.meta.url, { alias: { "@": fileURLToPath(new URL("../../src", import.meta.url)) } });
+const { tossicitaNostra } = await jiti.import("../../src/lib/schede/genera/fonti.ts");
+const { improntaFontiA } = await jiti.import("../../src/lib/schede/genera/servizio.ts");
 import { leggiJson } from "../../src/lib/schede/genera/json.ts";
 import { testoPerRegistro, valoriSegreti } from "../../src/lib/schede/genera/registro.ts";
 import { chiaveScheda, FILE_REGOLE, IMPRONTA_REGOLE, VERSIONE_REGOLE } from "../../src/lib/schede/genera/versione-regole.ts";
@@ -333,9 +339,34 @@ const t = (f) => JSON.parse(readFileSync(new URL(`../../src/data/schede/tipi/${f
 const succ = t("succulente");
 ok(tossicitaPerPianta(succ, "Crassula ovata", "Crassula").animali === "tossica", "Tossicità: albero di giada (Crassula) → Animali: Tossica");
 ok(tossicitaPerPianta(succ, "Kalanchoe blossfeldiana", "Kalanchoe").animali === "tossica", "Tossicità: kalanchoe → Animali: Tossica");
-ok(tossicitaPerPianta(succ, "Echeveria elegans", "Echeveria").animali === "varia", "Tossicità: echeveria (non nominata) → resta 'Dipende dalla specie'");
+ok(tossicitaPerPianta(succ, "Echeveria elegans", "Echeveria", "Crassulaceae").animali === "non verificata" && /stessa famiglia/.test(tossicitaPerPianta(succ, "Echeveria elegans", "Echeveria", "Crassulaceae").nota), "Tossicità: echeveria (non nominata, Crassulaceae) → 'Non verificata' con le frasi della sua famiglia");
 ok(tossicitaPerPianta(t("rampicanti-tropicali"), "Epipremnum aureum", "Epipremnum").persone === "tossica", "Tossicità: pothos → Persone: Tossica");
 ok(tossicitaPerPianta(t("orchidee"), "Phalaenopsis amabilis", "Phalaenopsis").animali === "non tossica", "Tossicità: Phalaenopsis → Animali: Non tossica");
+
+// Tossicità solo per la pianta riconosciuta (2026-11-26): frasi per genere o famiglia, valore coerente con la nota
+const tossDi = (tipo, specie, famiglia) => tossicitaPerPianta(t(tipo), specie, specie.split(" ")[0], famiglia);
+const coerente = (x) => (x.nota === NOTA_PRUDENTE) === (x.fonti.length === 0) && (x.persone !== "varia" && x.animali !== "varia");
+for (const [specie, famiglia] of [["Chlorophytum comosum", "Asparagaceae"], ["Strelitzia reginae", "Strelitziaceae"], ["Maranta leuconeura", "Marantaceae"], ["Dracaena trifasciata", "Asparagaceae"]]) {
+  const x = tossDi("foglia-tropicale", specie, famiglia);
+  ok(!/arace|monstera|filodendro/i.test(x.nota) && x.persone === "non verificata" && x.animali === "non verificata" && x.nota === NOTA_PRUDENTE, `Tossicità: ${specie} → "Non verificata" con la nota prudente, niente aracee`);
+}
+const spati = tossDi("foglia-tropicale", "Spathiphyllum wallisii", "Araceae");
+ok(/aracea/.test(spati.nota) && spati.persone === "non verificata" && spati.fonti.join() === "7,9" && coerente(spati), "Tossicità: spatifillo (aracea) → frasi sulle aracee, 'Non verificata' (non abbiamo due fonti per lui)");
+for (const [specie, nome] of [["Epipremnum aureum", "pothos"], ["Monstera deliciosa", "monstera"], ["Philodendron hederaceum", "filodendro"]]) {
+  const x = tossDi("rampicanti-tropicali", specie, "Araceae");
+  ok(x.persone === "tossica" && x.animali === "tossica" && /aracee/.test(x.nota), `Tossicità: ${nome} → Tossica, parla delle aracee`);
+}
+const scind = tossDi("rampicanti-tropicali", "Scindapsus pictus", "Araceae");
+ok(scind.persone === "non verificata" && /aracea/.test(scind.nota) && /non abbiamo ancora dati verificati/.test(scind.nota), "Tossicità: scindapsus (aracea senza caso) → 'Non verificata', frasi sulle aracee");
+ok(tossDi("rampicanti-tropicali", "Hoya carnosa", "Apocynaceae").nota === NOTA_PRUDENTE, "Tossicità: hoya (non aracea) → nota prudente");
+ok(tossDi("succulente", "Aloe vera", "Asphodelaceae").nota === NOTA_PRUDENTE && tossDi("orchidee", "Dendrobium nobile", "Orchidaceae").animali === "non verificata", "Tossicità: aloe → nota prudente; altra orchidea → 'Non verificata'");
+ok(!/arace/i.test(tossDi("foglia-tropicale", "Chlorophytum comosum").nota), "Tossicità: senza famiglia (Vivaio vecchio) nessuna frase di altri gruppi");
+// Schede generate: la stessa tossicità, ricalcolata anche per quelle salvate
+ok(applicaRegole(base(), fontiSoloC).scheda.tossicita.nota === NOTA_PRUDENTE, "Nota prudente: la stessa nella scheda del tipo e in quella generata");
+ok(tossicitaNostra("Chlorophytum comosum", "Chlorophytum", "Asparagaceae").nota === NOTA_PRUDENTE && tossicitaNostra("Chlorophytum comosum", "Chlorophytum", "Asparagaceae").fonti.length === 0, "Schede generate: falangio → nota prudente, senza fonti");
+ok(tossicitaNostra("Monstera deliciosa", "Monstera", "Araceae").persone === "tossica" && tossicitaNostra("Strelitzia reginae", "Strelitzia", "Strelitziaceae").persone === "non verificata", "Schede generate: monstera tossica, Strelitzia non verificata");
+const tipoFoglia = JSON.parse(readFileSync(new URL("../../src/data/schede/tipi/foglia-tropicale.json", import.meta.url), "utf8"));
+ok(improntaFontiA("Chlorophytum comosum", "Chlorophytum", "Asparagaceae") === improntaFontiA("Chlorophytum comosum", "Chlorophytum", "Asparagaceae") && tipoFoglia.tossicita.frasi.length === 2, "Impronta delle fonti A: stabile (la tossicità non ne fa parte, si ricalcola a ogni lettura)");
 
 // Lettura del JSON del modello (gpt-oss-20b chiudeva con una graffa in meno)
 ok(JSON.stringify(leggiJson('{"a":{"b":[1,2]}')) === '{"a":{"b":[1,2]}}', "JSON: aggiunta la graffa finale mancante (caso gpt-oss)");

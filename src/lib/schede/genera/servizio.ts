@@ -4,13 +4,17 @@ import { createHash } from "node:crypto";
 import type { RispostaSchedaGenerata } from "@/app/api/scheda-generata/route";
 import { scegliScheda } from "../scegli";
 import type { GeneratedCardStore } from "./archivio";
+import { tossicitaNostra } from "./fonti";
 import { generaScheda, type Tentativo } from "./genera";
 import { chiaveScheda } from "./versione-regole";
 
-/** Impronta delle fonti A di questa pianta (scheda del tipo e nota di famiglia, per intero): se una cambia, cambia. */
+/** Impronta delle fonti A di questa pianta (scheda del tipo e nota di famiglia): se una cambia, cambia.
+ *  Senza la tossicità della scheda del tipo (2026-11-26): non la scrive il modello e si ricalcola a ogni lettura
+ *  (trovaOGenera), quindi cambiarla non obbliga a rigenerare le schede. */
 export function improntaFontiA(specie: string, genere: string, famiglia?: string): string {
   const { tipo, nomeTipo, scheda, notaFamiglia } = scegliScheda(specie, genere, famiglia);
-  return createHash("sha256").update(JSON.stringify({ tipo, nomeTipo, scheda, notaFamiglia })).digest("hex").slice(0, 12);
+  const senzaTossicita = scheda && { ...scheda, tossicita: undefined };
+  return createHash("sha256").update(JSON.stringify({ tipo, nomeTipo, scheda: senzaTossicita, notaFamiglia })).digest("hex").slice(0, 12);
 }
 
 /** Chiave in Upstash: versione delle regole, nomi, impronta delle fonti A di oggi. */
@@ -51,7 +55,8 @@ export async function trovaOGenera(
   famiglia?: string,
 ): Promise<{ risposta: RispostaSchedaGenerata; appenaGenerata: boolean } | null> {
   const { scheda } = await archivio.cerca(chiave);
-  if (scheda) return { risposta: scheda, appenaGenerata: false };
+  // La tossicità si copia dalle nostre fonti di OGGI anche per le schede salvate (regola 4b: non è del modello)
+  if (scheda) return { risposta: scheda.verificata ? { ...scheda, scheda: { ...scheda.scheda, tossicita: tossicitaNostra(specie, genere, famiglia) } } : scheda, appenaGenerata: false };
   const r = await generaRisposta(specie, genere, famiglia);
   if (r.tipo === "ripiego") {
     // Nessun dettaglio tecnico al telefono; il motivo resta nel registro del server.

@@ -102,6 +102,12 @@ function controllaScheda(file) {
         errore(`${dove} › tossicità › ${c.taxa.join(",")}`, "'non tossica' solo con almeno due fonti A");
       usa(c.fonti);
     }
+    // Frasi per genere o famiglia (2026-11-26): ognuna con testo e fonti A; "per", se c'è, non vuoto
+    for (const f of t.frasi ?? []) {
+      if (!f.testo || (f.per && !f.per.length)) errore(`${dove} › tossicità › frasi`, "frase senza testo o con 'per' vuoto");
+      if (!f.fonti?.length || f.fonti.some((id) => fonti.get(id)?.livello !== "A")) errore(`${dove} › tossicità › frasi`, `vuole solo fonti A: "${f.testo?.slice(0, 40)}"`);
+      usa(f.fonti ?? []);
+    }
     usa(t.fonti);
   }
   for (const f of s.fonti ?? []) if (!usate.has(f.id)) avviso(dove, `fonte ${f.id} mai citata`);

@@ -2,7 +2,7 @@
 // A = nostre schede verificate (tipo di pianta, nota di famiglia) · C = Wikipedia (CC BY-SA 4.0).
 import type { SchedaCura } from "../tipi";
 import { scegliScheda, type SceltaScheda } from "../scegli";
-import { casoTossicita } from "../tossicita";
+import { NOTA_PRUDENTE, tossicitaPerPianta } from "../tossicita";
 import { tossicitaPrudente, type FonteData, type SchedaGenerata } from "./regole";
 
 const UA = "Mandragola/0.1 (https://mandragola-app.vercel.app; app open source non commerciale)";
@@ -13,7 +13,7 @@ function testoScheda(s: SchedaCura): string {
     righe.push(`[${k}] ${sez.lineeGuida.riassunto} Cose da fare: ${sez.lineeGuida.coseDaFare.join("; ")}.`);
     for (const v of sez.lineeGuida.valori ?? []) righe.push(`  - ${v.etichetta}: ${v.valore}`);
   }
-  righe.push(`[tossicità] persone: ${s.tossicita.persone}; animali: ${s.tossicita.animali}. ${s.tossicita.nota}`);
+  // La tossicità NON si dà al modello (regola 4: non la scrive lui, la copiamo noi per la pianta riconosciuta)
   return righe.join("\n");
 }
 
@@ -55,24 +55,31 @@ export async function raccogliFonti(specie: string, genere: string, famiglia?: s
   }
   const w = await voceWikipedia(specie);
   if (w) fonti.S3 = w;
-  return { fonti, scelta, tossicita: tossicitaDalleNostreFonti(scelta, specie, genere) };
+  return { fonti, scelta, tossicita: tossicitaDalleNostreFonti(scelta, specie, genere, famiglia) };
 }
 
 /**
  * Tossicità copiata dalle NOSTRE fonti A (decisione dell'utente del 2026-11-19): il modello non la scrive.
- * 1. caso verificato per la specie o il genere nella scheda del tipo (es. Phalaenopsis: non tossica per cani e gatti);
- * 2. altrimenti valore e nota della scheda del tipo (la nota della famiglia si usa solo se manca la scheda del tipo);
+ * 1-2. con la scheda del tipo: quello che vede l'utente nella scheda del tipo (tossicita.ts): il caso verificato per
+ *      il genere o la specie, altrimenti solo le frasi del suo genere o della sua famiglia (2026-11-26), altrimenti
+ *      "non verificata" con la nota prudente;
  * 3. senza scheda del tipo ma con nota di famiglia sulla tossicità: "dipende dalla specie" con quella nota;
  * 4. senza fonti A: "non verificata" con la nota prudente.
  */
-function tossicitaDalleNostreFonti(scelta: SceltaScheda, specie: string, genere: string): SchedaGenerata["tossicita"] {
+function tossicitaDalleNostreFonti(scelta: SceltaScheda, specie: string, genere: string, famiglia?: string): SchedaGenerata["tossicita"] {
   const t = scelta.scheda?.tossicita;
   const notaFam = scelta.notaFamiglia?.note.find((n) => n.tema === "tossicità")?.testo;
-  const caso = casoTossicita(t, specie, genere);
-  if (caso) return { persone: caso.persone, animali: caso.animali, nota: caso.nota, fonti: ["S1"] };
-  if (t) return { persone: t.persone, animali: t.animali, nota: senzaRipetizioni(t.nota), fonti: ["S1"] };
+  if (t) {
+    const x = tossicitaPerPianta(t, specie, genere, famiglia);
+    return { persone: x.persone, animali: x.animali, nota: senzaRipetizioni(x.nota), fonti: x.nota === NOTA_PRUDENTE ? [] : ["S1"] };
+  }
   if (notaFam) return { persone: "varia", animali: "varia", nota: senzaRipetizioni(`Dipende dalla specie. ${notaFam}`), fonti: ["S2"] };
   return tossicitaPrudente();
+}
+
+/** Tossicità per la pianta dalle nostre fonti A di OGGI: si ricalcola anche per le schede già salvate (servizio.ts). */
+export function tossicitaNostra(specie: string, genere: string, famiglia?: string): SchedaGenerata["tossicita"] {
+  return tossicitaDalleNostreFonti(scegliScheda(specie, genere, famiglia), specie, genere, famiglia);
 }
 
 /** Toglie le frasi ripetute da una nota. */

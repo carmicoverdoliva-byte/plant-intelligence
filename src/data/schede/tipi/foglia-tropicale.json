@@ -448,6 +448,28 @@
     "fonti": [
       7,
       9
+    ],
+    "frasi": [
+      {
+        "per": [
+          "Araceae"
+        ],
+        "fonti": [
+          7,
+          9
+        ],
+        "testo": "È un'aracea: molte aracee, come monstera e filodendro, contengono cristalli che irritano bocca e gola se masticate, e la linfa può irritare la pelle (vedi la nota sulla famiglia)."
+      },
+      {
+        "per": [
+          "Araceae"
+        ],
+        "fonti": [
+          7,
+          9
+        ],
+        "testo": "Per le aracee di questo tipo (per esempio spatifillo, anturio, aglaonema, dieffenbachia, zamioculcas) non abbiamo ancora due fonti: tienila lontana da bambini e animali."
+      }
     ]
   },
   "fonti": [
@@ -536,6 +558,6 @@
     "controlliAutomatici": "2026-11-18",
     "verificaIndipendente": "2026-11-18"
   },
-  "versione": 2,
-  "aggiornata": "2026-11-18"
+  "versione": 3,
+  "aggiornata": "2026-11-26"
 }

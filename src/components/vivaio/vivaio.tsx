@@ -186,7 +186,7 @@ function SchedaDellaPianta({ p }: { p: PiantaVivaio }) {
         <Soprannome p={p} />
       </section>
 
-      <SchedaSalvata scheda={p.scheda} specie={p.nomeScientifico} genere={p.genere} />
+      <SchedaSalvata scheda={p.scheda} specie={p.nomeScientifico} genere={p.genere} famiglia={p.famiglia} />
 
       <button
         type="button"

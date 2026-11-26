@@ -366,6 +366,32 @@
           4
         ]
       }
+    ],
+    "frasi": [
+      {
+        "per": [
+          "Araceae"
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "testo": "È un'aracea, come pothos, filodendro e monstera: queste, masticate, irritano bocca, lingua e gola, possono dare vomito e la linfa irrita la pelle."
+      },
+      {
+        "per": [
+          "Araceae"
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "testo": "Per le altre aracee di questo tipo (per esempio singonio e scindapsus) non abbiamo ancora dati verificati: tienila lontana da bambini e animali e, per prudenza, usa i guanti quando la tagli."
+      }
     ]
   },
   "fonti": [
@@ -454,6 +480,6 @@
     "controlliAutomatici": "2026-11-18",
     "verificaIndipendente": "2026-11-18"
   },
-  "versione": 2,
-  "aggiornata": "2026-11-18"
+  "versione": 3,
+  "aggiornata": "2026-11-26"
 }

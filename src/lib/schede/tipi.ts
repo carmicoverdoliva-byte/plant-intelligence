@@ -85,6 +85,9 @@ export interface SchedaCura {
     // Casi verificati più precisi del tipo (per genere o specie), es. Phalaenopsis non tossica per cani e gatti.
     // "non tossica" solo con almeno due fonti A (controllato da npm run schede:controlla).
     casi?: { taxa: string[]; persone: Tossicita; animali: Tossicita; nota: string; fonti: number[] }[];
+    // La nota divisa in frasi (decisione dell'utente del 2026-11-26): a una pianta riconosciuta senza "caso" si mostrano
+    // solo le frasi del suo genere o della sua famiglia ("per"), più quelle senza "per" (valide per tutte).
+    frasi?: { testo: string; per?: string[]; fonti: number[] }[];
   };
   fonti: Fonte[];
   verifica: {

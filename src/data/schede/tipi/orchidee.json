@@ -503,6 +503,30 @@
           8
         ]
       }
+    ],
+    "frasi": [
+      {
+        "per": [
+          "Orchidaceae"
+        ],
+        "fonti": [
+          4,
+          7,
+          8
+        ],
+        "testo": "Due fonti indicano che la Phalaenopsis non è tossica per cani e gatti, ma vale solo per lei, non per tutte le orchidee: per questa orchidea non abbiamo dati verificati."
+      },
+      {
+        "per": [
+          "Orchidaceae"
+        ],
+        "fonti": [
+          4,
+          7,
+          8
+        ],
+        "testo": "Per le persone non abbiamo fonti: tienila comunque fuori dalla portata dei bambini piccoli e degli animali."
+      }
     ]
   },
   "fonti": [
@@ -583,6 +607,6 @@
     "controlliAutomatici": "2026-11-18",
     "verificaIndipendente": "2026-11-18"
   },
-  "versione": 4,
-  "aggiornata": "2026-11-18"
+  "versione": 5,
+  "aggiornata": "2026-11-26"
 }

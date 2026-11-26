@@ -6,10 +6,10 @@
 // NON serve quando cambiano le fonti A (scheda del tipo, nota di famiglia, tossicità, tipo della pianta): nella chiave c'è
 // anche la loro impronta (servizio.ts), quindi si rigenerano da sole solo le schede interessate.
 
-export const VERSIONE_REGOLE = 4; // 2 e 3 dal 2026-11-25 (regole 7a-7e e 8a-8c), 4 dal 2026-11-26 (regole 9a-9c)
+export const VERSIONE_REGOLE = 5; // 2 e 3 dal 2026-11-25 (regole 7a-7e e 8a-8c), 4 dal 2026-11-26 (regole 9a-9d), 5 dal 2026-11-26 (tossicità solo per la pianta riconosciuta, niente tossicità nel testo dato al modello)
 
 /** Impronta dei file qui sotto: serve solo alla prova, per accorgersi che sono cambiati. */
-export const IMPRONTA_REGOLE = "631d4ca89cf209d8";
+export const IMPRONTA_REGOLE = "fb1f105d8a0dc086";
 export const FILE_REGOLE = [
   "src/lib/schede/genera/regole.ts",
   "src/lib/schede/genera/genera.ts",
