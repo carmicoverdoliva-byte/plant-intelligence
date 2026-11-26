@@ -1,0 +1,1040 @@
+{
+  "id": "tipo/ortaggi-aromatiche",
+  "livello": "tipo",
+  "nome": "ortaggi e aromatiche dell'orto",
+  "siApplicaA": "Gli ortaggi e le aromatiche da orto, in piena terra o in vaso: pomodoro, peperone e peperoncino, melanzana, zucchina, cetriolo, fagiolo, lattuga e insalate, cipolla, aglio e porro, fragola, basilico, prezzemolo, menta.",
+  "eccezioni": [
+    "Rosmarino, salvia, timo, origano e lavanda vogliono poca acqua e niente concime: hanno la scheda \"aromatiche mediterranee\".",
+    "La cipolla non va più annaffiata quando i bulbi si sono ingrossati.",
+    "La menta si allarga molto con le radici: in aiuola va contenuta in un vaso senza fondo."
+  ],
+  "riassunto": "Vogliono molto sole, terreno ricco di sostanza organica e acqua regolare: il terriccio non deve mai seccarsi del tutto né restare zuppo. Gli ortaggi da frutto (pomodoro, peperone, zucchina) temono il freddo e in vaso vanno concimati quando fanno i frutti. In vaso seccano in fretta: d'estate controlla ogni giorno.",
+  "coseDaFare": [
+    "Mettili dove prendono almeno 6 ore di sole diretto (le insalate ne vogliono meno).",
+    "Tieni il terriccio sempre leggermente umido, senza ristagni.",
+    "D'estate controlla i vasi ogni giorno toccando il terriccio.",
+    "Annaffia alla base, non sulle foglie, meglio al mattino.",
+    "Metti fuori pomodori, peperoni e basilico solo quando le notti sono calde.",
+    "Non piantare pomodori nello stesso posto ogni anno."
+  ],
+  "sezioni": {
+    "luce": {
+      "lineeGuida": {
+        "riassunto": "Gli ortaggi da frutto come pomodoro, peperone, melanzana e zucchina vogliono sole pieno: almeno 6-8 ore di sole diretto. Gli ortaggi da foglia come la lattuga si accontentano di 3-5 ore; anche quelli da radice tollerano la mezz'ombra. In piena estate la lattuga apprezza un po' d'ombra nelle ore più calde; prezzemolo e menta stanno bene anche a mezz'ombra.",
+        "coseDaFare": [
+          "Dai il posto più soleggiato a pomodori, peperoni e zucchine.",
+          "Metti insalate, prezzemolo e menta dove c'è anche un po' d'ombra.",
+          "Sul balcone le esposizioni a sud e a ovest sono le più soleggiate."
+        ],
+        "valori": [
+          {
+            "etichetta": "Ortaggi da frutto",
+            "valore": "6-8 ore di sole diretto",
+            "fonti": [
+              14
+            ]
+          },
+          {
+            "etichetta": "Ortaggi da frutto (altra fonte)",
+            "valore": "almeno 5 ore, meglio 8-10",
+            "fonti": [
+              11
+            ]
+          },
+          {
+            "etichetta": "Ortaggi da foglia",
+            "valore": "3-5 ore di sole",
+            "fonti": [
+              14
+            ]
+          },
+          {
+            "etichetta": "Lattuga d'estate",
+            "valore": "un po' d'ombra nelle ore più calde",
+            "fonti": [
+              4
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          10,
+          11,
+          13,
+          14
+        ]
+      },
+      "pollice": []
+    },
+    "acqua": {
+      "lineeGuida": {
+        "riassunto": "Vogliono acqua regolare: il terriccio va tenuto uniformemente umido, mai zuppo. Le annaffiature irregolari fanno spaccare i pomodori e causano macchie scure sul fondo dei frutti; se la pianta secca, il peperone perde i fiori e la lattuga va a seme. In vaso, con il caldo, può servire acqua ogni giorno o anche due volte al giorno.",
+        "coseDaFare": [
+          "Controlla il terriccio con le dita almeno una volta al giorno, due con caldo e vento.",
+          "Annaffia finché l'acqua esce dai fori, poi non lasciarla ferma nel sottovaso.",
+          "Annaffia alla base e al mattino, senza bagnare le foglie.",
+          "Copri il terreno con uno strato di compost o paglia per tenerlo umido.",
+          "Smetti di annaffiare le cipolle quando i bulbi si sono ingrossati."
+        ],
+        "valori": [
+          {
+            "etichetta": "Regola",
+            "valore": "terriccio uniformemente umido, mai zuppo",
+            "fonti": [
+              1,
+              4,
+              5,
+              6,
+              11
+            ]
+          },
+          {
+            "etichetta": "In vaso con il caldo",
+            "valore": "anche ogni giorno o due volte al giorno",
+            "fonti": [
+              1,
+              5,
+              6,
+              11,
+              14
+            ]
+          },
+          {
+            "etichetta": "Quando",
+            "valore": "al mattino, alla base della pianta",
+            "fonti": [
+              2,
+              4,
+              9,
+              13
+            ]
+          },
+          {
+            "etichetta": "Cipolle",
+            "valore": "stop quando i bulbi sono ingrossati",
+            "fonti": [
+              8
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          14
+        ]
+      },
+      "pollice": []
+    },
+    "temperatura": {
+      "lineeGuida": {
+        "riassunto": "Pomodoro, peperone, zucchina e basilico sono piante da caldo e temono il gelo: si mettono fuori solo quando le notti sono stabilmente miti. Il pomodoro va fuori con temperature stabili sopra i 16 °C, il basilico con notti sopra i 10 °C, il peperone con notti sopra i 12 °C (meglio 15 °C). Sopra i 30 °C il peperone fa meno frutti. La menta è rustica; le fragole temono le gelate tardive sui fiori.",
+        "coseDaFare": [
+          "Aspetta che le notti siano calde prima di mettere fuori pomodori, peperoni e basilico.",
+          "Prima abitua le piantine all'aperto per circa una settimana.",
+          "Se arriva una gelata tardiva, copri le fragole in fiore con tessuto non tessuto."
+        ],
+        "valori": [
+          {
+            "etichetta": "Minima",
+            "valore": "notti sopra i 10 °C (basilico); 12 °C (peperone); 16 °C stabili per mettere fuori il pomodoro",
+            "fonti": [
+              1,
+              2,
+              6,
+              13
+            ]
+          },
+          {
+            "etichetta": "Ideale",
+            "valore": "pomodoro: circa 21-27 °C di giorno e 16-21 °C di notte (70-80 °F e 60-70 °F)",
+            "fonti": [
+              12
+            ]
+          },
+          {
+            "etichetta": "Massima",
+            "valore": "sopra i 30 °C il peperone fa meno frutti",
+            "fonti": [
+              6
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          5,
+          6,
+          9,
+          10,
+          12,
+          13
+        ]
+      },
+      "pollice": []
+    },
+    "terriccio": {
+      "lineeGuida": {
+        "riassunto": "In piena terra vogliono un terreno fertile, ricco di compost o letame maturo, che scoli ma trattenga l'umidità. In vaso si usa terriccio leggero da vaso, non la terra dell'orto, che si compatta. Per pomodoro e basilico il pH ideale è tra 6,0 e 6,5; la fragola lo preferisce leggermente acido.",
+        "coseDaFare": [
+          "Prima di piantare mescola compost o letame maturo al terreno.",
+          "In vaso usa terriccio da vaso senza torba, non terra del giardino.",
+          "Usa solo vasi con fori di drenaggio.",
+          "Cambia posto ogni anno a pomodori, peperoni, melanzane e patate."
+        ],
+        "valori": [
+          {
+            "etichetta": "pH",
+            "valore": "6,0-6,5 (pomodoro, basilico)",
+            "fonti": [
+              12,
+              13
+            ]
+          },
+          {
+            "etichetta": "In vaso",
+            "valore": "terriccio leggero da vaso, non terra dell'orto",
+            "fonti": [
+              2,
+              6,
+              11
+            ]
+          },
+          {
+            "etichetta": "Rotazione",
+            "valore": "3 anni senza pomodori, peperoni, melanzane o patate nello stesso posto",
+            "fonti": [
+              12
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13
+        ]
+      },
+      "pollice": []
+    },
+    "concime": {
+      "lineeGuida": {
+        "riassunto": "In piena terra, se il terreno è stato arricchito con compost, spesso non serve altro concime. In vaso sì: gli ortaggi da frutto vogliono un concime liquido ricco di potassio da quando fioriscono o fanno i frutti; insalate, prezzemolo e basilico un concime liquido bilanciato. Il troppo concime può bruciare le piante e toglie aroma al basilico.",
+        "coseDaFare": [
+          "Pomodori e zucchine in vaso: concime ricco di potassio ogni 10-14 giorni da quando i frutti ingrossano.",
+          "Peperoni in vaso: concime ricco di potassio ogni settimana dalla fioritura.",
+          "Insalate e prezzemolo in vaso: concime liquido bilanciato ogni 2 settimane d'estate.",
+          "Al basilico non dare il concime per pomodori.",
+          "Non superare mai la dose dell'etichetta."
+        ],
+        "valori": [
+          {
+            "etichetta": "Pomodoro e zucchina in vaso",
+            "valore": "ricco di potassio, ogni 10-14 giorni",
+            "fonti": [
+              1,
+              5
+            ]
+          },
+          {
+            "etichetta": "Peperone in vaso",
+            "valore": "ricco di potassio, ogni settimana dalla fioritura",
+            "fonti": [
+              6
+            ]
+          },
+          {
+            "etichetta": "Fagiolo in vaso",
+            "valore": "ricco di potassio, ogni 2 settimane dalla fioritura",
+            "fonti": [
+              7
+            ]
+          },
+          {
+            "etichetta": "Terriccio già concimato",
+            "valore": "dura 8-10 settimane, poi concime solubile ogni 2-3 settimane",
+            "fonti": [
+              11
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          11,
+          13
+        ]
+      },
+      "pollice": []
+    },
+    "travaso": {
+      "lineeGuida": {
+        "riassunto": "La maggior parte sono piante di una stagione: si mettono subito nel vaso finale, abbastanza grande per la pianta adulta e profondo almeno 15-20 cm. I vasi piccoli seccano prima. Le piante perenni si rinnovano: le fragole ogni 3-4 anni, la menta va divisa e rinvasata ogni qualche anno.",
+        "coseDaFare": [
+          "Scegli subito il vaso della misura giusta per la pianta adulta.",
+          "Un pomodoro o una zucchina per vaso.",
+          "Rinnova le piante di fragola ogni 3-4 anni con gli stoloni."
+        ],
+        "valori": [
+          {
+            "etichetta": "Profondità minima",
+            "valore": "15-20 cm (6-8 pollici)",
+            "fonti": [
+              11
+            ]
+          },
+          {
+            "etichetta": "Pomodoro",
+            "valore": "un vaso di 30-45 cm per pianta",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Zucchina e cipolla",
+            "valore": "almeno 45 cm",
+            "fonti": [
+              5,
+              8
+            ]
+          },
+          {
+            "etichetta": "Peperone e lattuga",
+            "valore": "almeno 30 cm di larghezza",
+            "fonti": [
+              4,
+              6
+            ]
+          },
+          {
+            "etichetta": "Prezzemolo e basilico",
+            "valore": "almeno 25 cm (prezzemolo), 20 cm (basilico)",
+            "fonti": [
+              2,
+              3
+            ]
+          },
+          {
+            "etichetta": "Fagioli",
+            "valore": "nani 30-45 cm; rampicanti 75 cm di larghezza e 45 cm di profondità",
+            "fonti": [
+              7
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "pollice": []
+    },
+    "coltivarla": {
+      "lineeGuida": {
+        "riassunto": "Gli ortaggi da caldo si seminano al chiuso alcune settimane prima che finiscano le gelate: il pomodoro 6-8 settimane prima, il basilico 4-6. I semi germinano con il caldo, intorno ai 18-21 °C. Fagioli e lattuga si seminano anche direttamente fuori; il prezzemolo è lento, anche più di un mese. Menta e fragola si moltiplicano facilmente da pianta.",
+        "coseDaFare": [
+          "Semina al chiuso in un posto caldo e luminoso.",
+          "Quando le piantine hanno due foglie vere, spostale in vasetti singoli.",
+          "Prima di metterle fuori, abituale all'aria aperta per circa una settimana.",
+          "Semina un po' di lattuga ogni due settimane per averne sempre.",
+          "Interra in vasetto gli stoloni delle fragole a fine estate."
+        ],
+        "valori": [
+          {
+            "etichetta": "Semina al chiuso",
+            "valore": "pomodoro 6-8 settimane prima dell'ultima gelata; basilico 4-6 settimane prima",
+            "fonti": [
+              12,
+              13
+            ]
+          },
+          {
+            "etichetta": "Germinazione",
+            "valore": "pomodoro circa 18 °C; basilico circa 20 °C; zucchina e peperone 18-21 °C",
+            "fonti": [
+              1,
+              2,
+              5,
+              6
+            ]
+          },
+          {
+            "etichetta": "Semina diretta",
+            "valore": "fagioli a 5 cm di profondità dopo le gelate; lattuga a 1 cm",
+            "fonti": [
+              4,
+              7
+            ]
+          },
+          {
+            "etichetta": "Da pianta",
+            "valore": "menta per divisione o talea (radica anche in acqua); fragola con gli stoloni",
+            "fonti": [
+              9,
+              10
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          9,
+          10,
+          12,
+          13
+        ]
+      },
+      "pollice": []
+    },
+    "problemi": {
+      "lineeGuida": {
+        "riassunto": "Molti problemi nascono dall'acqua: annaffiature irregolari spaccano i pomodori e causano le macchie scure sul fondo dei frutti; la siccità fa andare a seme la lattuga. I parassiti più citati sono afidi, lumache e chiocciole; in clima secco ragnetto rosso e mosca bianca. Con tempo umido arrivano muffa grigia, mal bianco e peronospora.",
+        "coseDaFare": [
+          "Annaffia con regolarità.",
+          "Controlla spesso il rovescio delle foglie per scoprire gli afidi.",
+          "Proteggi le piantine giovani dalle lumache.",
+          "Non bagnare le foglie e lascia circolare l'aria."
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13
+        ]
+      },
+      "pollice": [],
+      "elenco": [
+        {
+          "nome": "Marciume apicale e frutti spaccati",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "macchia scura sul fondo di pomodori e peperoni",
+            "frutti che si spaccano"
+          ],
+          "prevenzione": [
+            "annaffiature regolari",
+            "terriccio sempre leggermente umido"
+          ],
+          "fonti": [
+            1,
+            6
+          ]
+        },
+        {
+          "nome": "Lattuga che va a seme",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "pianta che si allunga e fiorisce",
+            "foglie amare"
+          ],
+          "prevenzione": [
+            "acqua regolare",
+            "un po' d'ombra d'estate"
+          ],
+          "fonti": [
+            4
+          ]
+        },
+        {
+          "nome": "Afidi",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "piccoli insetti sui germogli e sotto le foglie"
+          ],
+          "prevenzione": [
+            "controlla spesso le piante"
+          ],
+          "fonti": [
+            2,
+            3,
+            4,
+            6,
+            7,
+            10,
+            13
+          ]
+        },
+        {
+          "nome": "Lumache e chiocciole",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie rosicchiate",
+            "piantine sparite"
+          ],
+          "prevenzione": [
+            "proteggi le piantine giovani"
+          ],
+          "fonti": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "nome": "Ragnetto rosso e mosca bianca",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie punteggiate o con insetti bianchi"
+          ],
+          "prevenzione": [
+            "peggiorano con il caldo secco e al chiuso"
+          ],
+          "fonti": [
+            6,
+            13
+          ]
+        },
+        {
+          "nome": "Muffa grigia, mal bianco e peronospora",
+          "tipo": "malattia",
+          "frequenza": "non indicata",
+          "segni": [
+            "muffa grigia sui frutti",
+            "patina bianca sulle foglie",
+            "macchie sulle foglie"
+          ],
+          "prevenzione": [
+            "non bagnare le foglie",
+            "aria che circola"
+          ],
+          "fonti": [
+            2,
+            4,
+            5,
+            6,
+            8,
+            9,
+            13
+          ]
+        }
+      ]
+    }
+  },
+  "falsiMiti": [
+    {
+      "mito": "Più concime dai al basilico, più diventa profumato.",
+      "verdetto": "falso",
+      "cosaDiconoLeFonti": "Il troppo concime riduce l'aroma del basilico. In piena terra non serve concimarlo; in vaso basta un concime bilanciato, non quello ricco di potassio per i pomodori.",
+      "inPratica": "Concima poco e con un prodotto bilanciato.",
+      "fonti": [
+        2,
+        13
+      ]
+    }
+  ],
+  "approfondimenti": [],
+  "tossicita": {
+    "persone": "non verificata",
+    "animali": "varia",
+    "nota": "Dipende dalla pianta. Cipolla e aglio sono tossici per cani e gatti; per porro ed erba cipollina abbiamo una fonte sola che dice lo stesso. Le parti verdi del pomodoro sono tossiche per gli animali (il frutto maturo no). Prezzemolo e menta danno disturbi solo se mangiati in grande quantità. Per le persone abbiamo una sola fonte: non è verificato. Tieni le piante lontane da bambini e animali.",
+    "fonti": [
+      15,
+      16,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "casi": [
+      {
+        "taxa": [
+          "Allium cepa",
+          "Allium sativum"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica",
+        "nota": "Cipolla e aglio sono tossici per cani e gatti (due fonti): possono rovinare i globuli rossi e dare vomito e debolezza. Per le persone le fonti non indicano rischi verificati.",
+        "fonti": [
+          19,
+          20,
+          23,
+          24
+        ]
+      },
+      {
+        "taxa": [
+          "Allium porrum",
+          "Allium ampeloprasum",
+          "Allium schoenoprasum"
+        ],
+        "persone": "non verificata",
+        "animali": "non verificata",
+        "nota": "Una fonte indica porro ed erba cipollina tossici per cani e gatti, come cipolla e aglio (per cui le fonti sono due). Non è ancora verificato con una seconda fonte: tienili lontani dagli animali.",
+        "fonti": [
+          21,
+          22
+        ]
+      },
+      {
+        "taxa": [
+          "Solanum lycopersicum"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica",
+        "nota": "Foglie e fusti del pomodoro sono tossici per cani e gatti (il frutto maturo no). Per le persone abbiamo una sola fonte, che indica foglie e fusti tossici se mangiati: tienili lontani dai bambini.",
+        "fonti": [
+          15,
+          16
+        ]
+      },
+      {
+        "taxa": [
+          "Solanum tuberosum",
+          "Solanum melongena"
+        ],
+        "persone": "non verificata",
+        "animali": "non verificata",
+        "nota": "Una sola fonte indica tossiche foglie, fusti, fiori e radici di patata e melanzana (per la patata anche le bacche). Non è ancora verificato: tienile lontane da bambini e animali.",
+        "fonti": [
+          17,
+          18
+        ]
+      },
+      {
+        "taxa": [
+          "Petroselinum"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica",
+        "nota": "Il prezzemolo, mangiato in grande quantità, rende la pelle degli animali sensibile al sole. Per le persone non abbiamo due fonti.",
+        "fonti": [
+          25,
+          26
+        ]
+      },
+      {
+        "taxa": [
+          "Mentha"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica",
+        "nota": "La menta, mangiata in grande quantità, può dare vomito e diarrea a cani e gatti. Per le persone non abbiamo due fonti.",
+        "fonti": [
+          27,
+          28
+        ]
+      },
+      {
+        "taxa": [
+          "Ocimum"
+        ],
+        "persone": "non verificata",
+        "animali": "non verificata",
+        "nota": "Per cani e gatti abbiamo una sola fonte, che indica il basilico come non tossico: non è ancora verificato con una seconda fonte.",
+        "fonti": [
+          29
+        ]
+      },
+      {
+        "taxa": [
+          "Fragaria"
+        ],
+        "persone": "non verificata",
+        "animali": "non verificata",
+        "nota": "Per cani e gatti abbiamo una sola fonte, che la indica come non tossica: non è ancora verificato con una seconda fonte.",
+        "fonti": [
+          30
+        ]
+      },
+      {
+        "taxa": [
+          "Cucumis"
+        ],
+        "persone": "non verificata",
+        "animali": "non verificata",
+        "nota": "Per cani e gatti abbiamo una sola fonte, che la indica come non tossica: non è ancora verificato con una seconda fonte.",
+        "fonti": [
+          31
+        ]
+      }
+    ],
+    "frasi": [
+      {
+        "per": [
+          "Solanaceae"
+        ],
+        "fonti": [
+          15,
+          16,
+          17,
+          18
+        ],
+        "testo": "Nella sua famiglia, foglie e fusti di pomodoro, patata e melanzana sono indicati come tossici."
+      },
+      {
+        "per": [
+          "Amaryllidaceae"
+        ],
+        "fonti": [
+          19,
+          20,
+          21,
+          22
+        ],
+        "testo": "Nella sua famiglia, cipolla, aglio, porro ed erba cipollina sono tossici per cani e gatti."
+      },
+      {
+        "per": [
+          "Solanaceae",
+          "Amaryllidaceae",
+          "Apiaceae",
+          "Lamiaceae"
+        ],
+        "fonti": [
+          16,
+          19,
+          25,
+          27
+        ],
+        "testo": "Per questa pianta non abbiamo dati verificati: tienila lontana da bambini e animali."
+      }
+    ]
+  },
+  "fonti": [
+    {
+      "id": 1,
+      "titolo": "How to grow Tomatoes",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/vegetables/tomatoes/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Planting, Plant Care, Feeding, Sowing"
+    },
+    {
+      "id": 2,
+      "titolo": "How to grow Basil",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/herbs/basil/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Planting, Plant Care, Feeding, Sowing, Common Problems"
+    },
+    {
+      "id": 3,
+      "titolo": "How to grow Parsley",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/herbs/parsley/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Preparing the ground, Plant Care, Sowing, Common Problems"
+    },
+    {
+      "id": 4,
+      "titolo": "How to grow lettuces",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/vegetables/lettuce/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Plant Care, Feeding, Sowing, Problem Solving"
+    },
+    {
+      "id": 5,
+      "titolo": "How to grow courgettes",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/vegetables/courgettes/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Plant Care, Feeding, Planting in a container, Sowing"
+    },
+    {
+      "id": 6,
+      "titolo": "How to grow sweet peppers",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/vegetables/peppers/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Watering, Temperature, Feeding, Containers, Sowing, Problems"
+    },
+    {
+      "id": 7,
+      "titolo": "How to grow French beans",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/vegetables/french-beans/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Watering, Feeding, Containers, Sowing, Problems"
+    },
+    {
+      "id": 8,
+      "titolo": "How to grow onions",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/vegetables/onions/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Watering, Soil, Containers, Problems"
+    },
+    {
+      "id": 9,
+      "titolo": "How to grow strawberries",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/fruit/strawberries/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Planting, Watering, Feeding, Propagating"
+    },
+    {
+      "id": 10,
+      "titolo": "How to grow Mint",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/herbs/mint/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Planting, Watering, Propagating, Common Problems"
+    },
+    {
+      "id": 11,
+      "titolo": "Container Vegetable Gardening (HGIC 1251)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/container-vegetable-gardening/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Watering, Media, Fertilizing, Containers"
+    },
+    {
+      "id": 12,
+      "titolo": "Tomato (HGIC 1323)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/tomato/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Introduzione, Planting, Fertilizing"
+    },
+    {
+      "id": 13,
+      "titolo": "Basil (HGIC 1327)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/basil/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Culture, Insect Pests, Diseases"
+    },
+    {
+      "id": 14,
+      "titolo": "Growing Vegetables in Containers",
+      "sito": "University of Maryland Extension",
+      "url": "https://extension.umd.edu/resource/growing-vegetables-containers",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Light, Containers"
+    },
+    {
+      "id": 15,
+      "titolo": "Tomato Plant",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tomato-plant",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 16,
+      "titolo": "Solanum lycopersicum (Tomato)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/solanum-lycopersicum/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
+    },
+    {
+      "id": 17,
+      "titolo": "Solanum tuberosum (Potato)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/solanum-tuberosum/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
+    },
+    {
+      "id": 18,
+      "titolo": "Solanum melongena (Eggplant)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/solanum-melongena/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
+    },
+    {
+      "id": 19,
+      "titolo": "Onion",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/onion",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 20,
+      "titolo": "Garlic",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/garlic",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 21,
+      "titolo": "Chives",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chives",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 22,
+      "titolo": "Leek",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/leek",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 23,
+      "titolo": "Allium cepa (Onion)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/allium-cepa/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
+    },
+    {
+      "id": 24,
+      "titolo": "Allium sativum (Garlic)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/allium-sativum/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
+    },
+    {
+      "id": 25,
+      "titolo": "Parsley",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/parsley",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 26,
+      "titolo": "Petroselinum crispum (Parsley)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/petroselinum-crispum/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
+    },
+    {
+      "id": 27,
+      "titolo": "Mint",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/mint",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 28,
+      "titolo": "Mentha spicata (Mint)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/mentha-spicata/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
+    },
+    {
+      "id": 29,
+      "titolo": "Basil",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/basil",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity"
+    },
+    {
+      "id": 30,
+      "titolo": "Strawberry",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/strawberry",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity"
+    },
+    {
+      "id": 31,
+      "titolo": "Cucumber",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/cucumber",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity"
+    }
+  ],
+  "verifica": {
+    "controlliAutomatici": "2026-11-26",
+    "verificaIndipendente": "2026-11-26"
+  },
+  "versione": 1,
+  "aggiornata": "2026-11-26"
+}

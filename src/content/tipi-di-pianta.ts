@@ -1,5 +1,6 @@
 // Tipi di pianta (D13, livello 3: c'è sempre una scheda). Elenco confermato nel blocco 1 (2026-11-18):
-// 19 tipi + la scheda universale. "casa" = in Italia si coltivano soprattutto in casa (clima d'origine tropicale).
+// 19 tipi + la scheda universale; dal 2026-11-26 20: "ortaggi e aromatiche" diviso in aromatiche mediterranee e orto.
+// "casa" = in Italia si coltivano soprattutto in casa (clima d'origine tropicale).
 
 export type IdTipo =
   | "orchidee"
@@ -21,6 +22,7 @@ export type IdTipo =
   | "graminacee"
   | "acquatiche"
   | "ortaggi-aromatiche"
+  | "aromatiche-mediterranee"
   | "universale";
 
 export const TIPI: Record<IdTipo, { nome: string; dove: "casa" | "esterno" | "entrambi" }> = {
@@ -42,6 +44,7 @@ export const TIPI: Record<IdTipo, { nome: string; dove: "casa" | "esterno" | "en
   bulbose: { nome: "bulbose", dove: "entrambi" },
   graminacee: { nome: "graminacee e bambù", dove: "esterno" },
   acquatiche: { nome: "piante acquatiche e palustri", dove: "esterno" },
-  "ortaggi-aromatiche": { nome: "ortaggi e aromatiche", dove: "esterno" },
+  "ortaggi-aromatiche": { nome: "ortaggi e aromatiche dell'orto", dove: "esterno" },
+  "aromatiche-mediterranee": { nome: "aromatiche mediterranee", dove: "esterno" },
   universale: { nome: "pianta in vaso o in giardino (consigli generali)", dove: "entrambi" },
 };

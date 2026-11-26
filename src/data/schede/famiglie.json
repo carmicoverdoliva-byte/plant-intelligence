@@ -253,5 +253,381 @@
       "verificaIndipendente": "2026-11-18"
     },
     "aggiornata": "2026-11-18"
+  },
+  {
+    "famiglia": "Lamiaceae",
+    "nomeComune": "lamiacee (labiate)",
+    "note": [
+      {
+        "tema": "tossicità",
+        "testo": "Dipende dalla pianta. Rosmarino, salvia e timo sono indicati non tossici per cani e gatti (il basilico da una sola fonte); lavanda, origano, maggiorana e menta possono dare vomito o diarrea, la menta soprattutto se ne mangiano molta.",
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "tema": "parassiti",
+        "testo": "Cicaline e crisomela del rosmarino attaccano molte aromatiche di questa famiglia, ma di solito fanno danni lievi. La ruggine della menta colpisce anche maggiorana e santoreggia.",
+        "fonti": [
+          10,
+          11,
+          12,
+          13
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Rosemary",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rosemary",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 2,
+        "titolo": "Sage",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sage",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 3,
+        "titolo": "Thyme",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/thyme",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 4,
+        "titolo": "Basil",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/basil",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 5,
+        "titolo": "Lavender",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lavender",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 6,
+        "titolo": "Oregano",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/oregano",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 7,
+        "titolo": "Marjoram",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/marjoram",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 8,
+        "titolo": "Mint",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/mint",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 9,
+        "titolo": "Lavandula angustifolia (English Lavender)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/lavandula-angustifolia/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 10,
+        "titolo": "How to grow Rosemary",
+        "sito": "Royal Horticultural Society",
+        "url": "https://www.rhs.org.uk/herbs/rosemary/grow-your-own",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Common Problems"
+      },
+      {
+        "id": 11,
+        "titolo": "How to grow Sage",
+        "sito": "Royal Horticultural Society",
+        "url": "https://www.rhs.org.uk/herbs/sage/grow-your-own",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Problem Solving"
+      },
+      {
+        "id": 12,
+        "titolo": "How to grow Thyme",
+        "sito": "Royal Horticultural Society",
+        "url": "https://www.rhs.org.uk/herbs/thyme/grow-your-own",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Problem Solving"
+      },
+      {
+        "id": 13,
+        "titolo": "How to grow Mint",
+        "sito": "Royal Horticultural Society",
+        "url": "https://www.rhs.org.uk/herbs/mint/grow-your-own",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Common Problems"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-26",
+      "verificaIndipendente": "2026-11-26"
+    },
+    "aggiornata": "2026-11-26"
+  },
+  {
+    "famiglia": "Solanaceae",
+    "nomeComune": "solanacee",
+    "note": [
+      {
+        "tema": "tossicità",
+        "testo": "Foglie e fusti di pomodoro, patata e melanzana contengono solanina e sostanze simili: se mangiati possono dare disturbi allo stomaco e, in grande quantità, effetti più gravi. Il pomodoro maturo non è tossico per cani e gatti. Tieni le parti verdi lontane da bambini e animali.",
+        "fonti": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "tema": "parassiti",
+        "testo": "Pomodoro, peperone, melanzana e patata hanno malattie del terreno in comune: non coltivarle nello stesso posto prima di 3 anni.",
+        "fonti": [
+          5,
+          6
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Tomato Plant",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tomato-plant",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 2,
+        "titolo": "Solanum lycopersicum (Tomato)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/solanum-lycopersicum/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 3,
+        "titolo": "Solanum tuberosum (Potato)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/solanum-tuberosum/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 4,
+        "titolo": "Solanum melongena (Eggplant)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/solanum-melongena/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 5,
+        "titolo": "Tomato (HGIC 1323)",
+        "sito": "Clemson Cooperative Extension (HGIC)",
+        "url": "https://hgic.clemson.edu/factsheet/tomato/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Planting"
+      },
+      {
+        "id": 6,
+        "titolo": "How to grow Tomatoes",
+        "sito": "Royal Horticultural Society",
+        "url": "https://www.rhs.org.uk/vegetables/tomatoes/grow-your-own",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Planting in the ground"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-26",
+      "verificaIndipendente": "2026-11-26"
+    },
+    "aggiornata": "2026-11-26"
+  },
+  {
+    "famiglia": "Apiaceae",
+    "nomeComune": "apiacee (ombrellifere)",
+    "note": [
+      {
+        "tema": "tossicità",
+        "testo": "Il prezzemolo, mangiato in grande quantità, rende la pelle degli animali sensibile al sole (scottature e arrossamenti).",
+        "fonti": [
+          1,
+          2
+        ]
+      },
+      {
+        "tema": "parassiti",
+        "testo": "Il prezzemolo è parente di carota e sedano e ne condivide i parassiti, come la mosca della carota e la minatrice del sedano.",
+        "fonti": [
+          3
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Parsley",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/parsley",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 2,
+        "titolo": "Petroselinum crispum (Parsley)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/petroselinum-crispum/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 3,
+        "titolo": "How to grow Parsley",
+        "sito": "Royal Horticultural Society",
+        "url": "https://www.rhs.org.uk/herbs/parsley/grow-your-own",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Common Problems"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-26",
+      "verificaIndipendente": "2026-11-26"
+    },
+    "aggiornata": "2026-11-26"
+  },
+  {
+    "famiglia": "Amaryllidaceae",
+    "nomeComune": "amarillidacee (cipolla, aglio e parenti)",
+    "note": [
+      {
+        "tema": "tossicità",
+        "testo": "Cipolla, aglio, porro ed erba cipollina sono tossici per cani e gatti: possono rovinare i globuli rossi e dare vomito, sangue nelle urine e debolezza. Tienili lontani da cani e gatti.",
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "tema": "parassiti",
+        "testo": "Nell'orto la mosca della cipolla attacca radici e bulbi e la minatrice dei porri scava nei fusti; con l'umidità arrivano malattie fungine come la peronospora; c'è anche la ruggine del porro.",
+        "fonti": [
+          7
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Onion",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/onion",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 2,
+        "titolo": "Garlic",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/garlic",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 3,
+        "titolo": "Chives",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chives",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 4,
+        "titolo": "Leek",
+        "sito": "ASPCA Animal Poison Control Center",
+        "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/leek",
+        "consultato": "2026-11-26",
+        "livello": "A"
+      },
+      {
+        "id": 5,
+        "titolo": "Allium cepa (Onion)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/allium-cepa/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 6,
+        "titolo": "Allium sativum (Garlic)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/allium-sativum/",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Poisonous to Humans"
+      },
+      {
+        "id": 7,
+        "titolo": "How to grow onions",
+        "sito": "Royal Horticultural Society",
+        "url": "https://www.rhs.org.uk/vegetables/onions/grow-your-own",
+        "consultato": "2026-11-26",
+        "livello": "A",
+        "punto": "Problems"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-26",
+      "verificaIndipendente": "2026-11-26"
+    },
+    "aggiornata": "2026-11-26"
   }
 ]

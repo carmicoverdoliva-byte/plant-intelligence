@@ -77,7 +77,9 @@ tipici), quindi diventa una **nota**.
   bromelie), succulenta, cactus, felce, palma, bulbosa da fiore;
 - **esterno** (clima temperato e mediterraneo): albero a foglia caduca, albero sempreverde, conifera, arbusto a foglia
   caduca, arbusto sempreverde, rampicante, erbacea perenne, annuale o biennale, bulbosa, graminacea, pianta acquatica;
-- **ortaggi e aromatiche**, come tipo a parte.
+- **ortaggi e aromatiche**, come tipo a parte; dal 2026-11-26 diviso in due: **aromatiche mediterranee** (rosmarino,
+  salvia, timo, origano, lavanda, santoreggia: poca acqua, terreno povero, niente concime) e **ortaggi e aromatiche
+  dell'orto** (acqua regolare, terreno ricco, concime).
 
 Se WCVP non ha la forma di vita di un genere, si usa quella più frequente nella sua famiglia, dichiarandolo. Se manca
 anche quella, si usa una scheda universale "pianta in vaso o in giardino". **Nessuna pianta resta senza scheda.**

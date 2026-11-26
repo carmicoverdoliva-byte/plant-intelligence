@@ -368,6 +368,18 @@ ok(tossicitaNostra("Monstera deliciosa", "Monstera", "Araceae").persone === "tos
 const tipoFoglia = JSON.parse(readFileSync(new URL("../../src/data/schede/tipi/foglia-tropicale.json", import.meta.url), "utf8"));
 ok(improntaFontiA("Chlorophytum comosum", "Chlorophytum", "Asparagaceae") === improntaFontiA("Chlorophytum comosum", "Chlorophytum", "Asparagaceae") && tipoFoglia.tossicita.frasi.length === 2, "Impronta delle fonti A: stabile (la tossicità non ne fa parte, si ricalcola a ogni lettura)");
 
+// Gruppo 2 delle schede (2026-11-26): aromatiche mediterranee separate dagli ortaggi dell'orto
+const { scegliScheda } = await jiti.import("../../src/lib/schede/scegli.ts");
+const tipoDi = (specie, famiglia) => scegliScheda(specie, specie.split(" ")[0], famiglia).tipo;
+ok(["Lavandula angustifolia", "Salvia rosmarinus", "Salvia officinalis", "Thymus vulgaris", "Origanum vulgare"].every((x) => tipoDi(x) === "aromatiche-mediterranee"), "Gruppo 2: lavanda, rosmarino, salvia, timo e origano → aromatiche mediterranee");
+ok(["Ocimum basilicum", "Solanum lycopersicum", "Mentha spicata", "Brassica oleracea", "Allium porrum", "Allium ampeloprasum", "Cynara cardunculus"].every((x) => tipoDi(x) === "ortaggi-aromatiche"), "Gruppo 2: basilico, pomodoro, menta, cavolo, porro, carciofo → orto");
+ok(tipoDi("Salvia nemorosa") === "arbusti" && tipoDi("Allium giganteum") === "bulbose" && tipoDi("Solanum pseudocapsicum") === "universale", "Gruppo 2: salvie ornamentali, Allium ornamentali e altri Solanum restano dov'erano");
+ok(scegliScheda("Ocimum basilicum", "Ocimum").scheda !== null && scegliScheda("Lavandula angustifolia", "Lavandula").scheda !== null, "Gruppo 2: le due schede del tipo esistono (non più 'in preparazione')");
+const med = t("aromatiche-mediterranee"), orto = t("ortaggi-aromatiche");
+ok(tossicitaPerPianta(med, "Lavandula angustifolia", "Lavandula", "Lamiaceae").animali === "tossica" && tossicitaPerPianta(med, "Salvia rosmarinus", "Salvia", "Lamiaceae").animali === "non tossica" && tossicitaPerPianta(med, "Origanum vulgare", "Origanum", "Lamiaceae").animali === "non verificata", "Gruppo 2: lavanda tossica, rosmarino non tossico, origano non verificato (animali)");
+ok(tossicitaPerPianta(orto, "Allium cepa", "Allium", "Amaryllidaceae").animali === "tossica" && tossicitaPerPianta(orto, "Allium porrum", "Allium", "Amaryllidaceae").animali === "non verificata" && tossicitaPerPianta(orto, "Solanum lycopersicum", "Solanum", "Solanaceae").animali === "tossica", "Gruppo 2: cipolla e pomodoro tossici, porro non verificato (animali)");
+ok(tossicitaPerPianta(orto, "Lactuca sativa", "Lactuca", "Asteraceae").nota === NOTA_PRUDENTE && tossicitaPerPianta(orto, "Capsicum annuum", "Capsicum", "Solanaceae").nota.includes("pomodoro, patata e melanzana"), "Gruppo 2: lattuga → nota prudente; peperone → solo le frasi sulle solanacee");
+
 // Lettura del JSON del modello (gpt-oss-20b chiudeva con una graffa in meno)
 ok(JSON.stringify(leggiJson('{"a":{"b":[1,2]}')) === '{"a":{"b":[1,2]}}', "JSON: aggiunta la graffa finale mancante (caso gpt-oss)");
 ok(JSON.stringify(leggiJson('Ecco: {"a":"testo con } e ]"}')) === '{"a":"testo con } e ]"}', "JSON: le parentesi dentro i testi non si contano");

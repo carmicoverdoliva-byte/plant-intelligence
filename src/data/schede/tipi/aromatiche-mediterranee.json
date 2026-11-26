@@ -1,0 +1,769 @@
+{
+  "id": "tipo/aromatiche-mediterranee",
+  "livello": "tipo",
+  "nome": "aromatiche mediterranee",
+  "siApplicaA": "Le aromatiche legnose o perenni dei climi secchi e soleggiati: rosmarino, salvia da cucina, timo, origano e maggiorana, lavanda, santoreggia. Si coltivano fuori, in piena terra o in vaso.",
+  "eccezioni": [
+    "La lavanda francese e altre lavande delicate soffrono il gelo: meglio in vaso, da mettere al riparo d'inverno.",
+    "Basilico, prezzemolo e menta vogliono più acqua e terreno ricco: hanno la scheda \"ortaggi e aromatiche dell'orto\"."
+  ],
+  "riassunto": "Piante da sole pieno e terreno asciutto: crescono bene anche in terra povera, purché scoli bene l'acqua. Una volta radicate in piena terra non vanno quasi mai annaffiate né concimate. Il pericolo più grande è l'acqua che ristagna, soprattutto d'inverno.",
+  "coseDaFare": [
+    "Mettila nel posto più soleggiato che hai.",
+    "Usa un terreno che scoli bene; in vaso aggiungi ghiaia al terriccio.",
+    "Annaffia solo il primo anno nei periodi secchi e, in vaso, quando fa caldo e secco.",
+    "Non concimarla in piena terra: non serve.",
+    "D'inverno evita i ristagni: sposta i vasi dove non arriva la pioggia."
+  ],
+  "sezioni": {
+    "luce": {
+      "lineeGuida": {
+        "riassunto": "Vogliono sole pieno, in un posto caldo e riparato dal vento. Per rosmarino e timo le fonti indicano almeno 6 ore di sole diretto. Una fonte accetta un po' di ombra per lavanda, salvia e origano, ma il sole pieno resta la scelta migliore.",
+        "coseDaFare": [
+          "Scegli il punto più soleggiato del giardino o del balcone.",
+          "Evita gli angoli umidi e ombreggiati.",
+          "In vaso, tienili al sole tutta la bella stagione."
+        ],
+        "valori": [
+          {
+            "etichetta": "Sole diretto",
+            "valore": "almeno 6 ore al giorno (rosmarino, timo)",
+            "fonti": [
+              6,
+              8
+            ]
+          },
+          {
+            "etichetta": "Posizione",
+            "valore": "pieno sole, caldo e riparato",
+            "fonti": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8
+        ],
+        "disaccordi": [
+          {
+            "tema": "Mezz'ombra",
+            "posizioni": [
+              {
+                "dice": "Lavanda in posto soleggiato, non in ombra",
+                "fonti": [
+                  5
+                ]
+              },
+              {
+                "dice": "Lavanda, salvia e origano tollerano anche 2-6 ore di sole",
+                "fonti": [
+                  7,
+                  9,
+                  10
+                ]
+              }
+            ],
+            "sceltaPrudente": "Dai loro il sole pieno: la lavanda in posti ombrosi e umidi vive poco."
+          }
+        ]
+      },
+      "pollice": []
+    },
+    "acqua": {
+      "lineeGuida": {
+        "riassunto": "Sopportano bene la siccità. Le piante nuove vanno annaffiate nei periodi secchi del primo anno; poi, in piena terra, quasi mai. In vaso servono annaffiature quando fa caldo e secco, senza mai lasciare acqua ferma. Il terreno freddo e bagnato fa marcire le radici e può far morire la pianta.",
+        "coseDaFare": [
+          "Il primo anno annaffia solo nei periodi secchi.",
+          "Dal secondo anno, in piena terra, annaffia solo se la siccità è lunga.",
+          "In vaso annaffia d'estate quando fa caldo e secco, e svuota il sottovaso.",
+          "D'inverno tieni il terriccio dei vasi piuttosto asciutto."
+        ],
+        "valori": [
+          {
+            "etichetta": "Primo anno",
+            "valore": "nei periodi secchi",
+            "fonti": [
+              1,
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "etichetta": "Piante radicate in piena terra",
+            "valore": "quasi mai",
+            "fonti": [
+              1,
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "etichetta": "In vaso",
+            "valore": "con il caldo secco, senza ristagni",
+            "fonti": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "etichetta": "Inverno",
+            "valore": "vasi piuttosto asciutti, al riparo dalla pioggia",
+            "fonti": [
+              1,
+              3,
+              4,
+              5
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "pollice": []
+    },
+    "temperatura": {
+      "lineeGuida": {
+        "riassunto": "Quasi tutte resistono al freddo, ma temono il freddo umido. Il rosmarino adulto regge fino a circa -8 °C; le piante giovani possono morire con gelate forti. Dalle zone di rusticità indicate da NC State risulta che regge meno freddo di lavanda, timo, salvia e origano. Nei vasi le radici gelano più facilmente che in terra.",
+        "coseDaFare": [
+          "Con gelate forti copri le piante giovani con tessuto non tessuto.",
+          "D'inverno raggruppa i vasi o avvolgili per proteggere le radici.",
+          "Tieni in vaso, al riparo dal gelo, la lavanda francese e le specie delicate."
+        ],
+        "valori": [
+          {
+            "etichetta": "Minima",
+            "valore": "circa -8 °C per il rosmarino adulto; le piante giovani soffrono prima",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Il più delicato",
+            "valore": "rosmarino (zone di rusticità più calde delle altre)",
+            "fonti": [
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "etichetta": "Massima",
+            "valore": "non indicata dalle fonti",
+            "fonti": []
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "pollice": []
+    },
+    "terriccio": {
+      "lineeGuida": {
+        "riassunto": "Vogliono un terreno che scoli molto bene: va bene anche povero, sassoso o calcareo, mai pesante e sempre bagnato. Se il terreno è argilloso conviene un'aiuola rialzata. In vaso si usa terriccio a base di terra, senza torba, con fino a un quarto di ghiaia.",
+        "coseDaFare": [
+          "In vaso mescola al terriccio fino a un quarto di ghiaia o graniglia.",
+          "Con terra pesante coltivale in un'aiuola rialzata o in vaso.",
+          "Usa vasi con fori di drenaggio."
+        ],
+        "valori": [
+          {
+            "etichetta": "Miscela per vaso",
+            "valore": "terriccio a base di terra con fino al 25% di ghiaia",
+            "fonti": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "etichetta": "pH",
+            "valore": "lavanda e timo: neutro o alcalino; salvia: da 6,0 a 8,0",
+            "fonti": [
+              7,
+              8,
+              9
+            ]
+          },
+          {
+            "etichetta": "Terreno pesante",
+            "valore": "aiuola rialzata (per la lavanda una collinetta di 20-30 cm)",
+            "fonti": [
+              1,
+              3,
+              4,
+              5
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "pollice": []
+    },
+    "concime": {
+      "lineeGuida": {
+        "riassunto": "In piena terra non serve concimarle, nemmeno se il terreno è povero: la lavanda, anzi, sta meglio in un terreno con pochi nutrienti. Solo le piante che restano in vaso più di un anno ricevono un concime granulare generico a fine primavera o inizio estate.",
+        "coseDaFare": [
+          "In piena terra non concimare.",
+          "In vaso da più di un anno: un concime granulare a fine primavera.",
+          "Non concimare la lavanda."
+        ],
+        "valori": [
+          {
+            "etichetta": "Piena terra",
+            "valore": "non serve",
+            "fonti": [
+              1,
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "etichetta": "In vaso da più di un anno",
+            "valore": "concime granulare generico, a fine primavera o inizio estate",
+            "fonti": [
+              1,
+              3,
+              4
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          3,
+          4,
+          5
+        ]
+      },
+      "pollice": []
+    },
+    "travaso": {
+      "lineeGuida": {
+        "riassunto": "Il vaso deve avere fori di drenaggio e misure adatte alla pianta: almeno 30 cm di larghezza e profondità per rosmarino e salvia, 30-40 cm per la lavanda, circa 15 cm per timo e origano. Con gli anni diventano legnose: rosmarino, salvia e lavanda vecchi si sostituiscono invece di rinvasarli.",
+        "coseDaFare": [
+          "Scegli un vaso con fori, della misura giusta per la pianta.",
+          "Quando la pianta è vecchia e spoglia alla base, sostituiscila con una talea."
+        ],
+        "valori": [
+          {
+            "etichetta": "Rosmarino e salvia",
+            "valore": "vaso largo e profondo almeno 30 cm",
+            "fonti": [
+              1,
+              3
+            ]
+          },
+          {
+            "etichetta": "Lavanda",
+            "valore": "vaso di 30-40 cm di diametro",
+            "fonti": [
+              5
+            ]
+          },
+          {
+            "etichetta": "Timo e origano",
+            "valore": "vaso di almeno 15 cm (per il timo profondo 10 cm)",
+            "fonti": [
+              2,
+              4
+            ]
+          },
+          {
+            "etichetta": "Quando sostituirle",
+            "valore": "rosmarino dopo 7-8 anni, salvia dopo 6-7 anni",
+            "fonti": [
+              1,
+              3
+            ]
+          },
+          {
+            "etichetta": "Quando rinvasare",
+            "valore": "non indicata dalle fonti",
+            "fonti": []
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "pollice": []
+    },
+    "coltivarla": {
+      "lineeGuida": {
+        "riassunto": "Il modo più semplice è la talea: erbacea tra fine primavera e inizio estate, semilegnosa d'estate. Rosmarino, timo, salvia e origano si moltiplicano anche per propaggine, timo e origano anche per divisione. Dal seme sono lente: almeno un anno prima di raccogliere (timo, salvia), per il rosmarino anche diversi anni.",
+        "coseDaFare": [
+          "D'estate taglia una talea di un ramo giovane e mettila a radicare in terriccio drenante.",
+          "In primavera o in autunno piega un ramo basso, interralo e staccalo quando ha radici.",
+          "Dividi i cespi di timo e origano in primavera."
+        ],
+        "valori": [
+          {
+            "etichetta": "Metodi",
+            "valore": "talea, propaggine, divisione (timo, origano), seme",
+            "fonti": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              8,
+              10
+            ]
+          },
+          {
+            "etichetta": "Talee",
+            "valore": "erbacee a fine primavera-inizio estate; semilegnose d'estate; per la lavanda anche legnose a fine autunno",
+            "fonti": [
+              1,
+              2,
+              3,
+              5
+            ]
+          },
+          {
+            "etichetta": "Seme",
+            "valore": "lento: almeno un anno prima del raccolto (timo, salvia), il rosmarino anche diversi anni; timo e origano si seminano in superficie",
+            "fonti": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "etichetta": "Germinazione",
+            "valore": "timo 15-20 °C; origano circa 20 °C",
+            "fonti": [
+              2,
+              4
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          10
+        ]
+      },
+      "pollice": []
+    },
+    "problemi": {
+      "lineeGuida": {
+        "riassunto": "Il ristagno d'acqua fa marcire le radici e può far morire la pianta. Tra gli insetti si vedono la crisomela del rosmarino, le cicaline e la sputacchina, che di solito fanno danni lievi. Rosmarino e lavanda possono ospitare Xylella. Salvia e rosmarino possono prendere il mal bianco con aria umida e ferma.",
+        "coseDaFare": [
+          "Evita i ristagni: fanno marcire le radici e possono far morire la pianta.",
+          "Controlla spesso le piante: crisomela e cicaline di solito fanno danni lievi.",
+          "Lascia spazio tra le piante perché l'aria circoli.",
+          "Compra piante da vivai controllati: rosmarino e lavanda possono ospitare Xylella."
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          9,
+          10
+        ]
+      },
+      "pollice": [],
+      "elenco": [
+        {
+          "nome": "Marciume delle radici per troppa acqua",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "pianta che appassisce anche con il terreno bagnato",
+            "rami che seccano"
+          ],
+          "prevenzione": [
+            "terreno drenante",
+            "niente ristagni, soprattutto d'inverno"
+          ],
+          "fonti": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "nome": "Crisomela del rosmarino",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "non indicati dalle fonti"
+          ],
+          "prevenzione": [
+            "controlla spesso le piante",
+            "di solito il danno è lieve"
+          ],
+          "fonti": [
+            1,
+            2,
+            3,
+            5
+          ]
+        },
+        {
+          "nome": "Cicaline",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "puntini chiari sulle foglie"
+          ],
+          "prevenzione": [
+            "di solito il danno è solo estetico"
+          ],
+          "fonti": [
+            1,
+            2,
+            3,
+            5
+          ]
+        },
+        {
+          "nome": "Mal bianco (oidio)",
+          "tipo": "malattia",
+          "frequenza": "non indicata",
+          "segni": [
+            "patina bianca sulle foglie"
+          ],
+          "prevenzione": [
+            "aria che circola",
+            "non affollare le piante"
+          ],
+          "fonti": [
+            3,
+            6,
+            9
+          ]
+        },
+        {
+          "nome": "Xylella",
+          "tipo": "malattia",
+          "frequenza": "non indicata",
+          "segni": [
+            "non indicati dalle fonti"
+          ],
+          "prevenzione": [
+            "rosmarino e lavanda sono ospiti a rischio: compra piante da vivai controllati"
+          ],
+          "fonti": [
+            1,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  "falsiMiti": [
+    {
+      "mito": "Come tutte le piante, anche le aromatiche mediterranee crescono meglio con un concime regolare.",
+      "verdetto": "falso",
+      "cosaDiconoLeFonti": "Le fonti dicono che in piena terra rosmarino, salvia, origano e lavanda non vanno concimati, nemmeno in terreno povero; la lavanda sta meglio con pochi nutrienti. Solo in vaso, dopo un anno, basta un concime granulare a fine primavera.",
+      "inPratica": "In piena terra non concimarle; in vaso basta una volta l'anno.",
+      "fonti": [
+        1,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "approfondimenti": [],
+  "tossicita": {
+    "persone": "non verificata",
+    "animali": "varia",
+    "nota": "Dipende dalla pianta. Rosmarino, salvia e timo non sono tossici per cani e gatti (due fonti). La lavanda lo è: può dare nausea e vomito. Per origano e maggiorana abbiamo una sola fonte, che indica vomito e diarrea lievi. Per le persone non abbiamo dati verificati: tienile comunque lontane dai bambini piccoli.",
+    "fonti": [
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "casi": [
+      {
+        "taxa": [
+          "Lavandula"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica",
+        "nota": "La lavanda è tossica per cani e gatti: può dare nausea, vomito e poco appetito (due fonti). Per le persone abbiamo una sola fonte, che la indica poco tossica: tienila comunque lontana dai bambini piccoli.",
+        "fonti": [
+          7,
+          11
+        ]
+      },
+      {
+        "taxa": [
+          "Salvia rosmarinus",
+          "Salvia officinalis",
+          "Thymus"
+        ],
+        "persone": "non verificata",
+        "animali": "non tossica",
+        "nota": "Non è tossica per cani e gatti: lo indicano due fonti concordi. Per le persone non abbiamo dati verificati.",
+        "fonti": [
+          6,
+          8,
+          9,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "taxa": [
+          "Origanum"
+        ],
+        "persone": "non verificata",
+        "animali": "non verificata",
+        "nota": "Per cani e gatti abbiamo una fonte sola, con due pagine (una sull'origano, una sulla maggiorana): indicano vomito e diarrea lievi. Non è ancora verificato con una seconda fonte: tienila lontana da bambini e animali.",
+        "fonti": [
+          15,
+          16
+        ]
+      }
+    ],
+    "frasi": [
+      {
+        "per": [
+          "Lamiaceae"
+        ],
+        "fonti": [
+          11,
+          12,
+          13,
+          14
+        ],
+        "testo": "Nella sua famiglia ci sono piante non tossiche per cani e gatti, come rosmarino, salvia e timo, e altre che danno disturbi, come la lavanda."
+      },
+      {
+        "per": [
+          "Lamiaceae"
+        ],
+        "fonti": [
+          11,
+          12,
+          13,
+          14
+        ],
+        "testo": "Per questa pianta non abbiamo dati verificati: tienila lontana da bambini e animali."
+      }
+    ]
+  },
+  "fonti": [
+    {
+      "id": 1,
+      "titolo": "How to grow Rosemary",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/herbs/rosemary/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Planting, Plant Care, Propagating, Common Problems"
+    },
+    {
+      "id": 2,
+      "titolo": "How to grow Thyme",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/herbs/thyme/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Planting, Plant Care, Sowing, Propagating, Problem Solving"
+    },
+    {
+      "id": 3,
+      "titolo": "How to grow Sage",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/herbs/sage/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Planting, Plant Care, Propagating, Problem Solving"
+    },
+    {
+      "id": 4,
+      "titolo": "How to grow Oregano",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/herbs/oregano/grow-your-own",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Planting, Plant Care, Sowing, Propagating, Common Problems"
+    },
+    {
+      "id": 5,
+      "titolo": "How to grow lavender",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/lavender/growing-guide",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Planting, Ongoing Care, Propagating, Problems"
+    },
+    {
+      "id": 6,
+      "titolo": "Salvia rosmarinus (Rosemary)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/salvia-rosmarinus/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Description, Cultural Conditions, Insects and Diseases, Tags"
+    },
+    {
+      "id": 7,
+      "titolo": "Lavandula angustifolia (English Lavender)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/lavandula-angustifolia/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Description, Cultural Conditions, Poisonous to Humans, Tags"
+    },
+    {
+      "id": 8,
+      "titolo": "Thymus vulgaris (Common Thyme)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/thymus-vulgaris/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Description, Cultural Conditions, Tags"
+    },
+    {
+      "id": 9,
+      "titolo": "Salvia officinalis (Common Sage)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/salvia-officinalis/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Description, Cultural Conditions, Insects and Diseases, Tags"
+    },
+    {
+      "id": 10,
+      "titolo": "Origanum vulgare (Oregano)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/origanum-vulgare/",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Description, Cultural Conditions, Diseases and Insect Pests"
+    },
+    {
+      "id": 11,
+      "titolo": "Lavender",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lavender",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity"
+    },
+    {
+      "id": 12,
+      "titolo": "Rosemary",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rosemary",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity"
+    },
+    {
+      "id": 13,
+      "titolo": "Sage",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sage",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity"
+    },
+    {
+      "id": 14,
+      "titolo": "Thyme",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/thyme",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity"
+    },
+    {
+      "id": 15,
+      "titolo": "Oregano",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/oregano",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 16,
+      "titolo": "Marjoram",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/marjoram",
+      "consultato": "2026-11-26",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    }
+  ],
+  "verifica": {
+    "controlliAutomatici": "2026-11-26",
+    "verificaIndipendente": "2026-11-26"
+  },
+  "versione": 1,
+  "aggiornata": "2026-11-26"
+}

@@ -333,6 +333,17 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
     - Tabella della tossicità del gruppo 1 approvata dall'utente (2026-11-18). Orchidee: per la sola Phalaenopsis due
       fonti A concordi (NC State e gli elenchi ASPCA "Non-Toxic to Cats/Dogs") la indicano non tossica per cani e gatti;
       la scheda del tipo resta "dipende dalla specie" per gli animali e "non verificata" per le persone.
+  - **Gruppo 2, scritto il 2026-11-26 (in attesa della tabella della tossicità):**
+    - 2 schede per tipo: **aromatiche mediterranee** (nuovo tipo, 20 tipi più la scheda universale) e **ortaggi e
+      aromatiche dell'orto**; 4 note di famiglia: lamiacee, solanacee, apiacee, amarillidacee.
+    - Indice: *Lavandula*, *Thymus*, *Origanum*, *Satureja* e le specie *Salvia rosmarinus* e *S. officinalis* nelle
+      mediterranee; *Brassica*, *Cichorium*, *Valerianella*, *Citrullus*, *Cynara*, *Foeniculum* (e la specie
+      *Allium ampeloprasum*, il porro) nell'orto. Restano fuori alloro, elicriso, santolina, artemisia e melissa.
+    - Fonti A: RHS, NC State Extension, Clemson HGIC, University of Maryland Extension, ASPCA. Missouri Botanical
+      Garden e Oregon State Extension vietano l'AI (da leggere all'utente); UMN Extension non leggibile (verifica
+      Cloudflare).
+    - Verifiche: `npm run schede:controlla -- --rete` (0 errori, nessuna copia); verifica indipendente (14 correzioni
+      applicate, tutte frasi che dicevano più delle fonti).
   - **Elenco casa e orto approvato** (2026-11-18), con Phalaenopsis (gruppo di ibridi commerciali) nel rilascio 1 e
     oleandro, olivo, buganvillea, cetriolo, cipolla nel rilascio 2: 67 specie e 42 generi, nomi controllati con GBIF.
   - **Aggiornamento dell'app sull'iPhone:** l'app confronta la sua versione con quella pubblicata (`/api/versione`)
