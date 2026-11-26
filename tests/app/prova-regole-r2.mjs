@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 // fonti.ts e servizio.ts usano l'alias "@/" e import senza estensione: si caricano con jiti, come in prova-identify.mjs
 const jiti = createRequire(import.meta.url)("jiti").createJiti(import.meta.url, { alias: { "@": fileURLToPath(new URL("../../src", import.meta.url)) } });
 const { tossicitaNostra } = await jiti.import("../../src/lib/schede/genera/fonti.ts");
-const { improntaFontiA } = await jiti.import("../../src/lib/schede/genera/servizio.ts");
+const { improntaFontiA, contenutoPerImpronta } = await jiti.import("../../src/lib/schede/genera/servizio.ts");
 import { leggiJson } from "../../src/lib/schede/genera/json.ts";
 import { testoPerRegistro, valoriSegreti } from "../../src/lib/schede/genera/registro.ts";
 import { chiaveScheda, FILE_REGOLE, IMPRONTA_REGOLE, VERSIONE_REGOLE } from "../../src/lib/schede/genera/versione-regole.ts";
@@ -367,6 +367,16 @@ ok(tossicitaNostra("Chlorophytum comosum", "Chlorophytum", "Asparagaceae").nota 
 ok(tossicitaNostra("Monstera deliciosa", "Monstera", "Araceae").persone === "tossica" && tossicitaNostra("Strelitzia reginae", "Strelitzia", "Strelitziaceae").persone === "non verificata", "Schede generate: monstera tossica, Strelitzia non verificata");
 const tipoFoglia = JSON.parse(readFileSync(new URL("../../src/data/schede/tipi/foglia-tropicale.json", import.meta.url), "utf8"));
 ok(improntaFontiA("Chlorophytum comosum", "Chlorophytum", "Asparagaceae") === improntaFontiA("Chlorophytum comosum", "Chlorophytum", "Asparagaceae") && tipoFoglia.tossicita.frasi.length === 2, "Impronta delle fonti A: stabile (la tossicità non ne fa parte, si ricalcola a ogni lettura)");
+{
+  // 2026-11-26: cambiare versione, date, verifiche o tossicità (anche nella nota di famiglia) NON deve far rigenerare le schede
+  const sc = (await jiti.import("../../src/lib/schede/scegli.ts")).scegliScheda("Allium cepa", "Allium", "Amaryllidaceae");
+  const prima = JSON.stringify(contenutoPerImpronta(sc.tipo, sc.nomeTipo, sc.scheda, sc.notaFamiglia));
+  const scheda2 = { ...sc.scheda, versione: 99, aggiornata: "2030-01-01", verifica: {}, tossicita: { ...sc.scheda.tossicita, nota: "altro" } };
+  const nota2 = { ...sc.notaFamiglia, aggiornata: "2030-01-01", verifica: {}, note: sc.notaFamiglia.note.map((n) => (n.tema === "tossicità" ? { ...n, testo: "altro" } : n)) };
+  ok(JSON.stringify(contenutoPerImpronta(sc.tipo, sc.nomeTipo, scheda2, nota2)) === prima, "Impronta: versione, date, verifiche e tossicità non la cambiano");
+  const scheda3 = { ...sc.scheda, riassunto: sc.scheda.riassunto + " Altro." };
+  ok(JSON.stringify(contenutoPerImpronta(sc.tipo, sc.nomeTipo, scheda3, sc.notaFamiglia)) !== prima, "Impronta: un contenuto diverso la cambia (la scheda si rigenera)");
+}
 
 // Gruppo 2 delle schede (2026-11-26): aromatiche mediterranee separate dagli ortaggi dell'orto
 const { scegliScheda } = await jiti.import("../../src/lib/schede/scegli.ts");

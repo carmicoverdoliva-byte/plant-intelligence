@@ -411,6 +411,9 @@ per le piante salvate senza famiglia restano solo le frasi del genere o valide p
 - la tossicità **non si dà più al modello** nel testo della scheda del tipo (non la scrive lui: regola 4);
 - **si ricalcola a ogni lettura** dalle nostre fonti di oggi (`trovaOGenera`), quindi non resta mai vecchia in Upstash;
 - per questo l'**impronta delle fonti A non comprende più la tossicità**: cambiarla non obbliga a rigenerare.
+- dal 2026-11-26 (sera) l'impronta non comprende nemmeno la tossicità delle note di famiglia, la versione, le date e le
+  verifiche delle schede: cambiarle non obbliga a rigenerare. Le 39 schede già salvate sono state copiate sotto le chiavi
+  nuove, dopo aver controllato che il contenuto letto dall'AI fosse identico (0 neuron).
 
 **Migrazione, 0 neuron:** le chiavi sono cambiate tutte (versione 5 e impronta nuova). Rigenerare le 24 schede sarebbe
 costato circa 1.700 neuron, oltre il tetto di 1.000. Il testo scritto dal modello non dipende dalla tossicità (la regola 4

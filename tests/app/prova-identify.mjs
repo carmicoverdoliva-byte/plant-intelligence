@@ -242,10 +242,10 @@ try {
   ok(improntaFontiA("Monstera deliciosa", "Monstera", "Araceae") !== improntaPrima, "Fonti A: se cambia la scheda del tipo, la scheda salvata non vale più");
   ok(improntaFontiA("Phalaenopsis amabilis", "Phalaenopsis", "Orchidaceae") === improntaAltra, "Fonti A: le schede degli altri tipi restano valide");
   fontiMonstera.scheda.riassunto = riassuntoVero;
-  const notaVera = fontiMonstera.notaFamiglia.note[0].testo;
-  fontiMonstera.notaFamiglia.note[0].testo = notaVera + " (cambiata)";
+  const notaVera = fontiMonstera.notaFamiglia.note.find((n) => n.tema !== "tossicità").testo;
+  fontiMonstera.notaFamiglia.note.find((n) => n.tema !== "tossicità").testo = notaVera + " (cambiata)";
   ok(improntaFontiA("Monstera deliciosa", "Monstera", "Araceae") !== improntaPrima, "Fonti A: se cambia la nota di famiglia, la scheda salvata non vale più");
-  fontiMonstera.notaFamiglia.note[0].testo = notaVera;
+  fontiMonstera.notaFamiglia.note.find((n) => n.tema !== "tossicità").testo = notaVera;
   ok(improntaFontiA("Monstera deliciosa", "Monstera", "Araceae") === improntaPrima, "Fonti A: rimesse com'erano, la scheda torna valida");
   redis.set(chiavePianta("Zamioculcas zamiifolia", "Zamioculcas", "Araceae"), '{"tipo":"generata","rovinata":');
   g = await generata("specie=Zamioculcas%20zamiifolia&genere=Zamioculcas&famiglia=Araceae");

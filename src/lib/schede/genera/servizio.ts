@@ -10,11 +10,24 @@ import { chiaveScheda } from "./versione-regole";
 
 /** Impronta delle fonti A di questa pianta (scheda del tipo e nota di famiglia): se una cambia, cambia.
  *  Senza la tossicità della scheda del tipo (2026-11-26): non la scrive il modello e si ricalcola a ogni lettura
- *  (trovaOGenera), quindi cambiarla non obbliga a rigenerare le schede. */
+ *  (trovaOGenera), quindi cambiarla non obbliga a rigenerare le schede.
+ *  Dal 2026-11-26 (sera) anche senza: le note di famiglia sulla tossicità (la regola 4 toglie comunque la tossicità dal
+ *  testo generato) e i dati che non sono contenuto (versione, data di aggiornamento, date delle verifiche). */
 export function improntaFontiA(specie: string, genere: string, famiglia?: string): string {
   const { tipo, nomeTipo, scheda, notaFamiglia } = scegliScheda(specie, genere, famiglia);
-  const senzaTossicita = scheda && { ...scheda, tossicita: undefined };
-  return createHash("sha256").update(JSON.stringify({ tipo, nomeTipo, scheda: senzaTossicita, notaFamiglia })).digest("hex").slice(0, 12);
+  return createHash("sha256").update(JSON.stringify(contenutoPerImpronta(tipo, nomeTipo, scheda, notaFamiglia))).digest("hex").slice(0, 12);
+}
+
+/** Solo il contenuto che conta per il testo generato (esportato per la prova e per la migrazione delle chiavi). */
+export function contenutoPerImpronta(
+  tipo: unknown,
+  nomeTipo: unknown,
+  scheda: ReturnType<typeof scegliScheda>["scheda"],
+  notaFamiglia: ReturnType<typeof scegliScheda>["notaFamiglia"],
+) {
+  const s = scheda && { ...scheda, tossicita: undefined, versione: undefined, aggiornata: undefined, verifica: undefined };
+  const n = notaFamiglia && { ...notaFamiglia, note: notaFamiglia.note.filter((x) => x.tema !== "tossicità"), verifica: undefined, aggiornata: undefined };
+  return { tipo, nomeTipo, scheda: s, notaFamiglia: n };
 }
 
 /** Chiave in Upstash: versione delle regole, nomi, impronta delle fonti A di oggi. */
