@@ -517,7 +517,7 @@
   "tossicita": {
     "persone": "varia",
     "animali": "varia",
-    "nota": "Dipende dalla pianta. L'oleandro è molto tossico per persone e animali, anche il fumo dei rami bruciati. La lantana è tossica per cani e gatti; il geranio lo è secondo una fonte. Pittosporo e callistemon sono indicati non tossici per cani e gatti (due fonti). Per le altre non abbiamo dati verificati: tienile lontane da bambini e animali.",
+    "nota": "Dipende dalla pianta. L'oleandro è molto tossico per persone e animali, anche il fumo dei rami bruciati. La lantana è tossica per cani e gatti; il geranio lo è secondo una fonte, che lo indica tossico anche per le persone. Pittosporo e callistemon sono indicati non tossici per cani e gatti (due fonti). Per le altre non abbiamo dati verificati: tienile lontane da bambini e animali.",
     "fonti": [
       2,
       7,
@@ -529,7 +529,8 @@
       14,
       15,
       16,
-      17
+      17,
+      18
     ],
     "casi": [
       {
@@ -562,11 +563,12 @@
         "taxa": [
           "Pelargonium"
         ],
-        "persone": "non verificata",
+        "persone": "tossica (una fonte)",
         "animali": "tossica (una fonte)",
-        "nota": "Per cani e gatti una fonte sola indica il geranio tossico: vomito, poco appetito, abbattimento e irritazione della pelle. Non è ancora confermato da una seconda fonte. Per le persone non abbiamo dati verificati.",
+        "nota": "Per cani e gatti una fonte sola indica il geranio tossico: vomito, poco appetito, abbattimento e irritazione della pelle. Non è ancora confermato da una seconda fonte. Per le persone una fonte sola lo indica tossico, con gravità bassa: vomito e poco appetito se mangiato, e le foglie possono irritare la pelle.",
         "fonti": [
-          13
+          13,
+          18
         ]
       },
       {
@@ -796,6 +798,15 @@
       "consultato": "2026-11-26",
       "livello": "A",
       "punto": "Tags"
+    },
+    {
+      "id": 18,
+      "titolo": "Pelargonium (Geranium)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/pelargonium/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
     }
   ],
   "verifica": {

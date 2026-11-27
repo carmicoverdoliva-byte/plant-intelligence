@@ -760,7 +760,7 @@
   "tossicita": {
     "persone": "varia",
     "animali": "varia",
-    "nota": "Dipende dalla pianta. Bosso, agrifoglio, ligustro e nandina sono tossici per cani e gatti; la nandina contiene sostanze che liberano cianuro. La brugmansia è molto velenosa per le persone (una fonte). L'ibisco da giardino e la fatsia sono indicati non tossici per cani e gatti (due fonti). Per le altre non abbiamo dati verificati: tienile lontane da bambini e animali.",
+    "nota": "Dipende dalla pianta. Bosso, agrifoglio, ligustro e nandina sono tossici per cani e gatti; la nandina contiene sostanze che liberano cianuro. Per le persone la brugmansia è molto velenosa, e bosso, agrifoglio, ligustro, nandina, evonimo, aucuba e iperico sono indicati tossici, ognuno da una fonte sola. L'ibisco da giardino e la fatsia sono indicati non tossici per cani e gatti (due fonti). Per le altre non abbiamo dati verificati: tienile lontane da bambini e animali.",
     "fonti": [
       21,
       22,
@@ -770,20 +770,24 @@
       30,
       31,
       32,
+      34,
       35,
       36,
       37,
       38,
-      39
+      39,
+      41,
+      44,
+      46
     ],
     "casi": [
       {
         "taxa": [
           "Buxus"
         ],
-        "persone": "non verificata",
+        "persone": "tossica (una fonte)",
         "animali": "tossica",
-        "nota": "Il bosso è tossico per cani e gatti (due fonti); una fonte indica vomito e diarrea. Una fonte aggiunge che la linfa può irritare la pelle: usa i guanti quando lo poti. Per le persone non abbiamo dati verificati.",
+        "nota": "Il bosso è tossico per cani e gatti (due fonti); una fonte indica vomito e diarrea. Per le persone una fonte sola lo indica tossico, con gravità bassa: mangiato in quantità può dare disturbi allo stomaco e vertigini, e la linfa può irritare la pelle. Usa i guanti quando lo poti.",
         "fonti": [
           27,
           28
@@ -805,9 +809,9 @@
         "taxa": [
           "Ligustrum"
         ],
-        "persone": "non verificata",
+        "persone": "tossica (una fonte)",
         "animali": "tossica",
-        "nota": "Il ligustro è tossico per cani e gatti (due fonti); una fonte indica soprattutto disturbi allo stomaco, più raramente problemi al cuore e alla coordinazione. Bacche e foglie sono le parti velenose. Per le persone non abbiamo dati verificati.",
+        "nota": "Il ligustro è tossico per cani e gatti (due fonti); una fonte indica soprattutto disturbi allo stomaco, più raramente problemi al cuore e alla coordinazione. Bacche e foglie sono le parti velenose. Per le persone una fonte sola lo indica tossico, con gravità media: disturbi allo stomaco, mal di testa, debolezza e battito accelerato.",
         "fonti": [
           31,
           32
@@ -829,9 +833,9 @@
         "taxa": [
           "Euonymus"
         ],
-        "persone": "non verificata",
+        "persone": "tossica (una fonte)",
         "animali": "tossica (una fonte)",
-        "nota": "Una fonte sola indica tossica per cani e gatti una specie di evonimo (Euonymus atropurpureus): vomito, diarrea, debolezza e, in grande quantità, problemi al cuore. Per le persone non abbiamo dati verificati: tienilo lontano da bambini e animali.",
+        "nota": "Una fonte sola indica tossica per cani e gatti una specie di evonimo (Euonymus atropurpureus): vomito, diarrea, debolezza e, in grande quantità, problemi al cuore. Per le persone una fonte sola indica tossico l'evonimo giapponese, con gravità bassa: mangiato in grande quantità può dare vomito, diarrea e debolezza. Tienilo lontano da bambini e animali.",
         "fonti": [
           33,
           34
@@ -876,11 +880,23 @@
         "taxa": [
           "Hypericum perforatum"
         ],
-        "persone": "non verificata",
+        "persone": "tossica (una fonte)",
         "animali": "tossica (una fonte)",
-        "nota": "Una fonte sola indica l'iperico comune tossico per cani e gatti: rende la pelle sensibile al sole, con piaghe. Per le persone non abbiamo dati verificati: tienilo lontano da bambini e animali.",
+        "nota": "Una fonte sola indica l'iperico comune tossico per cani e gatti: rende la pelle sensibile al sole, con piaghe. Per le persone una fonte sola lo indica tossico, con gravità media: la linfa o la pianta mangiata possono rendere la pelle sensibile al sole e dare disturbi allo stomaco. Tienilo lontano da bambini e animali.",
         "fonti": [
-          40
+          40,
+          46
+        ]
+      },
+      {
+        "taxa": [
+          "Hypericum calycinum"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "non verificata",
+        "nota": "Per le persone una fonte sola indica l'iperico calicino molto velenoso se mangiato (gravità alta); la linfa può irritare la pelle. Per cani e gatti non abbiamo dati verificati: tienilo comunque lontano.",
+        "fonti": [
+          44
         ]
       },
       {
@@ -904,6 +920,17 @@
         "fonti": [
           43
         ]
+      },
+      {
+        "taxa": [
+          "Aucuba"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "non verificata",
+        "nota": "Per le persone una fonte sola indica l'aucuba tossica, con gravità bassa: frutti e foglie, se mangiati, possono dare nausea, vomito e a volte febbre. Per cani e gatti non abbiamo dati verificati: tienila comunque lontana.",
+        "fonti": [
+          41
+        ]
       }
     ],
     "frasi": [
@@ -922,18 +949,10 @@
         ],
         "fonti": [
           40,
-          44
+          44,
+          46
         ],
-        "testo": "Una fonte indica l'iperico comune tossico per cani e gatti; un'altra indica l'iperico calicino molto velenoso se mangiato e irritante per la pelle, senza dire per chi. Non abbiamo dati verificati: tienilo lontano da bambini e animali."
-      },
-      {
-        "per": [
-          "Aucuba"
-        ],
-        "fonti": [
-          41
-        ],
-        "testo": "Una fonte descrive l'aucuba come poco tossica se ne vengono mangiati frutti o foglie (nausea, vomito), senza dire se per le persone o per gli animali. Per prudenza tienila lontana da bambini e animali."
+        "testo": "Due specie di iperico sono indicate tossiche, ognuna da una fonte sola: l'iperico comune per persone e animali, l'iperico calicino per le persone. Per questa pianta non abbiamo dati verificati: tienila lontana da bambini e animali."
       }
     ]
   },
@@ -1342,11 +1361,21 @@
       "consultato": "2026-11-27",
       "livello": "A",
       "punto": "Description"
+    },
+    {
+      "id": 46,
+      "titolo": "Hypericum perforatum (St. John's Wort)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/hypericum-perforatum/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
     }
   ],
   "verifica": {
     "controlliAutomatici": "2026-11-27",
-    "verificaIndipendente": "2026-11-27"
+    "verificaIndipendente": "2026-11-27",
+    "tabellaTossicita": "2026-11-27"
   },
   "versione": 1,
   "aggiornata": "2026-11-27"

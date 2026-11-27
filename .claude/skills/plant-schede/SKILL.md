@@ -81,9 +81,13 @@ fonte).
    - **"tossica"**: con **2 fonti concordi** (almeno una A).
    - **"tossica (una fonte)"**: basta **una fonte A** che segnala un pericolo. La nota deve dirlo ("una fonte sola…, non
      ancora confermato da una seconda"): `npm run schede:controlla` lo controlla. Es. porro, erba cipollina, origano.
-   - Per le **persone** una fonte conta solo se nomina esplicitamente persone o bambini (per esempio NC State: etichette
-     "Problem for Children" o "Poisonous to Humans", oppure il testo). La sezione "Poisonous to Humans" di NC State da sola
-     non basta: riporta anche sintomi degli animali (per la cipolla, l'anemia del cane).
+   - Per le **persone** una fonte conta se nomina persone o bambini: il testo, le etichette "Problem for Children" o
+     "Poisonous to Humans" di NC State, oppure (decisione dell'utente del 2026-11-27) la **sezione "Poisonous to Humans"
+     di NC State**: quando c'è vale come fonte A per le persone ("tossica (una fonte)" se è l'unica). Es. bosso, ligustro,
+     evonimo, aucuba, iperico, geranio, gardenia.
+     Per le piante che si mangiano (ortaggi e aromatiche) quella sezione spesso descrive sintomi degli animali (per la
+     cipolla, l'anemia del cane): lì la decisione spetta all'utente (in attesa per cipolla, aglio, porro, prezzemolo,
+     menta e lavanda).
    - Altrimenti "non verificata" con il consiglio prudente.
    Vale per i casi, per i valori generali delle schede del tipo e per il testo delle note di famiglia (dove la fonte
    è una sola, si dice).
