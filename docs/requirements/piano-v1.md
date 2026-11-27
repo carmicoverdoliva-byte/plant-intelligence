@@ -344,7 +344,7 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
       Cloudflare).
     - Verifiche: `npm run schede:controlla -- --rete` (0 errori, nessuna copia); verifica indipendente (14 correzioni
       applicate, tutte frasi che dicevano più delle fonti).
-  - **Blocco alberi, scritto il 2026-11-27 (in attesa della tabella della tossicità):**
+  - **Blocco alberi, scritto il 2026-11-27 (tabella della tossicità approvata lo stesso giorno):**
     - Il tipo "alberi" diviso in quattro (decisione dell'utente): agrumi, alberi mediterranei, alberi da frutto, alberi
       ornamentali (riserva). Correzioni all'indice: *Ziziphus*, *Mespilus* e le specie *Diospyros kaki* e *Ficus carica*
       negli alberi da frutto; *Magnolia* e le specie *Albizia julibrissin* e *Melia azedarach* negli ornamentali.
@@ -353,6 +353,9 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
     - Fonti A: RHS, Clemson HGIC, UF/IFAS Gardening Solutions, UC IPM, NC State Extension, ASPCA. UF/IFAS EDIS non
       leggibile (rimandi all'infinito).
     - Verifiche: `npm run schede:controlla -- --rete` (0 errori); verifica indipendente (18 correzioni applicate).
+    - Decisioni dell'utente: arancio trifogliato "Tossica (una fonte)" anche per gli animali, come gli altri agrumi;
+      *Yucca* (da giardino) negli arbusti mediterranei; lauroceraso e *Prunus lusitanica* negli arbusti da giardino, con
+      la tossicità (fonti NC State e ASPCA); ciliegi da fiore (*Prunus serrulata* e simili) negli alberi ornamentali.
   - **Elenco casa e orto approvato** (2026-11-18), con Phalaenopsis (gruppo di ibridi commerciali) nel rilascio 1 e
     oleandro, olivo, buganvillea, cetriolo, cipolla nel rilascio 2: 67 specie e 42 generi, nomi controllati con GBIF.
   - **Aggiornamento dell'app sull'iPhone:** l'app confronta la sua versione con quella pubblicata (`/api/versione`)

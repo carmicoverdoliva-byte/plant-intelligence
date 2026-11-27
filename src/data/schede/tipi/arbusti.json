@@ -778,7 +778,10 @@
       39,
       41,
       44,
-      46
+      46,
+      47,
+      48,
+      49
     ],
     "casi": [
       {
@@ -930,6 +933,30 @@
         "nota": "Per le persone una fonte sola indica l'aucuba tossica, con gravità bassa: frutti e foglie, se mangiati, possono dare nausea, vomito e a volte febbre. Per cani e gatti non abbiamo dati verificati: tienila comunque lontana.",
         "fonti": [
           41
+        ]
+      },
+      {
+        "taxa": [
+          "Prunus laurocerasus"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica",
+        "nota": "Il lauroceraso è velenoso: foglie, semi e fusti contengono sostanze che liberano cianuro, soprattutto quando le foglie appassiscono. Per cani, gatti e cavalli è tossico (due fonti): dà mucose rosso mattone, pupille dilatate, fatica a respirare, affanno e shock. Per le persone una fonte sola lo indica tossico, con gravità alta, non ancora confermato da una seconda: può dare affanno, debolezza, agitazione, convulsioni, fino al coma e all'arresto del respiro. Non mangiare foglie e semi e raccogli subito i rami potati, perché le foglie che appassiscono sono le più pericolose.",
+        "fonti": [
+          47,
+          49
+        ]
+      },
+      {
+        "taxa": [
+          "Prunus lusitanica"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica",
+        "nota": "Il lauro portoghese ha in foglie, semi e fusti le stesse sostanze del lauroceraso, che liberano cianuro. Per cani, gatti e cavalli è tossico (due fonti). Per le persone una fonte sola lo indica tossico, con gravità bassa, non ancora confermato da una seconda. I frutti si mangiano solo ben maturi: se sono amari, non mangiarli.",
+        "fonti": [
+          48,
+          49
         ]
       }
     ],
@@ -1370,6 +1397,33 @@
       "consultato": "2026-11-27",
       "livello": "A",
       "punto": "Poisonous to Humans"
+    },
+    {
+      "id": 47,
+      "titolo": "Prunus laurocerasus (Cherry Laurel, English Laurel)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/prunus-laurocerasus/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Landscape (Problems)"
+    },
+    {
+      "id": 48,
+      "titolo": "Prunus lusitanica (Portugal Laurel, Portuguese Cherrylaurel)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/prunus-lusitanica/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Edibility, Landscape (Problems)"
+    },
+    {
+      "id": 49,
+      "titolo": "Cherry",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/cherry",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Toxic Principles, Clinical Signs"
     }
   ],
   "verifica": {

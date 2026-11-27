@@ -405,7 +405,7 @@ ok(tossicitaPerPianta(orto, "Ocimum basilicum", "Ocimum", "Lamiaceae").animali =
 ok(tossicitaPerPianta(orto, "Lactuca sativa", "Lactuca", "Asteraceae").nota === NOTA_PRUDENTE && tossicitaPerPianta(orto, "Capsicum annuum", "Capsicum", "Solanaceae").nota.includes("pomodoro, patata e melanzana"), "Gruppo 2: lattuga → nota prudente; peperone → solo le frasi sulle solanacee");
 // Gruppo 3 (2026-11-26): alberi e arbusti tropicali da appartamento
 ok(tipoDi("Heptapleurum arboricola") === "alberi-arbusti-tropicali" && tipoDi("Schefflera arboricola") === "alberi-arbusti-tropicali" && tipoDi("Yucca gigantea") === "alberi-arbusti-tropicali" && tipoDi("Cycas revoluta") === "alberi-arbusti-tropicali" && tipoDi("Musa acuminata") === "alberi-arbusti-tropicali", "Gruppo 3: schefflera (anche col nome nuovo), yucca d'appartamento, Cycas e banano → alberi e arbusti tropicali");
-ok(tipoDi("Beaucarnea recurvata") === "succulente" && tipoDi("Brugmansia suaveolens") === "arbusti" && tipoDi("Ficus pumila") === "rampicanti-tropicali" && tipoDi("Ficus carica") === "alberi-frutto" && tipoDi("Yucca filamentosa") === "alberi-ornamentali", "Gruppo 3: beaucarnea, brugmansia, ficus rampicante, fico e altre yucche fuori dal tipo");
+ok(tipoDi("Beaucarnea recurvata") === "succulente" && tipoDi("Brugmansia suaveolens") === "arbusti" && tipoDi("Ficus pumila") === "rampicanti-tropicali" && tipoDi("Ficus carica") === "alberi-frutto" && tipoDi("Yucca filamentosa") === "arbusti-mediterranei", "Gruppo 3: beaucarnea, brugmansia, ficus rampicante, fico e altre yucche fuori dal tipo");
 // Gruppo 4 (2026-11-26): arbusti divisi in tre tipi
 ok(["Nerium oleander", "Bougainvillea glabra", "Pelargonium zonale", "Hibiscus rosa-sinensis", "Pittosporum tobira", "Callistemon citrinus"].every((sp) => tipoDi(sp) === "arbusti-mediterranei") && ["Hydrangea macrophylla", "Camellia japonica", "Rhododendron simsii", "Gardenia jasminoides", "Erica carnea"].every((sp) => tipoDi(sp) === "arbusti-acidofili") && tipoDi("Hibiscus syriacus") === "arbusti" && tipoDi("Rosa canina") === "arbusti" && tipoDi("Trachelospermum jasminoides") === "rampicanti", "Gruppo 4: arbusti mediterranei da sole, da mezz'ombra e terreno acido, da giardino; falso gelsomino resta nei rampicanti");
 {
@@ -457,6 +457,7 @@ ok(["Viburnum tinus", "Photinia x fraseri", "Syringa vulgaris", "Osmanthus fragr
 {
   const atteso = { "Citrus limon": "agrumi", "Citrus japonica": "agrumi", "Citrus trifoliata": "agrumi", "Olea europaea": "alberi-mediterranei", "Laurus nobilis": "alberi-mediterranei", "Ceratonia siliqua": "alberi-mediterranei", "Arbutus unedo": "alberi-mediterranei", "Pistacia lentiscus": "alberi-mediterranei", "Phillyrea latifolia": "alberi-mediterranei",
     "Prunus persica": "alberi-frutto", "Malus domestica": "alberi-frutto", "Punica granatum": "alberi-frutto", "Ficus carica": "alberi-frutto", "Diospyros kaki": "alberi-frutto", "Ziziphus jujuba": "alberi-frutto", "Mespilus germanica": "alberi-frutto", "Acca sellowiana": "alberi-frutto", "Eriobotrya japonica": "alberi-frutto",
+    "Yucca filamentosa": "arbusti-mediterranei", "Yucca gloriosa": "arbusti-mediterranei", "Prunus laurocerasus": "arbusti", "Prunus lusitanica": "arbusti", "Prunus serrulata": "alberi-ornamentali", "Prunus yedoensis": "alberi-ornamentali", "Prunus avium": "alberi-frutto",
     "Lagerstroemia indica": "alberi-ornamentali", "Acer palmatum": "alberi-ornamentali", "Quercus ilex": "alberi-ornamentali", "Magnolia grandiflora": "alberi-ornamentali", "Albizia julibrissin": "alberi-ornamentali", "Melia azedarach": "alberi-ornamentali",
     "Yucca gigantea": "alberi-arbusti-tropicali", "Ficus benjamina": "alberi-arbusti-tropicali", "Diospyros ebenum": "alberi-arbusti-tropicali", "Persea americana": "alberi-arbusti-tropicali" };
   const sbagliati = Object.entries(atteso).filter(([sp, tipo]) => tipoDi(sp) !== tipo);
@@ -467,9 +468,13 @@ ok(["Viburnum tinus", "Photinia x fraseri", "Syringa vulgaris", "Osmanthus fragr
   const ag = t("agrumi");
   const x = (sp) => tossicitaPerPianta(ag, sp, sp.split(" ")[0], "Rutaceae");
   ok(x("Citrus limon").animali === "tossica (una fonte)" && x("Citrus limon").persone === "non verificata" && /ASPCA/.test(x("Citrus limon").nota), "Agrumi: limone tossico per gli animali (una fonte, ASPCA), per le persone non verificato (si mangia)");
-  ok(x("Citrus trifoliata").persone === "tossica (una fonte)" && /bambini/.test(x("Citrus trifoliata").nota), "Agrumi: arancio trifogliato tossico per le persone (una fonte, anche bambini)");
+  ok(x("Citrus trifoliata").persone === "tossica (una fonte)" && x("Citrus trifoliata").animali === "tossica (una fonte)" && /bambini/.test(x("Citrus trifoliata").nota) && /non nomina questa specie/.test(x("Citrus trifoliata").nota), "Agrumi: arancio trifogliato tossico per le persone (una fonte, anche bambini) e, come gli altri agrumi, per gli animali (una fonte)");
   const sc = JSON.parse(readFileSync(new URL("../../src/data/schede/tipi/agrumi.json", import.meta.url), "utf8"));
   ok(["luce", "acqua", "temperatura", "terriccio", "concime", "travaso", "coltivarla"].every((k) => sc.sezioni[k].lineeGuida.fonti.length >= 2) && sc.eccezioni.some((e) => /trifogliato/.test(e)), "Agrumi: ogni sezione con almeno due fonti; eccezione per l'arancio trifogliato");
+  const arb = t("arbusti");
+  const y = (sp) => tossicitaPerPianta(arb, sp, "Prunus", "Rosaceae");
+  ok(y("Prunus laurocerasus").animali === "tossica" && y("Prunus laurocerasus").persone === "tossica (una fonte)" && /cianuro/.test(y("Prunus laurocerasus").nota) && /gravità alta/.test(y("Prunus laurocerasus").nota), "Lauroceraso: tossico per gli animali (due fonti) e per le persone (una fonte, gravità alta), cianuro in foglie e semi");
+  ok(y("Prunus lusitanica").animali === "tossica" && y("Prunus lusitanica").persone === "tossica (una fonte)" && /amari/.test(y("Prunus lusitanica").nota), "Lauro portoghese: tossico per gli animali (due fonti) e per le persone (una fonte); frutti solo ben maturi");
   const ru = scegliScheda("Ruta graveolens", "Ruta", "Rutaceae").notaFamiglia;
   ok(ru?.famiglia === "Rutaceae" && ru.note.every((n) => n.tema === "tossicità") && /una fonte sola/i.test(ru.note[0].testo), "Rutacee: nota di famiglia solo sulla tossicità (non cambia il testo dato all'AI), con una fonte sola dichiarata");
 }

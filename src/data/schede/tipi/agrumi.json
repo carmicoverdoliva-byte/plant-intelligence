@@ -746,10 +746,14 @@
           "Poncirus trifoliata"
         ],
         "persone": "tossica (una fonte)",
-        "animali": "non verificata",
-        "nota": "Una fonte sola (NC State) indica l'arancio trifogliato tossico per le persone, con gravità bassa, e lo segnala come problema per i bambini; non è ancora confermato da una seconda fonte. Il frutto è molto aspro: mangiato in quantità può dare forte mal di pancia e nausea. Il frutto sulla pelle, al sole, può dare irritazioni della pelle, di solito lievi. Per cani e gatti non abbiamo dati su questa specie: nel dubbio tienila lontana. Ha spine robuste.",
+        "animali": "tossica (una fonte)",
+        "nota": "Una fonte sola (NC State) indica l'arancio trifogliato tossico per le persone, con gravità bassa, e lo segnala come problema per i bambini; non è ancora confermato da una seconda fonte. Il frutto è molto aspro: mangiato in quantità può dare forte mal di pancia e nausea. Il frutto sulla pelle, al sole, può dare irritazioni della pelle, di solito lievi. Per cani, gatti e cavalli vale l'avviso degli altri agrumi: una fonte sola (ASPCA) indica tossici limone, arancio, lime e pompelmo, ma non nomina questa specie. Ha spine robuste.",
         "fonti": [
-          15
+          15,
+          16,
+          17,
+          18,
+          19
         ]
       }
     ]
@@ -929,7 +933,8 @@
   ],
   "verifica": {
     "controlliAutomatici": "2026-11-27",
-    "verificaIndipendente": "2026-11-27"
+    "verificaIndipendente": "2026-11-27",
+    "tabellaTossicita": "2026-11-27"
   },
   "versione": 1,
   "aggiornata": "2026-11-27"
