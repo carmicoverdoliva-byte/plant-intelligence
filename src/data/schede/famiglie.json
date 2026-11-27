@@ -1227,5 +1227,74 @@
       "tabellaTossicita": "2026-11-27"
     },
     "aggiornata": "2026-11-26"
+  },
+  {
+    "famiglia": "Rosaceae",
+    "nomeComune": "rosacee (rosa, fotinia, piracanta e parenti)",
+    "note": [
+      {
+        "tema": "parassiti",
+        "testo": "Molte rosacee da giardino prendono malattie simili. Fotinia e spirea giapponese possono avere il colpo di fuoco batterico e il mal bianco; la piracanta il colpo di fuoco batterico e la ticchiolatura; la rosa soffre soprattutto di macchia nera, mal bianco e ruggine. Per tutte aiutano aria che circola e foglie asciutte.",
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Photinia x fraseri (Red Tip Photinia)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/photinia-x-fraseri/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Insects and Diseases"
+      },
+      {
+        "id": 2,
+        "titolo": "Pyracantha coccinea (Firethorn)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/pyracantha-coccinea/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Insects and Diseases"
+      },
+      {
+        "id": 3,
+        "titolo": "Spiraea japonica (Japanese Spiraea)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/spiraea-japonica/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Insects and Diseases"
+      },
+      {
+        "id": 4,
+        "titolo": "Rose Diseases (HGIC 2106)",
+        "sito": "Clemson Cooperative Extension (HGIC)",
+        "url": "https://hgic.clemson.edu/factsheet/rose-diseases/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Black spot, Powdery mildew, Rust"
+      },
+      {
+        "id": 5,
+        "titolo": "Photinia (Red Tip) (HGIC 1081)",
+        "sito": "Clemson Cooperative Extension (HGIC)",
+        "url": "https://hgic.clemson.edu/factsheet/photinia-red-tip/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Diseases"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-27",
+      "verificaIndipendente": "2026-11-27"
+    },
+    "aggiornata": "2026-11-27"
   }
 ]

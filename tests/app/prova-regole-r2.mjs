@@ -416,6 +416,17 @@ ok(["Nerium oleander", "Bougainvillea glabra", "Pelargonium zonale", "Hibiscus r
   ok(x(med, "Pelargonium zonale", "Geraniaceae").animali === "tossica (una fonte)" && x(med, "Pittosporum tobira").animali === "non tossica" && x(med, "Bougainvillea glabra", "Nyctaginaceae").nota === NOTA_PRUDENTE, "Gruppo 4: geranio 'Tossica (una fonte)', pittosporo non tossico, buganvillea senza dati → nota prudente");
   ok(x(acid, "Rhododendron simsii", "Ericaceae").animali === "tossica" && x(acid, "Hydrangea macrophylla", "Hydrangeaceae").persone === "tossica (una fonte)" && x(acid, "Camellia japonica", "Theaceae").animali === "non tossica" && x(acid, "Kalmia latifolia", "Ericaceae").animali === "tossica (una fonte)" && /azalee/.test(x(acid, "Erica carnea", "Ericaceae").nota), "Gruppo 4: azalea e ortensia tossiche, camelia non tossica, kalmia 'Tossica (una fonte)', erica → frase sulle ericacee");
 }
+// Gruppo 5 (2026-11-27): arbusti da giardino e da balcone (tipo "arbusti"), nota delle rosacee
+ok(["Viburnum tinus", "Photinia x fraseri", "Syringa vulgaris", "Osmanthus fragrans", "Rosa chinensis", "Buxus sempervirens"].every((sp) => tipoDi(sp) === "arbusti") && tipoDi("Laurus nobilis") === "alberi" && tipoDi("Olea europaea") === "alberi", "Gruppo 5: viburno, fotinia, lillà e osmanto passano agli arbusti; alloro e olivo restano tra gli alberi");
+{
+  const giar = t("arbusti");
+  const x = (sp, fam) => tossicitaPerPianta(giar, sp, sp.split(" ")[0], fam);
+  ok(!!giar && x("Buxus sempervirens").animali === "tossica" && x("Buxus sempervirens").persone === "non verificata" && x("Nandina domestica").animali === "tossica" && x("Nandina domestica").persone === "tossica (una fonte)" && x("Ilex aquifolium").persone === "tossica (una fonte)", "Gruppo 5: bosso tossico per gli animali (persone non verificata), nandina e agrifoglio 'Tossica (una fonte)' per le persone");
+  ok(x("Hibiscus syriacus").animali === "non tossica" && x("Fatsia japonica").animali === "non tossica" && x("Rosa chinensis").animali === "non verificata" && /non basta/.test(x("Rosa chinensis").nota), "Gruppo 5: ibisco da giardino e fatsia non tossici (due fonti); rosa 'non verificata' (una fonte sola)");
+  ok(x("Brugmansia suaveolens").persone === "tossica (una fonte)" && x("Viburnum tinus").nota === NOTA_PRUDENTE && /spine/.test(x("Pyracantha coccinea").nota), "Gruppo 5: brugmansia 'Tossica (una fonte)' per le persone; viburno senza dati → nota prudente; piracanta → frase sulle spine");
+  const ros = JSON.parse(readFileSync(new URL("../../src/data/schede/famiglie.json", import.meta.url), "utf8")).find((n) => n.famiglia === "Rosaceae");
+  ok(!!ros && !ros.note.some((n) => n.tema === "tossicità"), "Rosacee: nota solo sulle malattie (sulla tossicità le fonti non bastano)");
+}
 // Correzione dell'indice del 2026-11-26 (sera): generi da giardino o da balcone finiti per errore tra le piante tropicali
 {
   const atteso = { "Buxus sempervirens": "arbusti", "Ilex aquifolium": "arbusti", "Lagerstroemia indica": "alberi", "Acca sellowiana": "alberi", "Plumbago auriculata": "arbusti-mediterranei", "Fuchsia magellanica": "arbusti", "Petunia hybrida": "annuali", "Cuphea hyssopifolia": "annuali", "Mandevilla sanderi": "rampicanti" };

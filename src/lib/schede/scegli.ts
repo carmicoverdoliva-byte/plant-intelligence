@@ -11,6 +11,7 @@ import orto from "@/data/schede/tipi/ortaggi-aromatiche.json";
 import alberi from "@/data/schede/tipi/alberi-arbusti-tropicali.json";
 import arbustiMed from "@/data/schede/tipi/arbusti-mediterranei.json";
 import arbustiAcid from "@/data/schede/tipi/arbusti-acidofili.json";
+import arbustiGiardino from "@/data/schede/tipi/arbusti.json";
 import { TIPI, type IdTipo } from "@/content/tipi-di-pianta";
 import type { NotaFamiglia, SchedaCura } from "./tipi";
 
@@ -25,6 +26,7 @@ const SCHEDE_TIPO: Partial<Record<IdTipo, SchedaCura>> = {
   "alberi-arbusti-tropicali": alberi as SchedaCura,
   "arbusti-mediterranei": arbustiMed as SchedaCura,
   "arbusti-acidofili": arbustiAcid as SchedaCura,
+  arbusti: arbustiGiardino as SchedaCura,
 };
 const NOTE = new Map((famiglieDati as NotaFamiglia[]).map((n) => [n.famiglia, n]));
 const INDICE = indice as unknown as { specie: Record<string, string>; generi: Record<string, [string, string]> };

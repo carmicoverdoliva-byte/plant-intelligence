@@ -1,0 +1,1353 @@
+{
+  "id": "tipo/arbusti",
+  "livello": "tipo",
+  "nome": "arbusti da giardino e da balcone",
+  "siApplicaA": "Gli arbusti da giardino e da balcone che reggono i nostri inverni, o quasi: rosa, bosso, agrifoglio, viburno, fotinia, lillà, osmanto, ligustro, forsizia, spirea, weigela, filadelfo, deutzia, cotoneaster, piracanta, crespino, nandina, evonimo, abelia, iperico, aucuba, fatsia, buddleja, ibisco da giardino (Hibiscus syriacus), fucsia e brugmansia.",
+  "eccezioni": [
+    "Fatsia e aucuba vogliono ombra o mezz'ombra: al sole pieno le foglie si bruciano.",
+    "Le fucsie non rustiche non reggono il gelo: d'inverno vanno in un posto riparato dove non gela. La brugmansia regge solo brinate leggere: va protetta dal freddo, e può seccare fino a terra e ricacciare in primavera.",
+    "Il lillà vuole un terreno neutro o calcareo e anche il bosso lo preferisce neutro; viburno, agrifoglio e osmanto lo preferiscono un po' acido.",
+    "Agrifoglio e viburno fanno bacche solo se vicino c'è un'altra pianta adatta (un maschio per l'agrifoglio, un'altra varietà per il viburno).",
+    "Buddleja, ligustro giapponese, nandina e spirea giapponese si diffondono da sole: una fonte americana le segnala come invasive in alcune zone degli Stati Uniti."
+  ],
+  "riassunto": "Arbusti che vivono molti anni, in giardino o in vaso. Quasi tutti vogliono sole o mezz'ombra luminosa e un terreno fertile che scoli bene ma non si secchi del tutto. Le piante nuove vanno annaffiate con regolarità per uno o due anni; poi bastano le piogge, tranne nei periodi secchi. Il momento giusto per potare dipende da quando fioriscono.",
+  "coseDaFare": [
+    "Mettila al sole o in mezz'ombra luminosa (fatsia e aucuba all'ombra).",
+    "Per almeno due anni dopo la messa a dimora annaffia con regolarità; poi solo nei periodi secchi.",
+    "Copri il terreno con almeno 5 cm di pacciame, lontano dai fusti.",
+    "Pota gli arbusti che fioriscono in primavera subito dopo la fioritura; quelli che fioriscono in estate a inizio primavera.",
+    "In vaso annaffia e concima più spesso, e rinvasa quando il vaso diventa piccolo."
+  ],
+  "sezioni": {
+    "luce": {
+      "lineeGuida": {
+        "riassunto": "Quasi tutti crescono meglio in un posto aperto e soleggiato; molti reggono anche la mezz'ombra. Le rose vogliono almeno 4 ore di sole al giorno secondo una fonte, 6-8 secondo un'altra: più sole hanno, meno si ammalano. Il bosso sta al sole o all'ombra, ma al sole vuole il terreno sempre fresco. Fatsia e aucuba sono piante da ombra.",
+        "coseDaFare": [
+          "Scegli un posto con sole pieno o mezz'ombra luminosa.",
+          "Per le rose cerca il posto con più ore di sole, meglio se al mattino.",
+          "Fatsia e aucuba mettile all'ombra o in mezz'ombra."
+        ],
+        "valori": [
+          {
+            "etichetta": "Quasi tutti",
+            "valore": "sole pieno o mezz'ombra luminosa",
+            "fonti": [
+              1,
+              15,
+              17
+            ]
+          },
+          {
+            "etichetta": "Rose",
+            "valore": "almeno 4 ore di sole al giorno (una fonte), meglio 6-8 (un'altra)",
+            "fonti": [
+              2,
+              10
+            ]
+          },
+          {
+            "etichetta": "Lillà, forsizia, buddleja",
+            "valore": "sole pieno: più sole, più fiori",
+            "fonti": [
+              6,
+              7,
+              18,
+              20,
+              24
+            ]
+          },
+          {
+            "etichetta": "Bosso",
+            "valore": "sole o ombra; al sole terreno sempre fresco",
+            "fonti": [
+              5,
+              13
+            ]
+          },
+          {
+            "etichetta": "Fatsia, aucuba",
+            "valore": "mezz'ombra o ombra; niente sole pieno",
+            "fonti": [
+              21,
+              41
+            ]
+          },
+          {
+            "etichetta": "Brugmansia",
+            "valore": "mezz'ombra; niente sole pieno",
+            "fonti": [
+              22
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          5,
+          6,
+          7,
+          10,
+          13,
+          15,
+          17,
+          18,
+          20,
+          21,
+          22,
+          24,
+          41
+        ],
+        "disaccordi": [
+          {
+            "tema": "Quante ore di sole per le rose",
+            "posizioni": [
+              {
+                "dice": "almeno 4 ore al giorno",
+                "fonti": [
+                  2
+                ]
+              },
+              {
+                "dice": "almeno 6-8 ore al giorno",
+                "fonti": [
+                  10
+                ]
+              }
+            ],
+            "sceltaPrudente": "Dai alle rose il posto più soleggiato che hai."
+          }
+        ]
+      },
+      "pollice": []
+    },
+    "acqua": {
+      "lineeGuida": {
+        "riassunto": "Dopo la messa a dimora gli arbusti vanno annaffiati con regolarità finché non mettono radici: di solito almeno due anni (uno o due per il lillà). Poi, in piena terra, bastano le piogge tranne nei periodi secchi lunghi. Meglio annaffiare a fondo ogni tanto che poco e spesso, bagnando il terreno e non le foglie. In vaso serve molta più acqua: d'estate anche ogni giorno. Il terreno fradicio fa marcire le radici.",
+        "coseDaFare": [
+          "Annaffia con regolarità per almeno due anni dopo la messa a dimora.",
+          "Poi annaffia a fondo solo nei periodi secchi.",
+          "Bagna il terreno alla base, non le foglie.",
+          "In vaso non lasciare seccare il terriccio, ma evita i ristagni."
+        ],
+        "valori": [
+          {
+            "etichetta": "Piante nuove",
+            "valore": "regolari per almeno due anni (arbusti in genere, rose); circa 18 mesi per la buddleja; uno o due anni per il lillà",
+            "fonti": [
+              1,
+              3,
+              6,
+              7
+            ]
+          },
+          {
+            "etichetta": "Piante radicate",
+            "valore": "solo nei periodi secchi lunghi",
+            "fonti": [
+              1,
+              5,
+              6
+            ]
+          },
+          {
+            "etichetta": "Rose in estate secca",
+            "valore": "fino a una volta a settimana, 5-10 litri per pianta",
+            "fonti": [
+              2
+            ]
+          },
+          {
+            "etichetta": "In vaso",
+            "valore": "regolare d'estate, col caldo anche ogni giorno; il bosso anche d'inverno",
+            "fonti": [
+              1,
+              2,
+              5
+            ]
+          },
+          {
+            "etichetta": "Come",
+            "valore": "al piede, senza bagnare le foglie",
+            "fonti": [
+              2,
+              10
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          10,
+          13
+        ]
+      },
+      "pollice": []
+    },
+    "temperatura": {
+      "lineeGuida": {
+        "riassunto": "La maggior parte di questi arbusti regge il freddo dei nostri inverni senza protezione: controlla l'etichetta. Le fucsie non rustiche e la brugmansia temono il gelo e vanno al riparo; la fucsia rustica, con un inverno duro, secca fino a terra e ricaccia in primavera. Le gelate tardive rovinano i fiori del lillà e i germogli nuovi del bosso. Osmanto profumato e viburno tino reggono un freddo moderato.",
+        "coseDaFare": [
+          "Controlla sull'etichetta quanto freddo regge la tua pianta.",
+          "Porta al riparo dal gelo fucsie non rustiche e brugmansia.",
+          "Non piantare il lillà dove ristagna l'aria fredda.",
+          "Nelle notti di gelo copri le piante delicate con un telo di tessuto non tessuto."
+        ],
+        "valori": [
+          {
+            "etichetta": "Arbusti rustici",
+            "valore": "nessuna protezione d'inverno",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Fucsie non rustiche, brugmansia",
+            "valore": "al riparo dal gelo (la brugmansia regge solo brinate leggere: proteggila)",
+            "fonti": [
+              8,
+              22
+            ]
+          },
+          {
+            "etichetta": "Fucsia rustica",
+            "valore": "con inverni duri secca fino a terra e ricaccia in primavera",
+            "fonti": [
+              8
+            ]
+          },
+          {
+            "etichetta": "Viburno tino",
+            "valore": "da adulto regge circa -18 °C; sotto i -12 °C le foglie si rovinano",
+            "fonti": [
+              14
+            ]
+          },
+          {
+            "etichetta": "Osmanto profumato",
+            "valore": "teme il gelo: si rovina verso i -18 °C o con un calo rapido a -7 °C dopo un inverno mite",
+            "fonti": [
+              17,
+              25
+            ]
+          },
+          {
+            "etichetta": "Telo di tessuto non tessuto",
+            "valore": "quello più spesso protegge di circa 2 °C",
+            "fonti": [
+              7
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          5,
+          6,
+          7,
+          8,
+          14,
+          17,
+          20,
+          22,
+          25
+        ]
+      },
+      "pollice": []
+    },
+    "terriccio": {
+      "lineeGuida": {
+        "riassunto": "Vogliono un terreno fertile che scoli bene ma non si secchi del tutto d'estate. Quasi tutti si adattano a molti terreni; il ristagno invece fa marcire le radici. L'acidità preferita cambia da pianta a pianta: il lillà vuole un terreno neutro o calcareo, il bosso neutro, viburno e agrifoglio un po' acido. Uno strato di pacciame tiene il terreno fresco e frena le erbacce.",
+        "coseDaFare": [
+          "Prima di piantare mescola al terreno compost o letame maturo.",
+          "Nei terreni pesanti che si allagano pianta il lillà su una piccola collinetta.",
+          "Copri il terreno con almeno 5 cm di pacciame, lasciando libero il piede della pianta.",
+          "In vaso usa un terriccio a base di terra."
+        ],
+        "valori": [
+          {
+            "etichetta": "Terreno",
+            "valore": "fertile, ricco di sostanza organica, che scola bene",
+            "fonti": [
+              2,
+              3,
+              10,
+              18
+            ]
+          },
+          {
+            "etichetta": "Acidità",
+            "valore": "lillà neutro o calcareo; bosso 6,8-7,5; viburno 5,5-6,5; agrifoglio e osmanto un po' acido",
+            "fonti": [
+              6,
+              13,
+              14,
+              15,
+              17
+            ]
+          },
+          {
+            "etichetta": "Pacciame",
+            "valore": "almeno 5 cm (fino a 7-8 cm), a qualche centimetro dai fusti",
+            "fonti": [
+              1,
+              3,
+              10,
+              13
+            ]
+          },
+          {
+            "etichetta": "Rose: piantagione",
+            "valore": "il punto d'innesto a livello del terreno",
+            "fonti": [
+              3,
+              10
+            ]
+          },
+          {
+            "etichetta": "Terreni che si allagano",
+            "valore": "lillà su una collinetta alta 25-30 cm e larga 1 m",
+            "fonti": [
+              6
+            ]
+          },
+          {
+            "etichetta": "In vaso",
+            "valore": "terriccio a base di terra (per fucsia e buddleja va bene anche universale senza torba)",
+            "fonti": [
+              5,
+              6,
+              7,
+              8
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          10,
+          13,
+          14,
+          15,
+          17,
+          18
+        ]
+      },
+      "pollice": []
+    },
+    "concime": {
+      "lineeGuida": {
+        "riassunto": "In piena terra, in un terreno fertile, la maggior parte non ha bisogno di concime: basta il pacciame di compost. Se cresce poco si dà un concime generico a fine inverno o in primavera. Sulle rose le fonti non sono d'accordo: una consiglia due concimazioni l'anno, un'altra solo se crescono male, una terza dopo ogni fioritura fino a sei settimane dalle prime gelate. In vaso si concima con regolarità dalla primavera alla fine dell'estate.",
+        "coseDaFare": [
+          "In piena terra concima solo se la pianta cresce poco.",
+          "Se concimi, fallo a fine inverno o in primavera.",
+          "In vaso usa un concime liquido dalla primavera alla fine dell'estate.",
+          "Non concimare a fine estate: i getti teneri soffrono il freddo e le malattie."
+        ],
+        "valori": [
+          {
+            "etichetta": "In piena terra",
+            "valore": "di solito nessuno; eventualmente concime generico a fine inverno",
+            "fonti": [
+              1,
+              5,
+              6,
+              13
+            ]
+          },
+          {
+            "etichetta": "Rose in piena terra",
+            "valore": "le fonti non sono d'accordo: due volte l'anno (marzo-aprile e metà estate, 70 g al m²), solo se crescono male, o dopo ogni fioritura fino a 6 settimane dalle gelate",
+            "fonti": [
+              2,
+              3,
+              10
+            ]
+          },
+          {
+            "etichetta": "In vaso",
+            "valore": "dall'inizio della primavera alla fine dell'estate; rose ogni due settimane, lillà una volta al mese da aprile a settembre",
+            "fonti": [
+              1,
+              2,
+              6
+            ]
+          },
+          {
+            "etichetta": "Da evitare",
+            "valore": "concime d'estate sulla fotinia; troppo concime sul bosso brucia le foglie",
+            "fonti": [
+              13,
+              16
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          10,
+          13,
+          16
+        ],
+        "disaccordi": [
+          {
+            "tema": "Quanto concimare le rose in piena terra",
+            "posizioni": [
+              {
+                "dice": "due volte l'anno, a marzo-aprile e a metà estate",
+                "fonti": [
+                  2
+                ]
+              },
+              {
+                "dice": "nessun concime, salvo se crescono male",
+                "fonti": [
+                  3
+                ]
+              },
+              {
+                "dice": "quando mettono le foglie e dopo ogni fioritura, fino a sei settimane prima delle gelate",
+                "fonti": [
+                  10
+                ]
+              }
+            ],
+            "sceltaPrudente": "Concima in primavera e, se vuoi, a metà estate; mai a fine estate."
+          }
+        ]
+      },
+      "pollice": []
+    },
+    "travaso": {
+      "lineeGuida": {
+        "riassunto": "Si piantano da fine autunno a inizio primavera, quando il terreno non è gelato né fradicio; quelli in vaso anche in altri mesi, evitando il caldo secco. In vaso crescono e vanno rinvasati in un vaso più grande ogni qualche anno; in primavera si sostituisce lo strato superficiale del terriccio.",
+        "coseDaFare": [
+          "Pianta da fine autunno a inizio primavera, con il terreno né gelato né fradicio.",
+          "Rinvasa in primavera, ogni 2-5 anni, in un vaso più grande.",
+          "Negli altri anni, in primavera, sostituisci i primi centimetri di terriccio."
+        ],
+        "valori": [
+          {
+            "etichetta": "Quando piantare",
+            "valore": "arbusti a foglia caduca da autunno a fine inverno; sempreverdi in ottobre o aprile; fucsia rustica a inizio estate",
+            "fonti": [
+              1,
+              8
+            ]
+          },
+          {
+            "etichetta": "Rinvaso",
+            "valore": "ogni 2-3 anni (buddleja) o 3-5 anni (lillà), in primavera",
+            "fonti": [
+              6,
+              7
+            ]
+          },
+          {
+            "etichetta": "Vaso del bosso",
+            "valore": "almeno 45 cm di diametro",
+            "fonti": [
+              5
+            ]
+          },
+          {
+            "etichetta": "Ogni primavera",
+            "valore": "sostituisci i primi 2-5 cm di terriccio",
+            "fonti": [
+              5,
+              6
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "pollice": []
+    },
+    "coltivarla": {
+      "lineeGuida": {
+        "riassunto": "La potatura dipende da quando fiorisce l'arbusto. Quelli che fioriscono in primavera sui rami dell'anno prima, come forsizia, weigela, filadelfo e lillà, si potano subito dopo la fioritura. Quelli che fioriscono in estate o in autunno sui rami nuovi, come buddleja, fucsia, abelia, spirea giapponese e osmanto profumato, si potano a inizio primavera. I sempreverdi a fioritura precoce, come bosso e viburno tino, si potano poco. Le rose rifiorenti si potano a fine inverno; quelle che fioriscono una volta sola, dopo la fioritura.",
+        "coseDaFare": [
+          "Pota gli arbusti a fioritura primaverile subito dopo che hanno fiorito.",
+          "Pota quelli a fioritura estiva a inizio primavera.",
+          "Per le rose rifiorenti, a fine inverno accorcia i rami forti fino a un terzo.",
+          "Togli subito i polloni che spuntano dalle radici.",
+          "Il bosso si spunta in estate, entro agosto."
+        ],
+        "valori": [
+          {
+            "etichetta": "Fioritura in primavera",
+            "valore": "potatura subito dopo la fioritura (forsizia, weigela, filadelfo, lillà)",
+            "fonti": [
+              6,
+              9,
+              18,
+              19
+            ]
+          },
+          {
+            "etichetta": "Fioritura in estate o in autunno",
+            "valore": "potatura a inizio primavera (buddleja, fucsia, abelia, spirea giapponese, osmanto profumato)",
+            "fonti": [
+              7,
+              8,
+              9,
+              17,
+              19,
+              45
+            ]
+          },
+          {
+            "etichetta": "Sempreverdi a fioritura precoce",
+            "valore": "poca potatura (bosso, viburno tino)",
+            "fonti": [
+              9
+            ]
+          },
+          {
+            "etichetta": "Rose rifiorenti",
+            "valore": "fine inverno, accorciando i rami forti fino a un terzo",
+            "fonti": [
+              4,
+              11
+            ]
+          },
+          {
+            "etichetta": "Rose a una fioritura",
+            "valore": "subito dopo la fioritura",
+            "fonti": [
+              4,
+              11
+            ]
+          },
+          {
+            "etichetta": "Bosso",
+            "valore": "spuntatura in estate (da fine maggio ad agosto); una fonte consiglia di non farla dopo metà agosto",
+            "fonti": [
+              5,
+              13
+            ]
+          },
+          {
+            "etichetta": "Talee",
+            "valore": "erbacee in primavera, semilegnose a fine estate, legnose da metà autunno a fine inverno",
+            "fonti": [
+              1,
+              18
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          17,
+          18,
+          19,
+          45
+        ],
+        "disaccordi": [
+          {
+            "tema": "Potatura drastica del bosso",
+            "posizioni": [
+              {
+                "dice": "non risponde bene a un taglio drastico vicino alla base",
+                "fonti": [
+                  19
+                ]
+              },
+              {
+                "dice": "le piante vecchie e trascurate si possono tagliare a 15-30 cm da terra a fine primavera",
+                "fonti": [
+                  5
+                ]
+              }
+            ],
+            "sceltaPrudente": "Se devi ringiovanirlo, taglia un lato un anno e l'altro l'anno dopo."
+          }
+        ]
+      },
+      "pollice": []
+    },
+    "problemi": {
+      "lineeGuida": {
+        "riassunto": "Il nemico più comune è il ristagno d'acqua, che fa marcire le radici. Le rose prendono spesso la macchia nera (ticchiolatura) e il mal bianco, oltre a ruggine e afidi. Il bosso può prendere il cancro del bosso e la piralide del bosso, due problemi seri. La fotinia rossa soffre molto di una macchia fogliare fungina. Su molti arbusti si vedono afidi, cocciniglie e ragnetto rosso.",
+        "coseDaFare": [
+          "Evita i ristagni.",
+          "Lascia circolare l'aria tra le piante e non bagnare le foglie.",
+          "Raccogli e butta le foglie malate cadute.",
+          "Prima di comprare un bosso controlla che sia sano."
+        ],
+        "valori": [],
+        "fonti": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          8,
+          12,
+          13,
+          16,
+          17,
+          18
+        ]
+      },
+      "pollice": [],
+      "elenco": [
+        {
+          "nome": "Marciume delle radici",
+          "tipo": "cura",
+          "frequenza": "frequente",
+          "segni": [
+            "pianta che deperisce con il terreno bagnato"
+          ],
+          "prevenzione": [
+            "terreno che scola",
+            "niente ristagni"
+          ],
+          "fonti": [
+            1,
+            13,
+            17,
+            18
+          ]
+        },
+        {
+          "nome": "Macchia nera della rosa (ticchiolatura)",
+          "tipo": "malattia",
+          "frequenza": "frequente",
+          "segni": [
+            "macchie nere rotonde con alone giallo",
+            "foglie che cadono"
+          ],
+          "prevenzione": [
+            "sole pieno e aria che circola",
+            "non bagnare le foglie",
+            "togli le foglie malate cadute"
+          ],
+          "fonti": [
+            2,
+            12
+          ]
+        },
+        {
+          "nome": "Mal bianco",
+          "tipo": "malattia",
+          "frequenza": "frequente",
+          "segni": [
+            "patina bianca sulle foglie"
+          ],
+          "prevenzione": [
+            "aria che circola",
+            "posto soleggiato"
+          ],
+          "fonti": [
+            2,
+            6,
+            12
+          ]
+        },
+        {
+          "nome": "Ruggine della rosa",
+          "tipo": "malattia",
+          "frequenza": "non indicata",
+          "segni": [
+            "macchie arancioni su foglie e fusti"
+          ],
+          "prevenzione": [
+            "piante non troppo fitte",
+            "foglie asciutte"
+          ],
+          "fonti": [
+            3,
+            12
+          ]
+        },
+        {
+          "nome": "Cancro del bosso e piralide del bosso",
+          "tipo": "malattia",
+          "frequenza": "frequente",
+          "segni": [
+            "foglie che diventano marroni e cadono",
+            "bruchi che mangiano le foglie"
+          ],
+          "prevenzione": [
+            "compra piante sane",
+            "pacciame nuovo ogni anno"
+          ],
+          "fonti": [
+            5,
+            13
+          ]
+        },
+        {
+          "nome": "Macchia fogliare della fotinia",
+          "tipo": "malattia",
+          "frequenza": "frequente",
+          "segni": [
+            "macchie rosse e poi grigie sulle foglie",
+            "foglie che cadono"
+          ],
+          "prevenzione": [
+            "pota d'inverno",
+            "non bagnare le foglie",
+            "niente concime d'estate"
+          ],
+          "fonti": [
+            16,
+            23
+          ]
+        },
+        {
+          "nome": "Afidi, cocciniglie e ragnetto rosso",
+          "tipo": "parassita",
+          "frequenza": "frequente",
+          "segni": [
+            "germogli nuovi deformati",
+            "piccole squame su fusti e foglie"
+          ],
+          "prevenzione": [
+            "controlla spesso il retro delle foglie"
+          ],
+          "fonti": [
+            1,
+            2,
+            8,
+            14,
+            17
+          ]
+        }
+      ]
+    }
+  },
+  "falsiMiti": [
+    {
+      "mito": "Gli arbusti si potano tutti a fine inverno.",
+      "verdetto": "falso",
+      "cosaDiconoLeFonti": "Gli arbusti che fioriscono in primavera, come forsizia, weigela e lillà, preparano i fiori sui rami dell'anno prima: potarli a fine inverno vuol dire togliere i fiori. Si potano subito dopo la fioritura. Solo quelli che fioriscono in estate sui rami nuovi si potano a inizio primavera.",
+      "inPratica": "Prima di potare guarda quando fiorisce la tua pianta.",
+      "fonti": [
+        6,
+        9,
+        18,
+        19
+      ]
+    }
+  ],
+  "approfondimenti": [],
+  "tossicita": {
+    "persone": "varia",
+    "animali": "varia",
+    "nota": "Dipende dalla pianta. Bosso, agrifoglio, ligustro e nandina sono tossici per cani e gatti; la nandina contiene sostanze che liberano cianuro. La brugmansia è molto velenosa per le persone (una fonte). L'ibisco da giardino e la fatsia sono indicati non tossici per cani e gatti (due fonti). Per le altre non abbiamo dati verificati: tienile lontane da bambini e animali.",
+    "fonti": [
+      21,
+      22,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "casi": [
+      {
+        "taxa": [
+          "Buxus"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica",
+        "nota": "Il bosso è tossico per cani e gatti (due fonti); una fonte indica vomito e diarrea. Una fonte aggiunge che la linfa può irritare la pelle: usa i guanti quando lo poti. Per le persone non abbiamo dati verificati.",
+        "fonti": [
+          27,
+          28
+        ]
+      },
+      {
+        "taxa": [
+          "Ilex"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica",
+        "nota": "L'agrifoglio è tossico per cani e gatti (due fonti); una fonte indica vomito, diarrea e abbattimento, di solito lievi. Per le persone una fonte sola lo indica tossico, con gravità bassa: le bacche sono pericolose soprattutto per i bambini.",
+        "fonti": [
+          29,
+          30
+        ]
+      },
+      {
+        "taxa": [
+          "Ligustrum"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica",
+        "nota": "Il ligustro è tossico per cani e gatti (due fonti); una fonte indica soprattutto disturbi allo stomaco, più raramente problemi al cuore e alla coordinazione. Bacche e foglie sono le parti velenose. Per le persone non abbiamo dati verificati.",
+        "fonti": [
+          31,
+          32
+        ]
+      },
+      {
+        "taxa": [
+          "Nandina"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica",
+        "nota": "La nandina è tossica per cani e gatti: foglie, bacche e fusti contengono sostanze che liberano cianuro e possono dare debolezza, convulsioni e problemi a respirare (due fonti). Per le persone una fonte sola la indica molto tossica, anche per i bambini: attenzione alle bacche.",
+        "fonti": [
+          35,
+          36
+        ]
+      },
+      {
+        "taxa": [
+          "Euonymus"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica (una fonte)",
+        "nota": "Una fonte sola indica tossica per cani e gatti una specie di evonimo (Euonymus atropurpureus): vomito, diarrea, debolezza e, in grande quantità, problemi al cuore. Per le persone non abbiamo dati verificati: tienilo lontano da bambini e animali.",
+        "fonti": [
+          33,
+          34
+        ]
+      },
+      {
+        "taxa": [
+          "Brugmansia"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "non verificata",
+        "nota": "La brugmansia è molto velenosa: fiori, foglie e semi, se mangiati, possono dare allucinazioni, febbre, battito accelerato e paralisi. Lo dice una fonte sola, che la segnala come pericolo anche per i bambini. Per cani e gatti non abbiamo dati verificati: tienila comunque lontana.",
+        "fonti": [
+          22
+        ]
+      },
+      {
+        "taxa": [
+          "Hibiscus syriacus"
+        ],
+        "persone": "non verificata",
+        "animali": "non tossica",
+        "nota": "L'ibisco da giardino non è tossico per cani e gatti: lo indicano due fonti concordi. Per le persone non abbiamo dati verificati.",
+        "fonti": [
+          37,
+          38
+        ]
+      },
+      {
+        "taxa": [
+          "Fatsia"
+        ],
+        "persone": "non verificata",
+        "animali": "non tossica",
+        "nota": "La fatsia non è tossica per cani e gatti: lo indicano due fonti concordi. Per le persone non abbiamo dati verificati.",
+        "fonti": [
+          21,
+          39
+        ]
+      },
+      {
+        "taxa": [
+          "Hypericum perforatum"
+        ],
+        "persone": "non verificata",
+        "animali": "tossica (una fonte)",
+        "nota": "Una fonte sola indica l'iperico comune tossico per cani e gatti: rende la pelle sensibile al sole, con piaghe. Per le persone non abbiamo dati verificati: tienilo lontano da bambini e animali.",
+        "fonti": [
+          40
+        ]
+      },
+      {
+        "taxa": [
+          "Rosa"
+        ],
+        "persone": "non verificata",
+        "animali": "non verificata",
+        "nota": "Una fonte sola indica la rosa non tossica per cani e gatti: non basta, quindi non è verificato. Per le persone non abbiamo dati verificati.",
+        "fonti": [
+          26
+        ]
+      },
+      {
+        "taxa": [
+          "Forsythia"
+        ],
+        "persone": "non verificata",
+        "animali": "non verificata",
+        "nota": "Una fonte sola indica la forsizia non tossica per cani e gatti: non basta, quindi non è verificato. Per le persone non abbiamo dati verificati.",
+        "fonti": [
+          43
+        ]
+      }
+    ],
+    "frasi": [
+      {
+        "per": [
+          "Pyracantha"
+        ],
+        "fonti": [
+          42
+        ],
+        "testo": "La piracanta ha spine robuste: una fonte consiglia di piantarla lontano dai posti dove giocano bambini e animali."
+      },
+      {
+        "per": [
+          "Hypericum"
+        ],
+        "fonti": [
+          40,
+          44
+        ],
+        "testo": "Una fonte indica l'iperico comune tossico per cani e gatti; un'altra indica l'iperico calicino molto velenoso se mangiato e irritante per la pelle, senza dire per chi. Non abbiamo dati verificati: tienilo lontano da bambini e animali."
+      },
+      {
+        "per": [
+          "Aucuba"
+        ],
+        "fonti": [
+          41
+        ],
+        "testo": "Una fonte descrive l'aucuba come poco tossica se ne vengono mangiati frutti o foglie (nausea, vomito), senza dire se per le persone o per gli animali. Per prudenza tienila lontana da bambini e animali."
+      }
+    ]
+  },
+  "fonti": [
+    {
+      "id": 1,
+      "titolo": "How to grow shrubs",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/types/shrubs/growing-guide",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Planting, Ongoing Care (Watering, Feeding, Mulching, Overwintering, Containers), Propagating, Problems"
+    },
+    {
+      "id": 2,
+      "titolo": "How to grow roses",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/roses/growing-guide",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Planting, Ongoing Care (Watering, Feeding, Deadheading), Propagating, Problems"
+    },
+    {
+      "id": 3,
+      "titolo": "Roses: planting",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/roses/planting",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "How to plant roses, Aftercare, Problems"
+    },
+    {
+      "id": 4,
+      "titolo": "Rose pruning: shrub roses",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/roses/shrub/pruning-guide",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "When to prune, Pruning group 20 and 21"
+    },
+    {
+      "id": 5,
+      "titolo": "How to grow box",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/box/growing-guide",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Planting, Ongoing Care, Pruning and Training, Problems"
+    },
+    {
+      "id": 6,
+      "titolo": "How to grow lilac",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/lilac/how-to-grow-lilacs",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Where to plant, Ongoing care, Pruning and training, Problems"
+    },
+    {
+      "id": 7,
+      "titolo": "How to grow buddlejas",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/buddleja/growing-guide",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Hardiness, Planting, Ongoing Care, Pruning, Problems"
+    },
+    {
+      "id": 8,
+      "titolo": "How to grow hardy fuchsias",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/plants/fuchsia/hardy/growing-guide",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Where and how to buy, Planting, Ongoing Care, Pruning, Problems"
+    },
+    {
+      "id": 9,
+      "titolo": "RHS Pruning Groups",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/pruning/rhs-pruning-groups",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Groups 2, 6, 8"
+    },
+    {
+      "id": 10,
+      "titolo": "Growing Roses (HGIC 1172)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/growing-roses/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Landscape Use"
+    },
+    {
+      "id": 11,
+      "titolo": "Pruning Roses (HGIC 1173)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/pruning-roses/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "When to Prune, Pruning Techniques"
+    },
+    {
+      "id": 12,
+      "titolo": "Rose Diseases (HGIC 2106)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/rose-diseases/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Black spot, Powdery mildew, Rust"
+    },
+    {
+      "id": 13,
+      "titolo": "Boxwood (HGIC 1061)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/boxwood/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Cultivation, Problems"
+    },
+    {
+      "id": 14,
+      "titolo": "Viburnum (HGIC 1075)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/viburnum/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Cultivation, Pruning, Problems, Cold hardiness"
+    },
+    {
+      "id": 15,
+      "titolo": "Holly (HGIC 1066)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/holly/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Cultivation, Problems"
+    },
+    {
+      "id": 16,
+      "titolo": "Photinia (Red Tip) (HGIC 1081)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/photinia-red-tip/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Culture, Diseases"
+    },
+    {
+      "id": 17,
+      "titolo": "Tea Olive (HGIC 1083)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/tea-olive/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Culture, Pruning, Problems, Cold hardiness"
+    },
+    {
+      "id": 18,
+      "titolo": "Forsythia (HGIC 1064)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/forsythia/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Landscape Use, Pruning, Propagation, Problems"
+    },
+    {
+      "id": 19,
+      "titolo": "Pruning Shrubs (HGIC 1053)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/pruning-shrubs/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Renewal pruning, Suggested Pruning Time"
+    },
+    {
+      "id": 20,
+      "titolo": "Syringa vulgaris (Common Lilac)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/syringa-vulgaris/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Description, Cultural Conditions"
+    },
+    {
+      "id": 21,
+      "titolo": "Fatsia japonica (Japanese Aralia)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/fatsia-japonica/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Cultural Conditions, Tags"
+    },
+    {
+      "id": 22,
+      "titolo": "Brugmansia (Angel's Trumpet)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/brugmansia/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Description, Poisonous to Humans, Landscape Problems"
+    },
+    {
+      "id": 23,
+      "titolo": "Photinia x fraseri (Red Tip Photinia)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/photinia-x-fraseri/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Description, Insects and Diseases"
+    },
+    {
+      "id": 24,
+      "titolo": "Buddleja davidii (Butterfly Bush)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/buddleja-davidii/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Description"
+    },
+    {
+      "id": 25,
+      "titolo": "Osmanthus fragrans (Tea Olive)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/osmanthus-fragrans/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Description, Cultural Conditions"
+    },
+    {
+      "id": 26,
+      "titolo": "Rose",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rose",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Non-Toxicity"
+    },
+    {
+      "id": 27,
+      "titolo": "Boxwood",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/boxwood",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 28,
+      "titolo": "Buxus sempervirens (Boxwood)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/buxus-sempervirens/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Tags"
+    },
+    {
+      "id": 29,
+      "titolo": "English Holly",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/english-holly",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 30,
+      "titolo": "Ilex aquifolium (English Holly)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/ilex-aquifolium/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Landscape Problems"
+    },
+    {
+      "id": 31,
+      "titolo": "Privet",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/privet",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 32,
+      "titolo": "Ligustrum japonicum (Japanese Privet)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/ligustrum-japonicum/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Tags"
+    },
+    {
+      "id": 33,
+      "titolo": "Burning Bush",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/burning-bush",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 34,
+      "titolo": "Euonymus japonicus (Japanese Euonymus)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/euonymus-japonicus/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
+    },
+    {
+      "id": 35,
+      "titolo": "Heavenly Bamboo",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/heavenly-bamboo",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 36,
+      "titolo": "Nandina domestica (Heavenly Bamboo)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/nandina-domestica/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Landscape Problems"
+    },
+    {
+      "id": 37,
+      "titolo": "Hibiscus (Hibiscus syriacus)",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/hibiscus",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Non-Toxicity"
+    },
+    {
+      "id": 38,
+      "titolo": "Hibiscus syriacus (Rose of Sharon)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/hibiscus-syriacus/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Tags"
+    },
+    {
+      "id": 39,
+      "titolo": "Japanese Aralia (Fatsia japonica)",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/japanese-aralia",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Non-Toxicity"
+    },
+    {
+      "id": 40,
+      "titolo": "St. John's Wort (Hypericum perforatum)",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/st-johns-wort",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 41,
+      "titolo": "Aucuba japonica (Japanese Aucuba)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/aucuba-japonica/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Cultural Conditions, Poisonous to Humans"
+    },
+    {
+      "id": 42,
+      "titolo": "Pyracantha coccinea (Firethorn)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/pyracantha-coccinea/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Description"
+    },
+    {
+      "id": 43,
+      "titolo": "Forsythia x intermedia (Border Forsythia)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/forsythia-x-intermedia/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Cultural Conditions, Tags"
+    },
+    {
+      "id": 44,
+      "titolo": "Hypericum calycinum (Aaron's Beard)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/hypericum-calycinum/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
+    },
+    {
+      "id": 45,
+      "titolo": "Spiraea japonica (Japanese Spiraea)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/spiraea-japonica/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Description"
+    }
+  ],
+  "verifica": {
+    "controlliAutomatici": "2026-11-27",
+    "verificaIndipendente": "2026-11-27"
+  },
+  "versione": 1,
+  "aggiornata": "2026-11-27"
+}
