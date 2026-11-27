@@ -429,6 +429,16 @@ ok(["Viburnum tinus", "Photinia x fraseri", "Syringa vulgaris", "Osmanthus fragr
   const ros = JSON.parse(readFileSync(new URL("../../src/data/schede/famiglie.json", import.meta.url), "utf8")).find((n) => n.famiglia === "Rosaceae");
   ok(!!ros && !ros.note.some((n) => n.tema === "tossicità"), "Rosacee: nota solo sulle malattie (sulla tossicità le fonti non bastano)");
 }
+// Correzione dell'indice del 2026-11-27 (decisioni dell'utente)
+{
+  const atteso = { "Lathyrus oleraceus": "ortaggi-aromatiche", "Pisum sativum": "ortaggi-aromatiche", "Vicia faba": "ortaggi-aromatiche", "Melissa officinalis": "ortaggi-aromatiche", "Santolina chamaecyparissus": "arbusti-mediterranei", "Helichrysum italicum": "arbusti-mediterranei", "Ludisia discolor": "orchidee", "Euphorbia milii": "succulente", "Euphorbia pulcherrima": "universale", "Colocasia esculenta": "foglia-tropicale", "Caladium bicolor": "foglia-tropicale", "Allium ampeloprasum": "ortaggi-aromatiche", "Lathyrus odoratus": "erbacee-perenni", "Vicia sativa": "erbacee-perenni" };
+  const sbagliati = Object.entries(atteso).filter(([sp, tipo]) => tipoDi(sp) !== tipo);
+  ok(!sbagliati.length, "Indice 2026-11-27: pisello, fava, melissa, santolina, elicriso, Ludisia, Euphorbia milii, Colocasia, Caladium e porro nel tipo giusto; pisello odoroso e veccia restano dove sono" + (sbagliati.length ? " — sbagliati: " + sbagliati.map(([s]) => s).join(", ") : ""));
+  const fo = t("foglia-tropicale"), orto = t("ortaggi-aromatiche");
+  const cal = tossicitaPerPianta(fo, "Caladium bicolor", "Caladium", "Araceae");
+  ok(cal.persone === "tossica (una fonte)" && cal.animali === "tossica (una fonte)" && tossicitaPerPianta(fo, "Monstera deliciosa", "Monstera", "Araceae").persone === "non verificata", "Caladium 'Tossica (una fonte)' per persone e animali; le altre aracee del tipo restano con le frasi di famiglia");
+  ok(["Allium ampeloprasum", "Petroselinum crispum", "Mentha spicata"].every((sp) => { const x = tossicitaPerPianta(orto, sp, sp.split(" ")[0]); return x.persone === "non verificata" && /in grande quantità/.test(x.nota); }), "Porro, prezzemolo e menta: persone 'non verificata' con la nota 'in grande quantità' (scelta dell'utente)");
+}
 // Correzione dell'indice del 2026-11-26 (sera): generi da giardino o da balcone finiti per errore tra le piante tropicali
 {
   const atteso = { "Buxus sempervirens": "arbusti", "Ilex aquifolium": "arbusti", "Lagerstroemia indica": "alberi", "Acca sellowiana": "alberi", "Plumbago auriculata": "arbusti-mediterranei", "Fuchsia magellanica": "arbusti", "Petunia hybrida": "annuali", "Cuphea hyssopifolia": "annuali", "Mandevilla sanderi": "rampicanti" };

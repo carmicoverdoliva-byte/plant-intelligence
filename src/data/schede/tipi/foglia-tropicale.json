@@ -5,7 +5,8 @@
   "siApplicaA": "Le piante d'appartamento coltivate per le foglie e nate in climi tropicali: per esempio spatifillo, anturio, aglaonema, dieffenbachia, calathea, maranta, peperomia, falangio, zamioculcas, begonie da foglia. In Italia stanno in casa tutto l'anno, o fuori solo d'estate.",
   "eccezioni": [
     "La luce che serve cambia molto da pianta a pianta: il filodendro a foglia a cuore sopporta poca luce, altre ne vogliono molta. Se conosci la specie, guarda la sua scheda quando sarà pronta.",
-    "Le piante grasse e i cactus hanno schede a parte."
+    "Le piante grasse e i cactus hanno schede a parte.",
+    "Il Caladium in autunno perde le foglie e va a riposo: togli i tuberi dalla terra, lasciali asciugare e conservali all'asciutto, al caldo, fino alla primavera."
   ],
   "riassunto": "Luce viva ma non sole diretto d'estate, acqua solo quando la superficie del terriccio è asciutta, niente freddo sotto i 10-13 °C, concime leggero da marzo a ottobre e un travaso ogni due o tre anni.",
   "coseDaFare": [
@@ -143,13 +144,33 @@
               }
             ],
             "sceltaPrudente": "Non lasciarle mai sotto i 13 °C."
+          },
+          {
+            "tema": "Temperatura per conservare i tuberi del Caladium d'inverno",
+            "posizioni": [
+              {
+                "dice": "all'asciutto, a 7 °C o più",
+                "fonti": [
+                  10
+                ]
+              },
+              {
+                "dice": "all'asciutto, mai sotto i 10 °C e mai in frigorifero",
+                "fonti": [
+                  11
+                ]
+              }
+            ],
+            "sceltaPrudente": "Conserva i tuberi all'asciutto sopra i 10 °C."
           }
         ],
         "fonti": [
           4,
           5,
           6,
-          7
+          7,
+          10,
+          11
         ]
       },
       "pollice": []
@@ -447,7 +468,9 @@
     "nota": "Dipende dalla pianta. Molte aracee, come monstera e filodendro, contengono cristalli che irritano bocca e gola se masticate, e la linfa può irritare la pelle (vedi la nota sulla famiglia). In questo tipo ci sono molte aracee (per esempio spatifillo, anturio, aglaonema, dieffenbachia, zamioculcas), ma per ciascuna non abbiamo ancora due fonti. Finché non conosci la specie, tienila lontana da bambini e animali.",
     "fonti": [
       7,
-      9
+      9,
+      10,
+      12
     ],
     "frasi": [
       {
@@ -469,6 +492,30 @@
           9
         ],
         "testo": "Per le aracee di questo tipo (per esempio spatifillo, anturio, aglaonema, dieffenbachia, zamioculcas) non abbiamo ancora due fonti: tienila lontana da bambini e animali."
+      }
+    ],
+    "casi": [
+      {
+        "taxa": [
+          "Caladium"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica (una fonte)",
+        "nota": "Il Caladium è un'aracea: una fonte sola lo indica tossico per persone, bambini, cani e gatti, con gravità media. Masticato brucia e gonfia labbra, bocca e lingua e può dare nausea e vomito; la linfa irrita la pelle: usa i guanti.",
+        "fonti": [
+          10
+        ]
+      },
+      {
+        "taxa": [
+          "Colocasia"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "tossica (una fonte)",
+        "nota": "La Colocasia è un'aracea: una fonte sola la indica tossica per persone, bambini, cani e gatti, con gravità media, se mangiata cruda. Dà bruciore e gonfiore della bocca, molta saliva, vomito e fatica a deglutire.",
+        "fonti": [
+          12
+        ]
       }
     ]
   },
@@ -552,6 +599,33 @@
       "consultato": "2026-11-18",
       "livello": "A",
       "punto": "Toxicity"
+    },
+    {
+      "id": 10,
+      "titolo": "Caladium bicolor (Caladium)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/caladium-bicolor/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Description, Bulb Storage, Poisonous to Humans"
+    },
+    {
+      "id": 11,
+      "titolo": "Caladium",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/caladium/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Care, Problems"
+    },
+    {
+      "id": 12,
+      "titolo": "Colocasia esculenta (Elephant's Ear)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/colocasia-esculenta/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans, Landscape Problems"
     }
   ],
   "verifica": {

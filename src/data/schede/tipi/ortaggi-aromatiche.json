@@ -593,7 +593,8 @@
       25,
       26,
       27,
-      28
+      28,
+      32
     ],
     "casi": [
       {
@@ -619,10 +620,11 @@
         ],
         "persone": "non verificata",
         "animali": "tossica (una fonte)",
-        "nota": "Una fonte indica porro ed erba cipollina tossici per cani e gatti, come cipolla e aglio: possono rovinare i globuli rossi. È una fonte sola, non ancora confermata da una seconda: tienili lontani dagli animali. Per le persone non abbiamo dati verificati.",
+        "nota": "Una fonte indica porro ed erba cipollina tossici per cani e gatti, come cipolla e aglio: possono rovinare i globuli rossi. È una fonte sola, non ancora confermata da una seconda: tienili lontani dagli animali. Per le persone non abbiamo dati verificati; una fonte dice che il porro, in grande quantità, può dare disturbi allo stomaco, e che può irritare la pelle di alcune persone.",
         "fonti": [
           21,
-          22
+          22,
+          32
         ]
       },
       {
@@ -656,7 +658,7 @@
         ],
         "persone": "non verificata",
         "animali": "tossica",
-        "nota": "Il prezzemolo, mangiato in grande quantità, rende la pelle degli animali sensibile al sole (due fonti). Per le persone non abbiamo dati verificati.",
+        "nota": "Il prezzemolo, mangiato in grande quantità, rende la pelle degli animali sensibile al sole (due fonti). Per le persone non abbiamo dati verificati; una fonte dice che, in grande quantità, può dare disturbi (la pelle diventa sensibile al sole).",
         "fonti": [
           25,
           26
@@ -668,7 +670,7 @@
         ],
         "persone": "non verificata",
         "animali": "tossica",
-        "nota": "La menta, mangiata in grande quantità, può dare vomito e diarrea a cani e gatti (due fonti). Per le persone non abbiamo dati verificati.",
+        "nota": "La menta, mangiata in grande quantità, può dare vomito e diarrea a cani e gatti (due fonti). Per le persone non abbiamo dati verificati; una fonte dice che, in grande quantità, può dare disturbi (vomito e diarrea).",
         "fonti": [
           27,
           28
@@ -1029,6 +1031,15 @@
       "consultato": "2026-11-26",
       "livello": "A",
       "punto": "Toxicity"
+    },
+    {
+      "id": 32,
+      "titolo": "Allium ampeloprasum (Leek)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/allium-ampeloprasum/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Poisonous to Humans"
     }
   ],
   "verifica": {
