@@ -1,5 +1,6 @@
 // Tipi di pianta (D13, livello 3: c'è sempre una scheda). Elenco confermato nel blocco 1 (2026-11-18):
 // 19 tipi + la scheda universale; dal 2026-11-26 20: "ortaggi e aromatiche" diviso in aromatiche mediterranee e orto.
+// dal 2026-11-27 23: "alberi" diviso in agrumi, alberi mediterranei, alberi da frutto e alberi ornamentali (riserva).
 // "casa" = in Italia si coltivano soprattutto in casa (clima d'origine tropicale).
 
 export type IdTipo =
@@ -12,7 +13,10 @@ export type IdTipo =
   | "cactus"
   | "felci"
   | "palme"
-  | "alberi"
+  | "agrumi"
+  | "alberi-mediterranei"
+  | "alberi-frutto"
+  | "alberi-ornamentali"
   | "conifere"
   | "arbusti"
   | "arbusti-mediterranei"
@@ -37,7 +41,10 @@ export const TIPI: Record<IdTipo, { nome: string; dove: "casa" | "esterno" | "en
   cactus: { nome: "cactus", dove: "entrambi" },
   felci: { nome: "felci", dove: "entrambi" },
   palme: { nome: "palme", dove: "entrambi" },
-  alberi: { nome: "alberi di clima temperato e mediterraneo", dove: "esterno" },
+  agrumi: { nome: "agrumi", dove: "esterno" },
+  "alberi-mediterranei": { nome: "alberi mediterranei sempreverdi", dove: "esterno" },
+  "alberi-frutto": { nome: "alberi da frutto", dove: "esterno" },
+  "alberi-ornamentali": { nome: "alberi ornamentali di clima temperato", dove: "esterno" },
   conifere: { nome: "conifere", dove: "esterno" },
   arbusti: { nome: "arbusti da giardino e da balcone", dove: "esterno" },
   "arbusti-mediterranei": { nome: "arbusti mediterranei da sole", dove: "esterno" },

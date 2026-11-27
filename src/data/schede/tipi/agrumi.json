@@ -1,0 +1,936 @@
+{
+  "id": "tipo/agrumi",
+  "livello": "tipo",
+  "nome": "agrumi",
+  "siApplicaA": "Tutti gli agrumi del genere Citrus: limone, arancio, mandarino, clementino, pompelmo, lime, cedro, kumquat, calamondino e arancio trifogliato, in vaso o in piena terra.",
+  "eccezioni": [
+    "Lime e calamondino sono i più delicati: d'inverno, al riparo, il lime vuole più di 10 °C e il calamondino almeno 13 °C.",
+    "Mandarino, arancio dolce e limone Meyer reggono il freddo un po' meglio dei limoni comuni, del lime e del pompelmo.",
+    "Il kumquat ha frutti piccoli: può portarne molti senza che si debbano togliere.",
+    "L'arancio trifogliato (Citrus trifoliata, un tempo Poncirus) si coltiva in zone più fredde degli altri agrumi e ha spine robuste. I suoi frutti sono molto aspri e si usano per bevande o marmellata. In alcuni Stati americani è considerato una pianta invasiva."
+  ],
+  "riassunto": "Alberelli sempreverdi da sole pieno, che temono il gelo e i ristagni d'acqua. In vaso vanno riparati d'inverno in un locale luminoso e fresco, con poca acqua; nella stagione di crescita vogliono acqua regolare e un concime per agrumi. In piena terra temono le gelate forti: sotto circa −4 °C la pianta si danneggia.",
+  "coseDaFare": [
+    "Mettila al sole pieno, almeno 8 ore al giorno.",
+    "In autunno, appena le notti si raffreddano, porta il vaso al riparo in un locale luminoso e fresco.",
+    "D'inverno annaffia poco; d'estate controlla il vaso ogni giorno.",
+    "Concima con un concime per agrumi nella stagione di crescita.",
+    "Pota poco: troppi tagli tolgono i frutti."
+  ],
+  "sezioni": {
+    "luce": {
+      "lineeGuida": {
+        "riassunto": "Gli agrumi vogliono sole pieno: reggono un'ombra leggera, ma fanno meno frutti. Anche d'inverno, al riparo, hanno bisogno di molta luce perché tengono le foglie tutto l'anno.",
+        "coseDaFare": [
+          "D'estate scegli il posto più soleggiato e riparato dal vento.",
+          "D'inverno tienila in un locale molto luminoso, per esempio vicino a una finestra esposta a sud."
+        ],
+        "valori": [
+          {
+            "etichetta": "Ore di sole",
+            "valore": "almeno 8 al giorno",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Esposizione",
+            "valore": "sole pieno; con un po' d'ombra crescono ma fanno meno frutti",
+            "fonti": [
+              1,
+              3,
+              4
+            ]
+          },
+          {
+            "etichetta": "D'inverno al riparo",
+            "valore": "molta luce, finestra a sud o veranda",
+            "fonti": [
+              1,
+              3
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          3,
+          4
+        ]
+      },
+      "pollice": []
+    },
+    "acqua": {
+      "lineeGuida": {
+        "riassunto": "In vaso gli agrumi bevono più che in piena terra: con il caldo secco può servire acqua quasi ogni giorno. Le radici non devono mai seccare del tutto, ma nemmeno restare a lungo bagnate. D'inverno, al riparo, serve molta meno acqua: troppa acqua d'inverno è uno dei problemi più comuni. Meglio l'acqua piovana.",
+        "coseDaFare": [
+          "In vaso, d'estate, controlla il terriccio ogni giorno.",
+          "Annaffia quando i primi 2,5-5 cm di terriccio sono asciutti, poi bagna bene.",
+          "D'inverno aspetta che il terriccio in superficie sia un po' asciutto e usa acqua a temperatura ambiente.",
+          "Non lasciare acqua nel sottovaso.",
+          "Usa acqua piovana quando puoi.",
+          "In piena terra annaffia con regolarità finché la pianta non ha messo radici; poi, d'estate, annaffia a fondo senza tenere il terreno sempre bagnato. Non bagnare il tronco."
+        ],
+        "valori": [
+          {
+            "etichetta": "In vaso: quando annaffiare",
+            "valore": "quando i primi 2,5-5 cm sono asciutti",
+            "fonti": [
+              4
+            ]
+          },
+          {
+            "etichetta": "In vaso: quanto controllare",
+            "valore": "i primi 5-7 cm di terriccio",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "In vaso col caldo secco",
+            "valore": "anche quasi ogni giorno",
+            "fonti": [
+              1,
+              3
+            ]
+          },
+          {
+            "etichetta": "In piena terra d'estate",
+            "valore": "circa ogni 7-10 giorni nei mesi più caldi",
+            "fonti": [
+              5
+            ]
+          },
+          {
+            "etichetta": "Quanto in profondità",
+            "valore": "fino a circa 60 cm (consiglio per gli alberi in generale)",
+            "fonti": [
+              6
+            ]
+          },
+          {
+            "etichetta": "In piena terra: quantità",
+            "valore": "circa 100-150 mm d'acqua al mese",
+            "fonti": [
+              5
+            ]
+          },
+          {
+            "etichetta": "D'inverno al riparo",
+            "valore": "poca: meglio un po' asciutto che troppo bagnato",
+            "fonti": [
+              1,
+              2
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "pollice": []
+    },
+    "temperatura": {
+      "lineeGuida": {
+        "riassunto": "Gli agrumi non reggono il gelo forte. In piena terra la pianta si danneggia sotto circa −4 °C e i frutti già sotto circa −3 °C; le piante giovani e i germogli nuovi sono i più delicati. Dove l'inverno è freddo vanno coltivati in vaso e portati al riparo, in un locale luminoso e fresco, lontano da correnti e sbalzi di temperatura. Mandarino, arancio dolce e limone Meyer resistono un po' di più; limoni comuni, lime e pompelmo sono i più sensibili.",
+        "coseDaFare": [
+          "Porta i vasi al riparo appena in autunno le notti cominciano a raffreddarsi.",
+          "D'inverno tienili al fresco e alla luce: l'aria calda e secca della casa non è adatta per lunghi periodi.",
+          "Evita correnti fredde e sbalzi di temperatura: fanno cadere le foglie.",
+          "In primavera riportali fuori poco alla volta, quando le notti non sono più fredde.",
+          "In piena terra, se è annunciata una gelata, annaffia il terreno asciutto almeno 3 giorni prima e copri la chioma di notte con un telo, non di plastica; toglilo di giorno.",
+          "Dopo una gelata non tagliare subito i rami secchi: aspetta la tarda primavera, quando si vede la nuova crescita."
+        ],
+        "valori": [
+          {
+            "etichetta": "Danni alla pianta (piena terra)",
+            "valore": "sotto circa −4 °C",
+            "fonti": [
+              3,
+              5
+            ]
+          },
+          {
+            "etichetta": "Danni ai frutti",
+            "valore": "sotto circa −3 °C",
+            "fonti": [
+              5
+            ]
+          },
+          {
+            "etichetta": "Locale per l'inverno (vaso)",
+            "valore": "13-18 °C, molto luminoso",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Minime d'inverno al riparo",
+            "valore": "alcuni limoni 5 °C; kumquat 7 °C; lime e pompelmo più di 10 °C; calamondino 13 °C",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Temperatura migliore per i frutti",
+            "valore": "18-29 °C",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Umidità dell'aria",
+            "valore": "30-60%",
+            "fonti": [
+              3
+            ]
+          }
+        ],
+        "disaccordi": [
+          {
+            "tema": "Temperatura minima d'inverno per il limone in vaso",
+            "posizioni": [
+              {
+                "dice": "alcuni limoni reggono 5 °C",
+                "fonti": [
+                  1
+                ]
+              },
+              {
+                "dice": "di notte mai sotto i 10 °C",
+                "fonti": [
+                  2
+                ]
+              },
+              {
+                "dice": "per gli agrumi in generale: la maggior parte regge fino a circa 10 °C, alcuni fino a circa 2 °C",
+                "fonti": [
+                  3
+                ]
+              }
+            ],
+            "sceltaPrudente": "Al riparo tieni il limone sopra i 10 °C di notte."
+          },
+          {
+            "tema": "Quanto freddo regge il kumquat",
+            "posizioni": [
+              {
+                "dice": "è un agrume resistente al freddo",
+                "fonti": [
+                  4
+                ]
+              },
+              {
+                "dice": "d'inverno vuole almeno 7 °C",
+                "fonti": [
+                  1
+                ]
+              }
+            ],
+            "sceltaPrudente": "In vaso trattalo come gli altri agrumi: d'inverno portalo al riparo."
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8
+        ]
+      },
+      "pollice": []
+    },
+    "terriccio": {
+      "lineeGuida": {
+        "riassunto": "In vaso serve un terriccio che scoli molto bene: un terriccio per agrumi, oppure uno ricco di corteccia o con sabbia grossa. La terra del giardino nel vaso non va bene. Gli agrumi preferiscono un terreno leggermente acido. In piena terra conta soprattutto il drenaggio: con i ristagni le radici marciscono.",
+        "coseDaFare": [
+          "Usa un terriccio per agrumi o un terriccio che scoli bene.",
+          "Se usi un terriccio con terra, aggiungi circa un quinto di sabbia grossa o ghiaietto.",
+          "Non mettere terra del giardino nel vaso; il vaso deve avere i fori.",
+          "In piena terra, se il terreno trattiene l'acqua, pianta su un piccolo rialzo di terra.",
+          "Pianta alla stessa profondità del vaso e non coprire mai il punto d'innesto con la terra."
+        ],
+        "valori": [
+          {
+            "etichetta": "pH",
+            "valore": "5,5-6,5 (leggermente acido)",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Miscela per il vaso",
+            "valore": "4 parti di corteccia di pino stagionata e 1 di torba o fibra di cocco, oppure un terriccio ben drenante",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Terriccio con terra",
+            "valore": "con circa il 20% di sabbia grossa o ghiaietto",
+            "fonti": [
+              1
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          3,
+          5,
+          10
+        ]
+      },
+      "pollice": []
+    },
+    "concime": {
+      "lineeGuida": {
+        "riassunto": "Gli agrumi sono piante che consumano molto, soprattutto azoto. In vaso si usa un concime per agrumi nella stagione di crescita. In piena terra il concime si dà da fine inverno a inizio estate, mai a fine stagione: il concime tardivo peggiora i frutti e i germogli tardivi temono il gelo. A volte mancano microelementi come zinco e ferro.",
+        "coseDaFare": [
+          "Usa un concime specifico per agrumi.",
+          "In vaso, da fine marzo a ottobre, usa un concime per agrumi ricco di azoto.",
+          "In piena terra concima a fine inverno, prima della fioritura, poi a maggio e, se serve, a giugno.",
+          "Non concimare a fine estate e in autunno.",
+          "Distribuisci il concime in modo uniforme sotto tutta la chioma, lontano dal tronco.",
+          "Se in primavera le foglie nuove sono chiare o gialle tra le venature, può mancare zinco o ferro: usa un prodotto con microelementi chelati sulle foglie nuove."
+        ],
+        "valori": [
+          {
+            "etichetta": "In vaso: concime a lenta cessione",
+            "valore": "2-3 volte nella stagione di crescita",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Pianta giovane in piena terra",
+            "valore": "dosi piccole e frequenti nella stagione di crescita",
+            "fonti": [
+              4
+            ]
+          },
+          {
+            "etichetta": "Pianta adulta in piena terra",
+            "valore": "vedi le fonti in disaccordo qui sotto",
+            "fonti": [
+              4,
+              9
+            ]
+          }
+        ],
+        "disaccordi": [
+          {
+            "tema": "Concime d'inverno per gli agrumi in vaso (le fonti parlano di situazioni diverse: vaso al riparo in Inghilterra e piena terra in California)",
+            "posizioni": [
+              {
+                "dice": "si concima tutto l'anno: d'inverno, da novembre a metà marzo, con un concime per agrumi più bilanciato",
+                "fonti": [
+                  1
+                ]
+              },
+              {
+                "dice": "concime ricco di azoto da inizio primavera a metà estate, poi bilanciato fino a tardo autunno o inizio inverno",
+                "fonti": [
+                  2
+                ]
+              },
+              {
+                "dice": "niente concime a fine stagione: i germogli tardivi temono il gelo e i frutti peggiorano",
+                "fonti": [
+                  8,
+                  9
+                ]
+              }
+            ],
+            "sceltaPrudente": "Concima da fine marzo a inizio autunno. D'inverno usa il concime bilanciato per agrumi solo se la pianta sta al caldo e continua a crescere."
+          },
+          {
+            "tema": "Quante volte concimare un agrume adulto in piena terra",
+            "posizioni": [
+              {
+                "dice": "4-5 volte l'anno",
+                "fonti": [
+                  4
+                ]
+              },
+              {
+                "dice": "2-3 volte l'anno, tra fine inverno e inizio estate",
+                "fonti": [
+                  9
+                ]
+              }
+            ],
+            "sceltaPrudente": "2-3 volte tra fine inverno e inizio estate, senza concime a fine stagione."
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          7,
+          8,
+          9
+        ]
+      },
+      "pollice": []
+    },
+    "travaso": {
+      "lineeGuida": {
+        "riassunto": "Un agrume appena comprato può restare nel suo vaso anche per qualche anno. Si rinvasa in primavera, quando le radici escono dai fori, in un vaso solo un po' più grande: un vaso troppo grande crea problemi. Negli anni senza rinvaso si rinnova lo strato di terriccio in superficie.",
+        "coseDaFare": [
+          "Rinvasa in primavera, quando le radici escono dai fori.",
+          "Scegli un vaso di circa 5 cm più largo, non di più.",
+          "Negli anni senza rinvaso togli lo strato di terriccio in superficie e sostituiscilo con terriccio fresco.",
+          "Tieni la base del tronco sopra il livello del terriccio.",
+          "Preferisci vasi leggeri: quelli grandi di terracotta o cemento sono molto pesanti da spostare."
+        ],
+        "valori": [
+          {
+            "etichetta": "Ogni quanto",
+            "valore": "ogni 3-5 anni",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Vaso nuovo",
+            "valore": "circa 5 cm più largo",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Vaso per un albero giovane",
+            "valore": "circa 38 cm di larghezza e di profondità",
+            "fonti": [
+              4
+            ]
+          },
+          {
+            "etichetta": "Vaso finale",
+            "valore": "45-90 cm di diametro",
+            "fonti": [
+              3
+            ]
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          10
+        ]
+      },
+      "pollice": []
+    },
+    "coltivarla": {
+      "lineeGuida": {
+        "riassunto": "Quasi tutti gli agrumi fanno frutti anche da soli, senza un'altra pianta vicina. Le piante in vendita sono di solito innestate e fruttificano dopo pochi anni; da seme servono molti anni e i frutti possono essere diversi dalla pianta madre. Il modo più facile per moltiplicarli è la talea semilegnosa. Si potano poco, perché i fiori nascono in punta ai rametti nuovi.",
+        "coseDaFare": [
+          "Compra piante innestate da vivai seri.",
+          "Non seminare i semi dei frutti comprati: servono anni e c'è il rischio di portare malattie.",
+          "Per moltiplicarli usa talee semilegnose.",
+          "Togli i rami che nascono sul tronco sotto il punto d'innesto.",
+          "A fine inverno sfoltisci i rami troppo fitti; d'estate accorcia i getti troppo vigorosi. Non potare i rami vivi più di una volta l'anno, né a fine estate; un taglio drastico al massimo su un ramo l'anno.",
+          "Usa guanti spessi: molti agrumi hanno spine.",
+          "Su una pianta alta circa 1 metro lascia al massimo 20 frutti alla volta.",
+          "Raccogli i frutti con le forbici, con un pezzetto di gambo, quando hanno raggiunto colore e grandezza pieni."
+        ],
+        "valori": [
+          {
+            "etichetta": "Frutti da piante innestate",
+            "valore": "limoni e lime dopo 1-3 anni; aranci, pompelmi e mandarini fioriscono dopo circa 5 anni",
+            "fonti": [
+              3
+            ]
+          },
+          {
+            "etichetta": "Frutti da piante nate da seme",
+            "valore": "in media dopo 7-10 anni",
+            "fonti": [
+              1,
+              2
+            ]
+          },
+          {
+            "etichetta": "Frutti per una pianta di 1 metro",
+            "valore": "al massimo 20 alla volta",
+            "fonti": [
+              1
+            ]
+          },
+          {
+            "etichetta": "Tempo di maturazione",
+            "valore": "9-12 mesi",
+            "fonti": [
+              1
+            ]
+          }
+        ],
+        "disaccordi": [
+          {
+            "tema": "Il mandarino fa frutti da solo?",
+            "posizioni": [
+              {
+                "dice": "gli agrumi fanno frutti da soli, anche con una pianta sola",
+                "fonti": [
+                  1
+                ]
+              },
+              {
+                "dice": "la maggior parte sì, ma i mandarini (tangerini, Citrus reticulata) hanno bisogno di un'altra varietà vicina",
+                "fonti": [
+                  3
+                ]
+              }
+            ],
+            "sceltaPrudente": "Se un mandarino fiorisce ma non fa frutti, mettigli vicino una varietà diversa."
+          }
+        ],
+        "fonti": [
+          1,
+          2,
+          3,
+          4,
+          8,
+          11,
+          5
+        ]
+      },
+      "pollice": []
+    },
+    "problemi": {
+      "lineeGuida": {
+        "riassunto": "Quasi tutti i problemi nascono dalle condizioni di coltivazione: troppa acqua d'inverno, freddo, correnti d'aria, aria secca o poco concime fanno ingiallire e cadere foglie e fiori. Tra i parassiti i più comuni sono il cotonello e il ragnetto rosso, soprattutto al riparo; poi cocciniglie e afidi. La minatrice scava gallerie nelle foglie nuove, ma su un albero adulto raramente fa danni seri.",
+        "coseDaFare": [
+          "D'inverno annaffia poco e non lasciare acqua nel sottovaso.",
+          "Controlla spesso le foglie, anche sotto, soprattutto quando la pianta sta al riparo.",
+          "Se trovi foglie appiccicose o una patina nera, cerca cocciniglie o cotonello e tieni lontane le formiche, che li proteggono.",
+          "Sulle piante piccole sciacqua ogni tanto le foglie con acqua, per togliere la polvere.",
+          "Evita gli insetticidi ad ampio spettro: uccidono gli insetti utili e possono far aumentare ragnetti e cocciniglie.",
+          "Contro la minatrice non togliere le foglie colpite e non dare concime azotato tra estate e autunno."
+        ],
+        "fonti": [
+          1,
+          2,
+          6,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      "pollice": [],
+      "elenco": [
+        {
+          "nome": "Troppa acqua d'inverno e marciume delle radici",
+          "tipo": "cura",
+          "frequenza": "frequente",
+          "segni": [
+            "foglie gialle che cadono",
+            "pianta che deperisce con il terriccio bagnato",
+            "radici molli"
+          ],
+          "prevenzione": [
+            "d'inverno annaffia poco",
+            "terriccio che scola e vaso con i fori",
+            "niente acqua nel sottovaso",
+            "non coprire il punto d'innesto"
+          ],
+          "fonti": [
+            1,
+            2,
+            3,
+            6,
+            10
+          ]
+        },
+        {
+          "nome": "Cotonello",
+          "tipo": "parassita",
+          "frequenza": "frequente",
+          "segni": [
+            "ciuffi bianchi cotonosi tra foglie e frutti",
+            "foglie appiccicose e patina nera (fumaggine)",
+            "foglie e frutti che cadono"
+          ],
+          "prevenzione": [
+            "tieni lontane le formiche",
+            "un getto d'acqua; se serve, sapone molle"
+          ],
+          "fonti": [
+            1,
+            13
+          ]
+        },
+        {
+          "nome": "Ragnetto rosso",
+          "tipo": "parassita",
+          "frequenza": "frequente",
+          "segni": [
+            "foglie punteggiate di chiaro",
+            "foglie che cadono presto"
+          ],
+          "prevenzione": [
+            "annaffia con regolarità, soprattutto prima di caldo e vento",
+            "sciacqua la polvere dalle foglie",
+            "niente insetticidi ad ampio spettro"
+          ],
+          "fonti": [
+            1,
+            14
+          ]
+        },
+        {
+          "nome": "Cocciniglie",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "scudetti o puntini attaccati a rami e foglie",
+            "foglie appiccicose e patina nera (fumaggine)",
+            "foglie gialle che cadono"
+          ],
+          "prevenzione": [
+            "tieni lontane le formiche",
+            "proteggi gli insetti utili: niente insetticidi ad ampio spettro",
+            "olio bianco per piante sulle forme giovani, se servono"
+          ],
+          "fonti": [
+            1,
+            3,
+            12
+          ]
+        },
+        {
+          "nome": "Afidi",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "piccoli insetti sui germogli nuovi",
+            "germogli deformati e appiccicosi"
+          ],
+          "prevenzione": [
+            "lascia lavorare coccinelle e altri insetti utili",
+            "se servono, olio bianco estivo o sapone molle"
+          ],
+          "fonti": [
+            1,
+            3
+          ]
+        },
+        {
+          "nome": "Minatrice degli agrumi",
+          "tipo": "parassita",
+          "frequenza": "non indicata",
+          "segni": [
+            "gallerie serpeggianti nelle foglie nuove",
+            "foglie nuove arricciate"
+          ],
+          "prevenzione": [
+            "non togliere le foglie colpite",
+            "niente concime azotato tra estate e autunno",
+            "sugli alberi adulti di solito non serve fare nulla"
+          ],
+          "fonti": [
+            3,
+            11
+          ]
+        },
+        {
+          "nome": "Foglie e fiori che cadono",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie che cadono d'inverno al riparo, con freddo, correnti o sbalzi",
+            "fiori che cadono prima di fare frutti, con radici asciutte o aria secca"
+          ],
+          "prevenzione": [
+            "locale luminoso e fresco, senza sbalzi",
+            "niente correnti fredde",
+            "aria non troppo secca",
+            "radici mai del tutto asciutte"
+          ],
+          "fonti": [
+            1,
+            2
+          ]
+        },
+        {
+          "nome": "Danni da gelo",
+          "tipo": "cura",
+          "frequenza": "non indicata",
+          "segni": [
+            "foglie e rametti scuri e appassiti dopo il freddo",
+            "macchie sulla buccia dei frutti"
+          ],
+          "prevenzione": [
+            "ripara i vasi prima delle gelate",
+            "copri la chioma con un telo in piena terra",
+            "non potare e non concimare a fine estate"
+          ],
+          "fonti": [
+            5,
+            8
+          ]
+        },
+        {
+          "nome": "Mancanza di microelementi (zinco, ferro)",
+          "tipo": "cura",
+          "frequenza": "occasionale",
+          "segni": [
+            "foglie nuove chiare o gialle",
+            "giallo tra le venature"
+          ],
+          "prevenzione": [
+            "concime per agrumi con microelementi",
+            "microelementi chelati sulle foglie nuove in primavera"
+          ],
+          "fonti": [
+            5,
+            7,
+            9
+          ]
+        }
+      ]
+    }
+  },
+  "falsiMiti": [
+    {
+      "mito": "Se le foglie di un agrume ingialliscono, manca il ferro.",
+      "verdetto": "vero in parte",
+      "cosaDiconoLeFonti": "Le foglie gialle hanno molte cause: radici troppo bagnate o troppo asciutte, freddo, correnti e poco concime. Troppa acqua d'inverno è uno dei problemi più comuni. La mancanza di zinco o di ferro capita, ma solo ogni tanto.",
+      "inPratica": "Prima controlla l'acqua e il freddo. Se le foglie nuove in primavera sono gialle tra le venature, usa un concime per agrumi con microelementi.",
+      "fonti": [
+        1,
+        2,
+        5,
+        9
+      ]
+    },
+    {
+      "mito": "Più poti un agrume, più frutti fa.",
+      "verdetto": "falso",
+      "cosaDiconoLeFonti": "Gli agrumi fioriscono in punta ai rametti nuovi: potare troppo riduce i frutti. Sugli alberi adulti si tolgono solo i rami malati o danneggiati dal gelo.",
+      "inPratica": "Pota poco: solo i rami troppo fitti, malati o fuori posto.",
+      "fonti": [
+        1,
+        4
+      ]
+    }
+  ],
+  "approfondimenti": [],
+  "tossicita": {
+    "persone": "non verificata",
+    "animali": "tossica (una fonte)",
+    "nota": "Per cani, gatti e cavalli una fonte sola (ASPCA) indica tossici limone, arancio, lime e pompelmo; non è ancora confermato da una seconda fonte. Oli essenziali e psoraleni della buccia e della pianta possono dare vomito, diarrea, abbattimento e irritazione della pelle. Per gli altri agrumi la fonte non dice nulla: nel dubbio vale lo stesso avviso. Per le persone non abbiamo dati verificati: i frutti si mangiano. Quando poti usa guanti spessi, per le spine.",
+    "fonti": [
+      1,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "casi": [
+      {
+        "taxa": [
+          "Citrus trifoliata",
+          "Poncirus trifoliata"
+        ],
+        "persone": "tossica (una fonte)",
+        "animali": "non verificata",
+        "nota": "Una fonte sola (NC State) indica l'arancio trifogliato tossico per le persone, con gravità bassa, e lo segnala come problema per i bambini; non è ancora confermato da una seconda fonte. Il frutto è molto aspro: mangiato in quantità può dare forte mal di pancia e nausea. Il frutto sulla pelle, al sole, può dare irritazioni della pelle, di solito lievi. Per cani e gatti non abbiamo dati su questa specie: nel dubbio tienila lontana. Ha spine robuste.",
+        "fonti": [
+          15
+        ]
+      }
+    ]
+  },
+  "fonti": [
+    {
+      "id": 1,
+      "titolo": "How to grow citrus",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/fruit/citrus/grow-your-own",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Getting Started, Winter protection, Plant Care (Watering and humidity, Feeding, Repotting, Pollinating), Fruit thinning, Pruning And Training, Harvesting, Propagation, Problem Solving"
+    },
+    {
+      "id": 2,
+      "titolo": "Citrus: problems",
+      "sito": "Royal Horticultural Society",
+      "url": "https://www.rhs.org.uk/problems/citrus",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Quick facts, What are the problems?, Causes, Control"
+    },
+    {
+      "id": 3,
+      "titolo": "Container Citrus Production (HGIC 1363)",
+      "sito": "Clemson Cooperative Extension (HGIC)",
+      "url": "https://hgic.clemson.edu/factsheet/citrus/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Culture, Site Selection, Winter Care, Container Type, Growing Media, Irrigation & Fertility, Pollination, Problems"
+    },
+    {
+      "id": 4,
+      "titolo": "Citrus",
+      "sito": "UF/IFAS Gardening Solutions (University of Florida)",
+      "url": "https://gardeningsolutions.ifas.ufl.edu/plants/edibles/fruits/citrus/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Planting, Growing Citrus in Containers, Fertilizing, Pruning, cultivar groups"
+    },
+    {
+      "id": 5,
+      "titolo": "Cultural Tips for Growing Citrus",
+      "sito": "UC Statewide IPM Program (University of California)",
+      "url": "https://ipm.ucanr.edu/home-and-landscape/cultural-tips-for-growing-citrus/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Site Selection, Watering, Fertilizing, Pruning"
+    },
+    {
+      "id": 6,
+      "titolo": "Overwatering",
+      "sito": "UC Statewide IPM Program (University of California)",
+      "url": "https://ipm.ucanr.edu/home-and-landscape/overwatering/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Identification, Solutions"
+    },
+    {
+      "id": 7,
+      "titolo": "Mineral Deficiencies and Toxicities",
+      "sito": "UC Statewide IPM Program (University of California)",
+      "url": "https://ipm.ucanr.edu/home-and-landscape/mineral-deficiencies-and-toxicities/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Identification, Solutions"
+    },
+    {
+      "id": 8,
+      "titolo": "Freezing and Frost Damage to Citrus",
+      "sito": "UC Statewide IPM Program (University of California)",
+      "url": "https://ipm.ucanr.edu/home-and-landscape/freezing-and-frost-damage-to-citrus/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Identification, Disorder development, Damage, Solutions"
+    },
+    {
+      "id": 9,
+      "titolo": "Fertilizing Citrus",
+      "sito": "UC Statewide IPM Program (University of California)",
+      "url": "https://ipm.ucanr.edu/home-and-landscape/fertilizing-citrus/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Nitrogen, Micronutrients, tabella delle dosi"
+    },
+    {
+      "id": 10,
+      "titolo": "Phytophthora Root Rot",
+      "sito": "UC Statewide IPM Program (University of California)",
+      "url": "https://ipm.ucanr.edu/home-and-landscape/phytophthora-root-rot/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Symptoms, Management"
+    },
+    {
+      "id": 11,
+      "titolo": "Citrus Leafminer",
+      "sito": "UC Statewide IPM Program (University of California)",
+      "url": "https://ipm.ucanr.edu/home-and-landscape/citrus-leafminer/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "In Brief, Damage, Cultural Control, Chemical Control"
+    },
+    {
+      "id": 12,
+      "titolo": "Scales",
+      "sito": "UC Statewide IPM Program (University of California)",
+      "url": "https://ipm.ucanr.edu/home-and-landscape/scales/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Quick Tips, Damage, Management, Ant Control"
+    },
+    {
+      "id": 13,
+      "titolo": "Mealybugs (Invertebrates)",
+      "sito": "UC Statewide IPM Program (University of California)",
+      "url": "https://ipm.ucanr.edu/home-and-landscape/mealybugs-invertebrates/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Identification, Damage, Solutions"
+    },
+    {
+      "id": 14,
+      "titolo": "Citrus Red Mite",
+      "sito": "UC Statewide IPM Program (University of California)",
+      "url": "https://ipm.ucanr.edu/home-and-landscape/citrus-red-mite/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Identification, Damage, Natural enemies, Management"
+    },
+    {
+      "id": 15,
+      "titolo": "Citrus trifoliata (Hardy Orange, Trifoliate Orange)",
+      "sito": "NC State Extension Gardener Plant Toolbox",
+      "url": "https://plants.ces.ncsu.edu/plants/citrus-trifoliata/",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Description, Cultural Conditions, Poisonous to Humans, Landscape (Problems)"
+    },
+    {
+      "id": 16,
+      "titolo": "Lemon",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lemon",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 17,
+      "titolo": "Orange",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/orange",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 18,
+      "titolo": "Lime",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lime",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    },
+    {
+      "id": 19,
+      "titolo": "Grapefruit",
+      "sito": "ASPCA Animal Poison Control Center",
+      "url": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/grapefruit",
+      "consultato": "2026-11-27",
+      "livello": "A",
+      "punto": "Toxicity, Clinical Signs"
+    }
+  ],
+  "verifica": {
+    "controlliAutomatici": "2026-11-27",
+    "verificaIndipendente": "2026-11-27"
+  },
+  "versione": 1,
+  "aggiornata": "2026-11-27"
+}

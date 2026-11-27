@@ -80,6 +80,10 @@ tipici), quindi diventa una **nota**.
 - **ortaggi e aromatiche**, come tipo a parte; dal 2026-11-26 diviso in due: **aromatiche mediterranee** (rosmarino,
   salvia, timo, origano, lavanda, santoreggia: poca acqua, terreno povero, niente concime) e **ortaggi e aromatiche
   dell'orto** (acqua regolare, terreno ricco, concime).
+- **alberi di clima temperato e mediterraneo**: dal 2026-11-27 divisi in quattro tipi, perché le cure sono troppo
+  diverse: **agrumi** (gelo, vaso, concime, clorosi), **alberi mediterranei sempreverdi** (olivo, alloro, carrubo,
+  lentisco, corbezzolo, fillirea), **alberi da frutto** (drupacee, pomacee, melograno, fico, kaki, feijoa, giuggiolo,
+  noce, castagno) e **alberi ornamentali**, che è anche il tipo di riserva per tutti gli altri generi di alberi.
 
 Se WCVP non ha la forma di vita di un genere, si usa quella più frequente nella sua famiglia, dichiarandolo. Se manca
 anche quella, si usa una scheda universale "pianta in vaso o in giardino". **Nessuna pianta resta senza scheda.**

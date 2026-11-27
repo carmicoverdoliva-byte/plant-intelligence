@@ -1296,5 +1296,54 @@
       "verificaIndipendente": "2026-11-27"
     },
     "aggiornata": "2026-11-27"
+  },
+  {
+    "famiglia": "Rutaceae",
+    "nomeComune": "rutacee (agrumi, ruta e parenti)",
+    "note": [
+      {
+        "tema": "tossicità",
+        "testo": "Una fonte sola segnala che alcune rutacee possono irritare la pelle: la ruta, il dittamo e l'arancio trifogliato. La ruta, mangiata in grande quantità, può dare mal di pancia, vomito e, nei casi gravi, convulsioni. Quando poti o maneggi le foglie usa i guanti e le maniche lunghe.",
+        "fonti": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "fonti": [
+      {
+        "id": 1,
+        "titolo": "Ruta graveolens (Common Rue, Garden Rue, Herb of Grace, Rue)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/ruta-graveolens/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Poisonous to Humans, Diseases, Insects, and Other Plant Problems"
+      },
+      {
+        "id": 2,
+        "titolo": "Dictamnus albus (Burning Bush, Dittany, Gas Plant, White Dittany)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/dictamnus-albus/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Description, Poisonous to Humans"
+      },
+      {
+        "id": 3,
+        "titolo": "Citrus trifoliata (Hardy Orange, Trifoliate Orange)",
+        "sito": "NC State Extension Gardener Plant Toolbox",
+        "url": "https://plants.ces.ncsu.edu/plants/citrus-trifoliata/",
+        "consultato": "2026-11-27",
+        "livello": "A",
+        "punto": "Description, Poisonous to Humans"
+      }
+    ],
+    "verifica": {
+      "controlliAutomatici": "2026-11-27",
+      "verificaIndipendente": "2026-11-27"
+    },
+    "aggiornata": "2026-11-27"
   }
 ]

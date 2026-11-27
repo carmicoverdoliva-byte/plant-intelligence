@@ -312,7 +312,7 @@ try {
   let s = await scheda("specie=Phalaenopsis%20amabilis&genere=Phalaenopsis&famiglia=Orchidaceae");
   ok(s.ok && s.tipo === "orchidee" && s.scheda?.id === "tipo/orchidee" && s.notaFamiglia?.famiglia === "Orchidaceae", "Scheda: orchidea → scheda delle orchidee + nota di famiglia");
   s = await scheda("specie=Quercus%20ilex&genere=Quercus&famiglia=Fagaceae");
-  ok(s.ok && s.tipo === "alberi" && s.scheda === null, "Scheda: leccio → tipo \"alberi\", scheda dichiarata in preparazione (mai inventata)");
+  ok(s.ok && s.tipo === "alberi-ornamentali" && s.scheda === null, "Scheda: leccio → tipo \"alberi ornamentali\", scheda dichiarata in preparazione (mai inventata)");
   s = await scheda("specie=Solanum%20lycopersicum&genere=Solanum&famiglia=Solanaceae");
   ok(s.tipo === "ortaggi-aromatiche" && s.base === "manuale", "Scheda: pomodoro → ortaggi (eccezione per specie)");
   s = await scheda("specie=Planta%20ignota&genere=Planta");

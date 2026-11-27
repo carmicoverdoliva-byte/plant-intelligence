@@ -344,6 +344,15 @@ Legenda della colonna "Tu": **—** = non serve niente da parte tua, oltre a leg
       Cloudflare).
     - Verifiche: `npm run schede:controlla -- --rete` (0 errori, nessuna copia); verifica indipendente (14 correzioni
       applicate, tutte frasi che dicevano più delle fonti).
+  - **Blocco alberi, scritto il 2026-11-27 (in attesa della tabella della tossicità):**
+    - Il tipo "alberi" diviso in quattro (decisione dell'utente): agrumi, alberi mediterranei, alberi da frutto, alberi
+      ornamentali (riserva). Correzioni all'indice: *Ziziphus*, *Mespilus* e le specie *Diospyros kaki* e *Ficus carica*
+      negli alberi da frutto; *Magnolia* e le specie *Albizia julibrissin* e *Melia azedarach* negli ornamentali.
+    - Scheda del tipo **agrumi** (eccezioni per lime, calamondino, kumquat, arancio trifogliato; gelo, vaso e piena terra,
+      microelementi) e nota di famiglia delle **rutacee** (solo tossicità: ruta, dittamo, arancio trifogliato).
+    - Fonti A: RHS, Clemson HGIC, UF/IFAS Gardening Solutions, UC IPM, NC State Extension, ASPCA. UF/IFAS EDIS non
+      leggibile (rimandi all'infinito).
+    - Verifiche: `npm run schede:controlla -- --rete` (0 errori); verifica indipendente (18 correzioni applicate).
   - **Elenco casa e orto approvato** (2026-11-18), con Phalaenopsis (gruppo di ibridi commerciali) nel rilascio 1 e
     oleandro, olivo, buganvillea, cetriolo, cipolla nel rilascio 2: 67 specie e 42 generi, nomi controllati con GBIF.
   - **Aggiornamento dell'app sull'iPhone:** l'app confronta la sua versione con quella pubblicata (`/api/versione`)

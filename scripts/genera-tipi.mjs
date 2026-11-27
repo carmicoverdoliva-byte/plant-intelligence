@@ -46,21 +46,22 @@ const GENERI = {
   Cucumis: "ortaggi-aromatiche", Phaseolus: "ortaggi-aromatiche", Pisum: "ortaggi-aromatiche", Fragaria: "ortaggi-aromatiche",
   Daucus: "ortaggi-aromatiche", Spinacia: "ortaggi-aromatiche", Beta: "ortaggi-aromatiche", Anethum: "ortaggi-aromatiche",
   Coriandrum: "ortaggi-aromatiche", Raphanus: "ortaggi-aromatiche", Eruca: "ortaggi-aromatiche", Apium: "ortaggi-aromatiche",
-  Citrus: "alberi",
+  Citrus: "agrumi",
   // Generi che in Italia si coltivano diversamente da quanto direbbe il clima d'origine prevalente
-  Pittosporum: "arbusti", Olea: "alberi", Pelargonium: "arbusti", Strelitzia: "foglia-tropicale", Begonia: "foglia-tropicale",
+  Pittosporum: "arbusti", Olea: "alberi-mediterranei", Pelargonium: "arbusti", Strelitzia: "foglia-tropicale", Begonia: "foglia-tropicale",
   Hibiscus: "arbusti", Tradescantia: "foglia-tropicale", Pilea: "foglia-tropicale", Solanum: "universale", Nerium: "arbusti",
   Bougainvillea: "rampicanti", Jasminum: "rampicanti", Trachelospermum: "rampicanti", Gardenia: "arbusti", Lantana: "arbusti",
-  Euphorbia: "universale", Passiflora: "rampicanti", Smilax: "rampicanti", Capparis: "arbusti", Celtis: "alberi",
+  // Dal 2026-11-27 (alberi divisi in 4 tipi): le altre correzioni a mano sono scritte nella "nota" di tipo-per-genere.json
+  Euphorbia: "universale", Passiflora: "rampicanti", Smilax: "rampicanti", Capparis: "arbusti", Celtis: "alberi-ornamentali",
 };
 // Specie con un tipo diverso da quello del loro genere
 const SPECIE = {
-  "Ficus carica": "alberi",
+  "Ficus carica": "alberi-frutto",
   "Solanum lycopersicum": "ortaggi-aromatiche", "Solanum melongena": "ortaggi-aromatiche", "Solanum tuberosum": "ortaggi-aromatiche",
   "Salvia rosmarinus": "ortaggi-aromatiche", "Salvia officinalis": "ortaggi-aromatiche",
   "Allium cepa": "ortaggi-aromatiche", "Allium sativum": "ortaggi-aromatiche", "Allium porrum": "ortaggi-aromatiche",
-  "Allium schoenoprasum": "ortaggi-aromatiche", "Brassica oleracea": "ortaggi-aromatiche", "Laurus nobilis": "alberi",
-  "Olea europaea": "alberi",
+  "Allium schoenoprasum": "ortaggi-aromatiche", "Brassica oleracea": "ortaggi-aromatiche", "Laurus nobilis": "alberi-mediterranei",
+  "Olea europaea": "alberi-mediterranei",
 };
 
 const tropicale = (clima) => /tropical/.test(clima) && clima !== "subtropical";
@@ -76,7 +77,7 @@ function daFormaDiVita(forma, clima) {
   if (/climb|liana|scrambling/.test(f)) return trop ? "rampicanti-tropicali" : "rampicanti";
   if (/epiphyt|lithophyte/.test(f)) return trop ? "foglia-tropicale" : "erbacee-perenni";
   if (/bulbous|tuberous|pseudobulbous|corm/.test(f)) return "bulbose";
-  if (/tree/.test(f)) return trop ? "alberi-arbusti-tropicali" : "alberi";
+  if (/tree/.test(f)) return trop ? "alberi-arbusti-tropicali" : "alberi-ornamentali"; // dal 2026-11-27 "alberi" è diviso in 4 tipi
   // Sottoarbusti tropicali (begonie, tradescantie, pilee…): in casa si curano come piante da foglia
   if (/^subshrub|perennial or subshrub/.test(f) && !/shrub or tree/.test(f)) return trop ? "foglia-tropicale" : "arbusti";
   if (/shrub/.test(f)) return trop ? "alberi-arbusti-tropicali" : "arbusti";
