@@ -1,7 +1,7 @@
 {
   "versione": 2,
   "creato": "2026-11-18",
-  "stato": "APPROVATO dall'utente il 2026-11-18 (con le aggiunte richieste); nomi controllati con GBIF il 2026-11-18",
+  "stato": "APPROVATO dall'utente il 2026-11-18 (con le aggiunte richieste); nomi controllati con GBIF il 2026-11-18; 2026-11-27: aggiunte 54 specie approvate dall'utente (nomi accettati da GBIF)",
   "scopo": "Ordine di scrittura delle schede per casa, balcone e orto (D13). Le piante all'aperto si aggiungeranno dai conteggi GBIF (docs/api-documentation/banche-dati-cura.md).",
   "criteri": [
     "piante d'appartamento più vendute e trattate dai siti istituzionali (RHS, servizi universitari), più le piante della prova D11",
@@ -822,6 +822,657 @@
       "rilascio": 2,
       "gbif": {
         "chiave": 2857697,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Dendrobium nobile",
+      "nomeComune": "Dendrobium",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 5317489,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Echeveria elegans",
+      "nomeComune": "Echeveria",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 8315197,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Haworthiopsis attenuata",
+      "nomeComune": "Haworthia zebrata",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "nota": "nome accettato da GBIF per Haworthia attenuata",
+      "gbif": {
+        "chiave": 9388529,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Sedum morganianum",
+      "nomeComune": "Coda d'asino",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 5690408,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Aloe arborescens",
+      "nomeComune": "Aloe arborescente",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2777537,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Agave americana",
+      "nomeComune": "Agave",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2767031,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Aeonium arboreum",
+      "nomeComune": "Aeonio",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2985682,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Daucus carota",
+      "nomeComune": "Carota",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3034742,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Brassica oleracea",
+      "nomeComune": "Cavolo",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3042845,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Spinacia oleracea",
+      "nomeComune": "Spinacio",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3083647,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Beta vulgaris",
+      "nomeComune": "Bietola",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 8971274,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Cucurbita maxima",
+      "nomeComune": "Zucca",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2874515,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Citrullus lanatus",
+      "nomeComune": "Anguria",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2874621,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Cucumis melo",
+      "nomeComune": "Melone",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2874570,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Cichorium intybus",
+      "nomeComune": "Cicoria e radicchio",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 5392252,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Eruca vesicaria",
+      "nomeComune": "Rucola",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 5375920,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Allium sativum",
+      "nomeComune": "Aglio",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2856681,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Foeniculum vulgare",
+      "nomeComune": "Finocchio",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3034922,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Cynara cardunculus",
+      "nomeComune": "Carciofo",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3112364,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Solanum tuberosum",
+      "nomeComune": "Patata",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2930262,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Thymus vulgaris",
+      "nomeComune": "Timo",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 5341442,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Origanum vulgare",
+      "nomeComune": "Origano",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2926612,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Origanum majorana",
+      "nomeComune": "Maggiorana",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2926615,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Lavandula stoechas",
+      "nomeComune": "Lavanda selvatica",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2927303,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Goeppertia orbifolia",
+      "nomeComune": "Calathea orbifolia",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 7476815,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Goeppertia makoyana",
+      "nomeComune": "Calathea pavone",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 7708211,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Alocasia macrorrhizos",
+      "nomeComune": "Alocasia",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 5329904,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Fittonia albivenis",
+      "nomeComune": "Fittonia",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 5574508,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Monstera adansonii",
+      "nomeComune": "Monstera adansonii",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2868136,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Philodendron erubescens",
+      "nomeComune": "Filodendro rosso",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2871297,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Hoya kerrii",
+      "nomeComune": "Hoya cuore",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3573959,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Ficus microcarpa",
+      "nomeComune": "Ficus ginseng",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 7467639,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Pachira aquatica",
+      "nomeComune": "Pachira",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3152235,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Musa acuminata",
+      "nomeComune": "Banano",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2762680,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Lantana camara",
+      "nomeComune": "Lantana",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2925303,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Pittosporum tobira",
+      "nomeComune": "Pittosporo",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 8677924,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Myrtus communis",
+      "nomeComune": "Mirto",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3180085,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Plumbago auriculata",
+      "nomeComune": "Gelsomino azzurro",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3082283,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Callistemon citrinus",
+      "nomeComune": "Callistemon",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3173413,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Camellia japonica",
+      "nomeComune": "Camelia",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3189636,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Rhododendron simsii",
+      "nomeComune": "Azalea",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 7327627,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Erica carnea",
+      "nomeComune": "Erica",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 5682465,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Rosa chinensis",
+      "nomeComune": "Rosa",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3005039,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Buxus sempervirens",
+      "nomeComune": "Bosso",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2984671,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Photinia fraseri",
+      "nomeComune": "Fotinia",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "nota": "nome accettato da GBIF per Photinia x fraseri",
+      "gbif": {
+        "chiave": 5363854,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Viburnum tinus",
+      "nomeComune": "Viburno tino",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2888585,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Syringa vulgaris",
+      "nomeComune": "Lillà",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 5415039,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Ilex aquifolium",
+      "nomeComune": "Agrifoglio",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 5414222,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Nandina domestica",
+      "nomeComune": "Nandina",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 5371712,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Hibiscus syriacus",
+      "nomeComune": "Ibisco da giardino",
+      "ambiente": "balcone",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3152583,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Lathyrus oleraceus",
+      "nomeComune": "Pisello",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "nota": "nome accettato da GBIF per Pisum sativum",
+      "gbif": {
+        "chiave": 5347846,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Vicia faba",
+      "nomeComune": "Fava",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 2974832,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Melissa officinalis",
+      "nomeComune": "Melissa",
+      "ambiente": "orto",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 5341501,
+        "stato": "ACCEPTED",
+        "rango": "SPECIES"
+      }
+    },
+    {
+      "livello": "specie",
+      "nome": "Euphorbia milii",
+      "nomeComune": "Spina di Cristo",
+      "ambiente": "casa",
+      "rilascio": 2,
+      "gbif": {
+        "chiave": 3067157,
         "stato": "ACCEPTED",
         "rango": "SPECIES"
       }
