@@ -612,9 +612,9 @@
         "taxa": [
           "Gardenia"
         ],
-        "persone": "non verificata",
+        "persone": "tossica (una fonte)",
         "animali": "tossica",
-        "nota": "La gardenia è tossica per cani e gatti, con disturbi lievi: vomito o diarrea, a volte orticaria (due fonti). Per le persone non abbiamo dati verificati.",
+        "nota": "La gardenia è tossica per cani e gatti, con disturbi lievi: vomito o diarrea, a volte orticaria (due fonti). Per le persone una fonte sola la indica tossica, con gravità bassa (disturbi lievi se mangiata): nel dubbio, meglio prudenza.",
         "fonti": [
           17,
           18
@@ -898,7 +898,8 @@
   ],
   "verifica": {
     "controlliAutomatici": "2026-11-26",
-    "verificaIndipendente": "2026-11-26"
+    "verificaIndipendente": "2026-11-26",
+    "tabellaTossicita": "2026-11-27"
   },
   "versione": 1,
   "aggiornata": "2026-11-26"
